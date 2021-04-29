@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dispensar</title>
+    <!-- <link rel='stylesheet' href='https://ccsnubev2.com/v6/css/stylesv6.css?t=1602953585' type='text/css' /> -->
+    <!-- <link rel="stylesheet" href="https://ccsnubev2.com/v6/css/dev.css?t=1602953585" type="text/css" />
+    <link rel="stylesheet" href="https://ccsnubev2.com/v6/css/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="https://ccsnubev2.com/v6/css/dd_signature_pad.css" type="text/css" />
+    <link rel="stylesheet" href="https://ccsnubev2.com/v6/css/select2.min.css" type="text/css" />
+    <link rel="shortcut icon" href="https://ccsnubev2.com/v6/favicon.ico">
+    <link rel="stylesheet" href="https://ccsnubev2.com/v6/css/jquery.keypad.css" type="text/css">
+    <link rel="stylesheet" href="https://ccsnubev2.com/v6/css/jquery.ui.timepicker.css" type="text/css"> -->
+    <link rel="stylesheet" href="fontawesome5/css/all.css">
+    <link rel="stylesheet" href="css/w3.css">
+    <!-- <script type="text/javascript" src="https://ccsnubev2.com/v6/scripts/jquery-1.10.2.min.js"></script> -->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/select2.min.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/jquery.validate.min.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/additional-methods.min.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/jquery-ui.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/webcam.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/jquery.tablesorter.min.js"></script>
+    <script src="https://ccsnubev2.com/v6/scripts/jquery.table2excel.js"></script>
+    <script type="text/javascript" src="https://ccsnubev2.com/v6/scripts/jquery.plugin.js"></script>
+    <script type="text/javascript" src="https://ccsnubev2.com/v6/scripts/jquery.keypad.js"></script>
+    <script type="text/javascript" src="https://ccsnubev2.com/v6/scripts/jquery.ui.timepicker.js"></script>
+
+
+    <script>
+        jQuery(document).ready(function ($) {
+
+            $(".clickableRow").click(function () {
+                window.document.location = $(this).attr("href");
+            });
+
+            $(".clickableRowNew").click(function () {
+                window.open(
+                    $(this).attr("href"),
+                    '_blank' // <- This is what makes it open in a new window.
+                );
+            });
+
+            $('.noEnterSubmit').keypress(function (e) {
+                if (e.which == 13) return false;
+                //or...
+                if (e.which == 13) e.preventDefault();
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat: "dd-mm-yy"
+            });
+        });
+        $(document).ready(function () {
+
+            $('.onScreenKeypad').keypad({
+                layout: ['789' + $.keypad.CLOSE,
+                '456' + $.keypad.CLEAR,
+                '123' + $.keypad.BACK,
+                '.0' + $.keypad.SPACE]
+            });
+
+            $.validator.addMethod('totalCheck', function (value, element, params) {
+                var field_1 = $('input[name="' + params[0] + '"]').val(),
+                    field_2 = $('input[name="' + params[1] + '"]').val(),
+                    field_3 = $('input[name="' + params[2] + '"]').val();
+
+                if (field_3 == null) {
+                    field_3 = 0;
+                }
+                // return parseInt(value) === parseInt(field_1) + parseInt(field_2);
+
+                if ((parseFloat(field_1) + parseFloat(field_2) + parseFloat(field_3)) == 0) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }, "Enter the number of persons (including yourself)");
+            $('#registerForm').validate({
+                ignore: [],
+                rules: {
+                    newcredit: {
+                        range: [0, 100000]
+                    },
+                    cardid: {
+                        required: true
+                        //, range: ["0011286699","0011286699"]
+                    },
+                    eurcalcTOT: {
+                        range: [0, "800"]
+                    },
+                    gramsTOT: {
+                        totalCheck: ['gramsTOT', 'unitsTOT', 'newDonation']
+                    },
+                    unitsTOT: {
+                        totalCheck: ['gramsTOT', 'unitsTOT', 'newDonation']
+                    },
+                    pmtType: {
+                        required: true,
+                        range: [0, 3]
+                    },
+                    hour: {
+                        required: {
+                            depends: function (element) {
+                                return $("#datepicker").is(":filled");
+                            }
+                        },
+                        range: [0, 23]
+                    },
+                    minute: {
+                        required: {
+                            depends: function (element) {
+                                return $("#datepicker").is(":filled");
+                            }
+                        },
+                        range: [0, 59]
+                    }
+                }, // end rules
+                errorPlacement: function (error, element) {
+
+                    if (element.is(":radio") || element.is(":checkbox")) {
+                        error.appendTo(element.parent());
+                    } else {
+                        return true;
+                    }
+                },
+                submitHandler: function (form) {
+
+                    $(".oneClick").attr("disabled", true);
+                    // form2
+
+                    setTimeout(function () {
+                        form.submit();
+                    }, 700);
+
+
+                }
+            }); // end validate
+            $("#credit").click(function () {
+                $(".donateField").toggle();
+            });
+
+
+            $(function () {
+                $('#chipClick').click(function () {
+                    $("#cardscan").val('0011286699');
+                });
+            });
+
+            function getItems() {
+                var sum = 0;
+                $('.calc').each(function (i, e) {
+                    var v = +$(e).val();
+                    if (!isNaN(v))
+                        sum += v;
+                });
+                var rsum = sum.toFixed(2);
+                $('#grcalcTOT').val(rsum);
+                $('#grcalcTOT2').val(rsum);
+                $('#grcalcTOTexp').val(rsum);
+                var sumB = 0;
+                $('.calc2').each(function (i, e) {
+                    var vB = +$(e).val();
+                    if (!isNaN(vB))
+                        sumB += vB;
+                });
+                var rsumB = sumB.toFixed(2);
+
+                var sumDisc = 0;
+
+                $("input[type=checkbox]:checked").each(function () {
+                    sumDisc += parseInt($(this).val());
+                });
+                $('#totDiscount').html("(" + sumDisc + "%)");
+                $('#totDiscountInput').val(sumDisc);
+
+                var appliedDisc = (100 - sumDisc) / 100;
+
+                var tempPrice = rsumB * appliedDisc;
+
+                var eurdisc = $('#eurdiscount').val();
+
+                var newPrice = tempPrice - eurdisc;
+                $('#eurcalcTOT').val(newPrice);
+                $('#eurcalcTOT2').val(newPrice);
+                $('#eurcalcTOTexp').val(newPrice);
+
+
+                var sumC = 0;
+                $('.calc3').each(function (i, e) {
+                    var vC = +$(e).val();
+                    if (!isNaN(vC))
+                        sumC += vC;
+                });
+                $('.calc4').each(function (i, e) {
+                    var vD = +$(e).val();
+                    if (!isNaN(vD))
+                        sumC += vD;
+                });
+                var sumC = sumC.toFixed(2);
+                $('#unitcalcTOT').val(sumC);
+                $('#unitcalcTOT2').val(sumC);
+
+            } if (0.00 < 0) {
+                function computeTot() {
+                    var a = $('#realCredit').val();
+                    var b = $('#eurcalcTOT').val();
+                    var total = ((a * 1) - (b * 1));
+                    var roundedtotal = total.toFixed(2);
+                    $('#realNewCredit').val(roundedtotal);
+                }
+            } else {
+                function computeTot() {
+                    var a = $('#realCredit').val();
+                    var b = $('#eurcalcTOT').val();
+                    var total = ((a * 1) - (b * 1));
+                    var roundedtotal = total.toFixed(2);
+                    $('#newcredit').val(roundedtotal);
+                    $('#newcredit2').val(roundedtotal);
+                    $('#realNewCredit').val(roundedtotal);
+                }
+            }
+
+            $("#pmt1").click(function () {
+                setTimeout(function () {
+                    $("#newcredit").val($("#credit").val());
+                    $("#newcredit2").val($("#credit").val());
+                    $("#changeTable").css("display", "table-row");
+                    $("#paid").focus();
+                }, 700);
+            });
+            $("#pmt2").click(function () {
+                setTimeout(function () {
+                    $("#newcredit").val($("#credit").val());
+                    $("#newcredit2").val($("#credit").val());
+                    $("#changeTable").css("display", "none");
+                }, 700);
+            });
+            $("#pmt3").click(function () {
+                setTimeout(function () {
+                    getItems();
+                    computeTot();
+                    $("#changeTable").css("display", "none");
+                }, 700);
+
+            });
+
+            $("#openComment").click(function (a) {
+                a.preventDefault();
+                $("#hiddenComment").toggle();
+                //$("#openComment").css("display", "none");
+            });
+
+            $("#openDispenseDate").click(function (a) {
+                a.preventDefault();
+                $("#customDispenseDate").toggle();
+                //$("#openDispenseDate").css("display", "none");
+            });
+
+            $("#openDiscount").click(function (a) {
+                a.preventDefault();
+                $("#discountholder").toggle();
+            });
+
+
+
+
+
+            $("#minimizeMemberBox").click(function () {
+                $("#hiddenSummary").css("display", "block");
+                $("#memberbox").css("visibility", "hidden");
+            });
+
+            $("#minimizeSummaryBox").click(function () {
+                $("#memberbox").css("visibility", "visible");
+                $("#hiddenSummary").css("display", "none");
+            });
+
+
+            // Calculate discounts
+            $("input[type=checkbox]").change(function () {
+                recalculate();
+            });
+
+
+            function recalculate() {
+
+                var sumDisc = 0;
+
+                $("input[type=checkbox]:checked").each(function () {
+                    sumDisc += parseInt($(this).val());
+                });
+                $('#totDiscount').html("(" + sumDisc + "%)");
+                $('#totDiscountInput').val(sumDisc);
+
+            }
+
+
+
+            /*
+        	
+                Transform 20 to 0,8
+                x = 100 - 20
+                x / 100
+        	
+        	
+            */
+            // Removed CLICK from this one:	
+            $(document).on('click keypress keyup blur', function (event) {
+                if (!$(event.target).is("#cardscan")) {
+                    if (!$(event.target).is(".title, #plus1, #minus1")) {
+                        if (!$(event.target).is("#main")) {
+                            if (!$(event.target).is("#pmt1")) {
+                                if (!$(event.target).is("#pmt2")) {
+                                    if (!$(event.target).is("#pmt3")) {
+                                        if (!$(event.target).is("#submitButton")) {
+                                            if (!$(event.target).is("#cart_img, #cart_count")) {
+                                                if (!$(event.target).is("#paid")) {
+                                                    if (!$(event.target).is("#chipClick")) {
+                                                        // uncheck all radio boxes
+                                                        $("input:radio").attr("checked", false);
+                                                        setTimeout(function () {
+                                                            getItems();
+                                                            computeTot();
+                                                        }, 700);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            $("#paid").on('click keypress keyup blur', function (event) {
+                var aX = $('#eurcalcTOT').val();
+                var bX = $('#paid').val();
+                var totalX = bX - aX;
+                var roundedtotalX = totalX.toFixed(2);
+                $('#change').val(roundedtotalX);
+            });
+            getItems();
+            computeTot();
+        }); // end ready
+    </script>
+</head>
+
+<body id="pdispense" class="w3-container">
+
+    <script>
+        function handleScroll(e) {
+            if (e.target.tagName.toLowerCase() === 'input'
+                && (e.target.type === 'number')
+                && (e.target === document.activeElement)
+                && !e.target.readOnly
+            ) {
+                e.target.readOnly = true;
+                setTimeout(function (el) { el.readOnly = false; }, 0, e.target);
+            }
+        }
+        document.addEventListener('wheel', function (e) { handleScroll(e); });
+    </script>
+
+    <style>
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #hotIcon {
+            animation: blink 1s;
+            animation-iteration-count: infinite;
+        }
+
+        #feedbackAlert {
+            animation: blink 1s;
+            animation-iteration-count: infinite;
+        }
+    </style>
+    <!--<script>
+(function (global) {
+
+	if(typeof (global) === "undefined")
+	{
+		throw new Error("window is undefined");
+	}
+
+    var _hash = "!";
+    var noBackPlease = function () {
+        global.location.href += "#";
+
+		// making sure we have the fruit available for juice....
+		// 50 milliseconds for just once do not cost much (^__^)
+        global.setTimeout(function () {
+            global.location.href += "!";
+        }, 50);
+    };
+	
+	// Earlier we had setInerval here....
+    global.onhashchange = function () {
+        if (global.location.hash !== _hash) {
+            global.location.hash = _hash;
+        }
+    };
+
+    global.onload = function () {
+        
+		noBackPlease();
+
+		// disables backspace on page except on input fields and textarea..
+		document.body.onkeydown = function (e) {
+            var elm = e.target.nodeName.toLowerCase();
+            if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
+                e.preventDefault();
+            }
+            // stopping event bubbling up the DOM tree..
+            e.stopPropagation();
+        };
+		
+    };
+
+})(window);
+</script>-->
+
+
+
+    <div id="wrapper">
+        <!-- <div id="header">
+            <div id="pagecontrols">
+                <div id="icons">
+                    <a href='change-scanner.php?scannerid=2'><img src='images/2.png'
+                            style='margin-left: 14px; margin-bottom: 4px;' /></a> <a href='#'><img
+                            src='https://ccsnubev2.com/v6/images/icon-flame.png'
+                            style='margin-left: 14px; margin-bottom: 4px;' id='hotIcon' /></a> <a href='#'
+                        id='showNotifications'><img src='images/bell.png'
+                            style='margin-left: 14px; margin-bottom: 4px;' /></a>
+                    <div id='notificationBox' class='actionbox-np2'>
+                        <div class='mainboxheader'>Notificaciones</div>
+                        <div class='boxcontent' id='notificationContent'>
+                            <table class='notificationTable'>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div id="controls">
+
+                    <img src="https://ccsnubev2.com/v6/images/clock.png" style="margin-bottom: -2px;" />&nbsp;17th
+                    October 2020 18:53
+                    &nbsp;&nbsp;<span id="loggedinName"><img src="https://ccsnubev2.com/v6/images/user.png"
+                            style="margin-bottom: -2px;" /> Diego <img src="https://ccsnubev2.com/v6/images/flecha.png"
+                            style="margin-bottom: 2px; margin-left: 2px;" /></span> <span class='relative'><a
+                            href='help-center.php'><img src='https://ccsnubev2.com/v6/images/help-center.png'
+                                style='vertical-align: bottom; margin-left: 15px;' /></a></span> <img
+                        src='https://ccsnubev2.com/v6/images/lang-es.png' id='langselect'
+                        style='vertical-align: bottom; margin-left: 15px;' /> <a href='admin.php'><img
+                            src='https://ccsnubev2.com/v6/images/admin.png'
+                            style='vertical-align: bottom; margin-left: 15px;' /></a> <a
+                        href='uTil/logout-manual.php'><img src='https://ccsnubev2.com/v6/images/logout.png'
+                            style='vertical-align: bottom; margin-left: 15px;' /></a>
+                    <span style='position: relative;'>
+                        <div id="langlist">
+                            <a href='?lang=en&user_id=9'><img src='https://ccsnubev2.com/v6/images/gb.png'
+                                    style='margin-bottom: 1px;' /> English</a><br />
+                            <a href='?lang=es&user_id=9'><img src='https://ccsnubev2.com/v6/images/es.png'
+                                    style='margin-bottom: 1px;' /> Español</a><br />
+                            <a href='?lang=ca&user_id=9'><img src='https://ccsnubev2.com/v6/images/ca.png'
+                                    style='margin-bottom: 1px;' /> Catalá</a><br />
+                            <a href='?lang=fr&user_id=9'><img src='https://ccsnubev2.com/v6/images/fr.png'
+                                    style='margin-bottom: 1px;' /> Français</a><br />
+                            <a href='?lang=nl&user_id=9'><img src='https://ccsnubev2.com/v6/images/nl.png'
+                                    style='margin-bottom: 1px;' /> Nederlands</a><br />
+                            <a href='?lang=it&user_id=9'><img src='https://ccsnubev2.com/v6/images/it.png'
+                                    style='margin-bottom: 1px;' /> Italiano</a><br />
+                        </div>
+                    </span>
+                    <div id="stafflist">
+                        <a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=1'>Demo Usuario</a><br /><a
+                            href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=4'>Javier Salva
+                            Ferrer</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=6'>Ali
+                            Ali</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=67'>Tatiana
+                            Beghe</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=78'>Said
+                            S</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=1040'>Laura
+                            Exposito</a><br /><a
+                            href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=2462'>Lizeth Gabriela Sanchez
+                            Rebellon</a><br /><a
+                            href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=3732'>Preslava
+                            Kaneva</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=5141'>Juan
+                            carlos Bautista fernandez</a><br /><a
+                            href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=5376'>Ramon duart
+                            Baldovi</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=5377'>Falco
+                            Peydro marc</a><br /><a
+                            href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=5415'>Stuart brian
+                            Reynolds</a><br /><a href='https://ccsnubev2.com/v6/change-user.php?loggedinuser=5440'>Clara
+                            Boffa</a><br />
+                    </div>
+                </div>
+                <a href="index.php" id="logo"><img src="https://ccsnubev2.com/v6/images/_goat/logo.png" /></a>
+            </div>
+            <div id="messagelist">
+                <table>
+                    <tr>
+                        <td style="vertical-align: middle;"><img src="images/bell.png" style="margin-right: 5px;" />
+                        </td>
+                        <td style="vertical-align: top;"><strong>&iexcl;Aviso importante!</strong><br />Hemos
+                            actualizado el contrato de Software CCS.<br />Para continuar usando el software, debes
+                            firmar los términos y condiciones actualizado antes del 31 de octubre de 2020.<br /><br />
+                            <center><a href='contract-en.php'>Haga clic aquí para ver y firmar el contrato.</a></center>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <script>
+                $("#loggedinName").click(function () {
+                    $('#stafflist').toggle();
+                });
+
+                $("#langselect").click(function () {
+                    $('#langlist').toggle();
+                });
+
+                $("#messageSwitch").click(function () {
+                    $("#messagelist2").toggle();
+                    $("#msgIcon").css("opacity", "0.3");
+                });
+
+                $("#hotIcon").click(function () {
+                    $("#messagelist").toggle();
+                });
+
+                $("#closeTooltip").click(function () {
+                    $("#tooltip").css("display", "none");
+                    // Run ajax to update db to show they've already clicked the X.
+                });
+                $("#showNotifications").click(function () {
+
+                    if ($("#notificationBox").css('display') == 'none') {
+
+                        // Box is closed, show notifications - THEN mark as read
+                        $("#notificationBox").css("display", "block");
+                        $.ajax({
+                            type: "post",
+                            url: "get-notifications.php",
+                            datatype: "text",
+                            success: function (data) {
+                                if (data == 'false') {
+
+                                } else {
+
+                                    $(".notificationTable").html(data);
+
+                                }
+                            }
+                        });
+
+                    } else {
+
+                        // Box is open, so run script to mark as read
+                        $("#notificationBox").css("display", "none");
+                        $.ajax({
+                            type: "post",
+                            url: "mark-read.php",
+                            datatype: "text",
+                            success: function (data) {
+                                if (data == 'false') {
+
+                                } else {
+
+                                    if (data == '') {
+                                        $("#noteCount").hide();
+                                    } else {
+                                        $("#noteCount").html(data);
+                                    }
+
+                                }
+                            }
+                        });
+
+                    }
+
+                    // If notificationbox is open, mark as read
+                    // If closed, open box but don't perform any action
+
+                    // $("#notificationBox").toggle();
+                    // Run ajax to mark messages as read + retrieve new number of unread
+
+
+                });
+
+                $("#showOrders").click(function () {
+
+                    if ($("#orderBox").css('display') == 'none') {
+
+                        $("#orderBox").css("display", "block");
+
+                    } else {
+
+                        $("#orderBox").css("display", "none");
+
+                    }
+
+                    // If notificationbox is open, mark as read
+                    // If closed, open box but don't perform any action
+
+                    // $("#notificationBox").toggle();
+                    // Run ajax to mark messages as read + retrieve new number of unread
+
+
+                });
+
+            </script>
+        </div> -->
+        <!-- end HEADER -->
+        <!-- <div id="titlearea">
+            <h2>DISPENSAR</h2>
+        </div> -->
+        <!-- end titlearea -->
+        <div id='main'>
+            <style>
+                #searchfield {
+                    background: url(images/magglass.png) no-repeat scroll 8px 10px;
+                    padding-left: 30px !important;
+                    background-color: #fff;
+                }
+            </style>
+            <!-- <div style='display: inline-block; text-align: left !important; float: left; position: absolute; left: 64px; margin-top: -26px;'>
+                <form id='searchform' autocomplete="off">
+                    <input type='text' name='searchfield' class='defaultinput' id='searchfield'
+                        style='width: 200px; z-index: 999999;' />
+                </form>
+                <table id='searchtable' class='default bgwhite'
+                    style='text-align: left !important; margin-left: 0; border-left: 1px solid #ddd; border-right: 1px solid #ddd; border-top: 1px solid #ddd; margin-left: 11px; margin-top: -16px; z-index: 999999 !important;'>
+                </table>
+            </div> -->
+            <!-- Shopping cart   -->
+            <div class="ship_cart">
+                <i class="fas fa-shopping-cart"></i><span id="cart_count">0</span>
+            </div>
+            <!-- shooping cart popup -->
+            <div class="actionbox-npr" id="cart_pop" title="Cart">
+                <div class='boxcomtemt'>
+                    <table id="memberBoxTable">
+                        <tr>
+                            <th><strong>Product Name</strong></th>
+                            <th><strong>Category</strong></th>
+                            <th><strong>Grams</strong></th>
+                            <th><strong>Units</strong></th>
+                            <th><strong>Gift (g/u)</strong></th>
+                            <th><strong>Price</strong></th>
+                        </tr>
+                        <tbody class="show_cart_data"></tbody>
+                    </table>
+                </div>
+            </div>
+            <br /><br />
+            <div id='dispensarymain' class="w3-row">
+                <form id="registerForm" action="" method="POST"></form>
+                <div class="w3-col l9 m9 s9 w3-blue">
+                    <h3 class='title' onClick='load1()' style='cursor: pointer;'>
+                        <img src='images/icon-flower.png' height='30' style='margin-right: 10px; margin-bottom: -8px;' />FLORES
+                        <img src='images/expand.png' id='plus1' width='21' style='margin-left: 5px;' />
+                        <img src='images/shrink.png' id='minus1' width='21' style='margin-left: 5px; display: none;' />
+                        <span id='spinner1'></span>
+                        <input type='hidden' name='click1' id='click1' class='clickControl' value='0' />
+                        <input type='hidden' name='clickX1' id='clickX1' value='0' />
+                    </h3>
+                    <span id='menu1'></span>
+                    <script>
+                        function load1() {
+                            if ($("#click1").val() == 0 && $("#clickX1").val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX1").val(1);
+                                $("#plus1").hide();
+                                $("#minus1").show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner1").append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+                                $.ajax({
+                                    type: "post",
+                                    url: "getflowers.php?i=" + dayJSID + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner1").remove();
+                                        $('#menu1').append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click1").val(1);
+                                    }
+                                });
+                            } else {
+                                if ($("#clickX1").val() == 1) {
+                                    $("#clickX1").val(2);
+                                    $('#menu1').hide();
+                                    $("#plus1").show();
+                                    $("#minus1").hide();
+                                } else if ($("#clickX1").val() == 2) {
+                                    $('#menu1').show();
+                                    $("#clickX1").val(3);
+                                    $("#plus1").hide();
+                                    $("#minus1").show();
+                                } else {
+                                    $('#menu1').hide();
+                                    $("#clickX1").val(2);
+                                    $("#plus1").show();
+                                    $("#minus1").hide();
+                                }
+                            }
+                        };
+                    </script>
+                    <h3 class='title' onClick='load2()' style='cursor: pointer;'>
+                        <img src='images/icon-extract.png' height='30' style='margin-right: 10px; margin-bottom: -8px;' />EXTRACTOS
+                        <img src='images/expand.png' id='plus2' width='21' style='margin-left: 5px;' />
+                        <img src='images/shrink.png' id='minus2' width='21' style='margin-left: 5px; display: none;' />
+                        <span id='spinner2'></span>
+                        <input type='hidden' name='click2' id='click2' class='clickControl' value='0' />
+                        <input type='hidden' name='clickX2' id='clickX2' value='0' /><input type='hidden' name='loaded2' id='loaded2'
+                            value='0' />
+                    </h3>
+                    <span id='menu2'></span>
+                    <script>
+                        function load2() {
+
+                            if ($("#click2").val() == 0 && $("#clickX2").val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX2").val(1);
+                                $("#plus2").hide();
+                                $("#minus2").show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner2").append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+                                $.ajax({
+                                    type: "post",
+                                    url: "getextracts.php?i=" + dayJSID + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner2").remove();
+                                        $('#menu2').append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click2").val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX2").val() == 1) {
+                                    $("#clickX2").val(2);
+                                    $('#menu2').hide();
+                                    $("#plus2").show();
+                                    $("#minus2").hide();
+                                } else if ($("#clickX2").val() == 2) {
+                                    $('#menu2').show();
+                                    $("#clickX2").val(3);
+                                    $("#plus2").hide();
+                                    $("#minus2").show();
+                                } else {
+                                    $('#menu2').hide();
+                                    $("#clickX2").val(2);
+                                    $("#plus2").show();
+                                    $("#minus2").hide();
+                                }
+                            }
+                            $("#loaded2").val(1);
+                        };
+                    </script>
+                
+                    <h3 class='title' onClick='load(12,0)' style='cursor: pointer;'>Cali Flowers Strains <img src='images/expand.png'
+                            id='plus12' width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus12' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner12'></span><input type='hidden' name='click12'
+                            id='click12' class='clickControl' value='0' /><input type='hidden' name='clickX12' id='clickX12'
+                            value='0' /><input type='hidden' id='sort_type12' value='0'>
+                    </h3><span id='menu12'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(4,0)' style='cursor: pointer;'>Cali Weed Packages <img src='images/expand.png'
+                            id='plus4' width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus4' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner4'></span><input type='hidden' name='click4'
+                            id='click4' class='clickControl' value='0' /><input type='hidden' name='clickX4' id='clickX4'
+                            value='0' /><input type='hidden' id='sort_type4' value='0'></h3>
+                    <span id='menu4'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(8,0)' style='cursor: pointer;'>Extractions <img src='images/expand.png' id='plus8'
+                            width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus8' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner8'></span><input type='hidden' name='click8'
+                            id='click8' class='clickControl' value='0' /><input type='hidden' name='clickX8' id='clickX8'
+                            value='0' /><input type='hidden' id='sort_type8' value='0'></h3>
+                    <span id='menu8'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(7,0)' style='cursor: pointer;'>Pre-Rolled Joints <img src='images/expand.png'
+                            id='plus7' width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus7' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner7'></span><input type='hidden' name='click7'
+                            id='click7' class='clickControl' value='0' /><input type='hidden' name='clickX7' id='clickX7'
+                            value='0' /><input type='hidden' id='sort_type7' value='0'></h3>
+                    <span id='menu7'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(3,0)' style='cursor: pointer;'>Drinks <img src='images/expand.png' id='plus3'
+                            width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus3' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner3'></span><input type='hidden' name='click3'
+                            id='click3' class='clickControl' value='0' /><input type='hidden' name='clickX3' id='clickX3'
+                            value='0' /><input type='hidden' id='sort_type3' value='0'></h3>
+                    <span id='menu3'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(5,0)' style='cursor: pointer;'>Vape Pens & Refills <img src='images/expand.png'
+                            id='plus5' width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus5' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner5'></span><input type='hidden' name='click5'
+                            id='click5' class='clickControl' value='0' /><input type='hidden' name='clickX5' id='clickX5'
+                            value='0' /><input type='hidden' id='sort_type5' value='0'></h3>
+                    <span id='menu5'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(6,0)' style='cursor: pointer;'>Headshop/Parafernalia <img src='images/expand.png'
+                            id='plus6' width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus6' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner6'></span><input type='hidden' name='click6'
+                            id='click6' class='clickControl' value='0' /><input type='hidden' name='clickX6' id='clickX6'
+                            value='0' /><input type='hidden' id='sort_type6' value='0'></h3>
+                    <span id='menu6'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                    <h3 class='title' onClick='load(11,0)' style='cursor: pointer;'>Edibles <img src='images/expand.png' id='plus11'
+                            width='21' style='margin-left: 5px;' /><img src='images/shrink.png' id='minus11' width='21'
+                            style='margin-left: 5px; display: none;' /><span id='spinner11'></span><input type='hidden' name='click11'
+                            id='click11' class='clickControl' value='0' /><input type='hidden' name='clickX11' id='clickX11'
+                            value='0' /><input type='hidden' id='sort_type11' value='0'></h3>
+                    <span id='menu11'></span>
+                    <script>
+                        function load(cat, type) {
+
+                            if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                                $(".clickControl").val(1);
+                                $("#clickX" + cat).val(1);
+                                $("#plus" + cat).hide();
+                                $("#minus" + cat).show();
+
+                                // Add 'Loading' text
+                                setInterval(function () {
+                                    $("#spinner" + cat).append(".");
+                                }, 1000);
+
+
+                                var dayJSID = parseInt($("#currenti").val());
+
+                                $.ajax({
+                                    type: "post",
+                                    url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                                    datatype: "text",
+                                    success: function (data) {
+                                        $("#spinner" + cat).remove();
+                                        $('#menu' + cat).append(data);
+                                        $(".clickControl").val(0);
+                                        $("#click" + cat).val(1);
+                                    }
+                                });
+
+
+                            } else {
+
+                                if ($("#clickX" + cat).val() == 1) {
+                                    $("#clickX" + cat).val(2);
+                                    $('#menu' + cat).hide();
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                } else if ($("#clickX" + cat).val() == 2) {
+                                    $('#menu' + cat).show();
+                                    $("#clickX" + cat).val(3);
+                                    $("#plus" + cat).hide();
+                                    $("#minus" + cat).show();
+                                } else {
+                                    $('#menu' + cat).hide();
+                                    $("#clickX" + cat).val(2);
+                                    $("#plus" + cat).show();
+                                    $("#minus" + cat).hide();
+                                }
+                            }
+
+                        };
+                    </script>
+                
+                </div>
+                <div id="memberbox" class="w3-col l3 s3 m4 w3-red">
+                        <div id="memberboxshade"></div>
+                        <div class="w3-row-padding">
+                            <div class="w3-col l6 m6 s6">
+                                <a href='#'><span class='w3-xlarge'>#7</span></a>
+                                <a href='#' id='chipClick'><img class="w3-image" src=''
+                                        onclick='event.preventDefault();' /></a> <span class='nametext2'>Diego
+                                    Perea</span></a><br />
+                            </div>
+                        </div>
+
+                        <!-- Datos usuario -->
+
+                        <table>
+                            <tr>
+                                <td>
+                                    <div style='display: inline-block; line-height: 11px;'>
+                                        <img src='img/s/0.png' width='116' />
+                                        <br />
+                                        <div class='highrollerholder'><img src='images/trophy.png'
+                                                style='margin-bottom: -2px;' /> High roller</div>
+                                    </div>
+                                </td>
+                                <td style='vertical-align: top;'>
+                                    <table style='margin-left: 16px;'>
+                                        <tr>
+                                            <td style='padding-bottom: 7px;'><img src='images/new-flag.png'
+                                                    style='margin-bottom: -4px; margin-right: 10px;' /></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style='padding-bottom: 7px;'><img src='images/stats.png'
+                                                    style='margin-bottom: -2px; margin-right: 10px;' /></td>
+                                            <td style='padding-bottom: 7px;'>14.7 / 300 g.<br /><span
+                                                    class='yellow'>Hoy: 0.0 g<br />Ayer: 0.0 g </span></td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <input type='hidden' id='eurcalcTOTexp' name='euroTOT' />
+                        <input type='hidden' name='dispense' value='done' />
+                        <input type='hidden' name='paidUntil' value='2021-08-19 19:35:23' />
+                        <input type='hidden' name='user_id' value='9' />
+                        <input type='hidden' name='realCredit' id='realCredit' value='0.00' />
+                        <input type='hidden' name='realNewCredit' id='realNewCredit' value='' />
+                        <input type='hidden' name='totDiscountInput' id='totDiscountInput' value='' />
+                        <input type='hidden' name='discType' id='discType' />
+                        <br />
+                        <div class="w3-row-padding">
+                            <div class="w3-col l4 m4 s4">
+                                <input type='number' lang='nb' class='w3-round w3-input blankinput first notZero'
+                                    id='grcalcTOT' name='gramsTOT' value="test" readonly /> g
+                            </div>
+                            <div class="w3-col l4 m4 s4">
+                                <input type='number' lang='nb' class='w3-round w3-input blankinput first notZero'
+                                    id='unitcalcTOT' name='unitsTOT' value="0" readonly /> u
+                            </div>
+                            <div class="w3-col l4 m4 s4">
+                                <input type='number' lang='nb' class='w3-round w3-input blankinput' id='eurcalcTOT'
+                                    name='eurcalcTOT' value="0" readonly /> €
+                            </div>
+                        </div>
+                        <div class="w3-row-padding">
+                            <div class="w3-col l6 m6 s6">
+                                <label for="credit">Saldo:</label>
+                                <input type='number' lang='nb' class="w3-input specialInput" id='credit' name='credit'
+                                    value='0.00' readonly /> €
+                            </div>
+                            <div class="w3-col 64 m6 s6">
+                                <label for="newcredit">Nuevo:</label>
+                                <input type='number' lang='nb' class='w3-input specialInput' id='newcredit'
+                                    name='newcredit' value='0.00' readonly /> €
+                            </div>
+                        </div>
+                        <div class="w3-row-padding">
+                            <div class="w3-col l6 m6 s6">
+                                <a href="#" id="openDispenseDate" class='expandable'><img src='images/date-new.png'
+                                        style='margin-bottom: -3px; margin-right: 3px;' /> Fecha</a>
+                            </div>
+                            <div class="w3-col l6 m6 s6">
+                                <a href="#" id="openComment" class='expandable'><img src='images/comment-new.png'
+                                        style='margin-bottom: -3px; margin-right: 3px;' />
+                                    Comentarios</a>
+                            </div>
+                            <div class="w3-row-padding">
+                                <table id='memberBoxTable'>
+                                    <tr>
+                                        <td colspan='3'>
+                                            <table style='width: 100%;'>
+                                                <tr>
+                                                    <td colspan='2'>
+                                                        <span id='customDispenseDate' class='expanded'
+                                                            style='display: none;'>
+                                                            <input type="text" lang="nb" name="owndate" id="datepicker"
+                                                                class="fiveDigit defaultinput" placeholder="Fecha" />@
+                                                            <input type="number" lang="nb" name="hour" id="hour"
+                                                                class="oneDigit defaultinput" maxlength="2"
+                                                                placeholder="hh" />
+                                                            <input type="number" lang="nb" name="minute" id="minute"
+                                                                class="oneDigit defaultinput" maxlength="2"
+                                                                placeholder="mm" />
+                                                        </span>
+                                                        <span class='expanded' id='hiddenComment'
+                                                            style='display: none;'>
+                                                            <textarea class="defaultinput" name="adminComment"
+                                                                placeholder="Comentario?"></textarea>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='3'>
+                                            <table style='width: 100%;'>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#" id="openDiscount" class='expandable2'><img
+                                                                src='images/discount.png'
+                                                                style='margin-bottom: -4px; margin-right: 3px;' />
+                                                            Aplicar
+                                                            descuento <span id='totDiscount'>(a%)</span></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='expanded2' id='discountholder' style='display: none;'>
+                                                        <center>
+                                                            <input type="checkbox" id="fee0" name="inDiscount"
+                                                                value='5' />
+                                                            <label for="fee0"><span class='full2'>5%</span></label>
+
+                                                            <input type="checkbox" id="fee1" name="inDiscount"
+                                                                value='10' />
+                                                            <label for="fee1"><span class='full2'>10%</span></label>
+
+                                                            <input type="checkbox" id="fee2" name="inDiscount"
+                                                                value='20' />
+                                                            <label for="fee2"><span class='full2'>20%</span></label>
+                                                            <input type="checkbox" id="fee3" name="inDiscount"
+                                                                value='30' />
+                                                            <label for="fee3"><span class='full2'>30%</span></label>
+                                                            <br />
+                                                            <span style='color: #656d60;'>O Descuento €:&nbsp; <input
+                                                                    type='number' name='eurdiscount' id='eurdiscount'
+                                                                    class='twoDigit defaultinput-no-margin'
+                                                                    style='margin: 5px 0;' /></span>
+
+                                                        </center>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr id='changeTable' style='display: none;'>
+                                        <td class='dispensetd' colspan='3'>
+                                            <table style='width: 100%;'>
+                                                <tr>
+                                                    <td class='saldoheader'>Pagado:</td>
+                                                    <td>
+                                                        <input type='number' lang='nb'
+                                                            class='twoDigit defaultinput-no-margin' id='paid'
+                                                            placeholder='€' />
+                                                    </td>
+                                                    <td class='saldoheader' style='text-align: right;'>Cambio:</td>
+                                                    <td>
+                                                        <input type='number' lang='nb'
+                                                            class='twoDigit defaultinput-no-margin' id='change'
+                                                            placeholder='€' readonly />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <table id='memberBoxTable'>
+                            <tr>
+                                <td colspan='3'>
+                                    <table style='width: 100%;'>
+                                        <tr>
+                                            <td colspan='2'>
+                                                <span id='customDispenseDate' class='expanded' style='display: none;'>
+                                                    <input type="text" lang="nb" name="owndate" id="datepicker"
+                                                        class="fiveDigit defaultinput" placeholder="Fecha" />@
+                                                    <input type="number" lang="nb" name="hour" id="hour"
+                                                        class="oneDigit defaultinput" maxlength="2" placeholder="hh" />
+                                                    <input type="number" lang="nb" name="minute" id="minute"
+                                                        class="oneDigit defaultinput" maxlength="2" placeholder="mm" />
+                                                </span>
+                                                <span class='expanded' id='hiddenComment' style='display: none;'>
+                                                    <textarea class="defaultinput" name="adminComment"
+                                                        placeholder="Comentario?"></textarea>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>
+                                    <table style='width: 100%;'>
+                                        <tr>
+                                            <td>
+                                                <a href="#" id="openDiscount" class='expandable2'><img
+                                                        src='images/discount.png'
+                                                        style='margin-bottom: -4px; margin-right: 3px;' /> Aplicar
+                                                    descuento <span id='totDiscount'>(a%)</span></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class='expanded2' id='discountholder' style='display: none;'>
+                                                <center>
+                                                    <input type="checkbox" id="fee0" name="inDiscount" value='5' />
+                                                    <label for="fee0"><span class='full2'>5%</span></label>
+                                                    <input type="checkbox" id="fee1" name="inDiscount" value='10' />
+                                                    <label for="fee1"><span class='full2'>10%</span></label>
+                                                    <input type="checkbox" id="fee2" name="inDiscount" value='20' />
+                                                    <label for="fee2"><span class='full2'>20%</span></label>
+                                                    <input type="checkbox" id="fee3" name="inDiscount" value='30' />
+                                                    <label for="fee3"><span class='full2'>30%</span></label>
+                                                    <br />
+                                                    <span style='color: #656d60;'>O Descuento €:&nbsp; <input
+                                                            type='number' name='eurdiscount' id='eurdiscount'
+                                                            class='twoDigit defaultinput-no-margin'
+                                                            style='margin: 5px 0;' /></span>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr id='changeTable' style='display: none;'>
+                                <td class='dispensetd' colspan='3'>
+                                    <table style='width: 100%;'>
+                                        <tr>
+                                            <td class='saldoheader'>Pagado:</td>
+                                            <td>
+                                                <input type='number' lang='nb' class='twoDigit defaultinput-no-margin'
+                                                    id='paid' placeholder='€' />
+                                            </td>
+                                            <td class='saldoheader' style='text-align: right;'>Cambio:</td>
+                                            <td>
+                                                <input type='number' lang='nb' class='twoDigit defaultinput-no-margin'
+                                                    id='change' placeholder='€' readonly />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <button type="submit" class='oneClick cta6' name='oneClick' id='submitButton'>
+                            <img src='images/checkmark-new.png' style='margin-bottom: -10px;' />&nbsp;Guardar
+                        </button>
+                        <br />
+                        <br />
+                        <a href="#" class='cta7'
+                            onclick="event.preventDefault(); document.getElementById('registerForm').reset();"><img
+                                src='images/cancel.png' style='margin-bottom: -6px;' />&nbsp;Borrar</a><br /><br />
+                        <center>
+                            <a href="barcode-dispense.php?user_id=9"><img src="images/barcode-new.png" /></a>
+                        </center>
+                </div>
+                <!-- end memberbox -->
+                
+            </div>
+        </div>
+        <br />
+        <div class="clearfloat"></div>
+        <div class="w3-row-padding">
+            
+        </div>
+
+        <script>
+            function load(cat, type) {
+
+                if ($("#click" + cat).val() == 0 && $("#clickX" + cat).val() == 0) {
+                    $(".clickControl").val(1);
+                    $("#clickX" + cat).val(1);
+                    $("#plus" + cat).hide();
+                    $("#minus" + cat).show();
+
+                    // Add 'Loading' text
+                    setInterval(function () {
+                        $("#spinner" + cat).append(".");
+                    }, 1000);
+
+
+                    var dayJSID = parseInt($("#currenti").val());
+
+                    $.ajax({
+                        type: "post",
+                        url: "getothers.php?i=" + dayJSID + "&cat=" + cat + "&type=" + type + "&uid=9&discount=0&usageType=0",
+                        datatype: "text",
+                        success: function (data) {
+                            $("#spinner" + cat).remove();
+                            $('#menu' + cat).append(data);
+                            $(".clickControl").val(0);
+                            $("#click" + cat).val(1);
+                        }
+                    });
+
+
+                } else {
+
+                    if ($("#clickX" + cat).val() == 1) {
+                        $("#clickX" + cat).val(2);
+                        $('#menu' + cat).hide();
+                        $("#plus" + cat).show();
+                        $("#minus" + cat).hide();
+                    } else if ($("#clickX" + cat).val() == 2) {
+                        $('#menu' + cat).show();
+                        $("#clickX" + cat).val(3);
+                        $("#plus" + cat).hide();
+                        $("#minus" + cat).show();
+                    } else {
+                        $('#menu' + cat).hide();
+                        $("#clickX" + cat).val(2);
+                        $("#plus" + cat).show();
+                        $("#minus" + cat).hide();
+                    }
+                }
+
+            };
+        </script>
+        <div class="clearFloat"></div>
+        <input type='hidden' id='currenti' value='0' />
+
+
+        </form>
+    </div>
+    <script>
+        $("#searchfield").bind('keyup', searchit);
+        $("#searchfield").bind("keydown", function (e) {
+            if (e.keyCode === 13) return false;
+        });
+        function searchit() {
+
+            var searchphrase = $("#searchfield").val();
+
+            $.ajax({
+                type: "post",
+                url: "searchdispensary.php?phrase=" + searchphrase,
+                datatype: "text",
+                success: function (data) {
+                    $("#searchtable").empty()
+                    $('#searchtable').append(data);
+                }
+            });
+
+        }
+        function zoomTo(category, purchaseid, type) {
+
+            var purchaseid = purchaseid;
+            var category = category;
+            var type = type;
+
+            $("#searchtable").html('');
+            if (category < 3) {
+                var funct = 'load';
+                window[funct + category]();
+
+            } else {
+
+                var funct1 = 'load(' + category;
+                var funct2 = ',' + type + ')';
+                //alert(funct1 + funct2);
+                //window[funct1 + funct2];
+                //load(3,0);
+                load(category, type);
+
+
+            }
+
+            setInterval(function () {
+
+                if ($("#clickX" + category).val() == 1) {
+
+                    $('html, body').animate({
+                        scrollTop: ($('.c' + purchaseid).offset().top - 230)
+                    }, 500);
+                    $('.c' + purchaseid).focus();
+                    $("#clickX" + category).val(3);
+                    clearTimeout();
+                };
+            }, 100);
+
+
+        }
+// When clicking:
+// Take purchaseid and category
+// If category is open, zoom to the purchaseid, gram field
+// If category is closed, open it, zoom to purchaseid, gram field
+// If memberbox is maximised, minimise it!! Also, flag the field in green.
+    </script>
+    <!-- get the dispense flag var in js -->
+    <script type="text/javascript">
+        function CartgetItems() {
+            var sum = 0;
+            $('.calc').each(function (i, e) {
+                var v = +$(e).val();
+                if (!isNaN(v))
+                    sum += v;
+            });
+            var rsum = sum.toFixed(2);
+            $('#grcalcTOT').val(rsum);
+            $('#grcalcTOT2').val(rsum);
+            $('#grcalcTOTexp').val(rsum);
+            var sumB = 0;
+            $('.calc2').each(function (i, e) {
+                var vB = +$(e).val();
+                if (!isNaN(vB))
+                    sumB += vB;
+            });
+            var rsumB = sumB.toFixed(2);
+
+            var sumDisc = 0;
+
+            $("input[type=checkbox]:checked").each(function () {
+                sumDisc += parseInt($(this).val());
+            });
+            $('#totDiscount').html("(" + sumDisc + "%)");
+            $('#totDiscountInput').val(sumDisc);
+
+            var appliedDisc = (100 - sumDisc) / 100;
+
+            var tempPrice = rsumB * appliedDisc;
+
+            var eurdisc = $('#eurdiscount').val();
+
+            var newPrice = tempPrice - eurdisc;
+            $('#eurcalcTOT').val(newPrice);
+            $('#eurcalcTOT2').val(newPrice);
+            $('#eurcalcTOTexp').val(newPrice);
+
+
+            var sumC = 0;
+            $('.calc3').each(function (i, e) {
+                var vC = +$(e).val();
+                if (!isNaN(vC))
+                    sumC += vC;
+            });
+            $('.calc4').each(function (i, e) {
+                var vD = +$(e).val();
+                if (!isNaN(vD))
+                    sumC += vD;
+            });
+            var sumC = sumC.toFixed(2);
+            $('#unitcalcTOT').val(sumC);
+            $('#unitcalcTOT2').val(sumC);
+
+
+            var sumE = 0;
+            $('.calc5').each(function (i, e) {
+                var vE = +$(e).val();
+                if (!isNaN(vE))
+                    sumE += vE;
+            });
+            var sumF = 0;
+            $('.calc6').each(function (i, e) {
+                var vF = +$(e).val();
+                if (!isNaN(vF))
+                    sumF += vF;
+            });
+            sumF += sumE;
+            $('#realgrcalcTOT').val(sumF);
+        }
+        function CartcomputeTot() {
+            var a = $('#realCredit').val();
+            var b = $('#eurcalcTOT').val();
+            var c = $('#newDonation').val();
+            var total = ((a * 1) - (b * 1) + (c * 1));
+            var roundedtotal = total.toFixed(2);
+            $('#newcredit').val(roundedtotal);
+            $('#newcredit2').val(roundedtotal);
+            $('#realNewCredit').val(roundedtotal);
+        }
+        function inArray(needle, haystack) {
+            var length = haystack.length;
+            for (var i = 0; i < length; i++) {
+                if (haystack[i] == needle) return true;
+            }
+            return false;
+        }
+        function uniqueArr(array) {
+            var outputArray = [];
+
+            // Count variable is used to add the 
+            // new unique value only once in the 
+            // outputArray. 
+            var count = 0;
+
+            // Start variable is used to set true 
+            // if a repeated duplicate value is  
+            // encontered in the output array. 
+            var start = false;
+
+            for (j = 0; j < array.length; j++) {
+                for (k = 0; k < outputArray.length; k++) {
+                    if (array[j] == outputArray[k]) {
+                        start = true;
+                    }
+                }
+                count++;
+                if (count == 1 && start == false) {
+                    outputArray.push(array[j]);
+                }
+                start = false;
+                count = 0;
+            }
+            return outputArray;
+        }
+
+        var dispenseFlag = "";
+        var currencyoperator = "€";
+        var realWeight = "0";
+        var cartProduct = [];
+        if (dispenseFlag == 1) {
+            var myCart = JSON.parse(sessionStorage.getItem("shoppingCart"));
+            for (var i in myCart) {
+                cartProduct.push(myCart[i].cat_id);
+            }
+
+            var cart_cat = uniqueArr(cartProduct);
+            // open flowers cat
+
+
+            if (inArray('1', cart_cat)) {
+                load1();
+            }
+
+            // open extracts cat
+
+            if (inArray('2', cart_cat)) {
+                setTimeout(load2, 2000);
+            }
+
+            // open other categories
+
+            for (var j in cart_cat) {
+                if (inArray(cart_cat[j], cart_cat) && cart_cat[j] != '1' && cart_cat[j] != '2') {
+                    var sort_type = $("#sort_type" + cart_cat[j]).val();
+                    (function (j) {
+                        setTimeout(function () {
+                            load(cart_cat[j], sort_type);
+                        }, 1500 * (parseInt(j) + 1));
+                    })(j);
+                }
+            }
+
+
+        }
+
+        setTimeout(function () {
+            CartgetItems();
+            CartcomputeTot();
+        }, 1500);
+
+    </script>
+    <!-- Shopping cart JS -->
+    <script type="text/javascript" src="scripts/cart.js?t=1602953585"></script>
+    <a href="#top" onclick="scrollToTop();return false;" id="scrollTrigger" style="display: none;"><img
+            src="images/scroll-top.png" style="position: fixed; bottom: 30px; right: 30px;" /></a>
+    <script>
+        function scrollToTop() {
+            var position =
+                document.body.scrollTop || document.documentElement.scrollTop;
+            if (position) {
+                window.scrollBy(0, -Math.max(1, Math.floor(position / 10)));
+                scrollAnimation = setTimeout("scrollToTop()", 30);
+            } else clearTimeout(scrollAnimation);
+        }
+
+        $(window).on('scroll', function () {
+            scrollPosition = $(this).scrollTop();
+            if (scrollPosition >= 400) {
+                // If the function is only supposed to fire once
+                $("#scrollTrigger").css("display", "block");
+                $(this).off('scroll');
+
+                // Other function stuff here...
+            }
+        });
+
+        pdispense
+    </script>
+    <br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;
+    </div> <!-- end MAIN -->
+    </div> <!-- end WRAPPER -->
+</body>
+
+</html>

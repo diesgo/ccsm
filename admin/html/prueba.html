@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CCSM | New product</title>
+    <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/4.5.0/css/bootstrap.css">
+    <link rel="stylesheet" href="../css/w3-theme-ultre-violet.css">
+    <link rel="stylesheet" href="../fontawesome5/css/all.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<style>
+    .panel {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    }
+</style>
+
+<body class="w3-theme-light">
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script src="../css/4.5.0/js/bootstrap.js"></script>
+
+    <!-- Top container -->
+
+    <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 2px 32px">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-theme" onclick="w3_open();"><i
+                class="fa fa-bars"></i> Menu</button>
+        <a class="w3-bar-item w3-button w3-round w3-theme-d3 w3-hover-theme" href="../home.html">TPV</a>
+        <span class="w3-bar-item w3-right"><img class="w3-image" src="../img/logo_negro.png" alt="logo"
+                style="max-width:24px"></span>
+    </div>
+
+    <!-- Sidebar/menu -->
+
+    <nav class="w3-sidebar w3-collapse w3-theme-d3 panel" style="z-index:3;width:300px;" id="mySidebar"><br>
+
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <img src="../img/admin/avatar1.png" class="w3-circle w3-margin-right" style="width:46px">
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <span>Welcome, <strong>Mike</strong></span><br>
+                <a href="#" class="w3-bar-item w3-button w3-round-xxlarge w3-theme-d3 w3-hover-theme"><i
+                        class="fa fa-envelope"></i></a>
+                <a href="#" class="w3-bar-item w3-button w3-round-xxlarge w3-theme-d3 w3-hover-theme"><i
+                        class="fa fa-user"></i></a>
+                <a href="#" class="w3-bar-item w3-button w3-round-xxlarge w3-theme-d3 w3-hover-theme"><i
+                        class="fa fa-cog"></i></a>
+            </div>
+        </div>
+
+        <div class="w3-container w3-theme panel">
+            <h5>Dashboard</h5>
+        </div>
+
+        <div class="w3-bar-block">
+            <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-theme"
+                onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a>
+            <a href="index.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"> <i
+                    class="fas fa-tachometer-alt"></i> Home</a>
+            <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside()">Catálogo
+                <i class="w3-right fa fa-caret-down"></i></button>
+            <div id="demoAcc" class="w3-hide w3-white w3-theme-l2">
+                <a href="products.html" class="w3-bar-item w3-button w3-hover-theme">Productos</a>
+                <a href="categories.html" class="w3-bar-item w3-button w3-hover-theme">Categorias</a>
+            </div>
+            <div class="w3-bar-block">
+                <a href="socios.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fa fa-users a-fw"></i> Socios</a>
+                <a href="statics.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fas fa-chart-line"></i> Statistics</a>
+                <a href="orders.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fas fa-gem"></i> Orders</a>
+                <a href="news.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fa fa-bell fa-fw"></i> News</a>
+                <a href="general.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fas fa-university"></i> General</a>
+                <a href="history.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fa fa-history fa-fw"></i> History</a>
+                <a href="setings.html" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i
+                        class="fa fa-cog fa-fw"></i> Settings</a><br><br>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+        title="close side menu" id="myOverlay"></div>
+
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;background-color: #eaebec;">
+
+        <!-- !PAGE CONTENT! -->
+
+        <div class="w3-padding-large">
+            <div id="main-div" class="w3-padding">
+                <form name="form" id="form" method="post" novalidate="novalidate">
+
+                    <!-- CABECERA -->
+
+                    <div class="w3-container w3-padding w3-margin-bottom">
+                        <div class="w3-twothird">
+                            <div class="w3-container">
+                                <input type="text" class="w3-margin-bottom" id="product_name" name="product_name"
+                                    required="required" placeholder="Introduce el nombre del producto" />
+                            </div>
+                        </div>
+                        <div class="w3-third">
+                            <div class="w3-container">
+                                <select class="custom-select" id="tipo_de_servicio" name="tipo_de_servicio">
+                                    <option value="0" selected="selected">Granel (gr)</option>
+                                    <option value="1">Unidades (Uds.)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pestañas de navegación -->
+
+                    <div class="tabs js-tabs">
+                        <ul class="nav nav-tabs js-nav-tabs" id="form-nav" role="tablist">
+                            <li id="tab_step1" class="nav-item"><a href="#step1" role="tab" data-toggle="tab"
+                                    class="nav-link active">Ajustes básicos</a></li>
+                            <li id="tab_step3" class="nav-item"><a href="#step3" role="tab" data-toggle="tab"
+                                    class="nav-link">Cantidades</a></li>
+                            <li id="tab_step2" class="nav-item"><a href="#step2" role="tab" data-toggle="tab"
+                                    class="nav-link">Precio</a></li>
+                        </ul>
+
+                        <div id="form_content" class="tab-content">
+
+                            <!-- TAB AJUSTES BÁSICOS -->
+
+                            <div role="tabpanel" class="form-contenttab tab-pane active w3-white" id="step1">
+                                <div class="w3-row-padding w3-padding-32">
+
+                                    <!-- Primera columna ficha nuevo producto -->
+
+                                    <!-- CUADRO DE IMAGENES -->
+
+                                    <div id="product-images-container"
+                                        class="w3-center w3-padding-large w3-margin-bottom w3-border ">
+                                        <i class="fas fa-camera w3-jumbo"></i><br />Suelta las imágenes aquí<br /><a>o
+                                            selecciona archivos</a><br />
+                                        <small>Tamaño recomendado de 800 x 800 px para el tema
+                                            predeterminado.<br />Formato JPG, GIF o PNG.</small>
+                                    </div>
+
+                                    <div class="summary-description-container">
+
+                                        <!-- Pestañas de descripción -->
+
+                                        <ul class="nav nav-tab">
+                                            <li id="tab_description" class="nav-item"><a href="#description"
+                                                    data-toggle="tab" class="nav-link active">Descripción</a></li>
+                                            <li id="tab_nottes" class="nav-item"><a href="#notes" data-toggle="tab"
+                                                    class="nav-link">Notas</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+
+                                            <!-- DESCRIPCIÓN -->
+
+                                            <div class="tab-pane panel panel-default active" id="description">
+                                                <div class="translations tabbable" id="form_step1_description">
+                                                    <div class="translationsFields tab-content">
+                                                        <div
+                                                            class="tab-pane translation-field  show active  translation-label-es">
+                                                            <textarea id="form_step1_description_4"
+                                                                name="form[step1][description][4]" class="form-control"
+                                                                placeholder="Descripción breve del producto"
+                                                                counter="800"></textarea>
+                                                            <small
+                                                                class="form-text text-muted text-right maxLength maxType"><em><span
+                                                                        class="currentLength"></span>de<span
+                                                                        class="currentTotalMax"> 800 </span>caracteres
+                                                                    permitidos</em></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- NOTAS -->
+
+                                            <div class="tab-pane panel panel-default " id="notes">
+                                                <div class="translations tabbable" id="form_step1_notes">
+                                                    <div class="translationsFields tab-content">
+                                                        <div data-locale="es"
+                                                            class="translationsFields-form_step1_description_4 tab-pane translation-field  show active  translation-label-es">
+                                                            <textarea id="form_step1_notes_4"
+                                                                name="form[step1][notes][4]"
+                                                                class="serp-default-description autoload_rte form-control"
+                                                                counter="21844"></textarea>
+                                                            <small
+                                                                class="form-text text-muted text-right maxLength maxType"><em><span
+                                                                        class="currentLength"></span>de<span
+                                                                        class="currentTotalMax"> 21844 </span>caracteres
+                                                                    permitidos</em></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="w3-cell w3-padding">
+
+                                        <!-- MARCA -->
+
+                                        <div class="w3-margin-botton" id="manufacturer">
+                                            <div id="manufacturer-content" class="hide">
+                                                <h4>Marca</h4>
+                                                <fieldset class="w3-margin-bottom">
+                                                    <select class="custom-select" id="form_step1_id_manufacturer"
+                                                        name="form[step1][id_manufacturer]" data-toggle="select2"
+                                                        data-minimumResultsForSearch="7">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+                                        <!-- REFERENCIA -->
+
+                                        <div class="w3-margin-bottom">
+                                            <h4>Referencia<span class="help-box" data-toggle="popover"
+                                                    data-content="Tu código de referencia para este producto. Caracteres especiales permitidos: .-_#."></span>
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-xl-12 col-lg-12" id="product_reference_field">
+                                                    <input type="text" id="form_step6_reference"
+                                                        name="form[step6][reference]" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CATEGORIA -->
+
+                                        <div class="w3-margin-bottom" id="categories">
+                                            <h4>Categoria<span class="help-box" data-toggle="popover"
+                                                    data-content="En tu web, ¿dónde debe estar disponible el producto? La categoría principal es donde aparece el producto por defecto: esta es la categoría que se ve en la URL de la página de producto. Las categorías desactivadas se muestran en cursiva."></span>
+                                            </h4>
+                                            <select class="custom-select" id="tipo_de_servicio" name="tipo_de_servicio">
+                                                <option value="0" selected="selected">Flores</option>
+                                                <option value="1">Extractos</option>
+                                                <option value="2">Extracciones</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- TAB CANTIDADES -->
+
+                            <div role="tabpanel" class="form-contenttab tab-pane w3-white" id="step3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div id="quantities">
+                                                        <h2>Cantidades</h2>
+                                                        <fieldset class="w3-margin-bottom">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-control-label">Cantidad mínima
+                                                                        para la venta</label>
+                                                                    <span class="help-box" data-toggle="popover"
+                                                                        data-content="La cantidad minima requerida para comprar este producto (establecer a 1 para desactivar esta característica). Ej.: si se establece a 3, los clientes podrán comprarlo solo si llevan al menos 3 en cantidad."></span>
+                                                                    <input type="text" id="form_step3_minimal_quantity"
+                                                                        name="form[step3][minimal_quantity]"
+                                                                        required="required" class="form-control"
+                                                                        value="1" />
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                        <h2>Stock</h2>
+                                                        <fieldset class="w3-margin-bottom">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-control-label">Ubicación de
+                                                                        stock</label>
+                                                                    <input type="text" id="form_step3_location"
+                                                                        name="form[step3][location]" required="required"
+                                                                        class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-control-label">Nivel de stock
+                                                                        bajo</label>
+                                                                    <input type="text"
+                                                                        id="form_step3_low_stock_threshold"
+                                                                        name="form[step3][low_stock_threshold]"
+                                                                        required="required"
+                                                                        placeholder="Dejar en blanco para desactivar"
+                                                                        class="form-control" />
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <label class="form-control-label">&nbsp;</label>
+                                                                    <div class="widget-checkbox-inline">
+                                                                        <div class="checkbox">
+                                                                            <label class="required"><input
+                                                                                    type="checkbox"
+                                                                                    id="form_step3_low_stock_alert"
+                                                                                    name="form[step3][low_stock_alert]"
+                                                                                    required="required"
+                                                                                    value="1" /></label>
+                                                                        </div>
+                                                                        <span class="help-box" data-toggle="popover"
+                                                                            data-html="true"
+                                                                            data-content="El mensaje de correo electrónico se enviará a todos los usuarios que tienen permisos para trabajar con la página de stock. Para modificar los permisos, dirígete a <a href=&quot;/admin123/index.php/configure/advanced/employees/?_token=OXXcrDHJGYXbPvUI3uNB7GLAeD1GasLLDNpPivnIQgE&quot;>Parámetros avanzados > Equipo</a>"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PRECIO -->
+
+                            <div role="tabpanel" class="form-contenttab tab-pane w3-white" id="step2">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h2>Precio de venta<span class="help-box" data-toggle="popover"
+                                                            data-content="Este es el precio al que vendes este producto a tus clientes. El precio con impuestos incluidos, cambiará según la regla de impuestos que selecciones."></span>
+                                                    </h2>
+                                                </div>
+                                                <div class="col-md-12 w3-margin-bottom">
+                                                    <div class="row">
+                                                        <div class="col-xl-2 col-lg-3">
+                                                            <label class="form-control-label">Precio (imp.
+                                                                excl.)</label>
+                                                            <div class="input-group money-type">
+                                                                <input type="text" id="form_step2_price"
+                                                                    name="form[step2][price]"
+                                                                    data-display-price-precision="6"
+                                                                    class="form-control" value="0,000000" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"> €</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-3">
+                                                            <label class="form-control-label">Precio (imp.
+                                                                incl.)</label>
+                                                            <div class="input-group money-type">
+                                                                <input type="text" id="form_step2_price_ttc"
+                                                                    name="form[step2][price_ttc]"
+                                                                    class="form-control" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"> €</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xl-4 col-lg-6 mx-auto">
+                                                            <label class="form-control-label">Precio unitario
+                                                                (Impuestos excl.)<span class="help-box"
+                                                                    data-toggle="popover"
+                                                                    data-content="Algunos productos pueden comprarse por unidades (por botella, por kg., etc.); este es el precio por una unidad. Por ejemplo, si vendes telas, este sería el precio por metro."></span></label>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="input-group money-type">
+                                                                        <input type="text" id="form_step2_unit_price"
+                                                                            name="form[step2][unit_price]"
+                                                                            class="form-control" value="0,000000" />
+                                                                        <div class="input-group-append">
+                                                                            <span class="input-group-text"> €</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" id="form_step2_unity"
+                                                                        name="form[step2][unity]"
+                                                                        placeholder="Por kilo, por litro"
+                                                                        class="form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-md-offset-1 hide">
+                                                            <label class="form-control-label">Ecotasa (Impuestos
+                                                                incl.)</label>
+                                                            <div class="input-group money-type">
+                                                                <input type="text" id="form_step2_ecotax"
+                                                                    name="form[step2][ecotax]" data-eco-tax-rate="0"
+                                                                    class="form-control" value="0,000000" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"> €</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row w3-margin-bottom">
+                                                        <div class="col-md-4">
+                                                            <label class="form-control-label">Regla de
+                                                                impuestos</label>
+                                                            <select id="form_step2_id_tax_rules_group"
+                                                                name="form[step2][id_tax_rules_group]"
+                                                                data-toggle="select2" data-minimumResultsForSearch="7"
+                                                                class="custom-select">
+                                                                <option value="0" data-rates="0"
+                                                                    data-computation-method="0">Sin impuestos
+                                                                </option>
+                                                                <option value="61" data-rates="4"
+                                                                    data-computation-method="0">ES Books Rate (4%)
+                                                                </option>
+                                                                <option value="60" data-rates="4"
+                                                                    data-computation-method="0">ES Foodstuff Rate
+                                                                    (4%)</option>
+                                                                <option value="58" data-rates="10"
+                                                                    data-computation-method="0">ES Reduced Rate
+                                                                    (10%)</option>
+                                                                <option value="57" data-rates="21"
+                                                                    data-computation-method="0" selected="selected">
+                                                                    ES Standard rate (21%)</option>
+                                                                <option value="59" data-rates="4"
+                                                                    data-computation-method="0">ES Super Reduced
+                                                                    Rate (4%)</option>
+                                                                <option value="62" data-rates="21"
+                                                                    data-computation-method="0">EU VAT For Virtual
+                                                                    Products</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <label class="form-control-label">&nbsp;</label>
+                                                            <a class="form-control-static external-link"
+                                                                href="">Administrar reglas de impuestos</a>
+                                                        </div>
+                                                        <div class="col-md-12 pt-1">
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" id="form_step2_on_sale"
+                                                                        name="form[step2][on_sale]" value="1" />Mostrar
+                                                                    indicador "¡En oferta!"
+                                                                    en la página de producto y en el listado de
+                                                                    productos.</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-xl-5 col-lg-12">
+                                                                    <div class="alert alert-info mt-2" role="alert">
+                                                                        <p class="alert-text">Precio de venta final:
+                                                                            <strong><span
+                                                                                    id="final_retail_price_ti"></span>impuestos
+                                                                                incl.</strong> / <span
+                                                                                id="final_retail_price_te"></span>impuestos
+                                                                            excl.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <h2>Precio de coste<span class="help-box"
+                                                                    data-toggle="popover"
+                                                                    data-content="El precio de coste es el precio que pagaste por el producto. No incluye los impuestos. Éste tiene que ser más bajo que el precio de venta final: la diferencia entre los dos será su margen de beneficio."></span>
+                                                            </h2>
+                                                        </div>
+                                                        <div class="col-xl-2 col-lg-3 w3-margin-bottom">
+                                                            <label class="form-control-label">Precio (imp.
+                                                                excl.)</label>
+                                                            <div class="input-group money-type">
+                                                                <input type="text" id="form_step2_wholesale_price"
+                                                                    name="form[step2][wholesale_price]"
+                                                                    class="form-control" value="0,000000" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text"> €</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <h2>Precios específicos<span class="help-box"
+                                                                    data-toggle="popover"
+                                                                    data-content="Puedes establecer precios específicos para clientes de diferentes grupos, diferentes países, etc."></span>
+                                                            </h2>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div id="specific-price" class="mb-2">
+                                                                <a id="js-open-create-specific-price-form"
+                                                                    class="btn btn-outline-primary mb-3"
+                                                                    data-toggle="collapse" href="#specific_price_form"
+                                                                    aria-expanded="false"><i
+                                                                        class="material-icons">add_circle</i>Añadir
+                                                                    un precio especifico</a>
+                                                                <div class="collapse" id="specific_price_form"
+                                                                    data-action="">
+                                                                    <div class="card card-block">
+                                                                        <h4><b>Condiciones de precios
+                                                                                específicas</b></h4>
+                                                                        <input type="hidden"
+                                                                            id="form_step2_specific_price_sp_id_shop"
+                                                                            name="form[step2][specific_price][sp_id_shop]"
+                                                                            class="form-control" value="1" />
+                                                                        <div class="row">
+                                                                            <div class="col-md-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>Para</label>
+                                                                                    <select
+                                                                                        id="form_step2_specific_price_sp_id_currency"
+                                                                                        name="form[step2][specific_price][sp_id_currency]"
+                                                                                        data-toggle="select2"
+                                                                                        data-minimumResultsForSearch="7"
+                                                                                        class="custom-select">
+                                                                                        <option value="">Todas las
+                                                                                            monedas</option>
+                                                                                        <option value="2">Euro
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>&nbsp;</label>
+                                                                                    <select
+                                                                                        id="form_step2_specific_price_sp_id_group"
+                                                                                        name="form[step2][specific_price][sp_id_group]"
+                                                                                        data-toggle="select2"
+                                                                                        data-minimumResultsForSearch="7"
+                                                                                        class="custom-select">
+                                                                                        <option value="">Todos los
+                                                                                            grupos</option>
+                                                                                        <option value="1">Visitante
+                                                                                        </option>
+                                                                                        <option value="2">Invitado
+                                                                                        </option>
+                                                                                        <option value="3">Cliente
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>Cliente</label>
+                                                                                    <input type="text"
+                                                                                        id="form_step2_specific_price_sp_id_customer"
+                                                                                        class="form-control typeahead form_step2_specific_price_sp_id_customer"
+                                                                                        placeholder="Todos los clientes"
+                                                                                        autocomplete="off" />
+                                                                                    <ul id="form_step2_specific_price_sp_id_customer-data"
+                                                                                        class="typeahead-list product-list nostyle col-sm-12">
+                                                                                    </ul>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div id="specific-price-combination-selector"
+                                                                                class="col-md-6 hide">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>Combinaciones</label>
+                                                                                    <select
+                                                                                        id="form_step2_specific_price_sp_id_product_attribute"
+                                                                                        name="form[step2][specific_price][sp_id_product_attribute]"
+                                                                                        data-action=""
+                                                                                        data-selected-attribute="0"
+                                                                                        class="custom-select">
+                                                                                        <option value="">Aplicar a
+                                                                                            todas las combinaciones
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="clearfix"></div>
+                                                                            <div class="col-md-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>Disponible desde</label>
+                                                                                    <div class="input-group datepicker">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="form_step2_specific_price_sp_from"
+                                                                                            name="form[step2][specific_price][sp_from]"
+                                                                                            placeholder="YYYY-MM-DD"
+                                                                                            class="datepicker" />
+                                                                                        <div class="input-group-append">
+                                                                                            <div
+                                                                                                class="input-group-text">
+                                                                                                <i
+                                                                                                    class="material-icons">date_range</i>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>hasta</label>
+                                                                                    <div class="input-group datepicker">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="form_step2_specific_price_sp_to"
+                                                                                            name="form[step2][specific_price][sp_to]"
+                                                                                            placeholder="YYYY-MM-DD"
+                                                                                            class="datepicker" />
+                                                                                        <div class="input-group-append">
+                                                                                            <div
+                                                                                                class="input-group-text">
+                                                                                                <i
+                                                                                                    class="material-icons">date_range</i>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>A partir de</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text"
+                                                                                            id="form_step2_specific_price_sp_from_quantity"
+                                                                                            name="form[step2][specific_price][sp_from_quantity]"
+                                                                                            class="form-control"
+                                                                                            value="1" />
+                                                                                        <div class="input-group-append">
+                                                                                            <span
+                                                                                                class="input-group-text">Unidad(es)</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                        </div>
+                                                                        <br>
+                                                                        <h4><b>Impacto en el precio</b></h4>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>Precio del producto
+                                                                                        (Impuestos excl.)</label>
+                                                                                    <div class="input-group money-type">
+                                                                                        <input type="text"
+                                                                                            id="form_step2_specific_price_sp_price"
+                                                                                            name="form[step2][specific_price][sp_price]"
+                                                                                            disabled="disabled"
+                                                                                            class="price form-control" />
+                                                                                        <div class="input-group-append">
+                                                                                            <span
+                                                                                                class="input-group-text">€</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>&nbsp;</label>
+                                                                                    <div class="checkbox">
+                                                                                        <label><input type="checkbox"
+                                                                                                id="form_step2_specific_price_leave_bprice"
+                                                                                                name="form[step2][specific_price][leave_bprice]"
+                                                                                                value="1"
+                                                                                                checked="checked" />Mantener
+                                                                                            precioinicial</label>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-xl-2 col-lg-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>Aplicar un descuento
+                                                                                        de</label>
+                                                                                    <div class="input-group money-type">
+                                                                                        <input type="text"
+                                                                                            id="form_step2_specific_price_sp_reduction"
+                                                                                            name="form[step2][specific_price][sp_reduction]"
+                                                                                            class="form-control"
+                                                                                            value="0,000000" />
+                                                                                        <div class="input-group-append">
+                                                                                            <span
+                                                                                                class="input-group-text">€</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>&nbsp;</label>
+                                                                                    <select
+                                                                                        id="form_step2_specific_price_sp_reduction_type"
+                                                                                        name="form[step2][specific_price][sp_reduction_type]"
+                                                                                        class="custom-select">
+                                                                                        <option value="amount">€
+                                                                                        </option>
+                                                                                        <option value="percentage">%
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                            <div class="col-xl-2 col-lg-3">
+                                                                                <fieldset class="w3-margin-bottom">
+                                                                                    <label>&nbsp;</label>
+                                                                                    <select
+                                                                                        id="form_step2_specific_price_sp_reduction_tax"
+                                                                                        name="form[step2][specific_price][sp_reduction_tax]"
+                                                                                        class="custom-select">
+                                                                                        <option value="0">Impuestos
+                                                                                            excluidos</option>
+                                                                                        <option value="1"
+                                                                                            selected="selected">
+                                                                                            Impuestos incluidos
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </fieldset>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-12 text-sm-right">
+                                                                            <button type="button"
+                                                                                id="form_step2_specific_price_cancel"
+                                                                                name="form[step2][specific_price][cancel]"
+                                                                                class="btn-outline-secondary js-cancel btn">Cancelar</button>
+                                                                            <button type="button"
+                                                                                id="form_step2_specific_price_save"
+                                                                                name="form[step2][specific_price][save]"
+                                                                                class="btn-outline-primary js-save btn">Aplicar</button>
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <table id="js-specific-price-list"
+                                                                    class="table hide seo-table" data-listing-url="">
+                                                                    <thead class="thead-default">
+                                                                        <tr>
+                                                                            <th>Regla</th>
+                                                                            <th>Combinación</th>
+                                                                            <th>Moneda</th>
+                                                                            <th>País</th>
+                                                                            <th>Grupo</th>
+                                                                            <th>Cliente</th>
+                                                                            <th>Precio fijo</th>
+                                                                            <th>Impacto</th>
+                                                                            <th>Periodo</th>
+                                                                            <th>Desde</th>
+                                                                            <th></th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody></tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="modal fade" id="edit-specific-price-modal" tabindex="1"
+                                                        role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Editar un precio
+                                                                        específico</h5>
+                                                                    <button type="button" class="close"
+                                                                        id="form_modal_close" aria-label="Close"><span
+                                                                            aria-hidden="true">&times;</span></button>
+                                                                </div>
+                                                                <div id="edit-specific-price-modal-form"
+                                                                    class="modal-body" data-action=""
+                                                                    data-specific-price-id="0">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <h2>Gestión de prioridades<span class="help-box"
+                                                                    data-toggle="popover"
+                                                                    data-content="Algunas veces un cliente puede encajar en múltiples reglas de precios. Las prioridades te permiten definir qué reglas se aplican primero."></span>
+                                                            </h2>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <fieldset class="w3-margin-bottom">
+                                                                <label>Prioridades</label>
+                                                                <select id="form_step2_specificPricePriority_0"
+                                                                    name="form[step2][specificPricePriority_0]"
+                                                                    class="custom-select">
+                                                                    <option value="id_shop" selected="selected">
+                                                                        Tienda</option>
+                                                                    <option value="id_currency">Moneda</option>
+                                                                    <option value="id_country">País</option>
+                                                                    <option value="id_group">Grupo</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <fieldset class="w3-margin-bottom">
+                                                                <label>&nbsp;</label>
+                                                                <select id="form_step2_specificPricePriority_1"
+                                                                    name="form[step2][specificPricePriority_1]"
+                                                                    class="custom-select">
+                                                                    <option value="id_shop">Tienda</option>
+                                                                    <option value="id_currency" selected="selected">
+                                                                        Moneda</option>
+                                                                    <option value="id_country">País</option>
+                                                                    <option value="id_group">Grupo</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <fieldset class="w3-margin-bottom">
+                                                                <label>&nbsp;</label>
+                                                                <select id="form_step2_specificPricePriority_2"
+                                                                    name="form[step2][specificPricePriority_2]"
+                                                                    class="custom-select">
+                                                                    <option value="id_shop">Tienda</option>
+                                                                    <option value="id_currency">Moneda</option>
+                                                                    <option value="id_country" selected="selected">
+                                                                        País</option>
+                                                                    <option value="id_group">Grupo</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <fieldset class="w3-margin-bottom">
+                                                                <label>&nbsp;</label>
+                                                                <select id="form_step2_specificPricePriority_3"
+                                                                    name="form[step2][specificPricePriority_3]"
+                                                                    class="custom-select">
+                                                                    <option value="id_shop">Tienda</option>
+                                                                    <option value="id_currency">Moneda</option>
+                                                                    <option value="id_country">País</option>
+                                                                    <option value="id_group" selected="selected">
+                                                                        Grupo</option>
+                                                                </select>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox"
+                                                                        id="form_step2_specificPricePriorityToAll"
+                                                                        name="form[step2][specificPricePriorityToAll]"
+                                                                        value="1" />Aplicar a todos los
+                                                                    productos</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="w3-row w3-padding-32 w3-center">
+                        <a href="" class="w3-button w3-text-theme w3-round" data-toggle="pstooltip"
+                            id="product_form_delete_btn" title="Eliminar permanentemente este producto."
+                            data-placement="left" data-original-title="Delete"><i
+                                class="w3-xlarge fas fa-trash-alt"></i></a>
+                        <a href="" target="_blank" class="w3-button w3-theme w3-round preview" data-toggle="pstooltip"
+                            id="product_form_preview_btn"
+                            title="Visualizar cómo se verá en línea tu hoja de producto: CTRL+V">Vista previa</a>
+                        <input id="submit" type="submit" class="w3-button w3-theme w3-round" value="Guardar"
+                            data-toggle="pstooltip"
+                            title="Guardar el producto y permanecer en la página actual: ALT+SHIFT+S" />
+                        <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_duplicate_btn"
+                            data-toggle="pstooltip"
+                            title="Guardar y duplicar este producto, y a continuación dirigirte al nuevo producto: ALT+SHIFT+D">Duplicar</button>
+                        <button type="button" class="w3-button w3-theme w3-round"
+                            id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip"
+                            title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
+                        <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn"
+                            data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo
+                            producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- !End page content! -->
+
+        <!-- Footer -->
+
+        <footer class="w3-container w3-row w3-theme-dark">
+            <div class="w3-quarter w3-center">
+                <p class="w3-large">Powered by <a class="w3-xlarge" href="#" target="_blank">w3.css</a></p>
+            </div>
+            <div class="w3-half w3-center">
+                <p class="w3-large">Designed and developed by <span class="w3-xlarge font-densia">dbold</span> <span
+                        class="copy-left">©</span> copyleft 2020</p>
+            </div>
+            <div class="w3-quarter w3-center">
+
+            </div>
+        </footer>
+    </div>
+    <script src="js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'sweetleafregular';
+    src: url('sweetleaf.eot');
+    src: url('sweetleaf.eot?#iefix') format('embedded-opentype'),
+         url('sweetleaf.woff2') format('woff2'),
+         url('sweetleaf.woff') format('woff'),
+         url('sweetleaf.ttf') format('truetype'),
+         url('sweetleaf.svg#sweetleafregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>CCSM | Dispensario</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="fontawesome5/css/all.css">
+    <link rel="stylesheet" href="webfonts/stylesheet.css">
+    <link rel="stylesheet" href="css/specimen_stylesheet.css">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/w3-theme-blue-grey.css">
+</head>
+<style>
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        -webkit-animation: fadeEffect 1s;
+        animation: fadeEffect 1s;
+    }
+    .marcoEstrecho{
+        padding: 4px;
+    }
+</style>
+<script src="js/carrito1.js"></script>
+<!-- <script src="js/flowers.js"></script> -->
+<script src="admin/js/products.js"></script>
+
+<body class="w3-theme-light font-varela">
+
+<!-- Sidebar/menu -->
+
+<nav class="w3-sidebar w3-collapse w3-theme-l4" style="z-index:3; width: 25%" id="mySidebar"><br>
+    <div class="w3-container">
+        <input class="w3-input w3-border w3-round w3-margin-bottom w3-theme-l5" type="text" name="chipNumber" id="chipNumber" placeholder="&#128272;">
+    </div>
+    <div class="w3-container">
+        <div class="w3-half w3-margin-bottom">
+            <img class="w3-image" src="img/s/avatar11.png" alt="" width="100%">
+        </div>
+        <div class="w3-half w3-padding-tiny">
+            <h6>Nº Socio: <span id="numberSocio">&#128286;</span></h6>
+            <h6>Nombre: <span id="nameSocio">&#128274;</span></h6>
+            <h6>Credito: <span id="cashSocio">&#128275;</span></h6>
+            <h6>Notas <span id="noteSocio"></span></h6>
+        </div>
+    </div>
+    
+    <div class="w3-container w3-row">
+
+    </div>
+    
+    <div class="w3-container">
+        <h2>Carrito</h2>
+        <!-- Elementos del carrito -->
+        <table id="carrito" class="w3-table"></table>
+        <!-- <ul id="carrito" class="w3-ul"></ul> -->
+        <hr>
+        <!-- Precio total -->
+        <p class="w3-right-align">Total: <span id="total"></span>&euro;</p>
+        <button id="boton-vaciar" class="w3-button w3-round w3-red">Vaciar</button>
+    </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+
+<div class="w3-container w3-block" id="barraMenu" style="margin-left: 25%; padding: 0px">
+
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    
+    <div class="tab w3-container w3-white">
+        <button class="tablinks w3-button w3-hover-opacity" onclick="openTabCategory(event, 'tab01')"><img class="w3-image" src="img/c/0.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-opacity" onclick="openTabCategory(event, 'tab02')"><img class="w3-image" src="img/c/1.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-opacity" onclick="openTabCategory(event, 'tab03')"><img class="w3-image" src="img/c/2.png" alt="" width="120px"></button>
+    </div>
+
+</div>
+
+<div class="w3-container" style="margin-left: 25%; padding: 0px">
+
+    <!-- TAB 1 -->
+    
+    <div id="tab01" class="tabcontent">
+        <div class="w3-container">
+            <h2>Edibles menu</h2>
+        </div>
+        <script src="admin/js/products.js"></script>
+        <script>
+            window.onload = function () {
+
+                let $items = document.querySelector('#items');
+                let carrito = [];
+                let total = 0;
+                let $carrito = document.querySelector('#carrito');
+                let $total = document.querySelector('#total');
+                let $botonVaciar = document.querySelector('#boton-vaciar');
+
+                // Funciones
+                function renderItems() {
+                    for (let info of flores) {
+
+                        // Ficha de producto    
+                        let fichaArticulo = document.createElement('div');
+
+                        fichaArticulo.classList.add('producto', 'w3-col', 'm3', 'w3-margin-bottom', 'w3-padding');
+
+                        // Contenedor
+                        let contPrin = document.createElement('div');
+
+                        contPrin.classList.add('w3-container', 'w3-border', 'w3-round', 'marcoEstrecho');
+
+                        // Contenedor del título
+                        let contTitulo = document.createElement("div");
+
+                        contTitulo.classList.add('w3-container');
+                        let nombreArticulo = document.createElement('h6');
+                        nombreArticulo.classList.add('font-lemonada');
+                        let nombreArticuloDestacado = document.createElement('b');
+                        nombreArticuloDestacado.textContent = info['nombre_flor'];
+                        nombreArticulo.appendChild(nombreArticuloDestacado);
+                        contTitulo.appendChild(nombreArticulo);
+
+                        // Imagen                        
+                        let contImagen = document.createElement('div');
+
+                        contImagen.classList.add('w3-half', 'w3-padding-4');
+                        let imagenArticulo = document.createElement('img');
+                        imagenArticulo.classList.add('w3-image');
+                        imagenArticulo.setAttribute('src', 'img/p/' + info['imagen_flor']);
+                        contImagen.appendChild(imagenArticulo)
+
+                        // Precio
+                        let contPrecio = document.createElement('div');
+                        contPrecio.classList.add('w3-half', 'marcoEstrecho');
+
+                        let precioArticulo = document.createElement('p');
+                        precioArticulo.classList.add('w3-xxlarge');
+
+                        let precioDestacado = document.createElement('b');
+                        precioDestacado.textContent = info['precio_venta'];
+
+                        let unidadVenta = document.createElement('span');
+                        unidadVenta.classList.add('w3-small');
+                        unidadVenta.textContent = ' €/gr.';
+
+                        // Variedad
+                        let variedad = document.createElement('span');
+
+                        variedad.classList.add('w3-orange', 'w3-text-dark-grey', 'w3-round-xxlarge', 'w3-padding-tiny');
+                        let variedadDestacada = document.createElement('b');
+                        variedadDestacada.textContent = info['variedad'];
+
+                        variedad.appendChild(variedadDestacada);
+
+                        precioArticulo.appendChild(precioDestacado);
+                        precioArticulo.appendChild(unidadVenta);
+
+                        contPrecio.appendChild(variedad);
+                        contPrecio.appendChild(precioArticulo);
+
+                        // Boton 
+                        let contBoton = document.createElement('div');
+
+                        contBoton.classList.add('w3-container', 'w3-padding-0');
+                        let boton = document.createElement('button');
+                        boton.classList.add('w3-button', 'w3-theme', 'w3-block');
+                        boton.textContent = 'Comprar';
+                        boton.setAttribute('marcador', info['id_flor']);
+                        boton.addEventListener('click', anyadirCarrito);
+                        contBoton.appendChild(boton);
+
+                        // Insertamos
+
+                        contPrin.appendChild(contTitulo);
+                        contPrin.appendChild(contImagen);
+                        contPrin.appendChild(contPrecio);
+                        contPrin.appendChild(variedad);
+                        contPrin.appendChild(contBoton);
+                        fichaArticulo.appendChild(contPrin);
+                        $items.appendChild(fichaArticulo);
+                    }
+                }
+
+                function anyadirCarrito() {
+                    // Anyadimos el Nodo a nuestro carrito
+                    carrito.push(this.getAttribute('marcador'))
+                    // Calculo el total
+                    calcularTotal();
+                    // Renderizamos el carrito 
+                    renderizarCarrito();
+                }
+
+                function renderizarCarrito() {
+                    // Vaciamos todo el html
+                    $carrito.textContent = '';
+                    // Quitamos los duplicados
+                    let carritoSinDuplicados = [...new Set(carrito)];
+                    // Generamos los Nodos a partir de carrito
+                    carritoSinDuplicados.forEach(function (item, indice) {
+                        // Obtenemos el item que necesitamos de la variable base de datos
+                        let miItem = flores.filter(function (itemBaseDatos) {
+                            return itemBaseDatos['id_flor'] == item;
+                        });
+                        // Cuenta el número de veces que se repite el producto
+                        let numeroUnidadesItem = carrito.reduce(function (total, itemId) {
+                            return itemId === item ? total += 1 : total;
+                        }, 0);
+                        // Creamos el nodo del item del carrito
+                        let fichaArticulo = document.createElement('tr');
+                        let fichaArticulo2 = document.createElement('td');
+                        fichaArticulo2.textContent = `${numeroUnidadesItem} gr`;
+                        let fichaArticulo3 = document.createElement('td');
+                        fichaArticulo3.textContent = `${miItem[0]['nombre_flor']}`;
+                        let fichaArticulo4 = document.createElement('td');
+                        fichaArticulo4.textContent = ` - ${miItem[0]['precio_venta']}€/gr`;
+                        fichaArticulo.appendChild(fichaArticulo2);
+                        fichaArticulo.appendChild(fichaArticulo3);
+                        fichaArticulo.appendChild(fichaArticulo4);
+                        // Boton de borrar
+                        let miBoton = document.createElement('button');
+                        miBoton.classList.add('w3-button', 'w3-white', 'w3-text-red', 'w3-border', 'w3-border-red', 'w3-round', 'w3-padding-tiny', 'font-haetten-schweiler');
+                        let miBotonTexto = document.createElement('b');
+                        miBotonTexto.textContent = 'X';
+                        miBoton.appendChild(miBotonTexto);
+                        miBoton.style.marginLeft = '1rem';
+                        miBoton.setAttribute('item', item);
+                        miBoton.addEventListener('click', borrarItemCarrito);
+                        // Mezclamos nodos
+                        fichaArticulo.appendChild(miBoton);
+                        $carrito.appendChild(fichaArticulo);
+                    })
+                }
+
+                function borrarItemCarrito() {
+                    console.log()
+                    // Obtenemos el producto ID que hay en el boton pulsado
+                    let id = this.getAttribute('item');
+                    // Borramos todos los productos
+                    carrito = carrito.filter(function (carritoId) {
+                        return carritoId !== id;
+                    });
+                    // volvemos a renderizar
+                    renderizarCarrito();
+                    // Calculamos de nuevo el precio
+                    calcularTotal();
+                }
+
+                function calcularTotal() {
+                    // Limpiamos precio anterior
+                    total = 0;
+                    // Recorremos el array del carrito
+                    for (let item of carrito) {
+                        // De cada elemento obtenemos su precio
+                        let miItem = flores.filter(function (itemBaseDatos) {
+                            return itemBaseDatos['id_flor'] == item;
+                        });
+                        total = total + miItem[0]['precio_venta'];
+                    }
+                    // Formateamos el total para que solo tenga dos decimales
+                    let totalDosDecimales = total.toFixed(2);
+                    // Renderizamos el precio en el HTML
+                    $total.textContent = totalDosDecimales;
+                }
+
+                function vaciarCarrito() {
+                    // Limpiamos los productos guardados
+                    carrito = [];
+                    // Renderizamos los cambios
+                    renderizarCarrito();
+                    calcularTotal();
+                }
+
+                // Eventos
+                $botonVaciar.addEventListener('click', vaciarCarrito);
+
+                // Inicio
+                renderItems();
+            } 
+        </script>
+        <div id="items" class="w3-row-padding"></div>
+    </div>
+
+    <!-- TAB 2 -->
+
+    <div id="tab02" class="tabcontent">
+        <div class="tab w3-container w3-center">
+            <input class="tablinks" type="button" value="Refrescos" onclick="openTabCategory(event, 'tab101')">
+            <input class="tablinks" type="button" value="Cafés/Infusiones" onclick="openTabCategory(event, 'tab05')">
+            <input class="tablinks" type="button" value="Snacks" onclick="openTabCategory(event, 'tab06')">
+        </div>
+
+        <div id="tab101" class="tabcontent">
+            <div class="w3-container">
+                <h2>Edibles menu</h2>
+            </div>
+            <script>
+                window.onload = function () {
+
+                    let $items = document.querySelector('#items');
+                    let carrito = [];
+                    let total = 0;
+                    let $carrito = document.querySelector('#carrito');
+                    let $total = document.querySelector('#total');
+                    let $botonVaciar = document.querySelector('#boton-vaciar');
+
+                    // Funciones
+                    function renderItems() {
+                        for (let info of flores) {
+
+                            // Ficha de producto    
+                            let fichaArticulo = document.createElement('div');
+
+                            fichaArticulo.classList.add('producto', 'w3-col', 'm3', 'w3-margin-bottom', 'w3-padding');
+
+                            // Contenedor
+                            let contPrin = document.createElement('div');
+
+                            contPrin.classList.add('w3-container', 'w3-border', 'w3-round', 'marcoEstrecho');
+
+                            // Contenedor del título
+                            let contTitulo = document.createElement("div");
+
+                            contTitulo.classList.add('w3-container');
+                            let nombreArticulo = document.createElement('h6');
+                            nombreArticulo.classList.add('font-lemonada');
+                            let nombreArticuloDestacado = document.createElement('b');
+                            nombreArticuloDestacado.textContent = info['nombre_flor'];
+                            nombreArticulo.appendChild(nombreArticuloDestacado);
+                            contTitulo.appendChild(nombreArticulo);
+
+                            // Imagen                        
+                            let contImagen = document.createElement('div');
+
+                            contImagen.classList.add('w3-half', 'w3-padding-4');
+                            let imagenArticulo = document.createElement('img');
+                            imagenArticulo.classList.add('w3-image');
+                            imagenArticulo.setAttribute('src', 'img/p/' + info['imagen_flor']);
+                            contImagen.appendChild(imagenArticulo)
+
+                            // Precio
+                            let contPrecio = document.createElement('div');
+                            contPrecio.classList.add('w3-half', 'marcoEstrecho');
+
+                            let precioArticulo = document.createElement('p');
+                            precioArticulo.classList.add('w3-xxlarge');
+
+                            let precioDestacado = document.createElement('b');
+                            precioDestacado.textContent = info['precio_venta'];
+
+                            let unidadVenta = document.createElement('span');
+                            unidadVenta.classList.add('w3-small');
+                            unidadVenta.textContent = ' €/gr.';
+
+                            // Variedad
+                            let variedad = document.createElement('span');
+
+                            variedad.classList.add('w3-orange', 'w3-text-dark-grey', 'w3-round-xxlarge', 'w3-padding-tiny');
+                            let variedadDestacada = document.createElement('b');
+                            variedadDestacada.textContent = info['variedad'];
+
+                            variedad.appendChild(variedadDestacada);
+
+                            precioArticulo.appendChild(precioDestacado);
+                            precioArticulo.appendChild(unidadVenta);
+
+                            contPrecio.appendChild(variedad);
+                            contPrecio.appendChild(precioArticulo);
+
+                            // Boton 
+                            let contBoton = document.createElement('div');
+
+                            contBoton.classList.add('w3-container', 'w3-padding-0');
+                            let boton = document.createElement('button');
+                            boton.classList.add('w3-button', 'w3-theme', 'w3-block');
+                            boton.textContent = 'Comprar';
+                            boton.setAttribute('marcador', info['id_flor']);
+                            boton.addEventListener('click', anyadirCarrito);
+                            contBoton.appendChild(boton);
+
+                            // Insertamos
+
+                            contPrin.appendChild(contTitulo);
+                            contPrin.appendChild(contImagen);
+                            contPrin.appendChild(contPrecio);
+                            contPrin.appendChild(variedad);
+                            contPrin.appendChild(contBoton);
+                            fichaArticulo.appendChild(contPrin);
+                            $items.appendChild(fichaArticulo);
+                        }
+                    }
+
+                    function anyadirCarrito() {
+                        // Anyadimos el Nodo a nuestro carrito
+                        carrito.push(this.getAttribute('marcador'))
+                        // Calculo el total
+                        calcularTotal();
+                        // Renderizamos el carrito 
+                        renderizarCarrito();
+                    }
+
+                    function renderizarCarrito() {
+                        // Vaciamos todo el html
+                        $carrito.textContent = '';
+                        // Quitamos los duplicados
+                        let carritoSinDuplicados = [...new Set(carrito)];
+                        // Generamos los Nodos a partir de carrito
+                        carritoSinDuplicados.forEach(function (item, indice) {
+                            // Obtenemos el item que necesitamos de la variable base de datos
+                            let miItem = flores.filter(function (itemBaseDatos) {
+                                return itemBaseDatos['id_flor'] == item;
+                            });
+                            // Cuenta el número de veces que se repite el producto
+                            let numeroUnidadesItem = carrito.reduce(function (total, itemId) {
+                                return itemId === item ? total += 1 : total;
+                            }, 0);
+                            // Creamos el nodo del item del carrito
+                            let fichaArticulo = document.createElement('tr');
+                            let fichaArticulo2 = document.createElement('td');
+                            fichaArticulo2.textContent = `${numeroUnidadesItem} gr`;
+                            let fichaArticulo3 = document.createElement('td');
+                            fichaArticulo3.textContent = `${miItem[0]['nombre_flor']}`;
+                            let fichaArticulo4 = document.createElement('td');
+                            fichaArticulo4.textContent = ` - ${miItem[0]['precio_venta']}€/gr`;
+                            fichaArticulo.appendChild(fichaArticulo2);
+                            fichaArticulo.appendChild(fichaArticulo3);
+                            fichaArticulo.appendChild(fichaArticulo4);
+                            // Boton de borrar
+                            let miBoton = document.createElement('button');
+                            miBoton.classList.add('w3-button', 'w3-white', 'w3-text-red', 'w3-border', 'w3-border-red', 'w3-round', 'w3-padding-tiny', 'font-haetten-schweiler');
+                            let miBotonTexto = document.createElement('b');
+                            miBotonTexto.textContent = 'X';
+                            miBoton.appendChild(miBotonTexto);
+                            miBoton.style.marginLeft = '1rem';
+                            miBoton.setAttribute('item', item);
+                            miBoton.addEventListener('click', borrarItemCarrito);
+                            // Mezclamos nodos
+                            fichaArticulo.appendChild(miBoton);
+                            $carrito.appendChild(fichaArticulo);
+                        })
+                    }
+
+                    function borrarItemCarrito() {
+                        console.log()
+                        // Obtenemos el producto ID que hay en el boton pulsado
+                        let id = this.getAttribute('item');
+                        // Borramos todos los productos
+                        carrito = carrito.filter(function (carritoId) {
+                            return carritoId !== id;
+                        });
+                        // volvemos a renderizar
+                        renderizarCarrito();
+                        // Calculamos de nuevo el precio
+                        calcularTotal();
+                    }
+
+                    function calcularTotal() {
+                        // Limpiamos precio anterior
+                        total = 0;
+                        // Recorremos el array del carrito
+                        for (let item of carrito) {
+                            // De cada elemento obtenemos su precio
+                            let miItem = flores.filter(function (itemBaseDatos) {
+                                return itemBaseDatos['id_flor'] == item;
+                            });
+                            total = total + miItem[0]['precio_venta'];
+                        }
+                        // Formateamos el total para que solo tenga dos decimales
+                        let totalDosDecimales = total.toFixed(2);
+                        // Renderizamos el precio en el HTML
+                        $total.textContent = totalDosDecimales;
+                    }
+
+                    function vaciarCarrito() {
+                        // Limpiamos los productos guardados
+                        carrito = [];
+                        // Renderizamos los cambios
+                        renderizarCarrito();
+                        calcularTotal();
+                    }
+
+                    // Eventos
+                    $botonVaciar.addEventListener('click', vaciarCarrito);
+
+                    // Inicio
+                    renderItems();
+                } 
+            </script>
+            <div id="items" class="w3-row-padding"></div>
+        </div>
+
+        <div id="tab101" class="tabcontent w3-row-padding">
+
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Coca-cola"
+            data-img="img/p/f01.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                         <img class="w3-image" src="img/p/f01.jpg" alt="CocaCola">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Coca-cola</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Fanta de naranja"
+            data-img="img/p/f02.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                         <img class="w3-image" src="img/p/f02.jpg" alt="Doritos">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Fanta de naranja</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Dr Pepper"
+            data-img="img/p/f03.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                        <img class="w3-image" src="img/p/f03.jpg" alt="Doritos">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Dr Pepper</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Agua"
+            data-img="img/p/f04.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                        <img class="w3-image" src="img/p/f04.jpg" alt="Doritos">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Botellín agua</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3 -->
+
+    <div id="tab03" class="tabcontent">
+        <div class="w3-container">
+            <h2>Hash menu</h2>
+        </div>
+    </div>
+
+    <!-- TAB 4  -->
+
+    <div id="tab04" class="tabcontent">
+        <div class="w3-container">
+            <h2>Edibles menu</h2>
+        </div>
+        <script src="admin/js/products.js"></script>
+        <script>
+            window.onload = function () {
+               
+                let $items = document.querySelector('#items');
+                let carrito = [];
+                let total = 0;
+                let $carrito = document.querySelector('#carrito');
+                let $total = document.querySelector('#total');
+                let $botonVaciar = document.querySelector('#boton-vaciar');
+
+                // Funciones
+                function renderItems() {
+                    for (let info of flores) {
+
+                        // Ficha de producto    
+                        let fichaArticulo = document.createElement('div');
+                        
+                        fichaArticulo.classList.add('producto', 'w3-col', 'm3',  'w3-margin-bottom', 'w3-padding');
+                        
+                        // Contenedor
+                        let contPrin = document.createElement('div');
+                        
+                        contPrin.classList.add('w3-container', 'w3-border', 'w3-round', 'marcoEstrecho');
+                        
+                        // Contenedor del título
+                        let contTitulo = document.createElement("div");
+                        
+                        contTitulo.classList.add('w3-container');
+                        let nombreArticulo = document.createElement('h6');
+                        nombreArticulo.classList.add('font-lemonada');
+                        let nombreArticuloDestacado = document.createElement('b');
+                        nombreArticuloDestacado.textContent = info['nombre_flor'];
+                        nombreArticulo.appendChild(nombreArticuloDestacado);
+                        contTitulo.appendChild(nombreArticulo);
+                        
+                        // Imagen                        
+                        let contImagen = document.createElement('div');
+                        
+                        contImagen.classList.add('w3-half', 'w3-padding-4');
+                        let imagenArticulo = document.createElement('img');
+                        imagenArticulo.classList.add('w3-image');
+                        imagenArticulo.setAttribute('src', 'img/p/' +  info['imagen_flor']);
+                        contImagen.appendChild(imagenArticulo)
+                       
+                        // Precio
+                        let contPrecio = document.createElement('div');
+                        contPrecio.classList.add('w3-half', 'marcoEstrecho');
+                           
+                            let precioArticulo = document.createElement('p');
+                            precioArticulo.classList.add('w3-xxlarge');
+                                
+                                let precioDestacado = document.createElement('b');
+                                precioDestacado.textContent = info['precio_venta'];
+                                
+                                let unidadVenta = document.createElement('span');
+                                unidadVenta.classList.add('w3-small');
+                                unidadVenta.textContent = ' €/gr.';
+                        
+                        // Variedad
+                        let variedad = document.createElement('span');
+                        
+                        variedad.classList.add('w3-orange', 'w3-text-dark-grey', 'w3-round-xxlarge', 'w3-padding-tiny');
+                        let variedadDestacada = document.createElement('b');
+                        variedadDestacada.textContent = info['variedad'];
+
+                        variedad.appendChild(variedadDestacada);
+                        
+                        precioArticulo.appendChild(precioDestacado);
+                        precioArticulo.appendChild(unidadVenta);
+
+                        contPrecio.appendChild(variedad);
+                        contPrecio.appendChild(precioArticulo);
+                        
+                        // Boton 
+                        let contBoton = document.createElement('div');
+                        
+                        contBoton.classList.add('w3-container', 'w3-padding-0');
+                        let boton = document.createElement('button');
+                        boton.classList.add('w3-button', 'w3-theme', 'w3-block');
+                        boton.textContent = 'Comprar';
+                        boton.setAttribute('marcador', info['id_flor']);
+                        boton.addEventListener('click', anyadirCarrito);
+                        contBoton.appendChild(boton);
+                        
+                        // Insertamos
+
+                        contPrin.appendChild(contTitulo);
+                        contPrin.appendChild(contImagen);
+                        contPrin.appendChild(contPrecio);
+                        contPrin.appendChild(variedad);
+                        contPrin.appendChild(contBoton);
+                        fichaArticulo.appendChild(contPrin);
+                        $items.appendChild(fichaArticulo);
+                    }
+                }
+
+                function anyadirCarrito() {
+                    // Anyadimos el Nodo a nuestro carrito
+                    carrito.push(this.getAttribute('marcador'))
+                    // Calculo el total
+                    calcularTotal();
+                    // Renderizamos el carrito 
+                    renderizarCarrito();
+                }
+
+                function renderizarCarrito() {
+                    // Vaciamos todo el html
+                    $carrito.textContent = '';
+                    // Quitamos los duplicados
+                    let carritoSinDuplicados = [...new Set(carrito)];
+                    // Generamos los Nodos a partir de carrito
+                    carritoSinDuplicados.forEach(function (item, indice) {
+                        // Obtenemos el item que necesitamos de la variable base de datos
+                        let miItem = flores.filter(function (itemBaseDatos) {
+                            return itemBaseDatos['id_flor'] == item;
+                        });
+                        // Cuenta el número de veces que se repite el producto
+                        let numeroUnidadesItem = carrito.reduce(function (total, itemId) {
+                            return itemId === item ? total += 1 : total;
+                        }, 0);
+                        // Creamos el nodo del item del carrito
+                        let fichaArticulo = document.createElement('tr');
+                        let fichaArticulo2 = document.createElement('td');
+                        fichaArticulo2.textContent = `${numeroUnidadesItem} gr`;
+                        let fichaArticulo3 = document.createElement('td');
+                        fichaArticulo3.textContent = `${miItem[0]['nombre_flor']}`;
+                        let fichaArticulo4 = document.createElement('td');
+                        fichaArticulo4.textContent =` - ${miItem[0]['precio_venta']}€/gr`;
+                        fichaArticulo.appendChild(fichaArticulo2);
+                        fichaArticulo.appendChild(fichaArticulo3);
+                        fichaArticulo.appendChild(fichaArticulo4);
+                        // Boton de borrar
+                        let miBoton = document.createElement('button');
+                        miBoton.classList.add('w3-button', 'w3-white', 'w3-text-red', 'w3-border', 'w3-border-red', 'w3-round', 'w3-padding-tiny', 'font-haetten-schweiler');
+                        let miBotonTexto =document.createElement('b');
+                        miBotonTexto.textContent = 'X';
+                        miBoton.appendChild(miBotonTexto);
+                        miBoton.style.marginLeft = '1rem';
+                        miBoton.setAttribute('item', item);
+                        miBoton.addEventListener('click', borrarItemCarrito);
+                        // Mezclamos nodos
+                        fichaArticulo.appendChild(miBoton);
+                        $carrito.appendChild(fichaArticulo);
+                    })
+                }
+
+                function borrarItemCarrito() {
+                    console.log()
+                    // Obtenemos el producto ID que hay en el boton pulsado
+                    let id = this.getAttribute('item');
+                    // Borramos todos los productos
+                    carrito = carrito.filter(function (carritoId) {
+                        return carritoId !== id;
+                    });
+                    // volvemos a renderizar
+                    renderizarCarrito();
+                    // Calculamos de nuevo el precio
+                    calcularTotal();
+                }
+
+                function calcularTotal() {
+                    // Limpiamos precio anterior
+                    total = 0;
+                    // Recorremos el array del carrito
+                    for (let item of carrito) {
+                        // De cada elemento obtenemos su precio
+                        let miItem = flores.filter(function (itemBaseDatos) {
+                            return itemBaseDatos['id_flor'] == item;
+                        });
+                        total = total + miItem[0]['precio_venta'];
+                    }
+                    // Formateamos el total para que solo tenga dos decimales
+                    let totalDosDecimales = total.toFixed(2);
+                    // Renderizamos el precio en el HTML
+                    $total.textContent = totalDosDecimales;
+                }
+
+                function vaciarCarrito() {
+                    // Limpiamos los productos guardados
+                    carrito = [];
+                    // Renderizamos los cambios
+                    renderizarCarrito();
+                    calcularTotal();
+                }
+
+                // Eventos
+                $botonVaciar.addEventListener('click', vaciarCarrito);
+
+                // Inicio
+                renderItems();
+            } 
+        </script>
+        <div id="items" class="w3-row-padding"></div>
+    </div>
+</div>
+
+    <script>
+        window.onscroll = function () { scrollFunction() };
+            function scrollFunction() {
+                block = document.getElementById("barraMenu");
+                if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+                    block.style.top = "0px";
+                    block.style.position = "fixed";
+                    block.classList.add("w3-animate-top");
+                    block.classList.add("bottom-shadow");
+                } else {
+                    block.style.top = "";
+                    block.style.position = "relative";
+                    block.classList.remove("w3-animate-top");
+                    block.classList.remove("bottom-shadow");
+                }
+            } 
+        function openTabCategory(evt, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-opacity", "");
+            }
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.className += " w3-opacity";
+        }
+    </script>
+</body>
+
+</html>

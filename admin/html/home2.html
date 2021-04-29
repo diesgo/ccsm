@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCSM | Dispensario</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="fontawesome5/css/all.css">
+    <link rel="stylesheet" href="webfonts/stylesheet.css">
+    <link rel="stylesheet" href="css/specimen_stylesheet.css">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/w3-theme-blue-grey.css">
+</head>
+
+<style>
+    
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        -webkit-animation: fadeEffect 1s;
+        animation: fadeEffect 1s;
+    }
+
+    /* Fade in tabs */
+    @-webkit-keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeEffect {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+header{
+    padding: 0px 40px;
+    background-color: #383838;
+    color: white;
+    margin-bottom: 40px;
+}
+/* Este es un div contiene toda la pagia web, su padre es el body */
+
+header {
+    font-size: 100%;
+    line-height: 20px;
+}
+
+header h1 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+/* Este es un div contiene cada producto por separado */
+
+.producto {
+    font-size: 100%;
+    cursor: pointer;
+}
+
+/* .producto img {
+    width: 100px;
+} */
+
+.Comprar {
+    color: green;
+}
+
+#carritoDeCompras {
+    clear: left;
+
+    padding-bottom: 15px;
+
+    border-top: 1px solid #ccc;
+}
+
+#carritoDeCompras div {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #ccc;
+}
+
+#carritoDeCompras h2 h4 {
+    font-size: 150%;
+}
+
+#carritoDeCompras .cantidad {
+    float: right;
+
+    line-height: 25px;
+}
+
+#carritoDeCompras button {
+    display: inline-block;
+    /* float: right; */
+
+    margin: 0 10px;
+    padding: 5px 15px;
+
+    text-align: center;
+    text-decoration: none;
+
+    color: white;
+    border: none;
+    background-color: #555555;
+
+    font-size: 13px;
+}
+
+#carritoDeCompras .mas {
+    margin-right: 40%;
+}
+
+#carritoDeCompras button:focus {
+    outline: 0px;
+}
+
+#carritoDeCompras button:hover {
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.24), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+}
+
+#donJulio{
+    width: 70px;
+}
+
+</style>
+
+<body class="w3-theme-light font-varela">
+    <script src="js/flowers.js"></script>
+
+<!-- Sidebar/menu -->
+
+<nav class="w3-sidebar w3-collapse w3-theme-l4" style="z-index:3; width: 300px" id="mySidebar"><br>
+    <div class="w3-container">
+        <input class="w3-input w3-border w3-round w3-margin-bottom w3-theme-l5" type="text" name="chipNumber" id="chipNumber" placeholder="&#128272;">
+    </div>
+    <div class="w3-container">
+        <div class="w3-margin-bottom">
+            <img class="w3-image" src="img/s/avatar11.png" alt="" width="100%">
+        </div>
+        <div class="w3-theme-l3 w3-padding">
+            <h6>Nº Socio: <span id="numberSocio">&#128286;</span></h6>
+            <h6>Nombre: <span id="nameSocio">&#128274;</span></h6>
+            <h6>Credito: <span id="cashSocio">&#128275;</span></h6>
+            <h6>Notas <span id="noteSocio"></span></h6>
+        </div>
+    </div>
+    
+    <div class="w3-container w3-row">
+
+    </div>
+    
+    <div class="w3-container">
+        <h5>Selección</h5>
+    </div>
+    <div class="w3-padding">
+        <label for="price">Price</label>
+        <input class="w3-input" type="text" id="price">
+    </div>
+    <div class="w3-padding">
+        <input class="w3-input" type="text" id="cash" placeholder="€">
+    </div>
+    <div id="carritoDeCompras"> </div>
+    <div class="w3-padding">
+        <p id=precioTotal>A Pagar: $0</p>
+    </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+
+<div class="w3-container w3-padding" style="margin-left: 300px; padding: 0px">
+        
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    
+    <div class="tab w3-container">
+        <button class="tablinks w3-button w3-hover-theme" onclick="openCity(event, 'tab01')"><img claaa="w3-image" src="img/c/0.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-theme" onclick="openCity(event, 'tab02')"><img claaa="w3-image" src="img/c/1.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-theme" onclick="openCity(event, 'tab03')"><img claaa="w3-image" src="img/c/2.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-theme" onclick="openCity(event, 'tab04')"><img claaa="w3-image" src="img/c/3.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-theme" onclick="openCity(event, 'tab05')"><img claaa="w3-image" src="img/c/6.png" alt="" width="120px"></button>
+        <button class="tablinks w3-button w3-hover-theme" onclick="openCity(event, 'tab06')"><img claaa="w3-image" src="img/c/0.png" alt="" width="120px"></button>
+    </div>
+
+    <!-- TAB 1 -->
+    
+    <div id="tab01" class="tabcontent">
+        <div class="w3-container">
+            <h2>Flowers menu</h2>
+        </div>
+        
+        <div class="w3-row-padding">
+
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Critical bilbo"
+            data-img="img/p/0.jpg"
+            data-precio="7"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Critical Bilbo</b></h4>
+                    </div>
+
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/0.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>7</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Indica</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                     </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Gelatto"
+            data-img="img/p/1.jpg"
+            data-precio="9"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Gelatto</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/1.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>9</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Indica</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>    
+            </div>
+
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Space Jam"
+            data-img="img/p/2.jpg"
+            data-precio="13"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Space Jam</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/2.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>13</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Sativa</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Blue Zushi"
+            data-img="img/p/1.jpg"
+            data-precio="16"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Blue Zushi</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/3.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>16</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Indica</b></span><br>
+                    </div>
+                
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Tangie Cockies"
+            data-img="img/p/1.jpg"
+            data-precio="16"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Tangie Cockies</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/4.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>16</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Indica</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Critical cokie"
+            data-img="img/p/5.jpg"
+            data-precio="16"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Critical cokie</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/5.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>16</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Hybrid</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Gelato Caviar"
+            data-img="img/p/6.jpg"
+            data-precio="27"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Gelato Caviar</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/6.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>27</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Hybrid</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col m3 w3-margin-bottom w3-padding"
+            data-idproducto="Gromenawer"
+            data-img="img/p/7.jpg"
+            data-precio="21"
+            data-cantidad="0">
+                <div class="w3-container w3-border w3-round" style="padding: 4px;">
+                    <div class="w3-container">
+                        <h4><b>Gromenawer</b></h4>
+                    </div>
+                    <div class="w3-half" style="padding: 4px 0px;">
+                        <img class="w3-image" src="img/p/7.jpg" alt="">
+                    </div>
+                    <div class="w3-half" style="padding: 4px;">
+                        <p><span class="w3-xxlarge"><b>21</b></span> €/gr</p>
+                        <span class="w3-orange w3-text-dark-grey w3-round-xxlarge" style="padding: 2px 10px;"><b>Hybrid</b></span><br>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2 -->
+
+    <div id="tab02" class="tabcontent">
+        <div class="w3-container">
+            <h2>Drinks menu</h2>
+        </div>
+
+        <div class="w3-row-padding">
+
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Coca-cola"
+            data-img="img/p/f01.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                         <img class="w3-image" src="img/p/f01.jpg" alt="CocaCola">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Coca-cola</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Fanta de naranja"
+            data-img="img/p/f02.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                         <img class="w3-image" src="img/p/f02.jpg" alt="Doritos">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Fanta de naranja</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Dr Pepper"
+            data-img="img/p/f03.jpg"
+            data-precio="1"
+            data-cantidad="0">
+                <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                    <div class="w3-half w3-padding-small">
+                        <img class="w3-image" src="img/p/f03.jpg" alt="Doritos">
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <p class="w3-left-align">
+                            <small>name </small><br><span><b>Dr Pepper</b></span><br>
+                        </p>
+                        <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                    </div>
+                    <div>
+                        <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="producto w3-col l3 w3-margin-bottom w3-padding-small"
+            data-idproducto="Agua"
+            data-img="img/p/f04.jpg"
+            data-precio="1"
+            data-cantidad="0">
+            <div class="w3-container w3-round w3-border" style="padding: 0px; height: 160px;">
+                <div class="w3-half w3-padding-small">
+                    <img class="w3-image" src="img/p/f04.jpg" alt="Doritos">
+                </div>
+                <div class="w3-half w3-padding">
+                    <p class="w3-left-align">
+                        <small>name </small><br><span><b>Botellín agua</b></span><br>
+                    </p>
+                    <p><span class="w3-xlarge"><b>1</b></span> €/ud</p>
+                </div>
+                <div>
+                    <p class="Comprar w3-button w3-block w3-theme w3-hover-theme">Compar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/carrito.js"></script>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-theme-l1", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " w3-theme-l1";
+        }
+    </script>
+</body>
+
+</html>

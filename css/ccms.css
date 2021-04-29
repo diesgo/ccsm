@@ -1,0 +1,121 @@
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    animation: fadeEffect 1s;
+}
+
+.sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidepanel a {
+text-decoration: none;
+font-size: 20px;
+display: block;
+transition: 0.3s;
+}
+
+.sidepanel .closebtn {
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+}
+.dropdown-btn {
+padding: 6px 8px 6px 60%;
+text-decoration: none;
+font-size: 20px;
+color: inherit;
+display: block;
+border: none;
+background: none;
+width:100%;
+text-align: left;
+cursor: pointer;
+outline: none;
+}
+.dropdown-container {
+display: none;
+}
+.active {
+background-color: green;
+color: white;
+}
+.ctalinks .fcta {
+display: inline-block;
+width: 244px;
+height: 160px;
+padding: 6px;
+margin: 20px;
+margin-top: 0;
+min-width: 100px;
+color: white;
+text-align: center;
+font-size: 24px;
+border-radius: 5px;
+text-transform: uppercase;
+font-weight: bold;
+line-height: 30px;
+} 
+.ctalinks {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+.ctalinks span {
+margin-top: 25px;
+margin-bottom: 5px;
+}
+
+.ctalinks a {
+display: inline-block;
+width: 244px;
+height: 160px;
+padding: 6px;
+margin: 20px;
+margin-top: 0;
+min-width: 100px;
+text-align: center;
+font-size: 24px;
+border-radius: 5px;
+text-transform: uppercase;
+font-weight: bold;
+line-height: 30px;
+}
+
+#newchip .ctalinks2 a {
+background-color: #00a48c;
+display: inline-block;
+width: 204px;
+height: 120px;
+margin: 20px;
+margin-top: 0;
+min-width: 100px;
+color: white;
+text-align: center;
+font-size: 24px;
+border-radius: 5px;
+text-transform: uppercase;
+font-weight: bold;
+line-height: 30px;
+}
+
+#newchip .ctalinks2 a:hover {
+opacity: 0.8;
+}
+.botonRojo{
+background: linear-gradient(to bottom, #cc0000 0%, #800000 100%);
+color: white;
+}
+.botonRojo:hover{
+background: linear-gradient(to bottom, #800000 0%, #cc0000 100%);
+}

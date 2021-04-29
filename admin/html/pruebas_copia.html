@@ -1,0 +1,171 @@
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/w3-theme-blue-grey.css">
+    <script src="admin/js/products.js"></script>
+    <script>
+        window.onload = function () {
+            // Variables
+            let $tab1 = document.querySelector('#tab1');
+            let carrito = [];
+            let total = 0;
+            let $carrito = document.querySelector('#carrito');
+            let $total = document.querySelector('#total');
+            let $botonVaciar = document.querySelector('#boton-vaciar');
+
+            // Funciones
+            function renderItems() {
+                for (let info of flores) {
+                    // Estructura
+                    let miNodo = document.createElement('div');
+                    miNodo.classList.add('w3-col', 'l3', 's3', 'm3');
+                    // Body
+                            let miNodoCardBody = document.createElement('div');
+                            miNodoCardBody.classList.add('card-body');
+                                    
+                                    // Imagen
+                                    let miNodoImagen = document.createElement('img');
+                                    miNodoImagen.classList.add('w3-image');
+                                    miNodoImagen.setAttribute('src', info['imagen_articulo']);
+                                    // Titulo
+                                    let miNodoTitle = document.createElement('h5');
+                                    miNodoTitle.classList.add('card-title');
+                                    miNodoTitle.textContent = info['nombre_articulo'];
+                                    // Precio
+                                    let miNodoPrecio = document.createElement('p');
+                                    miNodoPrecio.classList.add('card-text');
+                                    miNodoPrecio.textContent = info['precio_venta'] + '€';
+                    // Boton 
+                    let miNodoBoton = document.createElement('button');
+                    miNodoBoton.classList.add('w3-button', 'w3-theme-gradient-dark');
+                    miNodoBoton.textContent = '+';
+                    miNodoBoton.setAttribute('marcador', info['id_articulo']);
+                    miNodoBoton.addEventListener('click', anyadirCarrito);
+                    // Insertamos
+                    miNodoCardBody.appendChild(miNodoImagen);
+                    miNodoCardBody.appendChild(miNodoTitle);
+                    miNodoCardBody.appendChild(miNodoPrecio);
+                    miNodoCardBody.appendChild(miNodoBoton);
+                    miNodo.appendChild(miNodoCardBody);
+                    $tab1.appendChild(miNodo);
+                }
+            }
+
+            function anyadirCarrito() {
+                // Anyadimos el Nodo a nuestro carrito
+                carrito.push(this.getAttribute('marcador'))
+                // Calculo el total
+                calcularTotal();
+                // Renderizamos el carrito 
+                renderizarCarrito();
+            }
+
+            function renderizarCarrito() {
+                // Vaciamos todo el html
+                $carrito.textContent = '';
+                // Quitamos los duplicados
+                let carritoSinDuplicados = [...new Set(carrito)];
+                // Generamos los Nodos a partir de carrito
+                carritoSinDuplicados.forEach(function (item, indice) {
+                    // Obtenemos el item que necesitamos de la variable base de datos
+                    let selectWeed = flores.filter(function (itemBaseDatos) {
+                        return itemBaseDatos['id_articulo'] == item;
+                    });
+                    // Cuenta el número de veces que se repite el producto
+                    let numeroUnidadesItem = carrito.reduce(function (total, itemId) {
+                        return itemId === item ? total += 1 : total;
+                    }, 0);
+                    // Creamos el nodo del item del carrito
+                    let miNodo = document.createElement('li');
+                    miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                    miNodo.textContent = `${numeroUnidadesItem} x ${selectWeed[0]['nombre_articulo']} - ${selectWeed[0]['precio_venta']}€`;
+                    // Boton de borrar
+                    let miBoton = document.createElement('button');
+                    miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                    miBoton.textContent = 'X';
+                    miBoton.style.marginLeft = '1rem';
+                    miBoton.setAttribute('item', item);
+                    miBoton.addEventListener('click', borrarItemCarrito);
+                    // Mezclamos nodos
+                    miNodo.appendChild(miBoton);
+                    $carrito.appendChild(miNodo);
+                })
+            }
+
+            function borrarItemCarrito() {
+                console.log()
+                // Obtenemos el producto ID que hay en el boton pulsado
+                let id = this.getAttribute('item');
+                // Borramos todos los productos
+                carrito = carrito.filter(function (carritoId) {
+                    return carritoId !== id;
+                });
+                // volvemos a renderizar
+                renderizarCarrito();
+                // Calculamos de nuevo el precio
+                calcularTotal();
+            }
+
+            function calcularTotal() {
+                // Limpiamos precio anterior
+                total = 0;
+                // Recorremos el array del carrito
+                for (let item of carrito) {
+                    // De cada elemento obtenemos su precio
+                    let selectWeed = flores.filter(function (itemBaseDatos) {
+                        return itemBaseDatos['id_articulo'] == item;
+                    });
+                    total = total + selectWeed[0]['precio_venta'];
+                }
+                // Formateamos el total para que solo tenga dos decimales
+                let totalDosDecimales = total.toFixed(2);
+                // Renderizamos el precio en el HTML
+                $total.textContent = totalDosDecimales;
+            }
+
+            function vaciarCarrito() {
+                // Limpiamos los productos guardados
+                carrito = [];
+                // Renderizamos los cambios
+                renderizarCarrito();
+                calcularTotal();
+            }
+
+            // Eventos
+            $botonVaciar.addEventListener('click', vaciarCarrito);
+
+            // Inicio
+            renderItems();
+        } 
+    </script>
+</head>
+
+<body>
+    <div class="w3-container">
+        <div class="w3-row-padding">
+            <!-- Elementos generados a partir del JSON -->
+            <main class="w3-col l8 m8 s8">
+                <div id="tab1" class="w3-row"></div>
+            </main>
+            <!-- Carrito -->
+            <aside class="w3-col l4 m4 s4">
+                <h2>Carrito</h2>
+                <!-- Elementos del carrito -->
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total: <span id="total"></span>&euro;</p>
+                <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+            </aside>
+        </div>
+    </div>
+</body>
+
+</html>

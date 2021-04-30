@@ -1,6 +1,6 @@
 <?php
 $titulo = "CCSM | Nuevo socio";
-include '../templates/header.php';
+include '../templates/heade.php';
 ?>
 
 <?php
@@ -24,7 +24,7 @@ if (isset($_POST['altaButton'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO temas (color)
+    $sql = "INSERT INTO color_tema (color)
     VALUES ('$color')";
 
     if ($conn->query($sql) === TRUE) {

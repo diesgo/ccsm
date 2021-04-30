@@ -1,4 +1,4 @@
-var fonts = ["amarat-bold", "arima-madurai", "catamaran", "conforta", "conforta-bold", "de-valencia", "densia", "emblem", "haetten-schweiler", "lemonada", "lobster", "manrope", "monoton", "montserrat", "nunito", "oswald", "permanent-maker", "pompiere", "restu", "roboto","spoken", "sweet-leaf", "transformer", "varela", "zanzabar"];
+var fonts = ["abel", "acme", "aguafina-sgript", "alata", "alex-brush", "antonio", "clubz", "cookie", "kingthings-exeter", "kingthings-foundation", "lobster", "montserrat"];
 
 var numFonts = fonts.length;
 var x = document.getElementById("body");

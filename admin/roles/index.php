@@ -1,6 +1,6 @@
 <?php
 $titulo = 'Roles | CCSM';
-include '../templates/header.php';
+include '../templates/heade.php';
 ?>
 
 <!-- Header -->
@@ -29,7 +29,7 @@ include '../templates/header.php';
             </tr>
         </thead>
         <?php
-        require_once '../../config/model.php';
+        require_once '../../config/functions.php';
         $roles = getRoles();
         foreach ($roles as $rol) :
         ?>

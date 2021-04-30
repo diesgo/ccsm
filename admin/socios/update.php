@@ -16,12 +16,12 @@ if (isset($_POST['actualizar'])) {
     $dni = $_POST['dni'];
     $birth = $_POST['birth'];
     $pais = $_POST['pais'];
-    $rol = $_POST['rol'];
+    $rol_id = $_POST['rol_id'];
     $genero = $_POST['genero'];
     $consumo = $_POST['consumo'];
     $saldo = $_POST['saldo'];
 
-    $sql = "UPDATE socios SET nombre ='" . $nombre . "',apellidos='" . $apellidos . "',dni='" . $dni . "',birth='" . $birth . "',pais='" . $pais . "',rol='" . $rol . "',genero='" . $genero . "',consumo='" . $consumo . "',saldo='" . $saldo . "' WHERE id=" . $id . ";";
+    $sql = "UPDATE socios SET nombre ='" . $nombre . "',apellidos='" . $apellidos . "',dni='" . $dni . "',birth='" . $birth . "',pais='" . $pais . "',rol_id='" . $rol_id . "',genero='" . $genero . "',consumo='" . $consumo . "',saldo='" . $saldo . "' WHERE id=" . $id . ";";
     echo $sql;
 
     mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
@@ -39,6 +39,12 @@ if (isset($_POST['actualizar'])) {
     $socios = mysqli_fetch_assoc($result);
     $nombre = $socios['nombre'];
     $apellidos = $socios['apellidos'];
+    $dni = $socios['dni'];
+    $birth = $socios['birth'];
+    $rol_id = $socios['rol_id'];
+    $genero = $socios['genero'];
+    $consumo = $socios['consumo'];
+    $saldo = $socios['saldo'];
 }
 $sql = "SELECT * FROM socios";
 $result = mysqli_query($conex, $sql);

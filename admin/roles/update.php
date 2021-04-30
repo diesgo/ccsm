@@ -2,7 +2,7 @@
 $titulo = "Editar roles | CCSM";
 include '../templates/header.php';
 
-require '../../config/model.php';
+require '../../config/functions.php';
 $roles = getRolesById($_GET['id']);
 
 if (isset($_POST['actualizar'])) {

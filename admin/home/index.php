@@ -1,6 +1,6 @@
 <?php
 $titulo = "CCSM | Administración";
-include '../templates/header.php';
+include '../templates/heade.php';
 ?>
 
 <!-- Header -->

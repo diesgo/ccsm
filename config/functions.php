@@ -48,6 +48,20 @@ function getSetings(){
 
 	return $result;
 }
+function getColor(){
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT color FROM color_tema ORDER BY id desc');
+
+	return $result;
+}
+function getFuente(){
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT fuente FROM fuente_tema ORDER BY id desc');
+
+	return $result;
+}
 
 function getSociosById($id)
 {
@@ -87,6 +101,25 @@ function getSetingsById($id)
 	$row = mysqli_fetch_assoc($result);
 
 	return $row;
+}
+
+function getColorById($id){
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT id, color FROM color WHERE id =' . $id);
+	$color_tema = mysqli_fetch_assoc($result);
+
+	return $color_tema;
+}
+
+function getFuenteById($id)
+{
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT id, fuente FROM fuentes WHERE id =' . $id);
+	$fuente_tema = mysqli_fetch_assoc($result);
+
+	return $fuente_tema;
 }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
-$titulo = 'Categorias | CCSM';
-include '../templates/header.php';
+$titulo = 'Categorías | CCSM';
+include '../templates/heade.php';
 ?>
 
 <!-- Header -->
@@ -10,7 +10,7 @@ include '../templates/header.php';
         <h2><b><i class="fa fa-dashboard"></i>Categorías</b></h2>
     </div>
     <div class="w3-half">
-        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoRol.php">+ Nueva categoria</a>
+        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoRol.php">+ Nuevo rol</a>
     </div>
     <hr>
 </div>
@@ -22,33 +22,33 @@ include '../templates/header.php';
         <thead>
             <tr class="w3-theme">
                 <th>ID</th>
-                <th>Nombre</th>
+                <th>categoría</th>
                 <th>Descripción</th>
                 <th>Editar</th>
                 <th>Ver</th>
             </tr>
         </thead>
         <?php
-        require_once '../../config/model.php';
-        $categorias = getCategorias();
-        foreach ($categorias as $categorias) :
+        // index.php
+        require_once '../../config/functions.php';
+        $categoria = getCategorias();
         ?>
+        <?php foreach ($categoria as $categoria) : ?>
             <tr>
-                <td style="width: 5%;"><?php echo $categorias['id'] ?></td>
-                <td style="width: 10%"><?php echo $categorias['nombre'] ?></td>
-                <td style="width: 15%"><?php echo $categorias['descripcion'] ?></td>
+                <td style="width: 5%;"><?php echo $categoria['id'] ?></td>
+                <td style="width: 10%"><?php echo $categoria['nombre'] ?></td>
+                <td style="width: 15%"><?php echo $categoria['descripion'] ?></td>
                 <td style="width: 10%">
-                    <a href="update.php?id=<?php echo $categorias['id'] ?>">
+                    <a href="update.php?id=<?php echo $categoria['id'] ?>">
                         <i class="fas fa-user-edit w3-text-theme"></i>
                     </a>
                 </td>
                 <td style="width: 10%">
-                    <a href="show.php?id=<?php echo $categorias['id'] ?>">
+                    <a href="show.php?id=<?php echo $categoria['id'] ?>">
                         <i class="fas fa-eye"></i>
                     </a>
                 </td>
-            </tr>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
     </table>
 </div>
 

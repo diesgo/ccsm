@@ -1,6 +1,6 @@
 <?php
 $titulo = "Editar roles | CCSM";
-include '../templates/header.php';
+include '../templates/heade.php';
 ?>
 <?php
 require '../../config/conexion.php';
@@ -41,6 +41,7 @@ $result = mysqli_query($conex, $sql);
     </div>
     <div class="w3-half">
         <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="color.php">+ Añadir esquema de color</a>
+        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="fuente.php">+ Añadir fuente</a>
     </div>
     <hr>
 </div>
@@ -51,12 +52,12 @@ $result = mysqli_query($conex, $sql);
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
-                <!-- FICHA SOCIO  -->
+                <!-- FICHA CUSTOMIZAR  -->
                 <div class="w3-content w3-padding">
 
-                    <!-- FILA 2: ROL Y DESCRIPCIÓN -->
+                    <!-- FILA 2: COLOR Y FUENTE -->
                     <div class="w3-row">
-                        <!-- ROL -->
+                        <!-- COLOR -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="color" class="w3-text-theme">Esquema de color</label>
                             <select name="color" id="color" class="w3-select w3-white">
@@ -64,21 +65,33 @@ $result = mysqli_query($conex, $sql);
                                 require_once '../../config/functions.php';
                                 $settings = getSetingsById(1);
                                 ?>
-                                <option value=<?php echo $settings['color']; ?>></option>
+                                <option value=""><?php echo $settings['color']; ?></option>
                                 <?php
-                                $temas = getTemas();
-                                foreach ($temas as $temas) :
+                                $color = getColor();
+                                foreach ($color as $color) :
                                 ?>
-                                    <option value=<?php echo $temas['color']; ?>><?php echo $temas['color'] ?></option>
+                                    <option value=<?php echo $color['color']; ?>><?php echo $color['color'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for="fuente" class="w3-text-theme">fuente</label>
-                            <input class="w3-input w3-border w3-round" name="fuente" id="fuente" type="text" value=<?php echo $fuente ?>>
-                            <small id="info_fuente"></small>
+                        <div class="w3-col m3 l3 s12 w3-padding">
+                            <label for="fuente" class="w3-text-theme">Fuente</label>
+                            <select name="fuente" id="fuente" class="w3-select w3-white">
+                                <?php
+                                require_once '../../config/functions.php';
+                                $settings = getSetingsById(1);
+                                ?>
+                                <option value=""<?php echo $settings['fuente']; ?></option>
+                                <?php
+                                $fuente = getFuente();
+                                foreach ($fuente as $fuente) :
+                                ?>
+                                    <option value=<?php echo $fuente['fuente']; ?>><?php echo $fuente['fuente'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <small id="info_rol"></small>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,3 @@
- <?php
-    require '../../config/model.php';
-    $tema = getSetingsById();
-?>
  <!DOCTYPE html>
  <html lang="es">
 
@@ -11,7 +7,27 @@
      <title><?php echo $titulo ?></title>
      <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
      <link rel="stylesheet" href="/club/css/w3.css">
-     <link rel="stylesheet" href="/club/css/w3-theme-<?php echo $tema['color']; ?>.css">
+     <link rel="stylesheet" href="/club/css/w3-theme-<?php
+                                                        $servername = "localhost";
+                                                        $username = "root";
+                                                        $password = "";
+                                                        $dbname = "greenpower";
+
+                                                        // Create connection
+                                                        $conn = new mysqli($servername, $username, $password, $dbname);
+                                                        // Check connection
+                                                        if ($conn->connect_error) {
+                                                            die("Connection failed: " . $conn->connect_error);
+                                                        }
+
+                                                        $sql = "SELECT id, color, fuente FROM settings";
+                                                        $result = $conn->query($sql);
+
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            echo $row['color'];
+                                                        }
+                                                        $conn->close();
+                                                        ?>.css">
      <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
      <link rel="stylesheet" href="/club/css/style.css">
  </head>

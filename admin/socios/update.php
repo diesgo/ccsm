@@ -3,8 +3,8 @@ $titulo = "Editar socios | CCSM";
 include '../templates/header.php';
 ?>
 <?php
-require '../../config/model.php';
- $socios = getSociosById($_GET['id']); ?>
+require '../../config/functions.php';
+$socios = getSociosById($_GET['id']); ?>
 <?php
 require "../../config/conexion.php";
 
@@ -36,9 +36,9 @@ if (isset($_POST['actualizar'])) {
     }
     $sql = "SELECT * FROM socios WHERE id='$id'";
     $result = mysqli_query($conex, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $author = $row['nombre'];
-    $title = $row['apellidos'];
+    $socios = mysqli_fetch_assoc($result);
+    $nombre = $socios['nombre'];
+    $apellidos = $socios['apellidos'];
 }
 $sql = "SELECT * FROM socios";
 $result = mysqli_query($conex, $sql);
@@ -98,17 +98,17 @@ $result = mysqli_query($conex, $sql);
                     <div class="w3-row">
                         <!-- FECHA DE NACIMIENTO -->
                         <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
-                            <label for="birth" class="w3-text-theme">Fecha de nacimiento:</label>
-                            <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth" value=<?php echo $socios['birth'] ?>>
+                            <label for="birth">Fecha de nacimiento:</label>
+                            <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth">
                             <span class="validity"></span>
                             <p class="fallbackLabel">Fecha de nacimiento:</p>
                             <div class="fallbackDatePicker">
                                 <span>
-                                    <label for="day" class="w3-text-theme">Día:</label>
+                                    <label for="day">Día:</label>
                                     <select id="day" name="day"></select>
                                 </span>
                                 <span>
-                                    <label for="month" class="w3-text-theme">Mes:</label>
+                                    <label for="month">Mes:</label>
                                     <!-- SELECT FECHA -->
                                     <select id="month" name="month">
                                         <option selected>Enero</option>
@@ -126,7 +126,7 @@ $result = mysqli_query($conex, $sql);
                                     </select>
                                 </span>
                                 <span>
-                                    <label for="year" class="w3-text-theme">Año:</label>
+                                    <label for="year">Año:</label>
                                     <select id="year" name="year"></select>
                                 </span>
                             </div>
@@ -395,7 +395,7 @@ $result = mysqli_query($conex, $sql);
                                 $roles = getRoles();
                                 foreach ($roles as $roles) :
                                 ?>
-                                    <option><?php echo $roles['rol'] ?></option>
+                                    <option value=<?php echo $roles['rol'] ?>><?php echo $roles['rol'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

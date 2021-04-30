@@ -3,7 +3,6 @@
  
  require_once 'config.php'; 
 
- 
 function openConex(){
 	$conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
 	mysqli_set_charset($conex,'utf8');
@@ -14,7 +13,7 @@ function openConex(){
 function getSocios(){	
 	$mysqli = openConex();
 	
-	$result = $mysqli->query('SELECT id, nombre, apellidos, dni, birth, pais, rol, genero, consumo, saldo FROM socios ORDER BY id desc');	
+	$result = $mysqli->query('SELECT id, nombre, apellidos, dni, birth, pais, rol_id, genero, consumo, saldo FROM socios ORDER BY id desc');	
 
 	return $result;	
 }
@@ -42,8 +41,7 @@ function getTemas()
 
 	return $result;
 }
-function getSetings()
-{
+function getSetings(){
 	$mysqli = openConex();
 
 	$result = $mysqli->query('SELECT color, fuente FROM settings ORDER BY id desc');
@@ -55,7 +53,7 @@ function getSociosById($id)
 {
 	$mysqli = openConex();
  
-	$result = $mysqli->query('SELECT date, id, nombre, apellidos, dni, birth, pais, rol, genero, consumo, saldo FROM socios WHERE id ='.$id);
+	$result = $mysqli->query('SELECT date, id, nombre, apellidos, dni, birth, pais, rol_id, genero, consumo, saldo FROM socios WHERE id ='.$id);
 	$row = mysqli_fetch_assoc($result);
 	
     return $row;
@@ -81,11 +79,11 @@ function getCategoriasById($id)
 	return $row;
 }
 
-function getSetingsById()
+function getSetingsById($id)
 {
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT date, id, color, fuente FROM settings WHERE id =1');
+	$result = $mysqli->query('SELECT date, id, color, fuente FROM settings WHERE id =' . $id);
 	$row = mysqli_fetch_assoc($result);
 
 	return $row;

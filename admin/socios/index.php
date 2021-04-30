@@ -10,7 +10,7 @@ include '../templates/header.php';
         <h2><b><i class="fa fa-dashboard"></i>Socios</b></h2>
     </div>
     <div class="w3-half">
-        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoSocio.php">+ New socios</a>
+        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="create.php">+ New socios</a>
     </div>
     <hr>
 </div>
@@ -36,9 +36,9 @@ include '../templates/header.php';
             </tr>
         </thead>
         <?php
-        require_once '../../config/model.php';
-        $socio = getSocios();
-        foreach ($socio as $socios) :
+        require '../../config/functions.php';
+        $socios = getSocios();
+        foreach ($socios as $socios) :
         ?>
             <tr>
                 <td style="width: 5%;"><?php echo $socios['id'] ?></td>
@@ -47,7 +47,7 @@ include '../templates/header.php';
                 <td style="width: 10%"><?php echo $socios['dni'] ?></td>
                 <td style="width: 10%"><?php echo $socios['birth'] ?></td>
                 <td style="width: 10%"><?php echo $socios['pais'] ?></td>
-                <td style="width: 10%"><?php echo $socios['rol'] ?></td>
+                <td style="width: 10%"><?php echo $socios['rol_id'] ?></td>
                 <td style="width: 10%"><?php echo $socios['genero'] ?></td>
                 <td style="width: 5%"><?php echo $socios['consumo'] ?></td>
                 <td style="width: 10%"><?php echo $socios['saldo'] ?></td>

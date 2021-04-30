@@ -58,14 +58,18 @@ $result = mysqli_query($conex, $sql);
                     <div class="w3-row">
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="color">Color del tema</label>
+                            <label for="color" class="w3-text-theme">Esquema de color</label>
                             <select name="color" id="color" class="w3-select w3-white">
                                 <?php
-                                require_once '../../config/model.php';
+                                require_once '../../config/functions.php';
+                                $settings = getSetingsById(1);
+                                ?>
+                                <option value=<?php echo $settings['color']; ?>></option>
+                                <?php
                                 $temas = getTemas();
                                 foreach ($temas as $temas) :
                                 ?>
-                                    <option value=<?php echo $temas['color'] ?>><?php echo $temas['color'] ?></option>
+                                    <option value=<?php echo $temas['color']; ?>><?php echo $temas['color'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
@@ -79,7 +83,7 @@ $result = mysqli_query($conex, $sql);
                     </div>
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">
-                    <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round" onclick="location.reload();">
+                    <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
                     <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
                     <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
                 </div>

@@ -1,6 +1,3 @@
-
-Nombre de la página "create" o "new"
-
 <?php
 $titulo = "CCSM | Nuevo socio";
 include '../templates/header.php';
@@ -15,6 +12,7 @@ if (isset($_POST['altaButton'])) {
     $dni = $_POST['dni'];
     $birth = $_POST['birth'];
     $pais = $_POST['pais'];
+    $rol_id = $_POST['rol_id'];
     $genero = $_POST['genero'];
     $consumo = $_POST['consumo'];
     $saldo = $_POST['saldo'];
@@ -34,8 +32,8 @@ if (isset($_POST['altaButton'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, saldo)
-    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$saldo')";
+    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, rol_id, genero, consumo, saldo)
+    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$rol_id', '$genero', '$consumo', '$saldo')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Se ha creado un nuevo registro";
@@ -46,12 +44,6 @@ if (isset($_POST['altaButton'])) {
     $conn->close();
 }
 ?>
-<?php
-require_once '../../config/model.php';
-
-?>
-
-
 
 <!-- Header -->
 
@@ -394,15 +386,17 @@ require_once '../../config/model.php';
                     <div class="w3-row">
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="rol">Tipo de socio</label>
-                            <select name="rol" id="rol" class="w3-select w3-white">
+                            <label for="rol_id">Tipo de socio</label>
+                            <select name="rol_id" class="w3-select w3-white">
                                 <?php
-                                require_once '../../config/model.php';
-                                $roles = getRoles();
-                                foreach ($roles as $roles) :
+
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option ";
+                                    if ($id == $row["id"]) echo " selected ";
+                                    echo "value=" . $row['id'] . ">" . $row['rolccc'] . "</option>";
+                                }
+
                                 ?>
-                                    <option><?php echo $roles['rol'] ?></option>
-                                <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
                         </div>
@@ -459,9 +453,9 @@ require_once '../../config/model.php';
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">
                     <input type="submit" value="Guardar" name="altaButton" class="w3-button w3-theme w3-round">
-                    <input title="Guardar el producto y permanecer en la página actual: ALT+SHIFT+S" />
+                    <!-- <input title="Guardar el producto y permanecer en la página actual: ALT+SHIFT+S" />
                     <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button>
+                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
                 </div>
             </form>
         </div>

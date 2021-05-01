@@ -5,12 +5,12 @@ include '../templates/header.php';
 
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Roles</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i> Roles</b></h2>
     </div>
     <div class="w3-half">
-        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoRol.php">+ Nuevo rol</a>
+        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="create.php">+ Nuevo rol</a>
     </div>
     <hr>
 </div>
@@ -23,7 +23,7 @@ include '../templates/header.php';
             <tr class="w3-theme">
                 <th>ID</th>
                 <th>Rol</th>
-                <th>Rescripción</th>
+                <th>Descripción</th>
                 <th>Editar</th>
                 <th>Ver</th>
             </tr>
@@ -39,16 +39,15 @@ include '../templates/header.php';
                 <td style="width: 15%"><?php echo $rol['descripcion'] ?></td>
                 <td style="width: 10%">
                     <a href="update.php?id=<?php echo $rol['id'] ?>">
-                        <i class="fas fa-user-edit w3-text-theme"></i>
+                        <i class="fas fa-pen w3-text-theme"></i>
                     </a>
                 </td>
                 <td style="width: 10%">
                     <a href="show.php?id=<?php echo $rol['id'] ?>">
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-eye w3-text-theme"></i>
                     </a>
                 </td>
-            </tr>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
     </table>
 </div>
 

@@ -1,5 +1,5 @@
 <?php
-$titulo = "CCSM | Nuevo socio";
+$titulo = "CCSM | Nuevo rol";
 include '../templates/header.php';
 ?>
 
@@ -12,13 +12,7 @@ if (isset($_POST['altaButton'])) {
 
     // Create connection
 
-    $conn =
-        new mysqli(
-            DBHOST,
-            DBUSER,
-            DBPWD,
-            DBNAME
-        );
+    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
 
     // Check connection
 
@@ -38,13 +32,11 @@ if (isset($_POST['altaButton'])) {
 }
 ?>
 
-
-
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2><b><i class="fa fa-dashboard"></i>Nuevo socio</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i></i> Nuevo rol</b></h2>
     </div>
     <div class="w3-half">
         <!-- <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoSocio.php">+ New socios</a> -->
@@ -62,13 +54,13 @@ if (isset($_POST['altaButton'])) {
                 <div class="w3-content w3-padding">
                     <!-- FILA 1: ROL -->
                     <div class="w3-row">
-                        <!-- NOMBRE -->
+                        <!-- ROL -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for='rol'>Rol</label>
-                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' placeholder='Rol'>
+                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' placeholder='rol'>
                             <small id="info_rol"></small>
                         </div>
-                        <!-- APELLIDOS -->
+                        <!-- DESCRIPCION -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="descripcion">Descripción</label>
                             <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" placeholder="Descripción">
@@ -86,7 +78,6 @@ if (isset($_POST['altaButton'])) {
         </div>
     </div>
 </div>
-<script src="../js/fecha.js"></script>
 <!-- !End page content! -->
 <?php
 include '../templates/footer.php';

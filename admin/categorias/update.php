@@ -1,5 +1,5 @@
 <?php
-$titulo = "Editar roles | CCSM";
+$titulo = "Editar categorias | CCSM";
 include '../templates/header.php';
 ?>
 <?php

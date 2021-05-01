@@ -5,7 +5,7 @@ include '../templates/header.php';
 
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
         <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i> Categorías</b></h2>
     </div>

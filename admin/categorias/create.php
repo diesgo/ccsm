@@ -40,7 +40,7 @@ if (isset($_POST['altaButton'])) {
 
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
         <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Nueva categoria</b></h2>
     </div>
@@ -84,7 +84,6 @@ if (isset($_POST['altaButton'])) {
         </div>
     </div>
 </div>
-<script src="../js/fecha.js"></script>
 <!-- !End page content! -->
 <?php
 include '../templates/footer.php';

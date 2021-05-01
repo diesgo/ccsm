@@ -66,8 +66,8 @@
 
      <nav class="w3-sidebar w3-collapse w3-theme-d3 panel" style="z-index:3;width:300px;" id="mySidebar"><br>
 
-         <div class="w3-container w3-theme-dark panel">
-             <h5 class="w3-text-theme">Panel de control</h5>
+         <div class="w3-container w3-theme-d3 panel">
+             <h5 class="w3-text-white">Panel de control</h5>
          </div>
 
          <div class="w3-bar-block">
@@ -101,4 +101,4 @@
 
      <script src="/club/admin/js/header.js"></script>
 
-     <div class="w3-main" style="margin-left:300px;margin-top:43px;background-color: #eaebec; min-height: max-content;">
+     <div class="w3-main" style="margin-left:300px;margin-top:43px; min-height: max-content;">

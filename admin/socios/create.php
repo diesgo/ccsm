@@ -1,5 +1,5 @@
 <?php
-$titulo = "CCSM | Nuevo socio";
+$titulo = "Nuevo socio | CCSM";
 include '../templates/header.php';
 ?>
 
@@ -15,25 +15,20 @@ if (isset($_POST['altaButton'])) {
     $rol_id = $_POST['rol_id'];
     $genero = $_POST['genero'];
     $consumo = $_POST['consumo'];
+    $rol_id = $_POST['rol_id'];
     $saldo = $_POST['saldo'];
 
     // Create connection
 
-    $conn =
-        new mysqli(
-            DBHOST,
-            DBUSER,
-            DBPWD,
-            DBNAME
-        );
+    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
 
     // Check connection
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, rol_id, genero, consumo, saldo)
-    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$rol_id', '$genero', '$consumo', '$saldo')";
+    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, rol_id, saldo)
+    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$rol_id', '$saldo')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Se ha creado un nuevo registro";
@@ -47,12 +42,11 @@ if (isset($_POST['altaButton'])) {
 
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2><b><i class="fa fa-dashboard"></i>Nuevo socio</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Nuevo socio</b></h2>
     </div>
     <div class="w3-half">
-        <!-- <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoSocio.php">+ New socios</a> -->
     </div>
     <hr>
 </div>
@@ -128,7 +122,7 @@ if (isset($_POST['altaButton'])) {
                                     <select id="year" name="year"></select>
                                 </span>
                             </div>
-                            <small id="infoBday"></small>
+                            <small id="info_birth"></small>
                         </div>
                         <!-- DNI -->
                         <div class="w3-col l4 m4 s12 w3-padding">
@@ -388,15 +382,14 @@ if (isset($_POST['altaButton'])) {
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="rol_id">Tipo de socio</label>
                             <select name="rol_id" class="w3-select w3-white">
+                                <option value="">Seleccionar...</option>
                                 <?php
-
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option ";
-                                    if ($id == $row["id"]) echo " selected ";
-                                    echo "value=" . $row['id'] . ">" . $row['rolccc'] . "</option>";
-                                }
-
+                                require_once '../../config/functions.php';
+                                $roles = getRoles();
+                                foreach ($roles as $rol) :
                                 ?>
+                                    <option value=<?php echo $rol['rol']; ?>><?php echo $rol['rol'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
                         </div>

@@ -1,36 +1,25 @@
 <?php
-$titulo = "Editar socios | CCSM";
+$titulo = "Editar categorias | CCSM";
 include '../templates/header.php';
 ?>
 <?php
 require '../../config/functions.php';
 $socios = getSociosById($_GET['id']);
-?>
+require "../../config/conexion.php";
 
-<!-- Header -->
+if (isset($_POST['actualizar'])) {
+    $id = $socios['id'];
+    $nombre = $_POST['nombre'];
+    $apellidos = $_POST['apellidos'];
+    $dni = $_POST['dni'];
+    $birth = $_POST['birth'];
+    $pais = $_POST['pais'];
+    $genero = $_POST['genero'];
+    $consumo = $_POST['consumo'];
+    $rol_id = $_POST['rol_id'];
+    $saldo = $_POST['saldo'];
 
-<div class="w3-container w3-padding-32 w3-theme-light">
-    <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar socio</b></h2>
-    </div>
-    <div class="w3-half">
-        <?php
-        require "../../config/conexion.php";
-
-        if (isset($_POST['actualizar'])) {
-
-            $id = $socios['id'];
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $dni = $_POST['dni'];
-            $birth = $_POST['birth'];
-            $pais = $_POST['pais'];
-            $genero = $_POST['genero'];
-            $consumo = $_POST['consumo'];
-            $rol = $_POST['rol_id'];
-            $saldo = $_POST['saldo'];
-
-            $sql = "UPDATE socios SET
+    $sql = "UPDATE socios SET
     nombre ='" . $nombre . "',
     apellidos='" . $apellidos . "',
     dni='" . $dni . "',
@@ -42,33 +31,41 @@ $socios = getSociosById($_GET['id']);
     saldo='" . $saldo . "'
     WHERE id=" . $id . ";";
 
-            mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
-        } else {
-            if (!isset($_POST['id'])) {
-                $sql = "SELECT min(id) FROM socios";
-                $result = mysqli_query($conex, $sql);
-                $row = mysqli_fetch_assoc($result);
-                $id = $row['min(id)'];
-            } else {
-                $id = $_POST["id"];
-            }
-            $sql = "SELECT * FROM socios WHERE id='$id'";
-            $result = mysqli_query($conex, $sql);
-            $row = mysqli_fetch_assoc($result);
-            $nombre = $row['nombre'];
-            $apellidos = $row['apellidos'];
-            $dni = $row['dni'];
-            $birth = $row['birth'];
-            $pais = $row['pais'];
-            $genero = $row['genero'];
-            $consumo = $row['consumo'];
-            $rol = $row['rol_id'];
-            $saldo = $row['saldo'];
-        }
-        $sql = "SELECT * FROM socios";
+    mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
+} else {
+    if (!isset($_POST['id'])) {
+        $sql = "SELECT min(id) FROM socios";
         $result = mysqli_query($conex, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $id = $row['min(id)'];
+    } else {
+        $id = $_POST["id"];
+    }
+    $sql = "SELECT * FROM socios WHERE id='$id'";
+    $result = mysqli_query($conex, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $nombre = $row['nombre'];
+    $apellidos = $row['apellidos'];
+    $dni = $row['dni'];
+    $birth = $row['birth'];
+    $pais = $row['pais'];
+    $genero = $row['genero'];
+    $consumo = $row['consumo'];
+    $rol = $row['rol_id'];
+    $saldo = $row['saldo'];
+}
+$sql = "SELECT * FROM socios";
+$result = mysqli_query($conex, $sql);
 
-        ?>
+?>
+
+<!-- Header -->
+
+<div class="w3-container w3-padding-32 w3-theme-l4">
+    <div class="w3-half">
+        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> Editar socio</b></h2>
+    </div>
+    <div class="w3-half">
     </div>
     <hr>
 </div>
@@ -79,8 +76,10 @@ $socios = getSociosById($_GET['id']);
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
+
                 <!-- FICHA SOCIO  -->
                 <div class="w3-content w3-padding">
+
                     <!-- FILA 1: TRATAMIENTO -->
                     <div class="w3-container">
                         <h1># <?php echo $socios['id'] ?></h1>
@@ -96,6 +95,7 @@ $socios = getSociosById($_GET['id']);
                             </select>
                         </div>
                     </div>
+
                     <!-- FILA 2: NOMBRE Y APELLIDO -->
                     <div class="w3-row">
                         <!-- NOMBRE -->
@@ -111,8 +111,10 @@ $socios = getSociosById($_GET['id']);
                             <small id="info_apellidos"></small>
                         </div>
                     </div>
+
                     <!-- FILA 3: BIRTH, DNI, PAIS -->
                     <div class="w3-row">
+
                         <!-- FECHA DE NACIMIENTO -->
                         <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
                             <label for="birth">Fecha de nacimiento:</label>
@@ -149,12 +151,14 @@ $socios = getSociosById($_GET['id']);
                             </div>
                             <small id="infoBday"></small>
                         </div>
+
                         <!-- DNI -->
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="dni" class="w3-text-theme">DNI / ID</label>
                             <input class="w3-input w3-border w3-round" name="dni" id="dni" type="text" value=<?php echo $socios['dni']; ?>>
                             <small id="info_dni"></small>
                         </div>
+
                         <!-- NACIONALIDAD -->
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="pais" class="w3-text-theme">Nacionalidad</label>
@@ -401,22 +405,25 @@ $socios = getSociosById($_GET['id']);
                             </select>
                         </div>
                     </div>
-                    <!-- FILA 5: ROL, CUOTA, CONSUMO MENSUAL, SALDO -->
+
+                    <!-- FILA 4 -->
                     <div class="w3-row">
+
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="rol_id">Tipo de socio</label>
                             <select name="rol_id" id="rol_id" class="w3-select w3-white" value=<?php echo $socios['rol_id']; ?>>
                                 <?php
-                                require_once '../../config/model.php';
+                                require_once '../../config/functions.php';
                                 $roles = getRoles();
-                                foreach ($roles as $roles) :
+                                foreach ($roles as $rol) :
                                 ?>
-                                <option value=<?php echo $roles['rol'] ?>><?php echo $roles['rol'] ?></option>
+                                    <option value=<?php echo $rol['rol'] ?>><?php echo $rol['rol'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
                         </div>
+
                         <!-- CUOTA -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="cuota" class="w3-text-theme">Cuota</label>
@@ -425,12 +432,14 @@ $socios = getSociosById($_GET['id']);
                             </select>
                             <small id="info_cuota"></small>
                         </div>
+
                         <!-- CONSUMO MENSUAL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="consumo" class="w3-text-theme">Consumo mes</label>
                             <input class="w3-input w3-border w3-round" name="consumo" id="consumo" type="text" value=<?php echo $socios['consumo'] ?>>
                             <small id="info_consumo"></small>
                         </div>
+
                         <!-- SALDO -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="saldo" class="w3-text-theme">Saldo</label>
@@ -438,6 +447,8 @@ $socios = getSociosById($_GET['id']);
                             <small id="info_saldo" /small>
                         </div>
                     </div>
+
+                    <!-- FILA 5: IMAGENES -->
                     <!-- FILA 4; IMAGENES -->
                     <div class="w3-row">
                         <!-- FOTO SOCIO -->
@@ -490,3 +501,16 @@ $socios = getSociosById($_GET['id']);
 <?php
 include '../templates/footer.php';
 ?>
+
+<!-- !PAGE CONTENT! -->
+<form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaio" id="altaio">
+    <!-- FICHA SOCIO  -->
+    <div class="w3-content w3-padding">
+
+    </div>
+    <div class="w3-row w3-padding-32 w3-center">
+        <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
+        <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
+                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
+    </div>
+</form>

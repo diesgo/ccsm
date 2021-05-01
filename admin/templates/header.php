@@ -8,24 +8,24 @@
      <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
      <link rel="stylesheet" href="/club/css/w3.css">
      <link rel="stylesheet" href="/club/css/w3-theme-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "greenpower";
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
-$sql = "SELECT color, fuente FROM settings";
-$result = $conn->query($sql);
-while ($row = $result->fetch_assoc()) {
-    echo $row['color'];
-}
-$conn->close();
-?>.css">
-    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
+                                                        $servername = "localhost";
+                                                        $username = "root";
+                                                        $password = "";
+                                                        $dbname = "greenpower";
+                                                        // Create connection
+                                                        $conn = new mysqli($servername, $username, $password, $dbname);
+                                                        // Check connection
+                                                        if ($conn->connect_error) {
+                                                            die("Connection failed: " . $conn->connect_error);
+                                                        }
+                                                        $sql = "SELECT color, fuente FROM settings";
+                                                        $result = $conn->query($sql);
+                                                        while ($row = $result->fetch_assoc()) {
+                                                            echo $row['color'];
+                                                        }
+                                                        $conn->close();
+                                                        ?>.css">
+     <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
      <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
      <link rel="stylesheet" href="/club/css/style.css">
  </head>
@@ -35,13 +35,30 @@ $conn->close();
      }
  </style>
 
- <body class="w3-theme-light font-<?php echo $row['fuente']?>">
+ <body class="w3-theme-light font-<?php
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "greenpower";
+                                    // Create connection
+                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                    // Check connection
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
+                                    $sql = "SELECT color, fuente FROM settings";
+                                    $result = $conn->query($sql);
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo $row['fuente'];
+                                    }
+                                    $conn->close();
+                                    ?>">
 
      <!-- Top container -->
 
-     <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 2px 32px">
+     <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 8px 32px">
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-theme" onclick="w3_open();"><i class="fa fa-bars"></i> Menu</button>
-         <a class="w3-bar-item w3-button w3-round w3-theme-d3 w3-hover-theme" href="../home.html">TPV</a>
+         <a class="w3-bar-item w3-button w3-round w3-theme-d3 w3-hover-theme" href="../home.html">Dispensario</a>
          <span class="w3-bar-item w3-right"><img class="w3-image" src="/club/img/logo_negro.png" alt="logo" style="max-width:24px"></span>
      </div>
 
@@ -49,8 +66,8 @@ $conn->close();
 
      <nav class="w3-sidebar w3-collapse w3-theme-d3 panel" style="z-index:3;width:300px;" id="mySidebar"><br>
 
-         <div class="w3-container w3-theme panel">
-             <h5>Dashboard</h5>
+         <div class="w3-container w3-theme-dark panel">
+             <h5 class="w3-text-theme">Panel de control</h5>
          </div>
 
          <div class="w3-bar-block">

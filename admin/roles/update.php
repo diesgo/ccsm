@@ -4,17 +4,20 @@ include '../templates/header.php';
 ?>
 <?php
 require '../../config/functions.php';
-$categoria = getRolesById($_GET['id']); ?>
+$rol = getRolesById($_GET['id']); ?>
 <?php
 require "../../config/conexion.php";
 
 if (isset($_POST['actualizar'])) {
 
-    $id = $categoria['id'];
+    $id = $rol['id'];
     $rol = $_POST['rol'];
     $descripcion = $_POST['descripcion'];
 
-    $sql = "UPDATE roles SET rol ='" . $rol . "',descripcion='" . $descripcion . "' WHERE id=" . $id . ";";
+    $sql = "UPDATE roles SET
+    rol ='" . $rol . "',
+    descripcion='" . $descripcion . "'
+    WHERE id=" . $id . ";";
     echo $sql;
 
     mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
@@ -25,7 +28,9 @@ if (isset($_POST['actualizar'])) {
         $row = mysqli_fetch_assoc($result);
         $id = $row['min(id)'];
     } else {
-        $id = $_POST["id"];
+        $id = $_POST['id'];
+        $rol = $_POST['rol'];
+        $descripcion = $_POST['descripcion'];
     }
     $sql = "SELECT * FROM roles WHERE id='$id'";
     $result = mysqli_query($conex, $sql);
@@ -63,17 +68,15 @@ $result = mysqli_query($conex, $sql);
                         <!-- ROL -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="rol" class="w3-text-theme">Rol</label><br>
-                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' value=<?php echo $rol ?>>
+                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' value=<?php echo $row['rol'] ?>>
                             <small id="info_rol"></small>
                             <legend for="descripcion" class="w3-text-theme">Descripción</legend>
-                            <textarea name="descripcion" id="descripción" cols="30" rows="10"><?php echo $descripcion ?></textarea>
+                            <textarea name="descripcion" id="descripción" cols="30" rows="10"><?php echo $row['descripcion'] ?></textarea>
                             <small id="info_descripcion"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m6 l6 s12 w3-padding">
-                            <legend for="descripcion" class="w3-text-theme">Descripción</legend>
-                            <textarea name="descripcion" id="descripción" cols="30" rows="10"><?php echo $descripcion ?></textarea>
-                            <small id="info_descripcion"></small>
+                  
                         </div>
                     </div>
                 </div>
@@ -86,7 +89,6 @@ $result = mysqli_query($conex, $sql);
         </div>
     </div>
 </div>
-<script src="../js/fecha.js"></script>
 <!-- !End page content! -->
 <?php
 include '../templates/footer.php';

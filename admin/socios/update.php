@@ -4,60 +4,71 @@ include '../templates/header.php';
 ?>
 <?php
 require '../../config/functions.php';
-$socios = getSociosById($_GET['id']); ?>
-<?php
-require "../../config/conexion.php";
-
-if (isset($_POST['actualizar'])) {
-
-    $id = $socios['id'];
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $dni = $_POST['dni'];
-    $birth = $_POST['birth'];
-    $pais = $_POST['pais'];
-    $rol_id = $_POST['rol_id'];
-    $genero = $_POST['genero'];
-    $consumo = $_POST['consumo'];
-    $saldo = $_POST['saldo'];
-
-    $sql = "UPDATE socios SET nombre ='" . $nombre . "',apellidos='" . $apellidos . "',dni='" . $dni . "',birth='" . $birth . "',pais='" . $pais . "',rol_id='" . $rol_id . "',genero='" . $genero . "',consumo='" . $consumo . "',saldo='" . $saldo . "' WHERE id=" . $id . ";";
-    echo $sql;
-
-    mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
-} else {
-    if (!isset($_POST['id'])) {
-        $sql = "SELECT min(id) FROM socios";
-        $result = mysqli_query($conex, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $id = $row['min(id)'];
-    } else {
-        $id = $_POST["id"];
-    }
-    $sql = "SELECT * FROM socios WHERE id='$id'";
-    $result = mysqli_query($conex, $sql);
-    $socios = mysqli_fetch_assoc($result);
-    $nombre = $socios['nombre'];
-    $apellidos = $socios['apellidos'];
-    $dni = $socios['dni'];
-    $birth = $socios['birth'];
-    $rol_id = $socios['rol_id'];
-    $genero = $socios['genero'];
-    $consumo = $socios['consumo'];
-    $saldo = $socios['saldo'];
-}
-$sql = "SELECT * FROM socios";
-$result = mysqli_query($conex, $sql);
-
+$socios = getSociosById($_GET['id']);
 ?>
 
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-light">
     <div class="w3-half">
         <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar socio</b></h2>
     </div>
     <div class="w3-half">
+        <?php
+        require "../../config/conexion.php";
+
+        if (isset($_POST['actualizar'])) {
+
+            $id = $socios['id'];
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $dni = $_POST['dni'];
+            $birth = $_POST['birth'];
+            $pais = $_POST['pais'];
+            $genero = $_POST['genero'];
+            $consumo = $_POST['consumo'];
+            $rol = $_POST['rol_id'];
+            $saldo = $_POST['saldo'];
+
+            $sql = "UPDATE socios SET
+    nombre ='" . $nombre . "',
+    apellidos='" . $apellidos . "',
+    dni='" . $dni . "',
+    birth='" . $birth . "',
+    pais='" . $pais . "',
+    rol_id='" . $rol_id . "',
+    genero='" . $genero . "',
+    consumo='" . $consumo . "',
+    saldo='" . $saldo . "'
+    WHERE id=" . $id . ";";
+
+            mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
+        } else {
+            if (!isset($_POST['id'])) {
+                $sql = "SELECT min(id) FROM socios";
+                $result = mysqli_query($conex, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['min(id)'];
+            } else {
+                $id = $_POST["id"];
+            }
+            $sql = "SELECT * FROM socios WHERE id='$id'";
+            $result = mysqli_query($conex, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $nombre = $row['nombre'];
+            $apellidos = $row['apellidos'];
+            $dni = $row['dni'];
+            $birth = $row['birth'];
+            $pais = $row['pais'];
+            $genero = $row['genero'];
+            $consumo = $row['consumo'];
+            $rol = $row['rol_id'];
+            $saldo = $row['saldo'];
+        }
+        $sql = "SELECT * FROM socios";
+        $result = mysqli_query($conex, $sql);
+
+        ?>
     </div>
     <hr>
 </div>
@@ -78,7 +89,7 @@ $result = mysqli_query($conex, $sql);
                         <div class="w3-col m12 l12 w3-padding">
                             <label for="genero" class="w3-text-theme">Tratamiento:</label>
                             <select name="genero" id="genero">
-                                <option value=<?php echo $socios['genero'] ?>><?php echo $socios['genero'] ?></option>
+                                <option value=""><?php echo $socios['genero'] ?></option>
                                 <option value="Hombre">Hombre</option>
                                 <option value="Mujer">Mujer</option>
                                 <option value="Otro">Otro</option>
@@ -149,7 +160,7 @@ $result = mysqli_query($conex, $sql);
                             <label for="pais" class="w3-text-theme">Nacionalidad</label>
                             <!-- SELECT PAISES -->
                             <select name="pais" class="w3-select w3-border w3-round w3-white">
-                                <option value=<?php echo $socios['pais'] ?>><?php echo $socios['pais'] ?></option>
+                                <option value=<?php echo $row['pais'] ?>><?php echo $row['pais'] ?></option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
                                 <option value="Albania" id="AL">Albania</option>
                                 <option value="Alemania" id="DE">Alemania</option>
@@ -394,14 +405,14 @@ $result = mysqli_query($conex, $sql);
                     <div class="w3-row">
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="rol">Tipo de socio</label>
-                            <select name="rol" id="rol" class="w3-select w3-white" value=<?php echo $socios['rol']; ?>>
+                            <label for="rol_id">Tipo de socio</label>
+                            <select name="rol_id" id="rol_id" class="w3-select w3-white" value=<?php echo $socios['rol_id']; ?>>
                                 <?php
                                 require_once '../../config/model.php';
                                 $roles = getRoles();
                                 foreach ($roles as $roles) :
                                 ?>
-                                    <option value=<?php echo $roles['rol'] ?>><?php echo $roles['rol'] ?></option>
+                                <option value=<?php echo $roles['rol'] ?>><?php echo $roles['rol'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

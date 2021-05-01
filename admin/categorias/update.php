@@ -4,8 +4,7 @@ include '../templates/header.php';
 ?>
 <?php
 require '../../config/functions.php';
-$categoria = getCategoriasById($_GET['id']); ?>
-<?php
+$categoria = getCategoriasById($_GET['id']);
 require "../../config/conexion.php";
 
 if (isset($_POST['actualizar'])) {
@@ -42,7 +41,7 @@ $result = mysqli_query($conex, $sql);
 
 <div class="w3-container w3-padding-32 w3-light-grey">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar categoria</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> Editar categoria</b></h2>
     </div>
     <div class="w3-half">
     </div>

@@ -3,12 +3,12 @@ $titulo = "CCSM | Socio";
 include '../templates/header.php';
 ?>
 
-<?php require_once '../../config/model.php'; ?>
+<?php require_once '../../config/functions.php'; ?>
 
 <?php $socios = getSociosById($_GET['id']); ?>
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-light">
     <div class="w3-half">
         <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Socio</b></h2>
     </div>

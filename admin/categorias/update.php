@@ -3,37 +3,37 @@ $titulo = "Editar roles | CCSM";
 include '../templates/header.php';
 ?>
 <?php
-require '../../config/model.php';
-$roles = getRolesById($_GET['id']); ?>
+require '../../config/functions.php';
+$categoria = getCategoriasById($_GET['id']); ?>
 <?php
 require "../../config/conexion.php";
 
 if (isset($_POST['actualizar'])) {
 
-    $id = $roles['id'];
-    $rol = $_POST['rol'];
+    $id = $categoria['id'];
+    $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
 
-    $sql = "UPDATE roles SET rol ='" . $rol . "',descripcion='" . $descripcion . "' WHERE id=" . $id . ";";
+    $sql = "UPDATE categorias SET nombre ='" . $nombre . "',descripcion='" . $descripcion . "' WHERE id=" . $id . ";";
     echo $sql;
 
     mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
 } else {
     if (!isset($_POST['id'])) {
-        $sql = "SELECT min(id) FROM roles";
+        $sql = "SELECT min(id) FROM categorias";
         $result = mysqli_query($conex, $sql);
         $row = mysqli_fetch_assoc($result);
         $id = $row['min(id)'];
     } else {
         $id = $_POST["id"];
     }
-    $sql = "SELECT * FROM roles WHERE id='$id'";
+    $sql = "SELECT * FROM categorias WHERE id='$id'";
     $result = mysqli_query($conex, $sql);
     $row = mysqli_fetch_assoc($result);
-    $rol = $row['rol'];
+    $caregoria = $row['nombre'];
     $descripcion = $row['descripcion'];
 }
-$sql = "SELECT * FROM roles";
+$sql = "SELECT * FROM categorias";
 $result = mysqli_query($conex, $sql);
 
 ?>
@@ -42,7 +42,7 @@ $result = mysqli_query($conex, $sql);
 
 <div class="w3-container w3-padding-32 w3-light-grey">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar socio</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar categoria</b></h2>
     </div>
     <div class="w3-half">
     </div>
@@ -58,18 +58,18 @@ $result = mysqli_query($conex, $sql);
                 <!-- FICHA SOCIO  -->
                 <div class="w3-content w3-padding">
 
-                    <!-- FILA 2: ROL Y DESCRIPCIÓN -->
+                    <!-- FILA 2: CATEGORIA Y DESCRIPCIÓN -->
                     <div class="w3-row">
-                        <!-- ROL -->
+                        <!-- CATEGORIA -->
                         <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for="rol" class="w3-text-theme">Rol</label><br>
-                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' value=<?php echo $roles['rol'] ?>>
-                            <small id="info_rol"></small>
+                            <label for="nombre" class="w3-text-theme">Categoria</label><br>
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre'] ?>>
+                            <small id="info_categoria"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="descripcion" class="w3-text-theme">Descripción</label>
-                            <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $roles['descripcion'] ?>>
+                            <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion'] ?>>
                             <small id="info_descripcion"></small>
                         </div>
                     </div>

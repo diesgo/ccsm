@@ -1,6 +1,6 @@
 <?php
 $titulo = "Editar roles | CCSM";
-include '../templates/heade.php';
+include '../templates/header.php';
 ?>
 <?php
 require '../../config/conexion.php';
@@ -65,7 +65,7 @@ $result = mysqli_query($conex, $sql);
                                 require_once '../../config/functions.php';
                                 $settings = getSetingsById(1);
                                 ?>
-                                <option value=""><?php echo $settings['color']; ?></option>
+                                <option value=<?php echo $settings['color'] ?>><?php echo $settings['color'] ?></option>
                                 <?php
                                 $color = getColor();
                                 foreach ($color as $color) :
@@ -83,7 +83,7 @@ $result = mysqli_query($conex, $sql);
                                 require_once '../../config/functions.php';
                                 $settings = getSetingsById(1);
                                 ?>
-                                <option value=""<?php echo $settings['fuente']; ?></option>
+                                <option value=<?php echo $settings['fuente'] ?>><?php echo $settings['fuente'] ?></option>
                                 <?php
                                 $fuente = getFuente();
                                 foreach ($fuente as $fuente) :

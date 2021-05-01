@@ -1,13 +1,16 @@
 <?php
 $titulo = "Editar roles | CCSM";
 include '../templates/header.php';
-
+?>
+<?php
 require '../../config/functions.php';
-$roles = getRolesById($_GET['id']);
+$categoria = getRolesById($_GET['id']); ?>
+<?php
+require "../../config/conexion.php";
 
 if (isset($_POST['actualizar'])) {
 
-    $id = $roles['id'];
+    $id = $categoria['id'];
     $rol = $_POST['rol'];
     $descripcion = $_POST['descripcion'];
 
@@ -39,7 +42,7 @@ $result = mysqli_query($conex, $sql);
 
 <div class="w3-container w3-padding-32 w3-light-grey">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar socio</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar rol</b></h2>
     </div>
     <div class="w3-half">
     </div>
@@ -52,21 +55,24 @@ $result = mysqli_query($conex, $sql);
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
-                <!-- FICHA SOCIO  -->
+                <!-- FICHA ROLES  -->
                 <div class="w3-content w3-padding">
 
-                    <!-- FILA 2: ROL Y DESCRIPCIÓN -->
+                    <!-- FILA 2: ROLY DESCRIPCIÓN -->
                     <div class="w3-row">
                         <!-- ROL -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="rol" class="w3-text-theme">Rol</label><br>
-                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' value=<?php echo $roles['rol'] ?>>
+                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' value=<?php echo $rol ?>>
                             <small id="info_rol"></small>
+                            <legend for="descripcion" class="w3-text-theme">Descripción</legend>
+                            <textarea name="descripcion" id="descripción" cols="30" rows="10"><?php echo $descripcion ?></textarea>
+                            <small id="info_descripcion"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for="descripcion" class="w3-text-theme">Descripción</label>
-                            <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $roles['descripcion'] ?>>
+                            <legend for="descripcion" class="w3-text-theme">Descripción</legend>
+                            <textarea name="descripcion" id="descripción" cols="30" rows="10"><?php echo $descripcion ?></textarea>
                             <small id="info_descripcion"></small>
                         </div>
                     </div>

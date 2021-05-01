@@ -18,13 +18,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
 die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT id, color, fuente FROM settings";
+$sql = "SELECT color, fuente FROM settings";
 $result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
     echo $row['color'];
 }
 $conn->close();
 ?>.css">
+    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
      <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
      <link rel="stylesheet" href="/club/css/style.css">
  </head>
@@ -34,7 +35,7 @@ $conn->close();
      }
  </style>
 
- <body class="w3-theme-light">
+ <body class="w3-theme-light font-<?php echo $row['fuente']?>">
 
      <!-- Top container -->
 

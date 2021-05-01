@@ -7,7 +7,7 @@ include '../templates/header.php';
 if (isset($_POST['altaButton'])) {
     require_once '../../config/config.php';
 
-    $rol = $_POST['rol'];
+    $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
 
     // Create connection
@@ -25,8 +25,8 @@ if (isset($_POST['altaButton'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO roles (rol, descripcion)
-    VALUES ('$rol', '$descripcion')";
+    $sql = "INSERT INTO categorias (nombre, descripcion)
+    VALUES ('$nombre', '$descripcion')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Se ha creado un nuevo registro";
@@ -38,13 +38,11 @@ if (isset($_POST['altaButton'])) {
 }
 ?>
 
-
-
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-light-grey">
     <div class="w3-half">
-        <h2><b><i class="fa fa-dashboard"></i>Nuevo socio</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Nueva categoria</b></h2>
     </div>
     <div class="w3-half">
         <!-- <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoSocio.php">+ New socios</a> -->
@@ -58,17 +56,17 @@ if (isset($_POST['altaButton'])) {
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">
-                <!-- FICHA ROL  -->
+                <!-- FICHA CATEGORIA  -->
                 <div class="w3-content w3-padding">
-                    <!-- FILA 1: ROL -->
+                    <!-- FILA 1: CATEGORIA -->
                     <div class="w3-row">
                         <!-- NOMBRE -->
                         <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for='rol'>Rol</label>
-                            <input class='w3-input w3-border w3-round' name='rol' id='rol' type='text' placeholder='Rol'>
-                            <small id="info_rol"></small>
+                            <label for='nombre'>Categoria</label>
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='nombre'>
+                            <small id="info_categoria"></small>
                         </div>
-                        <!-- APELLIDOS -->
+                        <!-- DESCRIPCION -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="descripcion">Descripción</label>
                             <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" placeholder="Descripción">

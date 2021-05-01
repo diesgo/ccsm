@@ -29,7 +29,7 @@ function getCategorias()
 {
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT id, categoria, descripcion FROM categorias ORDER BY id desc');
+	$result = $mysqli->query('SELECT * FROM categorias');
 
 	return $result;
 }
@@ -44,21 +44,21 @@ function getTemas()
 function getSetings(){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT color, fuente FROM settings ORDER BY id desc');
+	$result = $mysqli->query('SELECT * FROM settings');
 
 	return $result;
 }
 function getColor(){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT color FROM color_tema ORDER BY id desc');
+	$result = $mysqli->query('SELECT color FROM color_tema');
 
 	return $result;
 }
 function getFuente(){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT fuente FROM fuente_tema ORDER BY id desc');
+	$result = $mysqli->query('SELECT fuente FROM fuentes');
 
 	return $result;
 }

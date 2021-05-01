@@ -1,6 +1,6 @@
 <?php
 $titulo = "CCSM | Nuevo socio";
-include '../templates/heade.php';
+include '../templates/header.php';
 ?>
 
 <?php

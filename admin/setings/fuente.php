@@ -7,7 +7,7 @@ include '../templates/header.php';
 if (isset($_POST['altaButton'])) {
     require_once '../../config/config.php';
 
-    $color = $_POST['color'];
+    $fuente = $_POST['fuente'];
 
     // Create connection
 
@@ -24,7 +24,7 @@ if (isset($_POST['altaButton'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO temas (fuente)
+    $sql = "INSERT INTO fuentes (fuente)
     VALUES ('$fuente')";
 
     if ($conn->query($sql) === TRUE) {
@@ -59,11 +59,11 @@ if (isset($_POST['altaButton'])) {
             <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">
                 <!-- FICHA FUENTE -->
                 <div class="w3-content w3-padding">
-                    <!-- FILA 1: ROL -->
+                    <!-- FILA 1: FUENTE -->
                     <div class="w3-row">
                         <!-- NOMBRE -->
                         <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for='fuente'>Fuente</label>
+                            <label for='fuente'>Color</label>
                             <input class='w3-input w3-border w3-round' name='fuente' id='fuente' type='text'>
                             <small id="info_fuente"></small>
                         </div>

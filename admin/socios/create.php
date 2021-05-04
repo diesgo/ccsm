@@ -12,11 +12,10 @@ if (isset($_POST['altaButton'])) {
     $dni = $_POST['dni'];
     $birth = $_POST['birth'];
     $pais = $_POST['pais'];
-    $rol_id = $_POST['rol_id'];
     $genero = $_POST['genero'];
     $consumo = $_POST['consumo'];
-    $rol_id = $_POST['rol_id'];
     $saldo = $_POST['saldo'];
+    $rol = $_POST['rol'];
 
     // Create connection
 
@@ -27,8 +26,8 @@ if (isset($_POST['altaButton'])) {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, rol_id, saldo)
-    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$rol_id', '$saldo')";
+    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, saldo, rol)
+    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$saldo', '$rol')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Se ha creado un nuevo registro";
@@ -380,8 +379,8 @@ if (isset($_POST['altaButton'])) {
                     <div class="w3-row">
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="rol_id">Tipo de socio</label>
-                            <select name="rol_id" class="w3-select w3-white">
+                            <label for="rol">Tipo de socio</label>
+                            <select name="rol" class="w3-select w3-white">
                                 <option value="">Seleccionar...</option>
                                 <?php
                                 require_once '../../config/functions.php';

@@ -1,5 +1,5 @@
 <?php
-$titulo = 'Categorías | CCSM';
+$titulo = 'Categorías';
 include '../templates/header.php';
 ?>
 
@@ -7,7 +7,7 @@ include '../templates/header.php';
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i> Categorías</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i> <?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="create.php">+ Nueva categoría</a>
@@ -17,7 +17,7 @@ include '../templates/header.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-container w3-padding-64 w3-responsive">
+<div class="w3-container w3-padding-64 w3-responsive" style="min-height: 570px;">
     <table class="w3-table w3-striped w3-bordered w3-border w3-border-theme w3-centered">
         <thead>
             <tr class="w3-theme">
@@ -34,15 +34,15 @@ include '../templates/header.php';
         foreach ($categorias as $categoria) :
         ?>
             <tr>
-                <td style="width: 5%;"><?php echo $categoria['id'] ?></td>
-                <td style="width: 10%"><?php echo $categoria['nombre'] ?></td>
-                <td style="width: 15%"><?php echo $categoria['descripcion'] ?></td>
-                <td style="width: 10%">
+                <td style="width: 20%;"><?php echo $categoria['id'] ?></td>
+                <td style="width: 20%"><?php echo $categoria['nombre'] ?></td>
+                <td style="width: 20%"><?php echo $categoria['descripcion'] ?></td>
+                <td style="width: 20%">
                     <a href="update.php?id=<?php echo $categoria['id'] ?>">
                         <i class="fas fa-pen w3-text-theme"></i>
                     </a>
                 </td>
-                <td style="width: 10%">
+                <td style="width: 20%">
                     <a href="show.php?id=<?php echo $categoria['id'] ?>">
                         <i class="fas fa-eye w3-text-theme"></i>
                     </a>

@@ -70,7 +70,7 @@ $result = mysqli_query($conex, $sql);
                                 $color = getColor();
                                 foreach ($color as $color) :
                                 ?>
-                                    <option value=<?php echo $color['color']; ?>><?php echo $color['color'] ?></option>
+                                    <option value=<?php echo $color['nombre']; ?>><?php echo $color['nombre'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

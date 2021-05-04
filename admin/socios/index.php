@@ -47,7 +47,7 @@ include '../templates/header.php';
                 <td style="width: 10%"><?php echo $socios['dni'] ?></td>
                 <td style="width: 10%"><?php echo $socios['birth'] ?></td>
                 <td style="width: 10%"><?php echo $socios['pais'] ?></td>
-                <td style="width: 10%"><?php echo $socios['rol_id'] ?></td>
+                <td style="width: 10%"><?php echo $socios['rol'] ?></td>
                 <td style="width: 10%"><?php echo $socios['genero'] ?></td>
                 <td style="width: 5%"><?php echo $socios['consumo'] ?></td>
                 <td style="width: 10%"><?php echo $socios['saldo'] ?></td>

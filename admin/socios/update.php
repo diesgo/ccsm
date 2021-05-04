@@ -5,6 +5,31 @@ include '../templates/header.php';
 <?php
 require '../../config/functions.php';
 $socios = getSociosById($_GET['id']);
+?>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "greenpower";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+
+$conn->close();
+?>
+<?php
 require "../../config/conexion.php";
 
 if (isset($_POST['actualizar'])) {
@@ -16,20 +41,10 @@ if (isset($_POST['actualizar'])) {
     $pais = $_POST['pais'];
     $genero = $_POST['genero'];
     $consumo = $_POST['consumo'];
-    $rol_id = $_POST['rol_id'];
+    $rol = $_POST['rol'];
     $saldo = $_POST['saldo'];
 
-    $sql = "UPDATE socios SET
-    nombre ='" . $nombre . "',
-    apellidos='" . $apellidos . "',
-    dni='" . $dni . "',
-    birth='" . $birth . "',
-    pais='" . $pais . "',
-    rol_id='" . $rol_id . "',
-    genero='" . $genero . "',
-    consumo='" . $consumo . "',
-    saldo='" . $saldo . "'
-    WHERE id=" . $id . ";";
+    $sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
 
     mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
 } else {
@@ -51,7 +66,7 @@ if (isset($_POST['actualizar'])) {
     $pais = $row['pais'];
     $genero = $row['genero'];
     $consumo = $row['consumo'];
-    $rol = $row['rol_id'];
+    $rol = $row['rol'];
     $saldo = $row['saldo'];
 }
 $sql = "SELECT * FROM socios";
@@ -75,7 +90,7 @@ $result = mysqli_query($conex, $sql);
 <div class="w3-padding-large">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
-            <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
+            <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
 
                 <!-- FICHA SOCIO  -->
                 <div class="w3-content w3-padding">
@@ -411,8 +426,8 @@ $result = mysqli_query($conex, $sql);
 
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="rol_id">Tipo de socio</label>
-                            <select name="rol_id" id="rol_id" class="w3-select w3-white" value=<?php echo $socios['rol_id']; ?>>
+                            <label for="rol">Tipo de socio</label>
+                            <select name="rol" id="rol" class="w3-select w3-white" value=<?php echo $socios['rol']; ?>>
                                 <?php
                                 require_once '../../config/functions.php';
                                 $roles = getRoles();

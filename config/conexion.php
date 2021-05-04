@@ -12,7 +12,7 @@ if (mysqli_connect_error()) {
         . mysqli_connect_error());
 }
 
-// echo 'Éxito... ' . $conex->host_info . "\n";
+echo 'Éxito... ' . $conex->host_info . "\n";
 
 
 ?>

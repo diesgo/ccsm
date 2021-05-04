@@ -13,28 +13,25 @@ function openConex(){
 function getSocios(){	
 	$mysqli = openConex();
 	
-	$result = $mysqli->query('SELECT id, nombre, apellidos, dni, birth, pais, rol_id, genero, consumo, saldo FROM socios ORDER BY id desc');	
+	$result = $mysqli->query('SELECT * FROM socios ORDER BY id desc');	
 
 	return $result;	
 }
-function getRoles()
-{
+function getRoles(){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT id, rol, descripcion FROM roles ORDER BY id desc');
+	$result = $mysqli->query('SELECT * FROM roles ORDER BY id desc');
 
 	return $result;
 }
-function getCategorias()
-{
+function getCategorias(){
 	$mysqli = openConex();
 
 	$result = $mysqli->query('SELECT * FROM categorias');
 
 	return $result;
 }
-function getTemas()
-{
+function getTemas(){
 	$mysqli = openConex();
 
 	$result = $mysqli->query('SELECT id, color FROM temas ORDER BY id desc');
@@ -51,7 +48,7 @@ function getSetings(){
 function getColor(){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT color FROM color_tema');
+	$result = $mysqli->query('SELECT nombre FROM color_tema');
 
 	return $result;
 }
@@ -62,42 +59,52 @@ function getFuente(){
 
 	return $result;
 }
+function getVariedades(){
+	$mysqli = openConex();
 
-function getSociosById($id)
-{
+	$result = $mysqli->query('SELECT nombre FROM variedades');
+
+	return $result;
+}
+function getProductos(){
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT * FROM productos');
+
+	return $result;
+}
+
+function getSociosById($id){
 	$mysqli = openConex();
  
-	$result = $mysqli->query('SELECT date, id, nombre, apellidos, dni, birth, pais, rol_id, genero, consumo, saldo FROM socios WHERE id ='.$id);
+	$result = $mysqli->query('SELECT * FROM socios WHERE id ='.$id);
 	$row = mysqli_fetch_assoc($result);
 	
     return $row;
 }
 
-function getRolesById($id)
-{
+function getRolesById($id){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT date, id, rol, descripcion FROM roles WHERE id =' . $id);
+	$result = $mysqli->query('SELECT * FROM roles WHERE id =' . $id);
 	$row = mysqli_fetch_assoc($result);
 
 	return $row;
 }
 
-function getCategoriasById($id)
-{
+function getCategoriasById($id){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT date, id, nombre, descripcion FROM categorias WHERE id =' . $id);
+	$result = $mysqli->query('SELECT * FROM categorias WHERE id =' . $id);
 	$row = mysqli_fetch_assoc($result);
 
 	return $row;
 }
 
-function getSetingsById($id)
-{
+function getSetingsById($id){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT date, id, color, fuente FROM settings WHERE id =' . $id);
+	$result = $mysqli->query('SELECT * FROM settings WHERE id =' . $id);
 	$row = mysqli_fetch_assoc($result);
 
 	return $row;
@@ -106,20 +113,28 @@ function getSetingsById($id)
 function getColorById($id){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT id, color FROM color WHERE id =' . $id);
+	$result = $mysqli->query('SELECT * FROM color_tema WHERE id =' . $id);
 	$color_tema = mysqli_fetch_assoc($result);
 
 	return $color_tema;
 }
 
-function getFuenteById($id)
-{
+function getFuenteById($id){
 	$mysqli = openConex();
 
-	$result = $mysqli->query('SELECT id, fuente FROM fuentes WHERE id =' . $id);
+	$result = $mysqli->query('SELECT * FROM fuentes WHERE id =' . $id);
 	$fuente_tema = mysqli_fetch_assoc($result);
 
 	return $fuente_tema;
+}
+
+function getProductosById($id){
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT * FROM productos WHERE id =' . $id);
+	$row = mysqli_fetch_assoc($result);
+
+	return $row;
 }
 
 ?>

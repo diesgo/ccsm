@@ -56,7 +56,7 @@
 
      <!-- Top container -->
 
-     <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 8px 32px">
+     <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 2px 32px">
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-theme" onclick="w3_open();"><i class="fa fa-bars"></i> Menu</button>
          <a class="w3-bar-item w3-button w3-round w3-theme-d3 w3-hover-theme" href="../home.html">Dispensario</a>
          <span class="w3-bar-item w3-right"><img class="w3-image" src="/club/img/logo_negro.png" alt="logo" style="max-width:24px"></span>
@@ -76,7 +76,7 @@
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-cubes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
              <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
                  <a href="/club/admin/categorias/index.php" class="w3-bar-item w3-button w3-hover-theme">Categorias</a>
-                 <a href="products.php" class="w3-bar-item w3-button w3-hover-theme">Productos</a>
+                 <a href="/club/admin/productos/index.php" class="w3-bar-item w3-button w3-hover-theme">Productos</a>
              </div>
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('configuracion')"><i class="fa fa-cog fa-fw"></i> Configuración <i class="w3-right fa fa-caret-down"></i></button>
              <div id="configuracion" class="w3-hide w3-white w3-theme-l2">

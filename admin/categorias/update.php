@@ -1,5 +1,5 @@
 <?php
-$titulo = "Editar categorias | CCSM";
+$titulo = "Editar categoria";
 include '../templates/header.php';
 ?>
 <?php
@@ -41,7 +41,7 @@ $result = mysqli_query($conex, $sql);
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> Editar categoria</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> <?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
     </div>
@@ -50,7 +50,7 @@ $result = mysqli_query($conex, $sql);
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large">
+<div class="w3-padding-large" style="min-height: 570px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
@@ -75,8 +75,7 @@ $result = mysqli_query($conex, $sql);
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">
                     <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
-                    <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
+                    <a href="index.php" class="w3-button w3-theme w3-round">Volver</a>
                 </div>
             </form>
         </div>

@@ -171,7 +171,6 @@ if (isset($_POST['altaButton'])) {
         </div>
     </div>
 </div>
-<script src="../js/fecha.js"></script>
 <!-- !End page content! -->
 <?php
 include '../templates/footer.php';

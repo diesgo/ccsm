@@ -7,7 +7,9 @@ require '../../config/functions.php';
 $productos = getProductosById($_GET['id']);
 require "../../config/conexion.php";
 
+
 if (isset($_POST['actualizar'])) {
+    
     $id = $productos['id'];
     $nombre = $_POST['nombre'];
     $categoria = $_POST['categoria'];
@@ -179,21 +181,7 @@ $result = mysqli_query($conex, $sql);
         </div>
     </div>
 </div>
-<script src="../js/fecha.js"></script>
 <!-- !End page content! -->
 <?php
 include '../templates/footer.php';
 ?>
-
-<!-- !PAGE CONTENT! -->
-<form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaio" id="altaio">
-    <!-- FICHA SOCIO  -->
-    <div class="w3-content w3-padding">
-
-    </div>
-    <div class="w3-row w3-padding-32 w3-center">
-        <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
-        <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
-    </div>
-</form>

@@ -18,7 +18,7 @@
                                                         if ($conn->connect_error) {
                                                             die("Connection failed: " . $conn->connect_error);
                                                         }
-                                                        $sql = "SELECT color, fuente FROM settings";
+                                                        $sql = "SELECT color, fuente, titulos FROM settings";
                                                         $result = $conn->query($sql);
                                                         while ($row = $result->fetch_assoc()) {
                                                             echo $row['color'];
@@ -32,6 +32,32 @@
  <style>
      .panel {
          box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+     }
+
+     h1,
+     h2,
+     h3,
+     h4,
+     h5,
+     h6 {
+         font-family: <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "greenpower";
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        $sql = "SELECT color, fuente FROM settings";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            echo $row['fuente'];
+                        }
+                        $conn->close();
+                        ?>;
      }
  </style>
 

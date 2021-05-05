@@ -57,7 +57,7 @@ $result = mysqli_query($conex, $sql);
 
                     <!-- FILA 2: COLOR Y FUENTE -->
                     <div class="w3-row">
-                        <!-- COLOR -->
+                        <!-- ESQUEMA DE COLORES -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="color" class="w3-text-theme">Esquema de color</label>
                             <select name="color" id="color" class="w3-select w3-white">
@@ -75,7 +75,7 @@ $result = mysqli_query($conex, $sql);
                             </select>
                             <small id="info_rol"></small>
                         </div>
-                        <!-- DESCRIPCIÓN -->
+                        <!-- FUENTES PARRAFOS -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="fuente" class="w3-text-theme">Fuente</label>
                             <select name="fuente" id="fuente" class="w3-select w3-white">
@@ -92,6 +92,24 @@ $result = mysqli_query($conex, $sql);
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
+                        </div>
+                        <!-- FUENTES TITULOS -->
+                        <div class="w3-col m3 l3 s12 w3-padding">
+                            <label for="titulos" class="w3-text-theme">Fuentes Títulos</label>
+                            <select name="titulos" id="titulos" class="w3-select w3-white">
+                                <?php
+                                require_once '../../config/functions.php';
+                                $settings = getSetingsById(1);
+                                ?>
+                                <option value=<?php echo $settings['titulos'] ?>><?php echo $settings['titulos'] ?></option>
+                                <?php
+                                $fuente = getFuente();
+                                foreach ($fuente as $fuente) :
+                                ?>
+                                    <option value=<?php echo $fuente['fuente']; ?>><?php echo $fuente['fuente'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <small id="info_titulos"></small>
                         </div>
                     </div>
                 </div>

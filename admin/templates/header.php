@@ -4,7 +4,7 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <title><?php echo $titulo ?></title>
+     <title><?php echo $titulo ?> | CCSM</title>
      <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
      <link rel="stylesheet" href="/club/css/w3.css">
      <link rel="stylesheet" href="/club/css/w3-theme-<?php
@@ -51,10 +51,10 @@
                         if ($conn->connect_error) {
                             die("Connection failed: " . $conn->connect_error);
                         }
-                        $sql = "SELECT color, fuente FROM settings";
+                        $sql = "SELECT *  FROM settings";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
-                            echo $row['fuente'];
+                            echo $row['titulos'];
                         }
                         $conn->close();
                         ?>;
@@ -72,7 +72,7 @@
                                     if ($conn->connect_error) {
                                         die("Connection failed: " . $conn->connect_error);
                                     }
-                                    $sql = "SELECT color, fuente FROM settings";
+                                    $sql = "SELECT * FROM settings";
                                     $result = $conn->query($sql);
                                     while ($row = $result->fetch_assoc()) {
                                         echo $row['fuente'];
@@ -99,7 +99,7 @@
          <div class="w3-bar-block">
              <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-theme" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a>
              <a href="/club/admin/home/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"> <i class="fas fa-tachometer-alt"></i> Home</a>
-             <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-cubes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
+             <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-boxes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
              <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
                  <a href="/club/admin/categorias/index.php" class="w3-bar-item w3-button w3-hover-theme">Categorias</a>
                  <a href="/club/admin/productos/index.php" class="w3-bar-item w3-button w3-hover-theme">Productos</a>

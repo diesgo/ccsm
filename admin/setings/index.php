@@ -1,5 +1,5 @@
 <?php
-$titulo = "Editar roles | CCSM";
+$titulo = "Ajustes";
 include '../templates/header.php';
 ?>
 <?php
@@ -8,8 +8,9 @@ if (isset($_POST['actualizar'])) {
 
     $color = $_POST['color'];
     $fuente = $_POST['fuente'];
+    $titulos = $_POST['titulos'];
 
-    $sql = "UPDATE settings SET color ='" . $color . "',fuente='" . $fuente . "' WHERE id=1;";
+    $sql = "UPDATE settings SET color ='" . $color . "',fuente='" . $fuente . "',titulos='" . $titulos . "' WHERE id=1;";
     // echo $sql;
 
     mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
@@ -27,6 +28,7 @@ if (isset($_POST['actualizar'])) {
     $row = mysqli_fetch_assoc($result);
     $color = $row['color'];
     $fuente = $row['fuente'];
+    $titulos = $row['titulos'];
 }
 $sql = "SELECT * FROM settings";
 $result = mysqli_query($conex, $sql);
@@ -37,7 +39,7 @@ $result = mysqli_query($conex, $sql);
 
 <div class="w3-container w3-padding-32 w3-light-grey">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> Editar socio</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-sliders-h"></i> <?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="color.php">+ Añadir esquema de color</a>
@@ -77,7 +79,7 @@ $result = mysqli_query($conex, $sql);
                         </div>
                         <!-- FUENTES PARRAFOS -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="fuente" class="w3-text-theme">Fuente</label>
+                            <label for="fuente" class="w3-text-theme">Tipografía texto</label>
                             <select name="fuente" id="fuente" class="w3-select w3-white">
                                 <?php
                                 require_once '../../config/functions.php';
@@ -95,7 +97,7 @@ $result = mysqli_query($conex, $sql);
                         </div>
                         <!-- FUENTES TITULOS -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="titulos" class="w3-text-theme">Fuentes Títulos</label>
+                            <label for="titulos" class="w3-text-theme">Tipografía  títulos</label>
                             <select name="titulos" id="titulos" class="w3-select w3-white">
                                 <?php
                                 require_once '../../config/functions.php';

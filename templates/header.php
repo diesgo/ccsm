@@ -2,16 +2,83 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../fontawesome5/css/all.min.css">
-    <link rel="stylesheet" href="../css/w3.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <title> <?php echo $titulo; ?></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $titulo ?> | CCSM</title>
+    <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="/club/css/w3.css">
+    <link rel="stylesheet" href="/club/css/w3-theme-<?php
+                                                    $servername = "localhost";
+                                                    $username = "root";
+                                                    $password = "";
+                                                    $dbname = "greenpower";
+                                                    // Create connection
+                                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                                    // Check connection
+                                                    if ($conn->connect_error) {
+                                                        die("Connection failed: " . $conn->connect_error);
+                                                    }
+                                                    $sql = "SELECT color, fuente, titulos FROM settings";
+                                                    $result = $conn->query($sql);
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        echo $row['color'];
+                                                    }
+                                                    $conn->close();
+                                                    ?>.css">
+    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
+    <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
+    <link rel="stylesheet" href="/club/css/style.css">
 </head>
+<style>
+    .panel {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    }
 
-<body class="w3-light-grey">
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "greenpower";
+                        // Create connection
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+                        $sql = "SELECT *  FROM settings";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetch_assoc()) {
+                            echo $row['titulos'];
+                        }
+                        $conn->close();
+                        ?>;
+    }
+</style>
+
+<body class="w3-theme-light font-<?php
+                                    $servername = "localhost";
+                                    $username = "root";
+                                    $password = "";
+                                    $dbname = "greenpower";
+                                    // Create connection
+                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                    // Check connection
+                                    if ($conn->connect_error) {
+                                        die("Connection failed: " . $conn->connect_error);
+                                    }
+                                    $sql = "SELECT * FROM settings";
+                                    $result = $conn->query($sql);
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo $row['fuente'];
+                                    }
+                                    $conn->close();
+                                    ?>">
     <div id="pantalla" class="w3-container">
 
         <!-- CABECERA -->
@@ -19,10 +86,11 @@
         <div class="w3-margin-top">
             <div class="w3-container w3-center">
                 <div class="w3-quarter">
-                    <img src="../../img/ccms_logo.png" alt="C C M S" class="w3-image" width="110">
+                    <a href="index.php"><img src="../img/ccms_logo.png" alt="C C M S" class="w3-image" width="150"></a>
+
                 </div>
-                <div class="w3-half w3-padding-24">
-                    <h1 class="w3-text-green w3-white w3-border w3-border-green w3-round"> <?php echo $titulo; ?></h1>
+                <div class="w3-half w3-padding-48">
+                    <h1 class="w3-text-theme w3-white w3-border w3-border-theme w3-round">Cannabis Club System Management</h1>
                 </div>
             </div>
         </div>
@@ -35,11 +103,9 @@
 
             <div class="w3-cell w3-center w3-mobile">
 
-                <a  class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button" 
-                        href="../../index.php"
-                        style="text-decoration:none; width: 110px; padding: 10px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="menu.php" style="text-decoration:none; width: 110px; padding: 10px;">
                     <i class="fas fa-store w3-xxlarge"></i>
-                    <p class="w3-small" style="margin:0;">Dispensario</p>
+                    <p class="w3-small" style="margin:0;">Menu</p>
                 </a>
 
             </div>
@@ -48,9 +114,7 @@
 
             <div class="w3-cell w3-center w3-mobile">
 
-                <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button"
-                    href="../index.php"
-                    style="text-decoration:none; width: 110px; padding: 10px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/home/index.php" style="text-decoration:none; width: 110px; padding: 10px;">
                     <i class="fas fa-cogs w3-xxlarge"></i>
                     <p class="w3-small" style="margin:0;">Administración</p>
                 </a>
@@ -59,9 +123,7 @@
 
             <div class="w3-cell w3-center w3-mobile">
 
-                <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button"
-                    href="../productos/gestionarProductos.php"
-                    style="text-decoration:none; width: 110px; padding: 10px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="stock.php" style="text-decoration:none; width: 110px; padding: 10px;">
                     <i class="fas fa-seedling w3-xxlarge"></i>
                     <p class="w3-small" style="margin:0;">Stock</p>
                 </a>
@@ -72,9 +134,7 @@
 
             <div class="w3-cell w3-center w3-mobile">
 
-                <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button"
-                    href="../socios/gestionarSocios.php"
-                    style="text-decoration:none; width: 110px; padding: 10px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="socios.php" style="text-decoration:none; width: 110px; padding: 10px;">
                     <i class="fas fa-user-cog w3-xxlarge"></i>
                     <p class="w3-small" style="margin:0;">Socios</p>
                 </a>
@@ -85,9 +145,7 @@
 
             <div class="w3-cell w3-center w3-mobile">
 
-                <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button"
-                    href="../admin/gestionarSocios.php"
-                    style="text-decoration:none; width: 110px; padding: 10px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/gestionarSocios.php" style="text-decoration:none; width: 110px; padding: 10px;">
                     <i class="fas fa-chart-line w3-xxlarge"></i>
                     <p class="w3-small" style="margin:0;">Finanzas</p>
                 </a>

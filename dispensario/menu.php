@@ -4,15 +4,6 @@ include "../templates/header.php"
 ?>
     <div id="pantalla" class="w3-container">
 
-        <!-- Captar chip -->
-
-        <div class="w3-display-container" style="min-height: 100px;">
-            <div class="w3-display-middle w3-center">
-                <p>ID Socio</p>
-                <input class="w3-border-green w3-input" type="text" id="id_socio" autofocus>
-            </div>
-        </div>
-
         <!-- MENÚ -->
 
         <div class="w3-cell-row" style="margin: 2% auto; padding: 0 23%;">

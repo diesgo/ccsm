@@ -1,5 +1,5 @@
 <?php
-$titulo = "Editar categoria";
+$titulo = "EDITAR CATEGORIA";
 include '../templates/header.php';
 ?>
 <?php

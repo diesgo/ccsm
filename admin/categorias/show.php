@@ -1,5 +1,5 @@
 <?php
-$titulo = "Mostrar categoria";
+$titulo = "MOSTRAR CATEGORIA";
 include '../templates/header.php';
 ?>
 

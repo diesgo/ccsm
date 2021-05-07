@@ -84,7 +84,7 @@
 
      <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 2px 32px">
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-theme" onclick="w3_open();"><i class="fa fa-bars"></i> Menu</button>
-         <a class="w3-bar-item w3-button w3-round w3-theme-d3 w3-hover-theme" href="../home.html">Dispensario</a>
+         <a class="w3-bar-item w3-button w3-round w3-theme-d3 w3-hover-theme" href="../../dispensario/index.php">Dispensario</a>
          <span class="w3-bar-item w3-right"><img class="w3-image" src="/club/img/logo_negro.png" alt="logo" style="max-width:24px"></span>
      </div>
 
@@ -93,12 +93,12 @@
      <nav class="w3-sidebar w3-collapse w3-theme-d3 panel" style="z-index:3;width:300px;" id="mySidebar"><br>
 
          <div class="w3-container w3-theme-d3 panel">
-             <h5 class="w3-text-white">Panel de control</h5>
+             <h5 class="w3-text-white"><i class="fas fa-tachometer-alt"></i> Panel de control</h5>
          </div>
 
          <div class="w3-bar-block">
              <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-theme" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i> Close Menu</a>
-             <a href="/club/admin/home/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"> <i class="fas fa-tachometer-alt"></i> Home</a>
+             <a href="/club/admin/home/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-home"></i> Home</a>
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-boxes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
              <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
                  <a href="/club/admin/categorias/index.php" class="w3-bar-item w3-button w3-hover-theme">Categorias</a>
@@ -116,7 +116,7 @@
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-bell fa-fw"></i> News</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-university"></i> General</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-history fa-fw"></i> History</a>
-                 <a href="/club/admin/setings/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-cog fa-fw"></i> Settings</a><br><br>
+                 <a href="/club/admin/setings/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-sliders-h"></i> Ajustes</a><br><br>
              </div>
          </div>
      </nav>

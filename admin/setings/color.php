@@ -1,5 +1,5 @@
 <?php
-$titulo = "CCSM | Nuevo socio";
+$titulo = "Esquemas de color";
 include '../templates/header.php';
 ?>
 
@@ -41,9 +41,9 @@ if (isset($_POST['altaButton'])) {
 
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-light-grey">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2><b><i class="fa fa-dashboard"></i>Ajustes</b></h2>
+        <h2 class="w3-text-theme"><b><i class="fas fa-paint-roller"></i> <?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         <!-- <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="color.php">+ Añadir esquema de color</a> -->
@@ -71,9 +71,9 @@ if (isset($_POST['altaButton'])) {
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">
                     <input type="submit" value="Guardar" name="altaButton" class="w3-button w3-theme w3-round">
-                    <input title="Guardar el producto y permanecer en la página actual: ALT+SHIFT+S" />
+                    <!-- <input title="Guardar el producto y permanecer en la página actual: ALT+SHIFT+S" />
                     <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button>
+                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
                 </div>
             </form>
         </div>

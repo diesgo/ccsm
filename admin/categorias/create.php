@@ -1,5 +1,5 @@
 <?php
-$titulo = "Nueva categoría";
+$titulo = "NUEVA CATEGORIA";
 include '../templates/header.php';
 
 if (isset($_POST['altaButton'])) {
@@ -33,7 +33,6 @@ if (isset($_POST['altaButton'])) {
     <div class="w3-half">
 
     </div>
-    <hr>
 </div>
 
 <!-- !PAGE CONTENT! -->

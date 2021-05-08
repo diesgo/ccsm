@@ -1,28 +1,8 @@
 <?php
 $titulo = "NUEVA CATEGORIA";
 include '../templates/header.php';
-
-if (isset($_POST['altaButton'])) {
-    require_once '../../config/config.php';
-    $nombre = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
-    // Create connection
-    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $sql = "INSERT INTO categorias (nombre, descripcion)
-    VALUES ('$nombre', '$descripcion')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Se ha creado un nuevo registro";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-    $conn->close();
-}
 ?>
+
 
 <!-- Header -->
 
@@ -31,13 +11,36 @@ if (isset($_POST['altaButton'])) {
         <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> <?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
+        <?php
+        if (isset($_POST['altaButton'])) {
+            require_once '../../config/config.php';
+            $nombre = $_POST['nombre'];
+            $descripcion = $_POST['descripcion'];
+            $icono = $_POST['icono'];
+            // Create connection
+            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "INSERT INTO categorias (nombre, descripcion, icono)
+    VALUES ('$nombre', '$descripcion', '$icono')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Se ha creado un nuevo registro";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            $conn->close();
+        }
+        ?>
 
     </div>
 </div>
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large" style="min-height: 570px;">
+<div class="w3-padding-large" style="min-height: 600px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">
@@ -46,16 +49,31 @@ if (isset($_POST['altaButton'])) {
                     <!-- FILA 1: CATEGORIA -->
                     <div class="w3-row">
                         <!-- NOMBRE -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
+                        <div class="w3-col m4 l4 s12 w3-padding">
                             <label for='nombre'>Categoria</label>
                             <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='nombre'>
                             <small id="info_categoria"></small>
                         </div>
                         <!-- DESCRIPCION -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
+                        <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="descripcion">Descripción</label>
                             <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" placeholder="Descripción">
                             <small id="info_descripcion"></small>
+                        </div>
+                        <!-- ICONO -->
+                        <div class="w3-col m4 l4 s12 w3-padding">
+                            <label for="icono" class="w3-text-theme">Icono</label>
+                            <select name="icono" id="icono" class="w3-select w3-white">
+                                <?php
+                                    require_once '../../config/functions.php';
+                                    $iconos = getIcono();
+                                    foreach ($iconos as $icono) :
+                                ?>
+                                <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
+                                <?php endforeach; ?>
+                            </select>    
+                            <i class=<?php echo $icono['icono'] ?>></i>
+                            <small id="info_icono"></small>
                         </div>
                     </div>
                 </div>

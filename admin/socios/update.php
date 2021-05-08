@@ -6,7 +6,7 @@ include '../templates/header.php';
 require '../../config/functions.php';
 $socios = getSociosById($_GET['id']);
 ?>
-<?php
+<!-- <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -28,7 +28,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-?>
+?> -->
 <?php
 require "../../config/conexion.php";
 

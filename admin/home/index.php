@@ -14,7 +14,7 @@ include '../templates/header.php';
     </div>
     <hr>
 </div>
-<div class="w3-container" style="min-height: 570px;">
+<div class="w3-container" style="min-height: 636px;">
 
 </div>
 

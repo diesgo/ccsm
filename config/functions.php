@@ -73,6 +73,14 @@ function getProductos(){
 
 	return $result;
 }
+function getIcono()
+{
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT * FROM iconos');
+
+	return $result;
+}
 
 function getSociosById($id){
 	$mysqli = openConex();
@@ -132,6 +140,16 @@ function getProductosById($id){
 	$mysqli = openConex();
 
 	$result = $mysqli->query('SELECT * FROM productos WHERE id =' . $id);
+	$row = mysqli_fetch_assoc($result);
+
+	return $row;
+}
+
+function getProductsByCategory($categoria)
+{
+	$mysqli = openConex();
+
+	$result = $mysqli->query('SELECT * FROM productos WHERE categoria =' . $categoria);
 	$row = mysqli_fetch_assoc($result);
 
 	return $row;

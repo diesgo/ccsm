@@ -5,7 +5,8 @@ include '../templates/header.php';
 
 <?php require_once '../../config/functions.php'; ?>
 
-<?php $categoria = getCategoriasById($_GET['id']); ?>
+<?php $categoria = getCategoriasById($_GET['id']); 
+?>
 
 <!-- Header -->
 
@@ -14,38 +15,51 @@ include '../templates/header.php';
         <h2 class="w3-text-theme"><b><i class="fas fa-eye"></i> <?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
+ 
     </div>
     <hr>
 </div>
 
 <div id="ficha_categoria" class="w3-container w3-padding w3-margin-bottom" style="min-height: 570px;">
-    <div class="w3-content w3-padding">
-        <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
-            <div class="w3-row-padding">
-                <div class="w3-col l4 w3-padding-large">
-                </div>
-                <div class="w3-col l8">
-                    <p class="w3-text-theme w3-xlarge">Categoría # <span><?php echo $categoria['id']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey"><?php echo $categoria['nombre']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Descripción: <span class="w3-text-grey"><?php echo $categoria['descripcion']; ?></span></p>
-                </div>
+    <div class="w3-display-container w3-padding w3-center" style="height: 200px;">
+        <div class="w3-display-middle  w3-border w3-round w3-border-theme">
+            <div class="w3-cell w3-padding-large w3-center">
+                <p><i class="<?php echo $categoria['icono']; ?> w3-text-theme  w3-jumbo"></i></p>
             </div>
-        </div>
-        <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
-            <div class="w3-row-padding w3-margin-top w3-margin-bottom">
-                <div class="w3-col l4">
-                    <!-- <input type="text" name="charge" id="charge_socio" style="width: 100%;">
-                    <button class="boton w3-margin-top">Cargar</button> -->
-                </div>
-                <div class="w3-col l4">
-                    <a href="update.php?id=<?php echo $categoria['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
-                </div>
-                <div class="w3-col l4">
-                    <button class="boton">Añadir <br> comentario</button>
-                </div>
+            <div class="w3-cell w3-padding-large w3-center">
+                <p class="w3-text-theme w3-xlarge">Categoría # <span><?php echo $categoria['id']; ?></span></p>
+            </div>
+            <div class="w3-cell w3-padding-large w3-center">
+                <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey"><?php echo $categoria['nombre']; ?></span></p>
+            </div>
+            <div class="w3-cell w3-padding-large w3-center">
+                <p class="w3-text-theme w3-large">Descripción: <span class="w3-text-grey"><?php echo $categoria['descripcion']; ?></span></p>
+            </div>
+            <div class="w3-cell w3-padding-large w3-center">
+                <a href="update.php?id=<?php echo $categoria['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
             </div>
         </div>
     </div>
+
+    <div class="w3-container w3-padding w3-responsive">
+        <table class="w3-table w3-striped w3-bordered w3-border w3-border-theme w3-centered">
+            <thead>
+                <tr class="w3-theme">
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                    <th>Variedad</th>
+                    <th>PVC</th>
+                    <th>PVP</th>
+                    <th>Cantidad</th>
+                    <th>Tipo de venta</th>
+                    <th>Editar</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
 </div>
 
 <?php

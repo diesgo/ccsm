@@ -5,11 +5,8 @@ include '../templates/header.php';
 <?php
 require '../../config/functions.php';
 $productos = getProductosById($_GET['id']);
-require "../../config/conexion.php";
-
-
+require '../../config/conexion.php';
 if (isset($_POST['actualizar'])) {
-    
     $id = $productos['id'];
     $nombre = $_POST['nombre'];
     $categoria = $_POST['categoria'];
@@ -109,7 +106,7 @@ $result = mysqli_query($conex, $sql);
                                 $categorias = getCategorias();
                                 foreach ($categorias as $categoria) :
                                 ?>
-                                    <option value=""><?php echo $categoria['nombre'] ?></option>
+                                    <option value="<?php echo $categoria['nombre'] ?>"><?php echo $categoria['nombre'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_categoria"></small>

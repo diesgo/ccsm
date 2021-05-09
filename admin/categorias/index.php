@@ -10,7 +10,7 @@ include '../templates/header.php';
         <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
-        <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="create.php">+ Nueva categoría</a>
+        <a class="w3-right w3-button w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme" href="create.php">+ Nueva categoría</a>
     </div>
     <hr>
 </div>
@@ -38,7 +38,7 @@ include '../templates/header.php';
                 <td style="width: 5%;"><?php echo $categoria['id'] ?></td>
                 <td style="width: 20%"><?php echo $categoria['nombre'] ?></td>
                 <td style="width: 60%"><?php echo $categoria['descripcion'] ?></td>
-                <td style="width: 5%"><i class="<?php echo $categoria['icono'] ?>"></i></td>
+                <td style="width: 5%" class="w3-text-theme"><i class="<?php echo $categoria['icono'] ?>"></i></td>
                 <td style="width: 5%">
                     <a href="update.php?id=<?php echo $categoria['id'] ?>">
                         <i class="fas fa-pen w3-text-theme"></i>

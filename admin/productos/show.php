@@ -1,16 +1,16 @@
 <?php
-$titulo = "Mostrar categoría";
+$titulo = "MOSTRAR PRODUCTO";
 include '../templates/header.php';
 ?>
-
-<?php require_once '../../config/functions.php'; ?>
-
-<?php $productos = getProductosById($_GET['id']); ?>
+<?php
+require_once '../../config/functions.php';
+$productos = getProductosById($_GET['id']);
+?>
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-light">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-user-edit"></i> <?php echo $titulo ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         

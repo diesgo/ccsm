@@ -5,7 +5,7 @@ include '../templates/header.php';
 
 <?php require_once '../../config/functions.php'; ?>
 
-<?php $categoria = getCategoriasById($_GET['id']); 
+<?php $categoria = getCategoriasById($_GET['id']);
 ?>
 
 <!-- Header -->
@@ -15,12 +15,12 @@ include '../templates/header.php';
         <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
- 
+
     </div>
     <hr>
 </div>
 
-<div id="ficha_categoria" class="w3-container w3-padding w3-margin-bottom" style="min-height: 636 px;">
+<div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
     <div class="w3-display-container w3-padding w3-center" style="height: 200px;">
         <div class="w3-display-middle  w3-border w3-round w3-border-theme">
             <div class="w3-cell w3-padding-large w3-center">

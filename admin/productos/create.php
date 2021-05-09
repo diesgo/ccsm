@@ -3,40 +3,6 @@ $titulo = "Nuevo artículo";
 include '../templates/header.php';
 ?>
 
-<?php
-if (isset($_POST['altaButton'])) {
-    require_once '../../config/config.php';
-
-    $nombre = $_POST['nombre'];
-    $categoria = $_POST['categoria'];
-    $variedad = $_POST['nombre'];
-    $pvc = $_POST['pvc'];
-    $pvp = $_POST['pvp'];
-    $cantidad = $_POST['cantidad'];
-    $disp = $_POST['disp'];
-
-    // Create connection
-
-    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-
-    // Check connection
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $sql = "INSERT INTO productos (nombre, categoria, variedad, pvc, pvp, cantidad, disp)
-    VALUES ('$nombre', '$categoria', '$variedad', '$pvc', '$pvp', '$cantidad', '$disp')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Se ha creado un nuevo registro";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
-
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
@@ -44,6 +10,39 @@ if (isset($_POST['altaButton'])) {
         <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
+        <?php
+        if (isset($_POST['altaButton'])) {
+            require_once '../../config/config.php';
+
+            $nombre = $_POST['nombre'];
+            $categoria = $_POST['categoria'];
+            $variedad = $_POST['nombre'];
+            $pvc = $_POST['pvc'];
+            $pvp = $_POST['pvp'];
+            $cantidad = $_POST['cantidad'];
+            $disp = $_POST['disp'];
+
+            // Create connection
+
+            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+
+            // Check connection
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "INSERT INTO productos (nombre, categoria, variedad, pvc, pvp, cantidad, disp)
+    VALUES ('$nombre', '$categoria', '$variedad', '$pvc', '$pvp', '$cantidad', '$disp')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Se ha creado un nuevo registro";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $conn->close();
+        }
+        ?>
     </div>
     <hr>
 </div>
@@ -75,7 +74,7 @@ if (isset($_POST['altaButton'])) {
                             <small id="info_nombre"></small>
                         </div>
                         <!-- CATEGORIA  -->
-                        <!-- <div class="w3-col m6 l6 s12 w3-padding">
+                        <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="categoria">Categoría</label>
                             <select name="categoria" class="w3-select w3-white">
                                 <option value="">Seleccionar...</option>
@@ -88,12 +87,12 @@ if (isset($_POST['altaButton'])) {
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_categoria"></small>
-                        </div> -->
+                        </div>
                     </div>
                     <!-- FILA 3: VARIEDAD, PVC Y PVP -->
                     <div class="w3-row">
                         <!-- VARIEDAD -->
-                        <!-- <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
+                        <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
                             <label for="variedad">Variedad</label>
                             <select name="variedad" class="w3-select w3-white">
                                 <option value="">Seleccionar...</option>
@@ -106,7 +105,7 @@ if (isset($_POST['altaButton'])) {
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_variedad"></small>
-                        </div> -->
+                        </div>
                         <!-- PVC -->
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="pvc">Precio de compra</label>
@@ -129,7 +128,7 @@ if (isset($_POST['altaButton'])) {
                             <small id="info_cantidad"></small>
                         </div>
                         <!-- CAREGORIA  -->
-                        <div class="w3-col m3 l3 s12 w3-padding">
+                        <!-- <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="categoria" class="w3-text-theme">Esquema de color</label>
                             <select name="categoria" id="categoria" class="w3-select w3-white">
                                 <option value="">Seleccionar</option>
@@ -141,9 +140,9 @@ if (isset($_POST['altaButton'])) {
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
-                        </div>
+                        </div> -->
                         <!-- VARIEDAD -->
-                        <div class="w3-col m3 l3 s12 w3-padding">
+                        <!-- <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="variedad" class="w3-text-theme">Fuente</label>
                             <select name="variedad" id="variedad" class="w3-select w3-white">
                                 <?php
@@ -154,7 +153,7 @@ if (isset($_POST['altaButton'])) {
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>
-                        </div>
+                        </div> -->
                         <!--  -->
                         <div class="w3-col m3 l3 s12 w3-padding">
 

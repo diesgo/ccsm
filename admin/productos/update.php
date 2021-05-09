@@ -1,22 +1,23 @@
 <?php
-$titulo = "Editar producto";
+$titulo = "EDITAR PRODUCTO";
 include '../templates/header.php';
+?>
+<?php
+require '../../config/functions.php';
+$productos = getProductosById($_GET['id']);
 ?>
 
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> <?php echo $titulo ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         <?php
-        require '../../config/functions.php';
-        $productos = getProductosById($_GET['id']);
         require "../../config/conexion.php";
 
         if (isset($_POST['actualizar'])) {
-
             $id = $productos['id'];
             $nombre = $_POST['nombre'];
             $categoria = $_POST['categoria'];
@@ -27,7 +28,6 @@ include '../templates/header.php';
             $disp = $_POST['disp'];
 
             $sql = "UPDATE productos SET nombre ='" . $nombre . "', categoria='" . $categoria . "', variedad='" . $variedad . "', pvc='" . $pvc . "', pvp='" . $pvp . "', cantidad='" . $cantidad . "', disp='" . $disp . "' WHERE id=" . $id . ";";
-            echo $sql;
 
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
@@ -39,7 +39,7 @@ include '../templates/header.php';
             } else {
                 $id = $_POST["id"];
             }
-            $sql = "SELECT id, nombre, categoria, variedad, pvc, pvp, cantidad, disp FROM productos WHERE id='$id'";
+            $sql = "SELECT * FROM productos WHERE id='$id'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['id'];
@@ -51,9 +51,8 @@ include '../templates/header.php';
             $cantidad = $row['cantidad'];
             $disp = $row['disp'];
         }
-        $sql = "SELECT id, nombre, categoria, variedad, pvc, pvp, cantidad, disp FROM productos";
+        $sql = "SELECT * FROM productos";
         $result = mysqli_query($conex, $sql);
-
         ?>
     </div>
     <hr>
@@ -71,13 +70,13 @@ include '../templates/header.php';
 
                     <!-- FILA 1: TIPO DE VENTA -->
                     <div class="w3-container">
-                        <h1># <?php echo $id ?></h1>
+                        <h1># <?php echo $productos['id'] ?></h1>
                     </div>
                     <div class="w3-row w3-section">
                         <div class="w3-col m12 l12 w3-padding">
                             <label for="disp" class="w3-text-theme">Tipo de venta:</label>
                             <select name="disp" id="disp">
-                                <option value=<?php echo $disp ?>><?php echo $disp ?></option>
+                                <option value=<?php echo $productos['disp'] ?>><?php echo $productos['disp'] ?></option>
                                 <option value="Unidades">Unidades</option>
                                 <option value="Granel">Granel</option>
                             </select>
@@ -89,14 +88,14 @@ include '../templates/header.php';
                         <!-- NOMBRE -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $nombre ?>>
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $productos['nombre'] ?>>
                             <small id="info_nombre"></small>
                         </div>
                         <!-- CATEGORIA -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="categoria">Categoría</label>
                             <select name="categoria" class="w3-select w3-white">
-                                <option value=<?php echo $categoria ?>><?php echo $categoria ?></option>
+                                <option value=<?php echo $productos['categoria'] ?>><?php echo $productos['categoria'] ?></option>
                                 <?php
                                 require_once '../../config/functions.php';
                                 $categorias = getCategorias();
@@ -116,7 +115,7 @@ include '../templates/header.php';
                         <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
                             <label for="variedad">Variedad</label>
                             <select name="variedad" class="w3-select w3-white">
-                                <option value=<?php echo $variedad ?>><?php echo $variedad ?></option>
+                                <option value=<?php echo $productos['variedad'] ?>><?php echo $productos['variedad'] ?></option>
                                 <?php
                                 require_once '../../config/functions.php';
                                 $variedades = getVariedades();
@@ -131,14 +130,14 @@ include '../templates/header.php';
                         <!-- PVC -->
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="pvc" class="w3-text-theme">Precio de compra</label>
-                            <input class="w3-input w3-border w3-round" name="pvc" id="pvc" type="text" value=<?php echo $pvc; ?>>
+                            <input class="w3-input w3-border w3-round" name="pvc" id="pvc" type="text" value=<?php echo $productos['pvc']; ?>>
                             <small id="info_pvc"></small>
                         </div>
 
                         <!-- PVP -->
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="pvp" class="w3-text-theme">Precio de venta</label>
-                            <input class="w3-input w3-border w3-round" name="pvp" id="pvp" type="text" value=<?php echo $pvp; ?>>
+                            <input class="w3-input w3-border w3-round" name="pvp" id="pvp" type="text" value=<?php echo $productos['pvp']; ?>>
                             <small id="info_pvp"></small>
                         </div>
                     </div>
@@ -148,7 +147,7 @@ include '../templates/header.php';
                         <!-- CANTIDAD -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="cantidad" class="w3-text-theme">Cantidad</label>
-                            <input class="w3-input w3-border w3-round" name="cantidad" id="cantidad" type="text" value=<?php echo $cantidad; ?>>
+                            <input class="w3-input w3-border w3-round" name="cantidad" id="cantidad" type="text" value=<?php echo $productos['cantidad']; ?>>
                             <small id="info_cantidad"></small>
                         </div>
 

@@ -52,7 +52,7 @@ if (isset($_POST['altaButton'])) {
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large">
+<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">

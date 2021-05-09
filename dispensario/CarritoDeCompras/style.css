@@ -1,14 +1,30 @@
-header {
-    padding: 0px 40px;
-    background-color: #383838;
-    margin-bottom: 40px;
+@font-face {
+    font-family: "FunctionRegular";
+    src: url(FunctionRegular.ttf) format("truetype");
 }
 
+* {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    font-family: FunctionRegular;
+}
+
+header{
+    padding: 0px 40px;
+    background-color: #383838;
+    color: white;
+    margin-bottom: 40px;
+}
 /* Este es un div contiene toda la pagia web, su padre es el body */
 
 #bodyContenedor {
     width: 1024px;
     margin: 0 auto;
+
+    background-color: white;
 }
 
 header {
@@ -20,7 +36,6 @@ header h1 {
     padding-top: 30px;
     padding-bottom: 30px;
 }
-
 /* Este es un div contiene cada producto por separado */
 
 .producto {
@@ -39,14 +54,30 @@ header h1 {
     width: 100px;
 }
 
+.Comprar {
+    color: green;
+}
+
 #carritoDeCompras {
     clear: left;
+
     padding-bottom: 15px;
+
+    border-top: 1px solid #ccc;
 }
 
 #carritoDeCompras div {
     padding-top: 15px;
     padding-bottom: 15px;
+
+    border-bottom: 1px solid #ccc;
+}
+
+#carritoDeCompras img {
+    float: left;
+
+    width: 70px;
+    margin-right: 10px;
 }
 
 #carritoDeCompras h2 h3 {
@@ -61,11 +92,14 @@ header h1 {
 
 #carritoDeCompras button {
     display: inline-block;
-    float: right;
-    margin:  10px;
+    
+
+    margin: 0 10px;
     padding: 5px 15px;
+
     text-align: center;
     text-decoration: none;
+
     color: white;
     border: none;
     background-color: #555555;
@@ -75,7 +109,6 @@ header h1 {
 
 #carritoDeCompras .mas {
     margin-right: 40%;
-    margin-top: 10px;
 }
 
 #carritoDeCompras button:focus {
@@ -88,9 +121,12 @@ header h1 {
 
 #precioTotal {
     float: right;
-    font-size: 150%;
+
+    background-color: white;
+
+    font-size: 200%;
 }
 
-#donJulio {
+#donJulio{
     width: 70px;
 }

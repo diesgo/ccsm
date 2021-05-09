@@ -1,5 +1,5 @@
 <?php
-$titulo = "Editar categoria";
+$titulo = "EDITAR CATEGORIA";
 include '../templates/header.php';
 ?>
 
@@ -8,7 +8,7 @@ include '../templates/header.php';
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> <?php echo $titulo ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         <?php
@@ -53,7 +53,7 @@ include '../templates/header.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large" style="min-height: 570px;">
+<div class="w3-padding-large" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">

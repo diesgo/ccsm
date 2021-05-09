@@ -3,34 +3,7 @@ $titulo = "CCSM | Nuevo rol";
 include '../templates/header.php';
 ?>
 
-<?php
-if (isset($_POST['altaButton'])) {
-    require_once '../../config/config.php';
 
-    $rol = $_POST['rol'];
-    $descripcion = $_POST['descripcion'];
-
-    // Create connection
-
-    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-
-    // Check connection
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $sql = "INSERT INTO roles (rol, descripcion)
-    VALUES ('$rol', '$descripcion')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Se ha creado un nuevo registro";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
 
 <!-- Header -->
 
@@ -39,7 +12,34 @@ if (isset($_POST['altaButton'])) {
         <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i></i> Nuevo rol</b></h2>
     </div>
     <div class="w3-half">
-        <!-- <a class="w3-right w3-button w3-theme-dark w3-border w3-border-theme-dark w3-round w3-hover-white w3-hover-theme-dark w3-hover-text-theme-dark" href="nuevoSocio.php">+ New socios</a> -->
+        <?php
+        if (isset($_POST['altaButton'])) {
+            require_once '../../config/config.php';
+
+            $rol = $_POST['rol'];
+            $descripcion = $_POST['descripcion'];
+
+            // Create connection
+
+            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+
+            // Check connection
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "INSERT INTO roles (rol, descripcion)
+    VALUES ('$rol', '$descripcion')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Se ha creado un nuevo registro";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $conn->close();
+        }
+        ?>
     </div>
     <hr>
 </div>

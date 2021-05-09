@@ -6,73 +6,6 @@ include '../templates/header.php';
 require '../../config/functions.php';
 $socios = getSociosById($_GET['id']);
 ?>
-<!-- <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "greenpower";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Record updated successfully";
-} else {
-    echo "Error updating record: " . $conn->error;
-}
-
-$conn->close();
-?> -->
-<?php
-require "../../config/conexion.php";
-
-if (isset($_POST['actualizar'])) {
-    $id = $socios['id'];
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $dni = $_POST['dni'];
-    $birth = $_POST['birth'];
-    $pais = $_POST['pais'];
-    $genero = $_POST['genero'];
-    $consumo = $_POST['consumo'];
-    $rol = $_POST['rol'];
-    $saldo = $_POST['saldo'];
-
-    $sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
-
-    mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
-} else {
-    if (!isset($_POST['id'])) {
-        $sql = "SELECT min(id) FROM socios";
-        $result = mysqli_query($conex, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $id = $row['min(id)'];
-    } else {
-        $id = $_POST["id"];
-    }
-    $sql = "SELECT * FROM socios WHERE id='$id'";
-    $result = mysqli_query($conex, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $nombre = $row['nombre'];
-    $apellidos = $row['apellidos'];
-    $dni = $row['dni'];
-    $birth = $row['birth'];
-    $pais = $row['pais'];
-    $genero = $row['genero'];
-    $consumo = $row['consumo'];
-    $rol = $row['rol'];
-    $saldo = $row['saldo'];
-}
-$sql = "SELECT * FROM socios";
-$result = mysqli_query($conex, $sql);
-
-?>
 
 <!-- Header -->
 
@@ -81,6 +14,50 @@ $result = mysqli_query($conex, $sql);
         <h2 class="w3-text-theme"><b><i class="fas fa-edit"></i> Editar socio</b></h2>
     </div>
     <div class="w3-half">
+        <?php
+        require "../../config/conexion.php";
+
+        if (isset($_POST['actualizar'])) {
+            $id = $socios['id'];
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $dni = $_POST['dni'];
+            $birth = $_POST['birth'];
+            $pais = $_POST['pais'];
+            $genero = $_POST['genero'];
+            $consumo = $_POST['consumo'];
+            $rol = $_POST['rol'];
+            $saldo = $_POST['saldo'];
+
+            $sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
+
+            mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
+        } else {
+            if (!isset($_POST['id'])) {
+                $sql = "SELECT min(id) FROM socios";
+                $result = mysqli_query($conex, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['min(id)'];
+            } else {
+                $id = $_POST["id"];
+            }
+            $sql = "SELECT * FROM socios WHERE id='$id'";
+            $result = mysqli_query($conex, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $nombre = $row['nombre'];
+            $apellidos = $row['apellidos'];
+            $dni = $row['dni'];
+            $birth = $row['birth'];
+            $pais = $row['pais'];
+            $genero = $row['genero'];
+            $consumo = $row['consumo'];
+            $rol = $row['rol'];
+            $saldo = $row['saldo'];
+        }
+        $sql = "SELECT * FROM socios";
+        $result = mysqli_query($conex, $sql);
+
+        ?>
     </div>
     <hr>
 </div>
@@ -103,7 +80,7 @@ $result = mysqli_query($conex, $sql);
                         <div class="w3-col m12 l12 w3-padding">
                             <label for="genero" class="w3-text-theme">Tratamiento:</label>
                             <select name="genero" id="genero">
-                                <option value=""><?php echo $socios['genero'] ?></option>
+                                <option value=<?php echo $socios['genero'] ?>><?php echo $socios['genero'] ?></option>
                                 <option value="Hombre">Hombre</option>
                                 <option value="Mujer">Mujer</option>
                                 <option value="Otro">Otro</option>
@@ -116,13 +93,13 @@ $result = mysqli_query($conex, $sql);
                         <!-- NOMBRE -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $socios['nombre'] ?>>
+                            <input class="w3-input w3-border w3-round" name="nombre" id="nombre" type="text" value="<?php echo $socios['nombre'] ?>">
                             <small id="info_nombre"></small>
                         </div>
                         <!-- APELLIDOS -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="apellidos" class="w3-text-theme">Apellidos</label>
-                            <input class="w3-input w3-border w3-round" name="apellidos" id="apellidos" type="text" value=<?php echo $socios['apellidos'] ?>>
+                            <input class="w3-input w3-border w3-round" name="apellidos" id="apellidos" type="text" value="<?php echo $socios['apellidos'] ?>">
                             <small id="info_apellidos"></small>
                         </div>
                     </div>
@@ -133,7 +110,7 @@ $result = mysqli_query($conex, $sql);
                         <!-- FECHA DE NACIMIENTO -->
                         <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
                             <label for="birth">Fecha de nacimiento:</label>
-                            <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth">
+                            <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth" value=<?php echo $socios['birth'] ?>>
                             <span class="validity"></span>
                             <p class="fallbackLabel">Fecha de nacimiento:</p>
                             <div class="fallbackDatePicker">
@@ -179,7 +156,7 @@ $result = mysqli_query($conex, $sql);
                             <label for="pais" class="w3-text-theme">Nacionalidad</label>
                             <!-- SELECT PAISES -->
                             <select name="pais" class="w3-select w3-border w3-round w3-white">
-                                <option value=<?php echo $row['pais'] ?>><?php echo $row['pais'] ?></option>
+                                <option value=<?php echo $socios['pais'] ?>><?php echo $socios['pais'] ?></option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
                                 <option value="Albania" id="AL">Albania</option>
                                 <option value="Alemania" id="DE">Alemania</option>
@@ -428,6 +405,7 @@ $result = mysqli_query($conex, $sql);
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="rol">Tipo de socio</label>
                             <select name="rol" id="rol" class="w3-select w3-white" value=<?php echo $socios['rol']; ?>>
+                                <option value=<?php echo $socios['rol'] ?>><?php echo $socios['rol'] ?></option>
                                 <?php
                                 require_once '../../config/functions.php';
                                 $roles = getRoles();
@@ -504,8 +482,8 @@ $result = mysqli_query($conex, $sql);
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">
                     <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
-                    <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
+                    <a class="w3-button w3-theme w3-round" href="index.php">Volver</a>
+                    <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
                 </div>
             </form>
         </div>
@@ -516,16 +494,3 @@ $result = mysqli_query($conex, $sql);
 <?php
 include '../templates/footer.php';
 ?>
-
-<!-- !PAGE CONTENT! -->
-<form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaio" id="altaio">
-    <!-- FICHA SOCIO  -->
-    <div class="w3-content w3-padding">
-
-    </div>
-    <div class="w3-row w3-padding-32 w3-center">
-        <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
-        <!-- <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
-    </div>
-</form>

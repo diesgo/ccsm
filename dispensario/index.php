@@ -21,7 +21,7 @@ include "../templates/header.php"
 
             <div class="w3-cell w3-padding">
                 <div class="w3-container w3-padding w3-center">
-                    <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button" href="#" style="text-decoration:none; width: 150px; padding: 32px 16px;">
+                    <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button" href="dispensar.php" style="text-decoration:none; width: 150px; padding: 32px 16px;">
                         <i class="fas fa-cannabis w3-jumbo"></i>
                         <p>weed</p>
                     </a>

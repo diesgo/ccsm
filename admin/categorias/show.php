@@ -12,7 +12,7 @@ include '../templates/header.php';
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-eye"></i> <?php echo $titulo ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
  
@@ -20,7 +20,7 @@ include '../templates/header.php';
     <hr>
 </div>
 
-<div id="ficha_categoria" class="w3-container w3-padding w3-margin-bottom" style="min-height: 570px;">
+<div id="ficha_categoria" class="w3-container w3-padding w3-margin-bottom" style="min-height: 636 px;">
     <div class="w3-display-container w3-padding w3-center" style="height: 200px;">
         <div class="w3-display-middle  w3-border w3-round w3-border-theme">
             <div class="w3-cell w3-padding-large w3-center">

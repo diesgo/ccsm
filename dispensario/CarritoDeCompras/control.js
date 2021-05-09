@@ -18,7 +18,7 @@ function anadirCarrito(id, img, des, precio, cantidad) {
 }
 
 for (var i = 0; i < document.getElementsByClassName("producto").length; i++) {
-    document.getElementsByClassName("producto")[i].onclick = function () {
+    document.getElementsByClassName("producto")[i].onclick = function() {
         this.dataset.cantidad++;
         anadirCarrito(this.dataset.idproducto, this.dataset.img, this.dataset.des, this.dataset.precio, this.dataset.cantidad);
         precioTotal = precioTotal + carrito.precio;
@@ -38,11 +38,9 @@ for (var i = 0; i < document.getElementsByClassName("producto").length; i++) {
 
 function actualizador() {
     //Agregar imagen a carrito de compras
-
     // compraImg = document.createElement("img");
     // compraImg.setAttribute("src", carrito.img);
     // document.getElementById(carrito.id).appendChild(compraImg);
-    
     //Agregar Boton "+" a carrito de compras
     compraDes = document.createElement("button");
     compraDes.setAttribute("class", "mas");
@@ -68,17 +66,15 @@ function actualizador() {
     compraDes.innerHTML = "Cantidad: ";
     document.getElementById(carrito.id).appendChild(compraDes);
     //Agregar Producto a carrito de compras
-    compraDes = document.createElement("p");
+    compraDes = document.createElement("h5");
     compraDes.innerHTML = "Producto: " + carrito.id;
     document.getElementById(carrito.id).appendChild(compraDes);
     //Agregar Descripción a carrito de compras
-    
-    // compraDes = document.createElement("p");
-    // compraDes.innerHTML = carrito.des;;
-    // document.getElementById(carrito.id).appendChild(compraDes);
-    
-    //Agregar Precio a carrito de compras
     compraDes = document.createElement("p");
+    compraDes.innerHTML = carrito.des;;
+    document.getElementById(carrito.id).appendChild(compraDes);
+    //Agregar Precio a carrito de compras
+    compraDes = document.createElement("h3");
     compraDes.innerHTML = "Precio: " + carrito.precio;
     document.getElementById(carrito.id).appendChild(compraDes);
 }

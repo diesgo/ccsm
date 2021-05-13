@@ -13,12 +13,12 @@ $productos = getProductosById($_GET['id']);
         <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
-        
+
     </div>
     <hr>
 </div>
 
-<div id="ficha_articulo" class="w3-container w3-padding w3-margin-bottom">
+<div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
     <div class="w3-content w3-padding">
         <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
             <div class="w3-row-padding">

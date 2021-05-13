@@ -1,8 +1,9 @@
 <?php
 $titulo = "EDITAR CATEGORIA";
 include '../templates/header.php';
+require '../../config/functions.php';
+$categoria = getCategoriasById($_GET['id']);
 ?>
-
 
 <!-- Header -->
 
@@ -12,20 +13,14 @@ include '../templates/header.php';
     </div>
     <div class="w3-half">
         <?php
-        require '../../config/functions.php';
-        $categoria = getCategoriasById($_GET['id']);
         require "../../config/conexion.php";
-
         if (isset($_POST['actualizar'])) {
-
             $id = $categoria['id'];
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $icono = $_POST['icono'];
-
             $sql = "UPDATE categorias SET nombre ='" . $nombre . "',descripcion='" . $descripcion . "',icono='" . $icono . "' WHERE id=" . $id . ";";
-            echo $sql;
-
+            echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
@@ -39,13 +34,12 @@ include '../templates/header.php';
             $sql = "SELECT nombre, descripcion, icono FROM categorias WHERE id='$id'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
-            $caregoria = $row['nombre'];
+            $nombre = $row['nombre'];
             $descripcion = $row['descripcion'];
             $icono = $row['icono'];
         }
         $sql = "SELECT * FROM categorias";
         $result = mysqli_query($conex, $sql);
-
         ?>
     </div>
     <hr>
@@ -53,7 +47,7 @@ include '../templates/header.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large" style="min-height: 636px;">
+<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">

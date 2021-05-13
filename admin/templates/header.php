@@ -101,16 +101,26 @@
              <a href="/club/admin/home/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-home"></i> Home</a>
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-boxes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
              <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
-                 <a href="/club/admin/categorias/index.php" class="w3-bar-item w3-button w3-hover-theme">Categorias</a>
                  <a href="/club/admin/productos/index.php" class="w3-bar-item w3-button w3-hover-theme">Productos</a>
              </div>
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('configuracion')"><i class="fa fa-cog fa-fw"></i> Configuración <i class="w3-right fa fa-caret-down"></i></button>
              <div id="configuracion" class="w3-hide w3-white w3-theme-l2">
+                 <a href="/club/admin/variedades/index.php" class="w3-bar-item w3-button w3-hover-theme">Variedades</a>
+                 <a href="/club/admin/categorias/index.php" class="w3-bar-item w3-button w3-hover-theme">Categorias</a>
                  <a href="/club/admin/roles/index.php" class="w3-bar-item w3-button w3-hover-theme">Roles</a>
                  <a href="#" class="w3-bar-item w3-button w3-hover-theme">Tarifas</a>
              </div>
+             <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('personalizar')"><i class="fa fa-cog fa-fw"></i> Personalizar <i class="w3-right fa fa-caret-down"></i></button>
+             <div id="personalizar" class="w3-hide w3-white w3-theme-l2">
+                 <a href="/club/admin/setings/color.php" class="w3-bar-item w3-button w3-hover-theme">Esquemas de color</a>
+                 <a href="/club/admin/setings/fuente.php" class="w3-bar-item w3-button w3-hover-theme">Fuentes</a>
+             </div>
+             <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('socios')"><i class="fa fa-users a-fw"></i> Socios <i class="w3-right fa fa-caret-down"></i></button>
+             <div id="socios" class="w3-hide w3-white w3-theme-l2">
+                 <a href="/club/admin/socios/index.php" class="w3-bar-item w3-button w3-hover-theme">Listado de socios</a>
+                 <a href="/club/admin/socios/create.php" class="w3-bar-item w3-button w3-hover-theme">Nuevo socio</a>
+             </div>
              <div class="w3-bar-block">
-                 <a href="/club/admin/socios/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-users a-fw"></i> Socios</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-chart-line"></i> Statistics</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-gem"></i> Orders</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-bell fa-fw"></i> News</a>

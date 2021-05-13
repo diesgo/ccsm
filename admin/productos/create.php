@@ -16,7 +16,7 @@ include '../templates/header.php';
 
             $nombre = $_POST['nombre'];
             $categoria = $_POST['categoria'];
-            $variedad = $_POST['nombre'];
+            $variedad = $_POST['variedad'];
             $pvc = $_POST['pvc'];
             $pvp = $_POST['pvp'];
             $cantidad = $_POST['cantidad'];
@@ -49,7 +49,7 @@ include '../templates/header.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large" style="min-height: 570px;">
+<div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">

@@ -1,5 +1,5 @@
 <?php
-$titulo = "Socios | CCSM";
+$titulo = "SOCIOS";
 include '../templates/header.php';
 ?>
 
@@ -7,7 +7,7 @@ include '../templates/header.php';
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Socios</b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
         <a class="w3-right w3-button w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme" href="create.php">+ New socios</a>
@@ -18,7 +18,7 @@ include '../templates/header.php';
 <!-- !PAGE CONTENT! -->
 
 <div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
-    <table class="w3-table w3-striped w3-bordered w3-border w3-border-theme w3-centered">
+    <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
         <thead>
             <tr class="w3-theme">
                 <th>ID</th>

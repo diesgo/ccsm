@@ -1,8 +1,6 @@
 <?php
 $titulo = "EDITAR PRODUCTO";
 include '../templates/header.php';
-?>
-<?php
 require '../../config/functions.php';
 $productos = getProductosById($_GET['id']);
 ?>
@@ -15,8 +13,7 @@ $productos = getProductosById($_GET['id']);
     </div>
     <div class="w3-half">
         <?php
-        require "../../config/conexion.php";
-
+        require '../../config/conexion.php';
         if (isset($_POST['actualizar'])) {
             $id = $productos['id'];
             $nombre = $_POST['nombre'];
@@ -26,9 +23,8 @@ $productos = getProductosById($_GET['id']);
             $pvp = $_POST['pvp'];
             $cantidad = $_POST['cantidad'];
             $disp = $_POST['disp'];
-
             $sql = "UPDATE productos SET nombre ='" . $nombre . "', categoria='" . $categoria . "', variedad='" . $variedad . "', pvc='" . $pvc . "', pvp='" . $pvp . "', cantidad='" . $cantidad . "', disp='" . $disp . "' WHERE id=" . $id . ";";
-
+            echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
@@ -60,7 +56,7 @@ $productos = getProductosById($_GET['id']);
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large">
+<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
@@ -70,7 +66,7 @@ $productos = getProductosById($_GET['id']);
 
                     <!-- FILA 1: TIPO DE VENTA -->
                     <div class="w3-container">
-                        <h1># <?php echo $productos['id'] ?></h1>
+                        <h1 style="text-transform: uppercase;"><?php echo $productos['nombre'] ?> # <?php echo $productos['id'] ?></h1>
                     </div>
                     <div class="w3-row w3-section">
                         <div class="w3-col m12 l12 w3-padding">
@@ -113,7 +109,7 @@ $productos = getProductosById($_GET['id']);
 
                         <!-- VARIEDAD -->
                         <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
-                            <label for="variedad">Variedad</label>
+                            <label for="variedad" class="w3-text-theme">Variedad</label>
                             <select name="variedad" class="w3-select w3-white">
                                 <option value=<?php echo $productos['variedad'] ?>><?php echo $productos['variedad'] ?></option>
                                 <?php

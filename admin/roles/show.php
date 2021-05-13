@@ -1,34 +1,32 @@
 <?php
-$titulo = "Mostrar rol | CCSM";
+$titulo = "MOSTRAR ROL";
 include '../templates/header.php';
 ?>
-
-<?php require_once '../../config/functions.php'; ?>
-
-<?php $rol = getRolesById($_GET['id']); ?>
+<?php require_once '../../config/functions.php';
+$rol = getRolesById($_GET['id']); ?>
 
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><i class="fas fa-eye"></i> Mostrar rol</b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $titulo?></b></h2>
     </div>
     <div class="w3-half">
-      
+
     </div>
     <hr>
 </div>
 
-<div id="ficha_rol" class="w3-container w3-padding w3-margin-bottom">
+<div id="ficha_rol" class="w3-container w3-padding" style="min-height: 636px;">
     <div class="w3-content w3-padding">
         <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
             <div class="w3-row-padding">
                 <div class="w3-col l4 w3-padding-large">
-                    
+
                 </div>
                 <div class="w3-col l8">
                     <p class="w3-text-theme w3-xlarge">Rol # <span><?php echo $rol['id']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Rol: <span class="w3-text-grey"><?php echo $rol['rol']; ?></span></p>
+                    <p class="w3-text-theme w3-large">Rol: <span class="w3-text-grey"><?php echo $rol['nombre']; ?></span></p>
                     <p class="w3-text-theme w3-large">Descripción: <span class="w3-text-grey"><?php echo $rol['descripcion']; ?></span></p>
                 </div>
             </div>

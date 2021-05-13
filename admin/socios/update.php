@@ -26,10 +26,11 @@ $socios = getSociosById($_GET['id']);
             $pais = $_POST['pais'];
             $genero = $_POST['genero'];
             $consumo = $_POST['consumo'];
-            $rol = $_POST['rol'];
+            $rol = $_POST['nombre'];
             $saldo = $_POST['saldo'];
 
             $sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
+            echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
 
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
@@ -56,7 +57,6 @@ $socios = getSociosById($_GET['id']);
         }
         $sql = "SELECT * FROM socios";
         $result = mysqli_query($conex, $sql);
-
         ?>
     </div>
     <hr>
@@ -64,7 +64,7 @@ $socios = getSociosById($_GET['id']);
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large">
+<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
@@ -411,7 +411,7 @@ $socios = getSociosById($_GET['id']);
                                 $roles = getRoles();
                                 foreach ($roles as $rol) :
                                 ?>
-                                    <option value=<?php echo $rol['rol'] ?>><?php echo $rol['rol'] ?></option>
+                                    <option value=<?php echo $rol['nombre'] ?>><?php echo $rol['nombre'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

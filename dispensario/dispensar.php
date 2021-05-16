@@ -1,4 +1,4 @@
-<?php include '../templates/header.php' ?>
+<?php include '../templates/header_shop.php' ?>
 <script>
     window.onload = function() {
         // Variables
@@ -6,25 +6,25 @@
                 id: 1,
                 nombre: 'Patata',
                 precio: 1,
-                imagen: 'patata.jpg'
+                imagen: '0.jpg'
             },
             {
                 id: 2,
                 nombre: 'Cebolla',
                 precio: 1.2,
-                imagen: 'cebolla.jpg'
+                imagen: '1.jpg'
             },
             {
                 id: 3,
                 nombre: 'Calabacin',
                 precio: 2.1,
-                imagen: 'calabacin.jpg'
+                imagen: '2.jpg'
             },
             {
                 id: 4,
                 nombre: 'Fresas',
                 precio: 0.6,
-                imagen: 'fresas.jpg'
+                imagen: '3.jpg'
             }
 
         ];
@@ -45,7 +45,7 @@
             baseDeDatos.forEach((info) => {
                 // Estructura
                 const miNodo = document.createElement('div');
-                miNodo.classList.add('w3-card', 'w3-col', 'l3', 'm3');
+                miNodo.classList.add('w3-col', 'l2', 'm2');
                 // Body
                 const miNodoCardBody = document.createElement('div');
                 miNodoCardBody.classList.add('w3-padding');
@@ -56,7 +56,7 @@
                 // Imagen
                 const miNodoImagen = document.createElement('img');
                 miNodoImagen.classList.add('w3-image');
-                miNodoImagen.setAttribute('src', info.imagen);
+                miNodoImagen.setAttribute('src', '../img/p/' + info.imagen);
                 // Precio
                 const miNodoPrecio = document.createElement('p');
                 miNodoPrecio.classList.add('card-text');
@@ -112,7 +112,7 @@
                 }, 0);
                 // Creamos el nodo del item del carrito
                 const miNodo = document.createElement('li');
-                miNodo.classList.add('list-group-item', 'text-right', 'w3-margin');
+                miNodo.classList.add('list-group-item', 'text-right');
                 miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}€`;
                 // Boton de borrar
                 const miBoton = document.createElement('button');
@@ -185,16 +185,105 @@
 <div class="w3-container">
     <div class="w3-row">
         <!-- Elementos generados a partir del JSON -->
-        <main id="items" class="w3-col l9 m9 w3-row"></main>
+        <main id="items" class="w3-col l9 m9 w3-row">
+            <!-- CABECERA -->
+
+            <div class="w3-margin-top">
+                <div class="w3-container w3-center">
+                    <div class="w3-quarter">
+                        <a href="index.php"><img src="../img/ccms_logo.png" alt="C C M S" class="w3-image" width="60"></a>
+
+                    </div>
+                    <div class="w3-half w3-padding">
+                        <h3 class="w3-text-theme w3-white w3-border w3-border-theme w3-round">Cannabis Club System Management</h3>
+                    </div>
+                </div>
+
+                <!-- MENÚ -->
+
+                <div class="w3-container">
+                    <div class="w3-cell-row" style="margin:0 auto; padding: 0 23%;">
+
+                        <!-- DISPENSARIO -->
+
+                        <div class="w3-cell w3-center w3-mobile">
+
+                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="menu.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                <i class="fas fa-store w3-xxlarge"></i>
+                                <p class="w3-small" style="margin:0;">Menu</p>
+                            </a>
+
+                        </div>
+
+                        <!-- ADMINISTRACIÓN -->
+
+                        <div class="w3-cell w3-center w3-mobile">
+
+                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/home/index.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                <i class="fas fa-cogs w3-xxlarge"></i>
+                                <p class="w3-small" style="margin:0;">Administración</p>
+                            </a>
+
+                        </div>
+
+                        <div class="w3-cell w3-center w3-mobile">
+
+                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="stock.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                <i class="fas fa-seedling w3-xxlarge"></i>
+                                <p class="w3-small" style="margin:0;">Stock</p>
+                            </a>
+
+                        </div>
+
+                        <!-- Socios -->
+
+                        <div class="w3-cell w3-center w3-mobile">
+
+                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="socios.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                <i class="fas fa-user-cog w3-xxlarge"></i>
+                                <p class="w3-small" style="margin:0;">Socios</p>
+                            </a>
+
+                        </div>
+
+                        <!-- Administración -->
+
+                        <div class="w3-cell w3-center w3-mobile">
+
+                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/gestionarSocios.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                <i class="fas fa-chart-line w3-xxlarge"></i>
+                                <p class="w3-small" style="margin:0;">Finanzas</p>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
         <!-- Carrito -->
         <aside class="w3-col l3 m3">
-            <h2>Carrito</h2>
-            <!-- Elementos del carrito -->
-            <ul id="carrito" class="list-group"></ul>
-            <hr>
-            <!-- Precio total -->
-            <p class="text-right">Total: <span id="total"></span>&euro;</p>
-            <button id="boton-vaciar" class="w3-button w3-red">Vaciar</button>
+            <div class="w3-row-padding">
+                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                    <div class="w3-col l6 m6">
+                        <input type="text">
+                    </div>
+                    <div class="w3-col l6 m6">
+                        <input type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row-padding w3-margin-top">
+                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                    <h2>Carrito</h2>
+                    <!-- Elementos del carrito -->
+                    <ul id="carrito" class="list-group"></ul>
+                    <hr>
+                    <!-- Precio total -->
+                    <p class="text-right">Total: <span id="total"></span>&euro;</p>
+                    <button id="boton-vaciar" class="w3-button w3-red">Vaciar</button>
+                </div>
+            </div>
         </aside>
     </div>
 </div>

@@ -60,7 +60,7 @@ if (isset($_POST['altaButton'])) {
                 <div class="w3-content w3-padding">
                     <!-- FILA 1: TRATAMIENTO -->
                     <div class="w3-row w3-section">
-                        <div class="w3-col m12 l12 w3-padding">
+                        <div class="w3-col m3 l3 w3-padding">
                             <legend>Tratamiento:</legend>
                             <input class="w3-radio" type="radio" name="genero" value="Hombre" checked>
                             <label>Sr.</label>
@@ -69,26 +69,8 @@ if (isset($_POST['altaButton'])) {
                             <input class="w3-radio" type="radio" name="genero" value="otro">
                             <label>Otro</label>
                         </div>
-                    </div>
-                    <!-- FILA 2: NOMBRE Y APELLIDO -->
-                    <div class="w3-row">
-                        <!-- NOMBRE -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for='nombre'>Nombre</label>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='Nombre / Name'>
-                            <small id="info_nombre"></small>
-                        </div>
-                        <!-- APELLIDOS -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for="apellidos">Apellidos</label>
-                            <input class="w3-input w3-border w3-round" name="apellidos" id="apellidos" type="text" placeholder="Apellido / Surname">
-                            <small id="info_apellidos"></small>
-                        </div>
-                    </div>
-                    <!-- FILA 3: BIRTH, DNI, PAIS -->
-                    <div class="w3-row">
                         <!-- FECHA DE NACIMIENTO -->
-                        <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
+                        <div class="w3-col m3 l3 s12 w3-padding nativeDatePicker">
                             <label for="birth">Fecha de nacimiento:</label>
                             <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth">
                             <span class="validity"></span>
@@ -123,18 +105,33 @@ if (isset($_POST['altaButton'])) {
                             </div>
                             <small id="info_birth"></small>
                         </div>
+                    </div>
+                    <!-- FILA 2: NOMBRE Y APELLIDO -->
+                    <div class="w3-row w3-section">
+                        <!-- NOMBRE -->
+                        <div class="w3-col m3 l3 s12 w3-padding">
+                            <label for='nombre'>Nombre</label>
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='Nombre / Name'>
+                            <small id="info_nombre"></small>
+                        </div>
+                        <!-- APELLIDOS -->
+                        <div class="w3-col m3 l3 s12 w3-padding">
+                            <label for="apellidos">Apellidos</label>
+                            <input class="w3-input w3-border w3-round" name="apellidos" id="apellidos" type="text" placeholder="Apellido / Surname">
+                            <small id="info_apellidos"></small>
+                        </div>
                         <!-- DNI -->
-                        <div class="w3-col l4 m4 s12 w3-padding">
+                        <div class="w3-col l3 m3 s12 w3-padding">
                             <label for="dni">DNI / ID</label>
                             <input class="w3-input w3-border w3-round" name="dni" id="dni" type="text" placeholder="DNI - NIE">
                             <small id="info_dni"></small>
                         </div>
                         <!-- NACIONALIDAD -->
-                        <div class="w3-col l4 m4 s12 w3-padding">
+                        <div class="w3-col l3 m3 s12 w3-padding">
                             <label for="pais">Nacionalidad</label>
                             <!-- SELECT PAISES -->
                             <select name="pais" class="w3-select w3-border w3-round w3-white">
-                                <option value="" id="AF">Elegir opción</option>
+                                <option value="">Elegir opción</option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
                                 <option value="Albania" id="AL">Albania</option>
                                 <option value="Alemania" id="DE">Alemania</option>
@@ -376,7 +373,7 @@ if (isset($_POST['altaButton'])) {
                         </div>
                     </div>
                     <!-- FILA 5: ROL, CUOTA, CONSUMO MENSUAL, SALDO -->
-                    <div class="w3-row">
+                    <div class="w3-row w3-section">
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
                             <label for="rol">Tipo de socio</label>

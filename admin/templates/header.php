@@ -34,6 +34,12 @@
          box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
      }
 
+     label,
+     legend,
+     th,
+     button,
+     input[type="submit"],
+     a,
      h1,
      h2,
      h3,
@@ -126,7 +132,7 @@
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-bell fa-fw"></i> News</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-university"></i> General</a>
                  <a href="#" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fa fa-history fa-fw"></i> History</a>
-                 <a href="/club/admin/setings/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-sliders-h"></i> Ajustes</a><br><br>
+                 <a href="/club/admin/setings/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-sliders-h"></i> Apariencia</a><br><br>
              </div>
          </div>
      </nav>

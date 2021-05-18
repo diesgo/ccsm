@@ -16,7 +16,6 @@ include '../templates/header.php';
 </div>
 
 <!-- !PAGE CONTENT! -->
-
 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
         <thead>
@@ -29,7 +28,9 @@ include '../templates/header.php';
                 <th>PVP</th>
                 <th>Cantidad</th>
                 <th>Tipo de venta</th>
+                <th>Peso bote</th>
                 <th>Editar</th>
+                <th>Recargar</th>
                 <th>Estado</th>
             </tr>
         </thead>
@@ -39,22 +40,28 @@ include '../templates/header.php';
         foreach ($productos as $producto) :
         ?>
             <tr>
-                <td style="width: 10%;"><?php echo $producto['id'] ?></td>
-                <td style="width: 10%"><?php echo $producto['nombre'] ?></td>
-                <td style="width: 10%"><?php echo $producto['categoria'] ?></td>
-                <td style="width: 10%"><?php echo $producto['variedad'] ?></td>
-                <td style="width: 10%"><?php echo $producto['pvc'] ?> €</td>
-                <td style="width: 10%"><?php echo $producto['pvp'] ?> €</td>
-                <td style="width: 10%"><?php echo $producto['cantidad'] ?> Kg.</td>
-                <td style="width: 10%"><?php echo $producto['disp'] ?></td>
-                <td style="width: 10%">
+                <td style="width: 5%;"><?php echo $producto['id'] ?></td>
+                <td style="width: 15%"><?php echo $producto['nombre'] ?></td>
+                <td style="width: 5%"><?php echo $producto['categoria'] ?></td>
+                <td style="width: 5%"><?php echo $producto['variedad'] ?></td>
+                <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
+                <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
+                <td style="width: 5%"><?php echo $producto['cantidad'] ?> Kg.</td>
+                <td style="width: 5%"><?php echo $producto['disp'] ?></td>
+                <td style="width: 5%;"><?php echo $producto['bote'] ?></td>
+                <td style="width: 5%">
                     <a href="update.php?id=<?php echo $producto['id'] ?>">
                         <i class="fas fa-user-edit w3-text-theme"></i>
                     </a>
                 </td>
-                <td style="width: 10%">
+                <td style="width: 5%;">
+                    <a href="charge.php?id=<?php echo $producto['id'] ?>">
+                        <i class="fas fa-balance-scale w3-text-theme"></i>
+                    </a>
+                </td>
+                <td style="width: 5%">
                     <a href="show.php?id=<?php echo $producto['id'] ?>">
-                        <i class="fas fa-eye"></i>
+                        <i class="fas fa-eye w3-text-theme"></i>
                     </a>
                 </td>
             </tr>

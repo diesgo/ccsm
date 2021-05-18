@@ -1413,6 +1413,10 @@ a {
     margin-bottom: 16px !important
 }
 
+.w3-margin-0 {
+    margin: 0px !important
+}
+
 .w3-margin {
     margin: 16px !important
 }

@@ -5,7 +5,7 @@ require '../../config/functions.php';
 $productos = getProductosById($_GET['id']);
 ?>
 
-<!-- Header -->
+<!-- HEADER -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
@@ -16,15 +16,11 @@ $productos = getProductosById($_GET['id']);
         require '../../config/conexion.php';
         if (isset($_POST['actualizar'])) {
             $id = $productos['id'];
-            $nombre = $_POST['nombre'];
-            $categoria = $_POST['categoria'];
-            $variedad = $_POST['variedad'];
-            $pvc = $_POST['pvc'];
+            $bote = $productos['bote'];
+            $pvc = $productos['pvc'];
             $pvp = $_POST['pvp'];
-            $cantidad = $_POST['cantidad'];
-            $disp = $_POST['disp'];
-            $sql = "UPDATE productos SET nombre ='" . $nombre . "', categoria='" . $categoria . "', variedad='" . $variedad . "', pvc='" . $pvc . "', pvp='" . $pvp . "', cantidad='" . $cantidad . "', disp='" . $disp . "' WHERE id=" . $id . ";";
-            echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
+            $sql = "UPDATE productos SET bote ='" . $bote . "', pvc ='" . $pvc . "', pvp='" . $pvp . "' WHERE id=" . $id . ";";
+            echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
@@ -35,23 +31,18 @@ $productos = getProductosById($_GET['id']);
             } else {
                 $id = $_POST["id"];
             }
-            $sql = "SELECT * FROM productos WHERE id='$id'";
+            $sql = "SELECT id, bote, pvc, pvp FROM productos WHERE id='$id'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
             $id = $row['id'];
-            $nombre = $row['nombre'];
-            $categoria = $row['categoria'];
-            $variedad = $row['variedad'];
+            $bote = $row['bote'];
             $pvc = $row['pvc'];
             $pvp = $row['pvp'];
-            $cantidad = $row['cantidad'];
-            $disp = $row['disp'];
         }
-        $sql = "SELECT * FROM productos";
+        $sql = "SELECT id, bote, pvc, pvp FROM productos";
         $result = mysqli_query($conex, $sql);
         ?>
     </div>
-    <hr>
 </div>
 
 <!-- !PAGE CONTENT! -->
@@ -59,117 +50,91 @@ $productos = getProductosById($_GET['id']);
 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
-            <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
-
+            <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="updateProducts" id="updateProducts">
                 <!-- FICHA PRODUCTO  -->
-                <div class="w3-content w3-padding">
+                <div class="w3-container">
 
-                    <!-- FILA 1: TIPO DE VENTA -->
-                    <div class="w3-container">
-                        <h1 style="text-transform: uppercase;"><?php echo $productos['nombre'] ?> # <?php echo $productos['id'] ?></h1>
-                    </div>
-                    <div class="w3-row w3-section">
-                        <div class="w3-col m12 l12 w3-padding">
-                            <label for="disp" class="w3-text-theme">Tipo de venta:</label>
-                            <select name="disp" id="disp">
-                                <option value=<?php echo $productos['disp'] ?>><?php echo $productos['disp'] ?></option>
-                                <option value="Unidades">Unidades</option>
-                                <option value="Granel">Granel</option>
-                            </select>
+                    <!-- SECCIÓN NULA -->
+
+                    <div class="w3-quarter">
+                        <div class="w3-container">
+
                         </div>
                     </div>
 
-                    <!-- FILA 2: NOMBRE Y CATEGORIA -->
-                    <div class="w3-row">
-                        <!-- NOMBRE -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $productos['nombre'] ?>>
-                            <small id="info_nombre"></small>
-                        </div>
-                        <!-- CATEGORIA -->
-                        <div class="w3-col m6 l6 s12 w3-padding">
-                            <label for="categoria">Categoría</label>
-                            <select name="categoria" class="w3-select w3-white">
-                                <option value=<?php echo $productos['categoria'] ?>><?php echo $productos['categoria'] ?></option>
-                                <?php
-                                require_once '../../config/functions.php';
-                                $categorias = getCategorias();
-                                foreach ($categorias as $categoria) :
-                                ?>
-                                    <option value="<?php echo $categoria['nombre'] ?>"><?php echo $categoria['nombre'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <small id="info_categoria"></small>
-                        </div>
-                    </div>
+                    <!--SECCIÓN CENTRAL -->
 
-                    <!-- FILA 3: VARIEDAD, PVC y PVP -->
-                    <div class="w3-row">
-
-                        <!-- VARIEDAD -->
-                        <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
-                            <label for="variedad" class="w3-text-theme">Variedad</label>
-                            <select name="variedad" class="w3-select w3-white">
-                                <option value=<?php echo $productos['variedad'] ?>><?php echo $productos['variedad'] ?></option>
-                                <?php
-                                require_once '../../config/functions.php';
-                                $variedades = getVariedades();
-                                foreach ($variedades as $variedad) :
-                                ?>
-                                    <option value=<?php echo $variedad['nombre'] ?>><?php echo $variedad['nombre'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <small id="info_variedad"></small>
+                    <div class="w3-half">
+                        <div class="w3-row-padding">
+                            <div class="w3-col l2 m2">
+                                <div class="w3-container"></div>
+                            </div>
+                            <!-- NOMBRE Y TIPO DE VENTA -->
+                            <div class="w3-col l5 m5">
+                                <h2 style="text-transform: uppercase;" class="w3-center w3-text-theme"><?php echo $productos['nombre'] ?> # <?php echo $productos['id'] ?></h2>
+                                <h4 class="w3-center w3-text-theme">Tipo de servicio: <span style="text-transform: capitalize;"><?php echo $productos['disp'] ?></span></h4>
+                            </div>
+                            <!-- PESO BOTE -->
+                            <div class="w3-col l3 m3 w3-margin-top">
+                                <div iclass="w3-col m2 l2 w3-padding w3-hide">
+                                    <label for="bote" class="w3-text-theme">Peso del bote</label>
+                                    <input id="bote" type="text" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" name="bote" value=<?php echo $productos['bote'] ?> disabled>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- PVC -->
-                        <div class="w3-col l4 m4 s12 w3-padding">
-                            <label for="pvc" class="w3-text-theme">Precio de compra</label>
-                            <input class="w3-input w3-border w3-round" name="pvc" id="pvc" type="text" value=<?php echo $productos['pvc']; ?>>
-                            <small id="info_pvc"></small>
-                        </div>
-
-                        <!-- PVP -->
-                        <div class="w3-col l4 m4 s12 w3-padding">
-                            <label for="pvp" class="w3-text-theme">Precio de venta</label>
-                            <input class="w3-input w3-border w3-round" name="pvp" id="pvp" type="text" value=<?php echo $productos['pvp']; ?>>
-                            <small id="info_pvp"></small>
-                        </div>
-                    </div>
-                    <!-- FILA 4 -->
-                    <div class="w3-row">
-
-                        <!-- CANTIDAD -->
-                        <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="cantidad" class="w3-text-theme">Cantidad</label>
-                            <input class="w3-input w3-border w3-round" name="cantidad" id="cantidad" type="text" value=<?php echo $productos['cantidad']; ?>>
-                            <small id="info_cantidad"></small>
-                        </div>
-
-                        <!--  -->
-                        <div class="w3-col m3 l3 s12 w3-padding">
-                        </div>
-
-                        <!--  -->
-                        <div class="w3-col m3 l3 s12 w3-padding">
-                        </div>
-
-                        <!--  -->
-                        <div class="w3-col m3 l3 s12 w3-padding">
+                        <div class="w3-container">
+                            <!-- PVC -->
+                            <div class="w3-third w3-padding">
+                                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                                    <label for="pvc" class="w3-text-theme">Precio actual de compra</label>
+                                    <input id="pvc" type="text" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" name="pvc" value=<?php echo $productos['pvc'] ?> disabled>
+                                    <input type="button" class="w3-input w3-theme w3-border w3-border-theme w3-round w3-margin-bottom w3-hover-white w3-hover-text-theme" name="changePvc" value="Cambiar" onclick="update('pvc');">
+                                </div>
+                            </div>
+                            <!-- PVP -->
+                            <div class="w3-third w3-padding">
+                                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                                    <label for="pvp" class="w3-text-theme">Precio actual de venta</label>
+                                    <input id="pvp" type="text" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" name="pvp" value=<?php echo $productos['pvp'] ?> disabled>
+                                    <input type="button" class="w3-input w3-theme w3-border w3-border-theme w3-round w3-margin-bottom w3-hover-white w3-hover-text-theme" name="changePvp" value="Cambiar" onclick="update('pvp');">
+                                </div>
+                            </div>
+                            <!-- CANTIDAD -->
+                            <div class="w3-third w3-padding">
+                                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                                    <label for="cantidad" class="w3-text-theme">Stock actual</label>
+                                    <input type="text" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" name="cantidad" value=<?php echo $productos['cantidad'] ?> disabled>
+                                    <a href="charge.php?id=<?php echo $productos['id'] ?>" class="w3-button w3-bar w3-theme w3-border w3-border-theme w3-round w3-margin-bottom w3-hover-white w3-hover-text-theme">Recargar</a>
+                                </div>
+                            </div>
+                            <script>
+                                function update(id) {
+                                    let x = document.getElementById(id);
+                                    x.removeAttribute('disabled');
+                                }
+                            </script>
                         </div>
                     </div>
 
+                    <!-- SECCIÓN NULA -->
+
+                    <div class="w3-quarter">
+                        <div class="w3-container">
+
+                        </div>
+                    </div>
                 </div>
-                <div class="w3-row w3-padding-32 w3-center">
-                    <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-theme w3-round">
-                    <a href="index.php" class="w3-button w3-theme w3-round">Volver</a>
+                <div class="w3-container w3-padding-32 w3-center">
+                    <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-border w3-border-theme w3-theme w3-round w3-hover-white w3-hover-text-theme">
+                    <a href="index.php" class="w3-button w3-border w3-border-theme w3-theme w3-round w3-hover-white w3-hover-text-theme">Volver</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- !End page content! -->
+
+<!-- !END PAGE CONTENT! -->
+
 <?php
 include '../templates/footer.php';
 ?>

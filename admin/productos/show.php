@@ -8,7 +8,7 @@ $productos = getProductosById($_GET['id']);
 ?>
 <!-- Header -->
 
-<div class="w3-container w3-padding-32 w3-theme-light">
+<div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
         <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>

@@ -133,6 +133,12 @@ function getProductosById($id){
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
+function getProductsByCategory($categoria){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM productos WHERE categoria =' . $categoria);
+	$row = mysqli_fetch_assoc($result);
+	return $categoria;
+}
 
 // FUNCIONES PARA LA TABLA ICONOS
 

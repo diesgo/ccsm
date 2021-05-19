@@ -71,18 +71,33 @@ $productos = getProductosById($_GET['id']);
                         <div class="w3-col l4 m4 w3-padding">
                             <div class="w3-container w3-padding w3-border w3-border-theme w3-round w3-margin-bottom">
                                 <div class="w3-row">
-                                    <h3 class="w3-text-theme w3-center">Reserva</h3>
+                                    <h3 class="w3-text-theme w3-center">Stock</h3>
                                     <div class="w3-col">
 
                                         <label class="w3-text-theme" for="cantidad">Stock actual:</label>
-                                        <input type="text" name="cantidad" id="cantidad" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value=<?php echo $productos['cantidad']; ?>>
+                                        <input type="text" name="cantidad" id="cantidad" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value="<?php echo $productos['cantidad']; ?>">
+
+                                        <legend>Stock restante:</legend>
+                                        <p id="rest" class="w3-margin-0 w3-input w3-border w3-border-theme w3-round w3-margin-bottom"><?php echo $productos['cantidad']; ?></p>
 
                                         <label class="w3-text-theme" for="add">Cargar:</label>
-                                        <input type="text" name="add" id="add" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" disabled>
+                                        <input type="text" name="add" id="add" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom">
 
-                                        <input type="button" value="Recargar" class="w3-input w3-padding w3-margin-top w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme w3-margin-bottom">
+                                        <input type="button" value="Recargar" class="w3-input w3-padding w3-margin-top w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme w3-margin-bottom" onclick="cargarStock();">
                                     </div>
                                 </div>
+                                <script>
+                                    function cargarStock() {
+                                        // Capturo el valor de la carga
+                                        let carga = parseFloat(chargeProduct.add.value);
+                                        // Capturo el valor del stock
+                                        let stock = parseFloat(chargeProduct.cantidad.value);
+                                        // Sumo ambos valores
+                                        stock = stock + carga;
+                                        // Inserto el valor total en la casilla correspondiente
+                                        chargeProduct.cantidad.value = stock;
+                                    }
+                                </script>
                             </div>
                         </div>
                         <!-- DISPENSARIO -->
@@ -93,29 +108,35 @@ $productos = getProductosById($_GET['id']);
                                     <div class="w3-col">
 
                                         <label class="w3-text-theme" for="dispensario">Cantidad dispensario:</label>
-                                        <input type="text" name="dispensario" id="dispensario" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value=<?php echo $productos['dispensario']; ?>>
+                                        <input type="text" name="dispensario" id="dispensario" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value="<?php echo $productos['dispensario']; ?>">
 
                                         <label class="w3-text-theme" for="addDisp">Cargar:</label>
-                                        <input type="text" name="addDisp" id="addDisp" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" onkeyup="charge();" disabled>
-
-                                        <input type="button" value="Recargar" class="w3-input w3-margin-top w3-theme w3-border w3-border-theme w3-round w3-margin-bottom w3-hover-white w3-hover-text-theme w3-margin-bottom" onclick="charge();">
+                                        <input type="text" name="addDisp" id="addDisp" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value="0.000" placeholder="0.000">
+                                        <input type="button" value="Recargar" class="w3-input w3-margin-top w3-theme w3-border w3-border-theme w3-round w3-margin-bottom w3-hover-white w-hover-text-theme w3-margin-bottom" onclick="charge();">
 
                                     </div>
                                 </div>
                             </div>
                             <script>
                                 function charge() {
-                                    let b = chargeProduct.addDisp;
-                                    let a = chargeProduct.dispensario;
-                                    let cc = chargeProduct.cantidad;
-                                    let c= parseInt(chargeProduct.cantidad.value);
-                                    b.removeAttribute('disabled');;
-                                    let d = parseInt(b.value);
-                                    if (d>c) {
+                                    // Capturo el valor de la carga
+                                    let carga = parseFloat(chargeProduct.addDisp.value);
+                                    // Capturo el valor del stock
+                                    let stock = parseFloat(chargeProduct.cantidad.value);                                
+                                    // Capturo el valor del bote
+                                    let bote = parseFloat(chargeProduct.dispensario.value);
+                                    // Compruebo que haya stock suficiente
+                                    if (carga > stock) {
                                         alert("No tienes suficiente stock");
                                     }
-                                    a.value = d;
-                                    cc.value = c - d;
+                                    // Acepto el valor si es correcto y lo resto del stock
+                                    bote = bote + carga;
+                                    stock = stock - carga;
+                                    // Inserto el valor actual del stock en la casilla correspondiente
+                                    chargeProduct.cantidad.value = stock;
+                                    // Inserto el valor actual en el bote
+                                    chargeProduct.dispensario.value = bote;
+                                    location.reload();
                                 }
                             </script>
                         </div>

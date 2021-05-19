@@ -412,7 +412,7 @@ MONTSERRAT
 /* PERMANENT MAKER */
 
 @font-face {
-     font-family: 'permanent_markerregular';
+     font-family: 'permanent-marker';
      src: url('permanent-maker/permanent-marker-v9-latin-regular.eot');
      src: url('permanent-maker/permanent-marker-v9-latin-regular.eot?#iefix') format('embedded-opentype'),
           url('permanent-maker/permanent-marker-v9-latin-regular.woff2') format('woff2'),
@@ -423,4 +423,4 @@ MONTSERRAT
      font-style: normal;
 }
 
-.font-permanent-maker{font-family: 'permanent-maker', sans-serif;}
+.font-permanent-maker {font-family: 'permanent-maker', sans-serif}

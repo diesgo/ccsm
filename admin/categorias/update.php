@@ -1,7 +1,7 @@
 <?php
 $titulo = "EDITAR CATEGORIA";
 include '../templates/header.php';
-require '../../config/functions.php';
+// require '../../config/functions.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
 

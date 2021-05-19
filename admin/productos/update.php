@@ -1,7 +1,6 @@
 <?php
 $titulo = "EDITAR PRODUCTO";
 include '../templates/header.php';
-require '../../config/functions.php';
 $productos = getProductosById($_GET['id']);
 ?>
 

@@ -3,7 +3,7 @@ $titulo = "Editar categorias | CCSM";
 include '../templates/header.php';
 ?>
 <?php
-require '../../config/functions.php';
+// require '../../config/functions.php';
 $socios = getSociosById($_GET['id']);
 ?>
 

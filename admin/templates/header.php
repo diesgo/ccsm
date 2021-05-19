@@ -107,6 +107,13 @@
              <a href="/club/admin/home/index.php" class="w3-bar-item w3-button w3-padding w3-theme-l1 w3-hover-theme"><i class="fas fa-home"></i> Home</a>
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-boxes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
              <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
+                 <?php
+                    require '../../config/functions.php';
+                    $categorias = getCategorias();
+                    foreach ($categorias as $categoria) :
+                    ?>
+                     <a href="/club/admin/categorias/show.php?id=<?php echo $categoria['id'] ?>" class="w3-bar-item w3-button w3-hover-theme"><?php echo $categoria['nombre']; ?></a>
+                 <?php endforeach; ?>
                  <a href="/club/admin/productos/index.php" class="w3-bar-item w3-button w3-hover-theme">Productos</a>
              </div>
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('configuracion')"><i class="fa fa-cog fa-fw"></i> Configuración <i class="w3-right fa fa-caret-down"></i></button>

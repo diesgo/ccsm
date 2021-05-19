@@ -36,7 +36,7 @@ include '../templates/header.php';
             </tr>
         </thead>
         <?php
-        require '../../config/functions.php';
+        // require '../../config/functions.php';
         $socios = getSocios();
         foreach ($socios as $socios) :
         ?>

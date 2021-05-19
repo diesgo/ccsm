@@ -11,7 +11,7 @@ include '../templates/header.php';
     </div>
     <div class="w3-half">
         <?php
-        require '../../config/functions.php';
+        // require '../../config/functions.php';
         $variedades = getVariedadesById($_GET['id']);
         require "../../config/conexion.php";
         if (isset($_POST['actualizar'])) {

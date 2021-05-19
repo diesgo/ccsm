@@ -29,13 +29,14 @@ include '../templates/header.php';
                 <th>Cantidad</th>
                 <th>Tipo de venta</th>
                 <th>Peso bote</th>
+                <th>Cantidad en dispensario</th>
                 <th>Editar</th>
                 <th>Recargar</th>
                 <th>Estado</th>
             </tr>
         </thead>
         <?php
-        require '../../config/functions.php';
+        // require '../../config/functions.php';
         $productos = getProductos();
         foreach ($productos as $producto) :
         ?>
@@ -47,8 +48,9 @@ include '../templates/header.php';
                 <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
                 <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
                 <td style="width: 5%"><?php echo $producto['cantidad'] ?> Kg.</td>
-                <td style="width: 5%"><?php echo $producto['disp'] ?></td>
+                <td style="width: 10%"><?php echo $producto['disp'] ?></td>
                 <td style="width: 5%;"><?php echo $producto['bote'] ?></td>
+                <td style="width: 10%;"><?php echo $producto['dispensario'] ?></td>
                 <td style="width: 5%">
                     <a href="update.php?id=<?php echo $producto['id'] ?>">
                         <i class="fas fa-user-edit w3-text-theme"></i>

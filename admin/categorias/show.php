@@ -2,10 +2,11 @@
 $titulo = "MOSTRAR CATEGORIA";
 include '../templates/header.php';
 ?>
-
-<?php require_once '../../config/functions.php';
- $categoria = getCategoriasById($_GET['id']);
+<?php
+require_once '../../config/functions.php';
+$categoria = getCategoriasById($_GET['id']);
 ?>
+
 
 <!-- Header -->
 
@@ -46,7 +47,6 @@ include '../templates/header.php';
                 <tr class="w3-theme">
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Categoria</th>
                     <th>Variedad</th>
                     <th>PVC</th>
                     <th>PVP</th>
@@ -58,35 +58,53 @@ include '../templates/header.php';
                     <th>Estado</th>
                 </tr>
             </thead>
-        
-   
-                <!-- <tr>
-                    <td style="width: 5%;"><?php echo $producto['id'] ?></td>
-                    <td style="width: 15%"><?php echo $producto['nombre'] ?></td>
-                    <td style="width: 5%"><?php echo $producto['categoria'] ?></td>
-                    <td style="width: 5%"><?php echo $producto['variedad'] ?></td>
-                    <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
-                    <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
-                    <td style="width: 5%"><?php echo $producto['cantidad'] ?> Kg.</td>
-                    <td style="width: 5%"><?php echo $producto['disp'] ?></td>
-                    <td style="width: 5%;"><?php echo $producto['bote'] ?></td>
-                    <td style="width: 5%">
-                        <a href="update.php?id=<?php echo $producto['id'] ?>">
-                            <i class="fas fa-user-edit w3-text-theme"></i>
-                        </a>
-                    </td>
-                    <td style="width: 5%;">
-                        <a href="charge.php?id=<?php echo $producto['id'] ?>">
-                            <i class="fas fa-balance-scale w3-text-theme"></i>
-                        </a>
-                    </td>
-                    <td style="width: 5%">
-                        <a href="show.php?id=<?php echo $producto['id'] ?>">
-                            <i class="fas fa-eye w3-text-theme"></i>
-                        </a>
-                    </td>
-                </tr> -->
-            
+            <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "greenpower";
+
+            // Create connection
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            // Check connection
+            if (!$conn) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+
+            $sql = "SELECT * FROM productos WHERE categoria='" . $categoria['nombre'] . "'";
+            $result = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                // output data of each row
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td style='width: 5%;'> " . $row["id"] . "</td>";
+                    echo "<td style='width: 15%;'> " . $row["nombre"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["variedad"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["pvc"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["pvp"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["cantidad"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["disp"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["bote"] . "</td>";
+                    echo "<td style='width: 5%;'> ";
+                    echo "<a href='../productos/update.php?id=" . $row['id'] ."'>";
+                    echo "<i class='fas fa-user-edit w3-text-theme'></i>";
+                    echo "</a></td>";
+                    echo "<td style='width: 5%;'>";
+                    echo "<a href='../productos/charge.php?id=" . $row['id'] . "'>";
+                    echo "<i class='fas fa-balance-scale w3-text-theme'></i>";
+                    echo "</a></td>";
+                    echo "<td style='width: 5%'>";
+                    echo "<a href='../productos/show.php?id=" . $row['id'] . "'>";
+                    echo "<i class='fas fa-eye w3-text-theme'></i>";
+                    echo "</a></td></tr>";
+                }
+            } else {
+                echo "0 results";
+            }
+
+            mysqli_close($conn);
+            ?>
         </table>
     </div>
 

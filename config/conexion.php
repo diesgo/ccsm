@@ -3,6 +3,7 @@ require_once "config.php";
 date_default_timezone_set('Europe/Madrid');
 
 $conex = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+$conn = mysqli_connect(DBHOST, DBUSER, DBPWD, DBNAME);
 
 mysqli_set_charset($conex, 'utf8');
 

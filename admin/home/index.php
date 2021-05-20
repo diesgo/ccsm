@@ -22,23 +22,63 @@ include '../templates/header.php';
 
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
-            <div class="w3-container w3-orange w3-text-white w3-padding-16">
+            <div class="w3-container w3-theme w3-text-white w3-padding-16">
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>50</h3>
+                    <?php
+                   require '../../config/conexion.php';
+
+                    $sql = "SELECT id FROM socios";
+                    $socios = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($socios) > 0) {
+                        echo "<h3>" . mysqli_num_rows($socios) . "</h3>";
+                    } else {
+                        echo "0 results";
+                    }
+
+                    mysqli_close($conn);
+                    ?>
+                    
                 </div>
                 <div class="w3-clear"></div>
-                <h4>Users</h4>
+                <h4>SOCIOS</h4>
             </div>
         </div>
         <div class="w3-quarter">
-            <div class="w3-container w3-red w3-padding-16">
-                <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+            <div class="w3-container w3-theme-dark w3-padding-16">
+                <div class="w3-left"><i class="fas fa-boxes w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>52</h3>
+                    <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "greenpower";
+
+                    // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, $dbname);
+                    // Check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+
+                    $sql = "SELECT id FROM productos";
+                    $productos = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($productos) > 0) {
+                        // output data of each row
+                        while ($row = mysqli_fetch_assoc($productos)) {
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+
+                    mysqli_close($conn);
+                    ?>
+                    <h3><?php echo mysqli_num_rows($productos) ?></h3>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>Messages</h4>
+                <h4>PRODUCTOS</h4>
             </div>
         </div>
         <div class="w3-quarter">

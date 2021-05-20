@@ -3,41 +3,7 @@ $titulo = "Nuevo socio | CCSM";
 include '../templates/header.php';
 ?>
 
-<?php
-if (isset($_POST['altaButton'])) {
-    require_once '../../config/config.php';
 
-    $nombre = $_POST['nombre'];
-    $apellidos = $_POST['apellidos'];
-    $dni = $_POST['dni'];
-    $birth = $_POST['birth'];
-    $pais = $_POST['pais'];
-    $genero = $_POST['genero'];
-    $consumo = $_POST['consumo'];
-    $saldo = $_POST['saldo'];
-    $rol = $_POST['rol'];
-
-    // Create connection
-
-    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-
-    // Check connection
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, saldo, rol)
-    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$saldo', '$rol')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Se ha creado un nuevo registro";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $conn->close();
-}
-?>
 
 <!-- Header -->
 
@@ -46,6 +12,41 @@ if (isset($_POST['altaButton'])) {
         <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Nuevo socio</b></h2>
     </div>
     <div class="w3-half">
+        <?php
+        if (isset($_POST['altaButton'])) {
+            require_once '../../config/config.php';
+
+            $nombre = $_POST['nombre'];
+            $apellidos = $_POST['apellidos'];
+            $dni = $_POST['dni'];
+            $birth = $_POST['birth'];
+            $pais = $_POST['pais'];
+            $genero = $_POST['genero'];
+            $consumo = $_POST['consumo'];
+            $saldo = $_POST['saldo'];
+            $rol = $_POST['rol'];
+
+            // Create connection
+
+            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+
+            // Check connection
+
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, saldo, rol)
+    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$saldo', '$rol')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Se ha creado un nuevo registro";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $conn->close();
+        }
+        ?>
     </div>
     <hr>
 </div>
@@ -384,7 +385,7 @@ if (isset($_POST['altaButton'])) {
                                 $roles = getRoles();
                                 foreach ($roles as $rol) :
                                 ?>
-                                    <option value=<?php echo $rol['rol']; ?>><?php echo $rol['rol'] ?></option>
+                                    <option value=<?php echo $rol['nombre']; ?>><?php echo $rol['nombre'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

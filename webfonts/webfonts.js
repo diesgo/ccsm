@@ -1,4 +1,4 @@
-var fonts = ["abel", "acme", "aguafina-sgript", "alata", "alex-brush", "antonio", "clubz", "cookie", "kingthings-exeter", "kingthings-foundation", "lobster", "montserrat","permanent-maker"];
+var fonts = ["abel", "acme", "aguafina-sgript", "alata", "alex-brush", "antonio", "clubz", "cookie", "kingthings-exeter", "kingthings-foundation", "lobster", "montserrat","permanent-marker","sweet-leaf"];
 
 var numFonts = fonts.length;
 var x = document.getElementById("body");

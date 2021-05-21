@@ -7,7 +7,6 @@ require_once '../../config/functions.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
 
-
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
@@ -15,9 +14,7 @@ $categoria = getCategoriasById($_GET['id']);
         <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
     </div>
     <div class="w3-half">
-
     </div>
-    <hr>
 </div>
 
 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
@@ -59,17 +56,7 @@ $categoria = getCategoriasById($_GET['id']);
                 </tr>
             </thead>
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "greenpower";
-
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            // Check connection
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
+            require '../../config/conexion.php';
 
             $sql = "SELECT * FROM productos WHERE categoria='" . $categoria['nombre'] . "'";
             $result = mysqli_query($conn, $sql);

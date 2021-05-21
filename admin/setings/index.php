@@ -2,37 +2,6 @@
 $titulo = "AJUSTES";
 include '../templates/header.php';
 ?>
-<?php
-require '../../config/conexion.php';
-if (isset($_POST['actualizar'])) {
-
-    $color = $_POST['color'];
-    $fuente = $_POST['fuente'];
-    $titulos = $_POST['titulos'];
-
-    $sql = "UPDATE settings SET color ='" . $color . "',fuente='" . $fuente . "',titulos='" . $titulos . "' WHERE id=1;";
-    // echo $sql;
-
-    mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
-} else {
-    if (!isset($_POST['id'])) {
-        $sql = "SELECT min(id) FROM settings";
-        $result = mysqli_query($conex, $sql);
-        $row = mysqli_fetch_assoc($result);
-        $id = $row['min(id)'];
-    } else {
-        $id = $_POST["id"];
-    }
-    $sql = "SELECT * FROM settings WHERE id='$id'";
-    $result = mysqli_query($conex, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $color = $row['color'];
-    $fuente = $row['fuente'];
-    $titulos = $row['titulos'];
-}
-$sql = "SELECT * FROM settings";
-$result = mysqli_query($conex, $sql);
-?>
 
 <!-- Header -->
 
@@ -43,6 +12,34 @@ $result = mysqli_query($conex, $sql);
     <div class="w3-half">
         <a class="w3-right w3-button w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme w3-margin-right" href="color.php">+ Añadir esquema de color</a>
         <a class="w3-right w3-button w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme w3-margin-right" href="fuente.php">+ Añadir fuente</a>
+        <?php
+        require '../../config/conexion.php';
+        if (isset($_POST['actualizar'])) {
+            $color = $_POST['color'];
+            $fuente = $_POST['fuente'];
+            $titulos = $_POST['titulos'];
+            $sql = "UPDATE settings SET color ='" . $color . "',fuente='" . $fuente . "',titulos='" . $titulos . "' WHERE id=1;";
+            echo $sql;
+            mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
+        } else {
+            if (!isset($_POST['id'])) {
+                $sql = "SELECT min(id) FROM settings";
+                $result = mysqli_query($conex, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $id = $row['min(id)'];
+            } else {
+                $id = $_POST["id"];
+            }
+            $sql = "SELECT * FROM settings WHERE id='$id'";
+            $result = mysqli_query($conex, $sql);
+            $row = mysqli_fetch_assoc($result);
+            $color = $row['color'];
+            $fuente = $row['fuente'];
+            $titulos = $row['titulos'];
+        }
+        $sql = "SELECT * FROM settings";
+        $result = mysqli_query($conex, $sql);
+        ?>
     </div>
 </div>
 
@@ -66,7 +63,7 @@ $result = mysqli_query($conex, $sql);
                         $color = getColor();
                         foreach ($color as $color) :
                         ?>
-                        <option value=<?php echo $color['nombre']; ?>><?php echo $color['nombre'] ?></option>
+                            <option value=<?php echo $color['nombre']; ?>><?php echo $color['nombre'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -78,27 +75,23 @@ $result = mysqli_query($conex, $sql);
                 <div class="w3-col m3 l3 s12 w3-padding">
                     <label for="fuente" class="w3-text-theme">Tipografía texto</label>
                     <select name="fuente" id="fuente" class="w3-select w3-white" onchange="cambioParrafo()">
-                        <?php
-                        require_once '../../config/functions.php';
-                        $settings = getSetingsById(1);
-                        ?>
                         <option value=<?php echo $settings['fuente'] ?>><?php echo $settings['fuente'] ?></option>
                         <?php
                         $fuente = getFuente();
                         foreach ($fuente as $fuente) :
                         ?>
-                        <option value=<?php echo $fuente['fuente']; ?>><?php echo $fuente['fuente'] ?></option>
+                            <option value=<?php echo $fuente['fuente']; ?>><?php echo $fuente['fuente'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="w3-col m5 l5 s12 w3-padding">
                     <p id="sampleParrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, veritatis velit veniam aperiam, modi beatae, dolor asperiores blanditiis culpa corporis delectus iste? Sed eaque, velit exercitationem ipsum dolorum voluptates esse.</p>
                     <script>
-                    function cambioParrafo() {
-                        let f = document.getElementById("fuente").value;
-                        document.getElementById("sampleParrafo").className = "font-" + f;
-                    }
-                    cambioParrafo();
+                        function cambioParrafo() {
+                            let f = document.getElementById("fuente").value;
+                            document.getElementById("sampleParrafo").className = "font-" + f;
+                        }
+                        cambioParrafo();
                     </script>
                 </div>
             </div>
@@ -116,18 +109,18 @@ $result = mysqli_query($conex, $sql);
                         $fuente = getFuente();
                         foreach ($fuente as $fuente) :
                         ?>
-                        <option value=<?php echo $fuente['fuente']; ?>><?php echo $fuente['fuente'] ?></option>
+                            <option value=<?php echo $fuente['fuente']; ?>><?php echo $fuente['fuente'] ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="w3-col m5 l5 s12 w3-padding">
                     <h1 id="sampleTitulos">CCSM</h1>
                     <script>
-                    function cambioTitulo() {
-                        let f = document.getElementById("titulos").value;
-                        document.getElementById("sampleTitulos").className = "font-" + f;
-                    }
-                    cambioTitulo();
+                        function cambioTitulo() {
+                            let f = document.getElementById("titulos").value;
+                            document.getElementById("sampleTitulos").className = "font-" + f;
+                        }
+                        cambioTitulo();
                     </script>
                 </div>
             </div>

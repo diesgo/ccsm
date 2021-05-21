@@ -43,7 +43,7 @@ include '../templates/header.php';
 <div class="w3-padding-large" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
-            <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">
+            <form accept-charset="utf-8" action="#" method="post" name="altaCategoria" id="altaCategoria">
                 <!-- FICHA CATEGORIA  -->
                 <div class="w3-content w3-padding">
                     <!-- FILA 1: CATEGORIA -->
@@ -52,13 +52,11 @@ include '../templates/header.php';
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for='nombre'>Categoria</label>
                             <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='nombre'>
-                            <small id="info_categoria"></small>
                         </div>
                         <!-- DESCRIPCION -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="descripcion">Descripción</label>
                             <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" placeholder="Descripción">
-                            <small id="info_descripcion"></small>
                         </div>
                         <!-- ICONO -->
                         <div class="w3-col m4 l4 s12 w3-padding">
@@ -71,8 +69,7 @@ include '../templates/header.php';
                                 ?>
                                 <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
                                 <?php endforeach; ?>
-                            </select>    
-                            <small id="info_icono"></small>
+                            </select>
                         </div>
                     </div>
                 </div>

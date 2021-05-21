@@ -20,7 +20,7 @@ $categoria = getCategoriasById($_GET['id']);
             $descripcion = $_POST['descripcion'];
             $icono = $_POST['icono'];
             $sql = "UPDATE categorias SET nombre ='" . $nombre . "',descripcion='" . $descripcion . "',icono='" . $icono . "' WHERE id=" . $id . ";";
-            echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
+            echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Cambios guardados</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
@@ -50,8 +50,8 @@ $categoria = getCategoriasById($_GET['id']);
 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
-            <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">
-                <!-- FICHA SOCIO  -->
+            <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="updateCategoria" id="updateCategoria">
+                <!-- FICHA CATEGORIA  -->
                 <div class="w3-content w3-padding">
 
                     <!-- FILA 2: CATEGORIA Y DESCRIPCIÓN -->
@@ -60,13 +60,11 @@ $categoria = getCategoriasById($_GET['id']);
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Categoria</label><br>
                             <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre'] ?>>
-                            <small id="info_categoria"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="descripcion" class="w3-text-theme">Descripción</label>
                             <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion'] ?>>
-                            <small id="info_descripcion"></small>
                         </div>
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="icono" class="w3-text-theme">Icono</label>
@@ -81,7 +79,6 @@ $categoria = getCategoriasById($_GET['id']);
                                 <?php endforeach; ?>
                             </select>
                             <i class=<?php echo $categoria['icono'] ?>></i>
-                            <small id="info_icono"></small>
                         </div>
                     </div>
                 </div>

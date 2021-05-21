@@ -26,20 +26,15 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                   require '../../config/conexion.php';
-
+                    require '../../config/conexion.php';
                     $sql = "SELECT id FROM socios";
                     $socios = mysqli_query($conn, $sql);
-
                     if (mysqli_num_rows($socios) > 0) {
                         echo "<h3>" . mysqli_num_rows($socios) . "</h3>";
                     } else {
                         echo "0 results";
                     }
-
-                    mysqli_close($conn);
                     ?>
-                    
                 </div>
                 <div class="w3-clear"></div>
                 <h4>SOCIOS</h4>
@@ -50,32 +45,18 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fas fa-boxes w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "greenpower";
-
-                    // Create connection
-                    $conn = mysqli_connect($servername, $username, $password, $dbname);
-                    // Check connection
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    }
-
                     $sql = "SELECT id FROM productos";
                     $productos = mysqli_query($conn, $sql);
-
                     if (mysqli_num_rows($productos) > 0) {
                         // output data of each row
                         while ($row = mysqli_fetch_assoc($productos)) {
+                            echo "<h3>" . mysqli_num_rows($productos) . "</h3>";
                         }
                     } else {
                         echo "0 results";
                     }
-
                     mysqli_close($conn);
                     ?>
-                    <h3><?php echo mysqli_num_rows($productos) ?></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>PRODUCTOS</h4>
@@ -108,7 +89,7 @@ include '../templates/header.php';
         <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-third">
                 <h5>Regions</h5>
-                <img src="/w3images/region.jpg" style="width:100%" alt="Google Regional Map">
+                <img src="../../img/ccms_logo_verde.png" style="width:100%" alt="Google Regional Map">
             </div>
             <div class="w3-twothird">
                 <h5>Feeds</h5>
@@ -207,15 +188,15 @@ include '../templates/header.php';
         <h5>Recent Users</h5>
         <ul class="w3-ul w3-card-4 w3-white">
             <li class="w3-padding-16">
-                <img src="/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                <img src="../../img/s/3.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
                 <span class="w3-xlarge">Mike</span><br>
             </li>
             <li class="w3-padding-16">
-                <img src="/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                <img src="../../img/s/4.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
                 <span class="w3-xlarge">Jill</span><br>
             </li>
             <li class="w3-padding-16">
-                <img src="/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
+                <img src="../../img/s/5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
                 <span class="w3-xlarge">Jane</span><br>
             </li>
         </ul>
@@ -226,7 +207,7 @@ include '../templates/header.php';
         <h5>Recent Comments</h5>
         <div class="w3-row">
             <div class="w3-col m2 text-center">
-                <img class="w3-circle" src="/w3images/avatar3.png" style="width:96px;height:96px">
+                <img class="w3-circle" src="../../img/s/2.png" style="width:96px;height:96px">
             </div>
             <div class="w3-col m10 w3-container">
                 <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
@@ -236,7 +217,7 @@ include '../templates/header.php';
 
         <div class="w3-row">
             <div class="w3-col m2 text-center">
-                <img class="w3-circle" src="/w3images/avatar1.png" style="width:96px;height:96px">
+                <img class="w3-circle" src="../../img/s/0.png" style="width:96px;height:96px">
             </div>
             <div class="w3-col m10 w3-container">
                 <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>

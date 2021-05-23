@@ -1,4 +1,10 @@
+ <?php
+ require './../../config/conexion.php';
+require './../../config/functions.php';
+$settings = getSetingsById(1);
+ ?>
  <!DOCTYPE html>
+
  <html lang="es">
 
  <head>
@@ -7,24 +13,7 @@
      <title><?php echo $titulo ?> | CCSM</title>
      <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
      <link rel="stylesheet" href="/club/css/w3.css">
-     <link rel="stylesheet" href="/club/css/w3-theme-<?php
-                                                        $servername = "localhost";
-                                                        $username = "root";
-                                                        $password = "";
-                                                        $dbname = "greenpower";
-                                                        // Create connection
-                                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                                        // Check connection
-                                                        if ($conn->connect_error) {
-                                                            die("Connection failed: " . $conn->connect_error);
-                                                        }
-                                                        $sql = "SELECT color, fuente, titulos FROM settings";
-                                                        $result = $conn->query($sql);
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            echo $row['color'];
-                                                        }
-                                                        $conn->close();
-                                                        ?>.css">
+     <link rel="stylesheet" href="/club/css/w3-theme-<?php echo $settings['color']; ?>.css">
      <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
      <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
      <link rel="stylesheet" href="/club/css/style.css">
@@ -46,45 +35,11 @@
      h4,
      h5,
      h6 {
-         font-family: <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "greenpower";
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
-                        $sql = "SELECT *  FROM settings";
-                        $result = $conn->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo $row['titulos'];
-                        }
-                        $conn->close();
-                        ?>;
+         font-family: <?php echo $settings['titulos'] ?>;
      }
  </style>
 
- <body class="w3-theme-light font-<?php
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "greenpower";
-                                    // Create connection
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
-                                    // Check connection
-                                    if ($conn->connect_error) {
-                                        die("Connection failed: " . $conn->connect_error);
-                                    }
-                                    $sql = "SELECT * FROM settings";
-                                    $result = $conn->query($sql);
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo $row['fuente'];
-                                    }
-                                    $conn->close();
-                                    ?>">
+ <body class="w3-theme-light font-<?php echo $settings['fuente'] ?>">
 
      <!-- Top container -->
 
@@ -108,7 +63,6 @@
              <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-boxes"></i> Stock <i class="w3-right fa fa-caret-down"></i></button>
              <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
                  <?php
-                    require '../../config/functions.php';
                     $categorias = getCategorias();
                     foreach ($categorias as $categoria) :
                     ?>

@@ -13,12 +13,12 @@ include '../templates/header.php';
     <div class="w3-half">
         <?php
         if (isset($_POST['altaButton'])) {
-            require_once '../../config/config.php';
+            require_once '../../config/conexion.php';
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $icono = $_POST['icono'];
             // Create connection
-            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+            // $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
             // Check connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);

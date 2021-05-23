@@ -1,8 +1,6 @@
 <?php
 $titulo = "MOSTRAR CATEGORIA";
 include '../templates/header.php';
-?>
-<?php
 require_once '../../config/functions.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
@@ -18,27 +16,30 @@ $categoria = getCategoriasById($_GET['id']);
 </div>
 
 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
-    <div class="w3-display-container w3-padding w3-center" style="height: 200px;">
-        <div class="w3-display-middle  w3-border w3-round w3-border-theme">
-            <div class="w3-cell w3-padding-large w3-center">
-                <p><i class="<?php echo $categoria['icono']; ?> w3-text-theme  w3-jumbo"></i></p>
+
+    <div class="w3-container w3-center">
+
+        <div class="w3-row w3-border w3-border-theme">
+
+            <div class="w3-col l2 m2 w3-padding">
+                <p><i class="<?php echo $categoria['icono']; ?> w3-text-theme  w3-xxxlarge"></i></p>
             </div>
-            <div class="w3-cell w3-padding-large w3-center">
+            <div class="w3-col l2 m2 w3-padding">
                 <p class="w3-text-theme w3-xlarge">Categoría # <span><?php echo $categoria['id']; ?></span></p>
             </div>
-            <div class="w3-cell w3-padding-large w3-center">
-                <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey"><?php echo $categoria['nombre']; ?></span></p>
+            <div class="w3-col l3 m3 w3-padding">
+                <p class="w3-text-theme w3-xlarge">Nombre: <span class="w3-text-grey"><?php echo $categoria['nombre']; ?></span></p>
             </div>
-            <div class="w3-cell w3-padding-large w3-center">
-                <p class="w3-text-theme w3-large">Descripción: <span class="w3-text-grey"><?php echo $categoria['descripcion']; ?></span></p>
+            <div class="w3-col l3 m3 w3-padding">
+                <p class="w3-text-theme w3-xlarge">Descripción: <span class="w3-text-grey"><?php echo $categoria['descripcion']; ?></span></p>
             </div>
-            <div class="w3-cell w3-padding-large w3-center">
+            <div class="w3-col l2 m2 w3-padding w3-margin-top">
                 <a href="update.php?id=<?php echo $categoria['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
             </div>
         </div>
     </div>
 
-    <div class="w3-container w3-padding w3-responsive">
+    <div class="w3-container">
         <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
             <thead>
                 <tr class="w3-theme">
@@ -74,7 +75,7 @@ $categoria = getCategoriasById($_GET['id']);
                     echo "<td style='width: 5%;'> " . $row["disp"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["bote"] . "</td>";
                     echo "<td style='width: 5%;'> ";
-                    echo "<a href='../productos/update.php?id=" . $row['id'] ."'>";
+                    echo "<a href='../productos/update.php?id=" . $row['id'] . "'>";
                     echo "<i class='fas fa-user-edit w3-text-theme'></i>";
                     echo "</a></td>";
                     echo "<td style='width: 5%;'>";
@@ -87,7 +88,7 @@ $categoria = getCategoriasById($_GET['id']);
                     echo "</a></td></tr>";
                 }
             } else {
-                echo "0 results";
+                echo "No se han encontrado productos de esta categoría.";
             }
 
             mysqli_close($conn);

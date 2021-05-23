@@ -68,7 +68,7 @@ $categoria = getCategoriasById($_GET['id']);
                         </div>
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="icono" class="w3-text-theme">Icono</label>
-                            <select name="icono" id="icono" class="w3-select w3-white">
+                            <select name="icono" id="icono" class="w3-select w3-white" onchange="pictograma();">
                                 <option value="<?php echo $categoria['icono']; ?>"> <?php echo $categoria['icono']; ?></option>
                                 <?php
                                 require_once '../../config/functions.php';
@@ -78,7 +78,8 @@ $categoria = getCategoriasById($_GET['id']);
                                     <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <i class=<?php echo $categoria['icono'] ?>></i>
+                            <i id="pic" class="<?php echo $categoria['icono']; ?>"></i>
+
                         </div>
                     </div>
                 </div>

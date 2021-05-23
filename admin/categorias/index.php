@@ -1,7 +1,6 @@
 <?php
 $titulo = 'CATEGORIAS';
 include '../templates/header.php';
-include '../templates/head_index.php';
 ?>
 
 <!-- !PAGE CONTENT! -->

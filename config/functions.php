@@ -55,6 +55,12 @@ function showCategoria($id){
 	$result = $mysqli->query('SELECT * FROM productos WHERE id=' . $id );
 	return $result;
 }
+function dispatchCategoria($id){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM productos WHERE id=' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
 
 // FUNCIONES PARA LA TABLA TEMAS
 

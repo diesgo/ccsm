@@ -11,7 +11,7 @@ include '../templates/head_index.php';
         <thead>
             <tr class="w3-theme">
                 <th>ID</th>
-                <th>Nombre</th>
+                <th style="text-align: left;">Nombre</th>
                 <th>Categoria</th>
                 <th>Variedad</th>
                 <th>PVC</th>
@@ -32,12 +32,12 @@ include '../templates/head_index.php';
         ?>
             <tr>
                 <td style="width: 5%;"><?php echo $producto['id'] ?></td>
-                <td style="width: 15%"><?php echo $producto['nombre'] ?></td>
+                <td style="width: 15%; text-align:left;"><?php echo $producto['nombre'] ?></td>
                 <td style="width: 5%"><?php echo $producto['categoria'] ?></td>
                 <td style="width: 5%"><?php echo $producto['variedad'] ?></td>
                 <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
                 <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
-                <td style="width: 5%"><?php echo $producto['cantidad'] ?> Kg.</td>
+                <td style="width: 7%"><?php echo $producto['cantidad'] ?></td>
                 <td style="width: 10%"><?php echo $producto['disp'] ?></td>
                 <td style="width: 5%;"><?php echo $producto['bote'] ?></td>
                 <td style="width: 10%;"><?php echo $producto['dispensario'] ?></td>

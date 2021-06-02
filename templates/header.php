@@ -1,111 +1,115 @@
-<!DOCTYPE html>
-<html lang="es">
+ <!DOCTYPE html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $titulo ?> | CCSM</title>
-    <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" href="/club/css/w3.css">
-    <link rel="stylesheet" href="/club/css/w3-theme-<?php
-                                                    require '../config/conexion.php';
-                                                    $sql = "SELECT * FROM settings";
-                                                    $result = $conn->query($sql);
-                                                    $row = $result->fetch_assoc();
-                                                    echo $row['color'];
-                                                    ?>.css">
-    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
-    <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
-    <link rel="stylesheet" href="/club/css/style.css">
-    <link rel="stylesheet" href="/club/css/carrito.css">
-</head>
-<style>
-    .panel {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
-    }
+ <html lang="es">
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: <?php echo $row['titulos']; ?>;
-    }
-</style>
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title><?php echo $titulo ?> | CCSM</title>
+     <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
+     <link rel="stylesheet" href="/club/css/w3.css">
+     <link rel="stylesheet" href="/club/css/w3-theme-<?php
+                                                        require '../config/conexion.php';
+                                                        $sql = "SELECT * FROM settings";
+                                                        $result = $conn->query($sql);
+                                                        $row = $result->fetch_assoc();
+                                                        echo $row['color'];
+                                                        ?>.css">
+     <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
+     <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
+     <link rel="stylesheet" href="/club/css/style.css">
+     <link rel="stylesheet" href="/club/css/carrito.css">
+ </head>
+ <style>
+     .panel {
+         box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+     }
 
-<body class="w3-theme-light font-<?php echo $row['fuente'];
+     h1,
+     h2,
+     h3,
+     h4,
+     h5,
+     h6 {
+         font-family: <?php echo $row['titulos']; ?>;
+     }
+ </style>
+
+ <body class="w3-theme-light font-<?php echo $row['fuente'];
                                     $conn->close(); ?>">
-    <div id="pantalla" class="w3-container">
+     <div id="pantalla" class="w3-container">
 
-        <!-- CABECERA -->
+         <!-- CABECERA -->
 
-        <div class="w3-margin-top">
-            <div class="w3-container w3-center">
-                <div class="w3-quarter">
-                    <a href="index.php"><img src="../img/ccms_logo.png" alt="C C M S" class="w3-image" width="70"></a>
+         <div class="w3-margin-top">
+             <div class="w3-container w3-center">
 
-                </div>
-                <div class="w3-third">
-                    <h2 class="w3-text-theme w3-white w3-border w3-border-theme w3-round">Cannabis Club System Management</h2>
-                </div>
-                <div class="w3-rest">
-                    <div class="w3-cell-row">
+                 <div class="w3-quarter">
+                     <a href="index.php"><img src="../img/ccms_logo.png" alt="C C M S" class="w3-image" width="70"></a>
+                 </div>
 
-                        <!-- DISPENSARIO -->
+                 <div class="w3-half">
+                     <h2 class="w3-text-theme w3-white w3-border w3-border-theme w3-round">Cannabis Club System Management</h2>
+                     <div class="w3-cell-row">
 
-                        <div class="w3-cell w3-center w3-mobile">
+                         <!-- DISPENSARIO -->
 
-                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="menu.php" style="text-decoration:none; width: 110px; padding: 10px;">
-                                <i class="fas fa-store w3-xlarge"></i>
-                                <p class="w3-small" style="margin:0;">Menu</p>
-                            </a>
+                         <div class="w3-cell w3-center w3-mobile">
 
-                        </div>
+                             <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="menu.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                 <i class="fas fa-store w3-xlarge"></i>
+                                 <p class="w3-small" style="margin:0;">Menu</p>
+                             </a>
 
-                        <!-- ADMINISTRACIÓN -->
+                         </div>
 
-                        <div class="w3-cell w3-center w3-mobile">
+                         <!-- ADMINISTRACIÓN -->
 
-                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/home/index.php" style="text-decoration:none; width: 110px; padding: 10px;">
-                                <i class="fas fa-cogs w3-xlarge"></i>
-                                <p class="w3-small" style="margin:0;">Administración</p>
-                            </a>
+                         <div class="w3-cell w3-center w3-mobile">
 
-                        </div>
+                             <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/home/index.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                 <i class="fas fa-cogs w3-xlarge"></i>
+                                 <p class="w3-small" style="margin:0;">Administración</p>
+                             </a>
 
-                        <div class="w3-cell w3-center w3-mobile">
+                         </div>
 
-                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="stock.php" style="text-decoration:none; width: 110px; padding: 10px;">
-                                <i class="fas fa-seedling w3-xlarge"></i>
-                                <p class="w3-small" style="margin:0;">Stock</p>
-                            </a>
+                         <div class="w3-cell w3-center w3-mobile">
 
-                        </div>
+                             <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="stock.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                 <i class="fas fa-seedling w3-xlarge"></i>
+                                 <p class="w3-small" style="margin:0;">Stock</p>
+                             </a>
 
-                        <!-- Socios -->
+                         </div>
 
-                        <div class="w3-cell w3-center w3-mobile">
+                         <!-- Socios -->
 
-                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="socios.php" style="text-decoration:none; width: 110px; padding: 10px;">
-                                <i class="fas fa-user-cog w3-xlarge"></i>
-                                <p class="w3-small" style="margin:0;">Socios</p>
-                            </a>
+                         <div class="w3-cell w3-center w3-mobile">
 
-                        </div>
+                             <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="socios.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                 <i class="fas fa-user-cog w3-xlarge"></i>
+                                 <p class="w3-small" style="margin:0;">Socios</p>
+                             </a>
 
-                        <!-- Administración -->
+                         </div>
 
-                        <div class="w3-cell w3-center w3-mobile">
+                         <!-- Administración -->
 
-                            <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/gestionarSocios.php" style="text-decoration:none; width: 110px; padding: 10px;">
-                                <i class="fas fa-chart-line w3-xlarge"></i>
-                                <p class="w3-small" style="margin:0;">Finanzas</p>
-                            </a>
+                         <div class="w3-cell w3-center w3-mobile">
 
-                        </div>
-                    </div>
+                             <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="../admin/gestionarSocios.php" style="text-decoration:none; width: 110px; padding: 10px;">
+                                 <i class="fas fa-chart-line w3-xlarge"></i>
+                                 <p class="w3-small" style="margin:0;">Finanzas</p>
+                             </a>
 
-                </div>
-            </div>
-        </div>
+                         </div>
+                     </div>
+                 </div>
+
+                 <div class="w3-rest">
+
+
+                 </div>
+             </div>
+         </div>

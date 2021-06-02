@@ -19,7 +19,7 @@ include '../templates/header.php';
             $fuente = $_POST['fuente'];
             $titulos = $_POST['titulos'];
             $sql = "UPDATE settings SET color ='" . $color . "',fuente='" . $fuente . "',titulos='" . $titulos . "' WHERE id=1;";
-            echo $sql;
+            echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Cambios guardados</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
@@ -74,7 +74,7 @@ include '../templates/header.php';
             <div class="w3-row">
                 <div class="w3-col m3 l3 s12 w3-padding">
                     <label for="fuente" class="w3-text-theme">Tipografía texto</label>
-                    <select name="fuente" id="fuente" class="w3-select w3-white" onchange="cambioParrafo()">
+                    <select name="fuente" id="fuente" class="w3-select w3-white" onchange="cambioFuente('sampleParrafo')">
                         <option value=<?php echo $settings['fuente'] ?>><?php echo $settings['fuente'] ?></option>
                         <?php
                         $fuente = getFuente();
@@ -86,24 +86,14 @@ include '../templates/header.php';
                 </div>
                 <div class="w3-col m5 l5 s12 w3-padding">
                     <p id="sampleParrafo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, veritatis velit veniam aperiam, modi beatae, dolor asperiores blanditiis culpa corporis delectus iste? Sed eaque, velit exercitationem ipsum dolorum voluptates esse.</p>
-                    <script>
-                        function cambioParrafo() {
-                            let f = document.getElementById("fuente").value;
-                            document.getElementById("sampleParrafo").className = "font-" + f;
-                        }
-                        cambioParrafo();
-                    </script>
+
                 </div>
             </div>
             <!-- FUENTES TITULOS -->
             <div class="w3-row">
                 <div class="w3-col m3 l3 s12 w3-padding">
                     <label for="titulos" class="w3-text-theme">Tipografía títulos</label>
-                    <select name="titulos" id="titulos" class="w3-select w3-white" onchange="cambioTitulo();">
-                        <?php
-                        require_once '../../config/functions.php';
-                        $settings = getSetingsById(1);
-                        ?>
+                    <select name="titulos" id="titulos" class="w3-select w3-white" onchange="cambioFuente('sampleTitulos');">
                         <option value=<?php echo $settings['titulos'] ?>><?php echo $settings['titulos'] ?></option>
                         <?php
                         $fuente = getFuente();
@@ -115,13 +105,6 @@ include '../templates/header.php';
                 </div>
                 <div class="w3-col m5 l5 s12 w3-padding">
                     <h1 id="sampleTitulos">CCSM</h1>
-                    <script>
-                        function cambioTitulo() {
-                            let f = document.getElementById("titulos").value;
-                            document.getElementById("sampleTitulos").className = "font-" + f;
-                        }
-                        cambioTitulo();
-                    </script>
                 </div>
             </div>
             <div class="w3-row w3-padding-32 w3-center">
@@ -130,6 +113,14 @@ include '../templates/header.php';
         </div>
     </form>
 </div>
+<script>
+    function cambioFuente(id) {
+        let f = document.getElementById("fuente").value;
+        document.getElementById(id).style.fontFamily= f;
+    }
+    cambioFuente('sampleParrafo');
+    cambioFuente('sampleTitulos');
+</script>
 <!-- !End page content! -->
 <?php
 include '../templates/footer.php';

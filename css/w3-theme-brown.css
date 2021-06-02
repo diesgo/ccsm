@@ -16,6 +16,16 @@
 .w3-theme {color:#fff !important; background-color:#795548 !important}
 .w3-text-theme {color:#795548 !important}
 .w3-border-theme {border-color:#795548 !important}
+.w3-border-theme-l5 {border-color: #f8f4f3 !important}
+.w3-border-theme-l4 {border-color: #e7dcd7 !important}
+.w3-border-theme-l3 {border-color: #d0b8b0 !important}
+.w3-border-theme-l2 {border-color: #b89588 !important}
+.w3-border-theme-l1 {border-color: #a07261 !important}
+.w3-border-theme-d1 {border-color: #6d4d41 !important}
+.w3-border-theme-d2 {border-color: #61443a !important}
+.w3-border-theme-d3 {border-color: #553c33 !important}
+.w3-border-theme-d4 {border-color: #49332c !important}
+.w3-border-theme-d5 {border-color: #3d2b24 !important}
 
 .w3-hover-theme:hover {color:#fff !important; background-color:#795548 !important}
 .w3-hover-text-theme:hover {color:#795548 !important}

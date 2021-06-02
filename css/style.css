@@ -1,5 +1,11 @@
-a, button {
+a, button, input[type="submit"], input[type="button"] {
     font-size: 19px;;
+}
+
+.ficha{
+    border-bottom: 1px solid;
+    border-left:1px solid;
+    border-right:1px solid;
 }
 
 /*============== */

@@ -1,6 +1,7 @@
 <?php
 $titulo = 'CATEGORIAS';
 include '../templates/header.php';
+include '../templates/head_index.php';
 ?>
 
 <!-- !PAGE CONTENT! -->
@@ -40,6 +41,8 @@ include '../templates/header.php';
             <?php endforeach; ?>
     </table>
 </div>
+
+<!-- !End page content! -->
 
 <?php
 include '../templates/footer.php';

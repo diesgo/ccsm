@@ -28,6 +28,7 @@ $settings = getSetingsById(1);
      th,
      button,
      input[type="submit"],
+     input[type="button"],
      a,
      h1,
      h2,
@@ -46,7 +47,7 @@ $settings = getSetingsById(1);
      <div class="w3-bar w3-top w3-theme w3-large panel" style="z-index:4; padding: 2px 32px">
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-theme" onclick="w3_open();"><i class="fa fa-bars"></i> Menu</button>
          <a class="w3-bar-item w3-button w3-border w3-border-theme w3-round w3-theme-d3 w3-hover-white w3-hover-text-theme" href="../../dispensario/index.php">Dispensario</a>
-         <span class="w3-bar-item w3-right"><img class="w3-image" src="/club/img/logo_negro.png" alt="logo" style="max-width:24px"></span>
+         <span class="w3-bar-item w3-right"><img class="w3-image" src="/club/img/ccms_logo.png" alt="logo" style="max-width:24px"></span>
      </div>
 
      <!-- Sidebar/menu -->

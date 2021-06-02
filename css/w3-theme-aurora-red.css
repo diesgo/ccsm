@@ -48,6 +48,7 @@
     background-color: #5c1e19 !important
 }
 
+
 .w3-theme-light {
     color: #000 !important;
     background-color: #fbf3f2 !important
@@ -75,6 +76,16 @@
 .w3-border-theme {
     border-color: #b93a32 !important
 }
+.w3-norder-theme-l5 {border-color: #fbf3f2 !important}
+.w3-norder-theme-l4 {border-color: #f3d6d4 !important}
+.w3-norder-theme-l3 {border-color: #e7ada9 !important}
+.w3-norder-theme-l2 {border-color: #db847d !important}
+.w3-norder-theme-l1 {border-color: #d05a52 !important}
+.w3-norder-theme-d1 {border-color: #a6352d !important}
+.w3-norder-theme-d2 {border-color: #932f28 !important}
+.w3-norder-theme-d3 {border-color: #812a23 !important}
+.w3-norder-theme-d4 {border-color: #6e241e !important}
+.w3-norder-theme-d5 {border-color: #5c1e19 !important}
 
 .w3-hover-theme:hover {
     color: #fff !important;

@@ -49,11 +49,10 @@ include '../templates/header.php';
                     $productos = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($productos) > 0) {
                         // output data of each row
-                            echo "<h3>" . mysqli_num_rows($productos) . "</h3>";
+                        echo "<h3>" . mysqli_num_rows($productos) . "</h3>";
                     } else {
                         echo "0 results";
                     }
-                    mysqli_close($conn);
                     ?>
                 </div>
                 <div class="w3-clear"></div>
@@ -62,12 +61,22 @@ include '../templates/header.php';
         </div>
         <div class="w3-quarter">
             <div class="w3-container w3-blue w3-padding-16">
-                <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+                <div class="w3-left"><i class="fas fa-layer-group w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>99</h3>
+                    <?php
+                    $sql = "SELECT id FROM categorias";
+                    $categorias = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($categorias) > 0) {
+                        // output data of each row
+                        echo "<h3>" . mysqli_num_rows($categorias) . "</h3>";
+                    } else {
+                        echo "0 results";
+                    }
+                    mysqli_close($conn);
+                    ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>Views</h4>
+                <h4>Categorias</h4>
             </div>
         </div>
         <div class="w3-quarter">

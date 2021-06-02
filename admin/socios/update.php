@@ -74,7 +74,7 @@ $socios = getSociosById($_GET['id']);
 
                     <!-- FILA 1: TRATAMIENTO -->
                     <div class="w3-container">
-                        <h1># <?php echo $socios['id'] ?></h1>
+                        <h1><span class="w3-text-theme"># <?php echo $socios['id'] ?></span> <?php echo $socios['nombre'] ?> <?php echo $socios['apellidos'] ?></h1>
                     </div>
                     <div class="w3-row w3-section">
                         <div class="w3-col m12 l12 w3-padding">

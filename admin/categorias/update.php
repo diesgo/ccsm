@@ -91,7 +91,9 @@ $categoria = getCategoriasById($_GET['id']);
         </div>
     </div>
 </div>
+
 <!-- !End page content! -->
+
 <?php
 include '../templates/footer.php';
 ?>

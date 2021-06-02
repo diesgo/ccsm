@@ -413,21 +413,11 @@ MONTSERRAT
 
 @font-face {
      font-family: 'permanent-marker';
-     src: 
-     local('permanent-marker/permanent-marker-v9-latin-regular.eot'),
-     /* url('permanent-maker/permanent-marker-v9-latin-regular.eot'), */
-     local('permanent-marker/permanent-marker-v9-latin-regular.eot?#iefix'),
-     /* url('permanent-maker/permanent-marker-v9-latin-regular.eot?#iefix') format('embedded-opentype'), */
-     local('permanent-marker/permanent-marker-v9-latin-regular.woff2'),
-     /* url('permanent-maker/permanent-marker-v9-latin-regular.woff2') format('woff2'), */
-     local('permanent-marker/permanent-marker-v9-latin-regular.woff'),
-     /* url('permanent-maker/permanent-marker-v9-latin-regular.woff') format('woff'), */
-     local('permanent-marker/permanent-marker-v9-latin-regular.ttf'),
-     /* url('permanent-maker/permanent-marker-v9-latin-regular.ttf') format('truetype'), */
-     local('permanent-marker/permanent-marker-v9-latin-regular.svg#permanent_markerregular');
-     /* url('permanent-maker/permanent-marker-v9-latin-regular.svg#permanent_markerregular') format('svg'); */
+     src: url('permanent-marker/permanent-marker-v9-latin-regular-webfont.woff2') format('woff2'),
+          url('permanent-marker/permanent-marker-v9-latin-regular-webfont.woff') format('woff');
      font-weight: normal;
      font-style: normal;
+
 }
 
 .font-permanent-marker {font-family: 'permanent-marker', sans-serif}

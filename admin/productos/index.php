@@ -16,7 +16,7 @@ include '../templates/head_index.php';
                 <th>Variedad</th>
                 <th>PVC</th>
                 <th>PVP</th>
-                <th>Cantidad</th>
+                <th>Stock total</th>
                 <th>Tipo de venta</th>
                 <th>Peso bote</th>
                 <th>Cantidad en dispensario</th>
@@ -32,15 +32,15 @@ include '../templates/head_index.php';
         ?>
             <tr>
                 <td style="width: 5%;"><?php echo $producto['id'] ?></td>
-                <td style="width: 15%; text-align:left;"><?php echo $producto['nombre'] ?></td>
+                <td style="width: 10%; text-align:left;"><?php echo $producto['nombre'] ?></td>
                 <td style="width: 5%"><?php echo $producto['categoria'] ?></td>
                 <td style="width: 5%"><?php echo $producto['variedad'] ?></td>
                 <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
                 <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
-                <td style="width: 7%"><?php echo $producto['cantidad'] ?></td>
-                <td style="width: 10%"><?php echo $producto['disp'] ?></td>
+                <td class="estado" style="width: 7%"><?php echo $producto['cantidad'] + $producto['dispensario'] ?></td>
+                <td style="width: 10%"><?php echo $producto['servicio'] ?></td>
                 <td style="width: 5%;"><?php echo $producto['bote'] ?></td>
-                <td style="width: 10%;"><?php echo $producto['dispensario'] ?></td>
+                <td class="estado" style="width: 10%;"><?php echo $producto['dispensario'] ?></td>
                 <td style="width: 5%">
                     <a href="update.php?id=<?php echo $producto['id'] ?>">
                         <i class="fas fa-user-edit w3-text-theme"></i>
@@ -60,6 +60,9 @@ include '../templates/head_index.php';
         <?php endforeach; ?>
     </table>
 </div>
+<script>
+estadoStock();
+</script>
 <?php
 include '../templates/footer.php';
 ?>

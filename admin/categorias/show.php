@@ -44,12 +44,13 @@ $categoria = getCategoriasById($_GET['id']);
             <thead>
                 <tr class="w3-theme">
                     <th>ID</th>
-                    <th>Nombre</th>
+                    <th style="text-align:left">Nombre</th>
                     <th>Variedad</th>
                     <th>PVC</th>
                     <th>PVP</th>
-                    <th>Cantidad</th>
+                    <th>Stock total</th>
                     <th>Tipo de venta</th>
+                    <th>cantidad dispensario</th>
                     <th>Peso bote</th>
                     <th>Editar</th>
                     <th>Recargar</th>
@@ -65,14 +66,16 @@ $categoria = getCategoriasById($_GET['id']);
             if (mysqli_num_rows($result) > 0) {
                 // output data of each row
                 while ($row = mysqli_fetch_assoc($result)) {
+                    $cantidad = $row["cantidad"] + $row['dispensario'];
                     echo "<tr>";
                     echo "<td style='width: 5%;'> " . $row["id"] . "</td>";
-                    echo "<td style='width: 15%;'> " . $row["nombre"] . "</td>";
+                    echo "<td style='width: 10%; text-align: left;'> " . $row["nombre"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["variedad"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["pvc"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["pvp"] . "</td>";
-                    echo "<td style='width: 5%;'> " . $row["cantidad"] . "</td>";
-                    echo "<td style='width: 5%;'> " . $row["disp"] . "</td>";
+                    echo "<td class='estado' style='width: 5%;'> " . $cantidad . "</td>";
+                    echo "<td style='width: 8%;'> " . $row["servicio"] . "</td>";
+                    echo "<td style='width: 8%;'> " . $row["dispensario"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["bote"] . "</td>";
                     echo "<td style='width: 5%;'> ";
                     echo "<a href='../productos/update.php?id=" . $row['id'] . "'>";
@@ -97,6 +100,9 @@ $categoria = getCategoriasById($_GET['id']);
     </div>
 
 </div>
+<script>
+    estadoStock();
+</script>
 
 <?php
 include '../templates/footer.php';

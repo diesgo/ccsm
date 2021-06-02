@@ -21,7 +21,7 @@ include '../templates/header.php';
             $pvc = $_POST['pvc'];
             $pvp = $_POST['pvp'];
             $cantidad = $_POST['cantidad'];
-            $disp = $_POST['disp'];
+            $servicio = $_POST['servicio'];
 
             // Create connection
 
@@ -32,11 +32,11 @@ include '../templates/header.php';
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "INSERT INTO productos (nombre, categoria, variedad, bote, pvc, pvp, cantidad, disp)
-    VALUES ('$nombre', '$categoria', '$variedad', '$bote', '$pvc', '$pvp', '$cantidad', '$disp')";
+            $sql = "INSERT INTO productos (nombre, categoria, variedad, bote, pvc, pvp, cantidad, servicio)
+    VALUES ('$nombre', '$categoria', '$variedad', '$bote', '$pvc', '$pvp', '$cantidad', '$servicio')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "Se ha creado un nuevo registro";
+                echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Se ha creado un nuevo registro</h3>";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -59,8 +59,8 @@ include '../templates/header.php';
                     <!-- FILA 1: DISP -->
                     <div class="w3-row w3-section">
                         <div class="w3-col m2 l2 w3-padding">
-                            <label for="disp">Tipo de servicio</label>
-                            <select name="disp" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="servicio();">
+                            <label for="servicio">Tipo de servicio</label>
+                            <select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="servicio();">
                                 <option value="">Seleccionar...</option>
                                 <option value="granel">Granel</option>
                                 <option value="unidad">Unidad</option>
@@ -68,25 +68,24 @@ include '../templates/header.php';
                         </div>
                         <!-- BOTE -->
                         <div id="setCup" class="w3-col m2 l2 w3-padding w3-hide">
-                            <label for="disp">Peso del bote</label>
-                            <input type="text" name="bote" id="bote" class="w3-input w3-border w3-border-theme w3-round">
+                            <label for="bote">Peso del bote</label>
+                            <input type="text" name="bote" id="bote" class="w3-input w3-border w3-border-theme w3-round" placeholder="0.000">
                         </div>
                         <script>
                             function servicio() {
                                 var text;
                                 var serv = altaProducto.disp.value;
-                                var cup = document.getElementById("setCup");
                                 switch (serv) {
                                     case "":
-                                        cup.classList.add('w3-hide');
+                                        setCup.classList.add('w3-hide');
                                         vari.classList.add('w3-hide');
                                         break;
                                     case "granel":
-                                        cup.classList.remove('w3-hide');
+                                        setCup.classList.remove('w3-hide');
                                         vari.classList.remove('w3-hide');
                                         break;
                                     case "unidad":
-                                        cup.classList.add('w3-hide');
+                                        setCup.classList.add('w3-hide');
                                         vari.classList.add('w3-hide');
                                         break;
                                     default:

@@ -11,7 +11,7 @@ include "../templates/header.php"
         ?>
             <div class="w3-quarter w3-padding">
                 <div class="w3-container w3-padding w3-center">
-                    <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button" href="dispensar.php?id=<?php echo $categoria['id'] ?>" style="text-decoration:none; width: 150px; padding: 32px 16px;">
+                    <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="dispensar.php?id=<?php echo $categoria['id'] ?>" style="text-decoration:none; width: 150px; padding: 32px 16px;">
                         <i class="<?php echo $categoria['icono']; ?> w3-jumbo"></i>
                         <p><?php echo $categoria['nombre']; ?></p>
                     </a>
@@ -25,7 +25,7 @@ include "../templates/header.php"
 
         <div class="w3-quarter w3-padding">
             <div class="w3-container w3-padding w3-center">
-                <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button" href="admin/socios/gestionarSocios.php" style="text-decoration:none; width: 150px; padding: 32px 16px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="admin/socios/gestionarSocios.php" style="text-decoration:none; width: 150px; padding: 32px 16px;">
                     <i class="fas fa-user-cog w3-jumbo"></i>
                     <p>Socios</p>
                 </a>
@@ -36,7 +36,7 @@ include "../templates/header.php"
 
         <div class="w3-quarter w3-padding">
             <div class="w3-container w3-padding w3-center">
-                <a class="w3-border w3-border-green w3-round w3-white w3-hover-green  w3-text-green w3-button" href="admin/index.php" style="text-decoration:none; width: 150px; padding: 32px 16px;">
+                <a class="w3-border w3-border-theme w3-round w3-white w3-hover-theme  w3-text-theme w3-button" href="admin/index.php" style="text-decoration:none; width: 150px; padding: 32px 16px;">
                     <i class="fas fa-cogs w3-jumbo"></i>
                     <p>Administración</p>
                 </a>

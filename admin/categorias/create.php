@@ -3,7 +3,6 @@ $titulo = "NUEVA CATEGORIA";
 include '../templates/header.php';
 ?>
 
-
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
@@ -17,9 +16,6 @@ include '../templates/header.php';
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $icono = $_POST['icono'];
-            // Create connection
-            // $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-            // Check connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
@@ -81,7 +77,9 @@ include '../templates/header.php';
         </div>
     </div>
 </div>
+
 <!-- !End page content! -->
+
 <?php
 include '../templates/footer.php';
 ?>

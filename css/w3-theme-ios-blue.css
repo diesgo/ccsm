@@ -75,6 +75,16 @@
 .w3-border-theme {
     border-color: #5ac8fa !important
 }
+.w3-border-theme-l5 {border-color: #f5fcff !important}
+.w3-border-theme-l4 {border-color: #def4fe !important}
+.w3-border-theme-l3 {border-color: #bee9fd !important}
+.w3-border-theme-l2 {border-color: #9ddefc !important}
+.w3-border-theme-l1 {border-color: #7cd3fb !important}
+.w3-border-theme-d1 {border-color: #3bbdf9 !important}
+.w3-border-theme-d2 {border-color: #19b1f8 !important}
+.w3-border-theme-d3 {border-color: #07a1e8 !important}
+.w3-border-theme-d4 {border-color: #068ac7 !important}
+.w3-border-theme-d5 {border-color: #0573a6 !important}
 
 .w3-hover-theme:hover {
     color: #000 !important;

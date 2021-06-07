@@ -26,7 +26,7 @@ $socios = getSociosById($_GET['id']);
             $pais = $_POST['pais'];
             $genero = $_POST['genero'];
             $consumo = $_POST['consumo'];
-            $rol = $_POST['nombre'];
+            $rol = $_POST['rol'];
             $saldo = $_POST['saldo'];
 
             $sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
@@ -109,7 +109,7 @@ $socios = getSociosById($_GET['id']);
 
                         <!-- FECHA DE NACIMIENTO -->
                         <div class="w3-col m4 l4 s12 w3-padding nativeDatePicker">
-                            <label for="birth">Fecha de nacimiento:</label>
+                            <label for="birth" class="w3-text-theme">Fecha de nacimiento:</label>
                             <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth" value=<?php echo $socios['birth'] ?>>
                             <span class="validity"></span>
                             <p class="fallbackLabel">Fecha de nacimiento:</p>
@@ -155,7 +155,17 @@ $socios = getSociosById($_GET['id']);
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="pais" class="w3-text-theme">Nacionalidad</label>
                             <!-- SELECT PAISES -->
-                            <select name="pais" class="w3-select w3-border w3-round w3-white">
+                            <select name="pais" id="pais" class="w3-select w3-white">
+                                <option value=<?php echo $socios['pais'] ?>><?php echo $socios['pais'] ?></option>
+                                <?php
+                                require_once '../../config/functions.php';
+                                $pais = getPaises();
+                                foreach ($pais as $pais) :
+                                ?>
+                                    <option value=<?php echo $pais['bandera'] ?>><?php echo $pais['nombre'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <!-- <select name="pais" class="w3-select w3-border w3-round w3-white">
                                 <option value=<?php echo $socios['pais'] ?>><?php echo $socios['pais'] ?></option>
                                 <option value="Afganistán" id="AF">Afganistán</option>
                                 <option value="Albania" id="AL">Albania</option>
@@ -394,7 +404,7 @@ $socios = getSociosById($_GET['id']);
                                 <option value="Yemen" id="YE">Yemen</option>
                                 <option value="Zambia" id="ZM">Zambia</option>
                                 <option value="Zimbabue" id="ZW">Zimbabue</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
 
@@ -403,7 +413,7 @@ $socios = getSociosById($_GET['id']);
 
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="rol">Tipo de socio</label>
+                            <label for="rol" class="w3-text-theme">Tipo de socio</label>
                             <select name="rol" id="rol" class="w3-select w3-white" value=<?php echo $socios['rol']; ?>>
                                 <option value=<?php echo $socios['rol'] ?>><?php echo $socios['rol'] ?></option>
                                 <?php

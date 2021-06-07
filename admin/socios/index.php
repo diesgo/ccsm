@@ -16,6 +16,7 @@ include '../templates/head_index.php';
                 <th>ID Card</th>
                 <th>Fecha de nacimiento</th>
                 <th>Nacionalidad</th>
+                <th></th>
                 <th>Rol</th>
                 <th>Genero</th>
                 <th>Consumo mensual</th>
@@ -36,6 +37,7 @@ include '../templates/head_index.php';
                 <td style="width: 10%"><?php echo $socios['dni'] ?></td>
                 <td style="width: 10%"><?php echo $socios['birth'] ?></td>
                 <td style="width: 10%"><?php echo $socios['pais'] ?></td>
+                <td style="width: 10%"><img src="/club/img/banderas/<?php echo $socios['pais'] ?>.png" width="30" alt="<?php echo $socios['pais'] ?>"></td>
                 <td style="width: 10%"><?php echo $socios['rol'] ?></td>
                 <td style="width: 10%"><?php echo $socios['genero'] ?></td>
                 <td style="width: 5%"><?php echo $socios['consumo'] ?></td>

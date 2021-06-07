@@ -87,7 +87,7 @@ $productos = getProductosById($_GET['id']);
                     <div class="w3-col l3 m3 w3-padding">
                         <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
                             <legend class="w3-text-theme">Stock actual</legend>
-                            <p id="cantidadAhora" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom"  ><?php echo $productos['cantidad'] ?></p>
+                            <p id="cantidadAhora" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom"><?php echo $productos['cantidad'] ?></p>
                         </div>
                     </div>
 
@@ -198,7 +198,7 @@ $productos = getProductosById($_GET['id']);
 
                     <div id="variedad" class="w3-col m3 l3 w3-padding w3-hide">
                         <div class="w3-container w3-padding-16 w3-border w3-border-theme w3-round">
-                            <label for="variedad">Variedad</label>
+                            <label for="variedad" class="w3-text-theme">Variedad</label>
                             <select name="variedad" class="w3-select w3-white w3-border w3-border-theme w3-round">
                                 <option value="<?php echo $productos['variedad'] ?>"><?php echo $productos['variedad'] ?></option>
                                 <?php

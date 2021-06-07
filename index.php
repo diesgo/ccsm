@@ -7,7 +7,7 @@
     <title>CCSM</title>
     <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="/club/css/w3.css">
-    <link rel="stylesheet" href="/club/css/w3-theme-<?php
+    <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php
                                                     $servername = "localhost";
                                                     $username = "root";
                                                     $password = "";

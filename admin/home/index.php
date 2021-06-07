@@ -94,11 +94,48 @@ include '../templates/header.php';
 
     <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
-            <div class="w3-third">
-                <h5>Regions</h5>
-                <img src="../../img/ccms_logo_verde.png" style="width:100%" alt="Google Regional Map">
+            <div class="w3-half">
+                <div class="w3-container">
+                    <h5>Procedéncia de los socios</h5>
+                    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                        <thead>
+                            <tr class="w3-theme">
+                                <th>País</th>
+                                <th></th>
+                                <th>Porcentaje de usuarios</th>
+                            </tr>
+                        </thead>
+                        <?php
+                        require '../../config/conexion.php';
+
+                        $sql = "SELECT COUNT(pais), pais AS country, pais FROM socios GROUP BY pais";
+                        $result = mysqli_query($conn, $sql);
+                        $sql = "SELECT COUNT(pais) AS pais FROM socios GROUP BY pais";
+                        $pais = mysqli_query($conn, $sql);
+                        $sql2 = "SELECT * FROM socios";
+                        $paises = mysqli_query($conn, $sql2);
+                        $totalUsuarios = mysqli_num_rows($paises);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            // output data of each row
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td style='width: 5%;'> " . $row['pais'] . "</td>";
+                                echo "<td style='width: 5%;'><img src='/club/img/banderas/" . $row['country']  . ".png' alt='" . $row['country'] . "' width='30'></td>";
+                                echo "<td style='width: 5%;'> " . $nacion = (100 * mysqli_fetch_assoc($pais)['pais']) / mysqli_num_rows($paises) . " % </td>";
+
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "No se han encontrado productos de esta categoría.";
+                        }
+
+                        mysqli_close($conn);
+                        ?>
+                    </table>
+                </div>
             </div>
-            <div class="w3-twothird">
+            <div class="w3-half">
                 <h5>Feeds</h5>
                 <table class="w3-table w3-striped w3-white">
                     <tr>
@@ -160,36 +197,7 @@ include '../templates/header.php';
     </div>
     <hr>
 
-    <div class="w3-container">
-        <h5>Countries</h5>
-        <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-            <tr>
-                <td>United States</td>
-                <td>65%</td>
-            </tr>
-            <tr>
-                <td>UK</td>
-                <td>15.7%</td>
-            </tr>
-            <tr>
-                <td>Russia</td>
-                <td>5.6%</td>
-            </tr>
-            <tr>
-                <td>Spain</td>
-                <td>2.1%</td>
-            </tr>
-            <tr>
-                <td>India</td>
-                <td>1.9%</td>
-            </tr>
-            <tr>
-                <td>France</td>
-                <td>1.5%</td>
-            </tr>
-        </table><br>
-        <button class="w3-button w3-dark-grey">More Countries <i class="fa fa-arrow-right"></i></button>
-    </div>
+
     <hr>
     <div class="w3-container">
         <h5>Recent Users</h5>

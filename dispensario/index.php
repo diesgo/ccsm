@@ -10,11 +10,11 @@ $socios = getSocios();
     <!-- Captar chip -->
 
     <div class="w3-display-container" style="min-height: 100px;">
-        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="socioActivo" id="socioActivo">
+        <form accept-charset="utf-8" action="#" method="post" name="socioActivo" id="socioActivo">
 
             <div class="w3-display-middle w3-center">
                 <p>ID Socio</p>
-                <input class="w3-border-theme w3-input" type="text" id="id_socio" autofocus>
+                <input class="w3-border-theme w3-input" type="text" name="id" id="id" autofocus>
             </div>
         </form>
     </div>

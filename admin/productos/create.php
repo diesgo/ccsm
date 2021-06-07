@@ -56,25 +56,14 @@ include '../templates/header.php';
             <form accept-charset="utf-8" action="#" method="post" name="altaProducto" id="altaProducto">
                 <!-- FICHA PRODUCTO  -->
                 <div class="w3-content w3-padding">
-                    <!-- FILA 1: DISP -->
+                    <!-- FILA 1: SERVICIO -->
                     <div class="w3-row w3-section">
-                        <div class="w3-col m2 l2 w3-padding">
-                            <label for="servicio">Tipo de servicio</label>
-                            <select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="servicio();">
-                                <option value="">Seleccionar...</option>
-                                <option value="granel">Granel</option>
-                                <option value="unidad">Unidad</option>
-                            </select>
-                        </div>
-                        <!-- BOTE -->
-                        <div id="setCup" class="w3-col m2 l2 w3-padding w3-hide">
-                            <label for="bote">Peso del bote</label>
-                            <input type="text" name="bote" id="bote" class="w3-input w3-border w3-border-theme w3-round" placeholder="0.000">
-                        </div>
                         <script>
-                            function servicio() {
+                            function service() {
                                 var text;
-                                var serv = altaProducto.disp.value;
+                                var serv = altaProducto.servicio.value;
+                                var setCup = document.getElementById('setCup');
+                                var vari = document.getElementById('vari');
                                 switch (serv) {
                                     case "":
                                         setCup.classList.add('w3-hide');
@@ -93,6 +82,19 @@ include '../templates/header.php';
                                 };
                             }
                         </script>
+                        <div class="w3-col m2 l2 w3-padding">
+                            <label for="servicio">Tipo de servicio</label>
+                            <select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
+                                <option value="">Seleccionar...</option>
+                                <option value="granel">Granel</option>
+                                <option value="unidad">Unidad</option>
+                            </select>
+                        </div>
+                        <!-- BOTE -->
+                        <div id="setCup" class="w3-col m2 l2 w3-padding w3-hide">
+                            <label for="bote">Peso del bote</label>
+                            <input type="text" name="bote" id="bote" class="w3-input w3-border w3-border-theme w3-round" placeholder="0.000">
+                        </div>
                     </div>
                     <!-- FILA 2: NOMBRE Y CATEGORIA => VARIEDAD -->
                     <div class="w3-row">
@@ -104,7 +106,7 @@ include '../templates/header.php';
                         <!-- CATEGORIA  -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="categoria">Categoría</label>
-                            <select name="categoria" class="w3-select w3-white w3-border w3-border-theme w3-round">
+                            <select name="categoria" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="variedad();">
                                 <option value="">Seleccionar...</option>
                                 <?php
                                 require_once '../../config/functions.php';
@@ -128,6 +130,28 @@ include '../templates/header.php';
                                     <option value=<?php echo $variedad['nombre']; ?>><?php echo $variedad['nombre'] ?></option>
                                 <?php endforeach; ?>
                             </select>
+                            <script>
+                                function variedad() {
+                                    var text;
+                                    var serv = altaProducto.disp.value;
+                                    switch (serv) {
+                                        case "":
+                                            setCup.classList.add('w3-hide');
+                                            vari.classList.add('w3-hide');
+                                            break;
+                                        case "granel":
+                                            setCup.classList.remove('w3-hide');
+                                            vari.classList.remove('w3-hide');
+                                            break;
+                                        case "unidad":
+                                            setCup.classList.add('w3-hide');
+                                            vari.classList.add('w3-hide');
+                                            break;
+                                        default:
+                                            text = "I have never heard of that fruit...";
+                                    };
+                                }
+                            </script>
                         </div>
                     </div>
                     <!-- FILA 3:  PVC Y PVP -->

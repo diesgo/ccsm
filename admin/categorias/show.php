@@ -75,7 +75,7 @@ $categoria = getCategoriasById($_GET['id']);
                     echo "<td style='width: 5%;'> " . $row["pvp"] . "</td>";
                     echo "<td class='estado' style='width: 5%;'> " . $cantidad . "</td>";
                     echo "<td style='width: 8%;'> " . $row["servicio"] . "</td>";
-                    echo "<td style='width: 8%;'> " . $row["dispensario"] . "</td>";
+                    echo "<td class='estado' style='width: 8%;'> " . $row["dispensario"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["bote"] . "</td>";
                     echo "<td style='width: 5%;'> ";
                     echo "<a href='../productos/update.php?id=" . $row['id'] . "'>";

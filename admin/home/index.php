@@ -12,7 +12,6 @@ include '../templates/header.php';
     <div class="w3-half">
         <!-- <a class="w3-right w3-button w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme" href="nuevoSocio.php">+ New socios</a> -->
     </div>
-    <hr>
 </div>
 <div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
     <!-- Header -->
@@ -22,7 +21,7 @@ include '../templates/header.php';
 
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
-            <div class="w3-container w3-theme w3-text-white w3-padding-16">
+            <div class="w3-container w3-theme w3-text-white w3-padding-16 w3-card-4">
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
@@ -37,11 +36,11 @@ include '../templates/header.php';
                     ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>SOCIOS</h4>
+                <h4>total socios</h4>
             </div>
         </div>
         <div class="w3-quarter">
-            <div class="w3-container w3-theme-dark w3-padding-16">
+            <div class="w3-container w3-theme-dark w3-padding-16 w3-card-4">
                 <div class="w3-left"><i class="fas fa-boxes w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
@@ -56,11 +55,11 @@ include '../templates/header.php';
                     ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>PRODUCTOS</h4>
+                <h4>total productos</h4>
             </div>
         </div>
         <div class="w3-quarter">
-            <div class="w3-container w3-blue w3-padding-16">
+            <div class="w3-container w3-blue w3-padding-16 w3-card-4">
                 <div class="w3-left"><i class="fas fa-layer-group w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
@@ -76,11 +75,11 @@ include '../templates/header.php';
                     ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>Categorias</h4>
+                <h4>número de categorias</h4>
             </div>
         </div>
         <div class="w3-quarter">
-            <div class="w3-container w3-teal w3-padding-16">
+            <div class="w3-container w3-teal w3-padding-16 w3-card-4">
                 <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <h3>23</h3>
@@ -108,7 +107,7 @@ include '../templates/header.php';
                         <?php
                         require '../../config/conexion.php';
 
-                        $sql = "SELECT COUNT(pais), pais AS country, pais FROM socios GROUP BY pais";
+                        $sql = "SELECT COUNT(pais), pais AS bandera, pais FROM socios GROUP BY pais";
                         $result = mysqli_query($conn, $sql);
                         $sql = "SELECT COUNT(pais) AS pais FROM socios GROUP BY pais";
                         $pais = mysqli_query($conn, $sql);
@@ -121,13 +120,13 @@ include '../templates/header.php';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 echo "<tr>";
                                 echo "<td style='width: 5%;'> " . $row['pais'] . "</td>";
-                                echo "<td style='width: 5%;'><img src='/club/img/banderas/" . $row['country']  . ".png' alt='" . $row['country'] . "' width='30'></td>";
+                                echo "<td style='width: 5%;'><img src='/club/img/banderas/" . $row['bandera']  . ".png' alt='" . $row['pais'] . "' width='30'></td>";
                                 echo "<td style='width: 5%;'> " . $nacion = (100 * mysqli_fetch_assoc($pais)['pais']) / mysqli_num_rows($paises) . " % </td>";
 
                                 echo "</tr>";
                             }
                         } else {
-                            echo "No se han encontrado productos de esta categoría.";
+                            echo "<p class='w3-text-green'>No se han encontrado registros.</p>";
                         }
 
                         mysqli_close($conn);

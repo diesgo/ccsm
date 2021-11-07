@@ -9,6 +9,7 @@ function dropAside(id) {
             x.previousElementSibling.className.replace(" w3-green", "");
     }
 }
+
 function w3_open() {
     if (mySidebar.style.display === 'block') {
         mySidebar.style.display = 'none';
@@ -23,6 +24,7 @@ function w3_close() {
     mySidebar.style.display = "none";
     // overlayBg.style.display = "none";
 }
+
 function estadoStock() {
     var cantidad = document.getElementsByClassName('estado');
     var i = cantidad.length;
@@ -36,4 +38,48 @@ function estadoStock() {
             cantidad[z].classList.add("w3-text-green");
         }
     }
+}
+
+function service() {
+    var text;
+    var serv = altaProducto.servicio.value;
+    var setCup = document.getElementById('setCup');
+    var vari = document.getElementById('vari');
+    switch (serv) {
+        case "":
+            setCup.classList.add('w3-hide');
+            vari.classList.add('w3-hide');
+            break;
+        case "granel":
+            setCup.classList.remove('w3-hide');
+            vari.classList.remove('w3-hide');
+            break;
+        case "unidad":
+            setCup.classList.add('w3-hide');
+            vari.classList.add('w3-hide');
+            break;
+        default:
+            text = "I have never heard of that fruit...";
+    };
+}
+
+function variedad() {
+    var text;
+    var serv = altaProducto.disp.value;
+    switch (serv) {
+        case "":
+            setCup.classList.add('w3-hide');
+            vari.classList.add('w3-hide');
+            break;
+        case "granel":
+            setCup.classList.remove('w3-hide');
+            vari.classList.remove('w3-hide');
+            break;
+        case "unidad":
+            setCup.classList.add('w3-hide');
+            vari.classList.add('w3-hide');
+            break;
+        default:
+            text = "I have never heard of that fruit...";
+    };
 }

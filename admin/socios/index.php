@@ -15,8 +15,7 @@ include '../templates/head_index.php';
                 <th>Apellidos</th>
                 <th>ID Card</th>
                 <th>Fecha de nacimiento</th>
-                <th>Nacionalidad</th>
-                <th></th>
+                <th colspan="2">Nacionalidad</th>
                 <th>Rol</th>
                 <th>Genero</th>
                 <th>Consumo mensual</th>
@@ -26,28 +25,27 @@ include '../templates/head_index.php';
             </tr>
         </thead>
         <?php
-        // require '../../config/functions.php';
         $socios = getSocios();
         foreach ($socios as $socios) :
         ?>
             <tr>
                 <td style="width: 5%;"><?php echo $socios['id'] ?></td>
-                <td style="width: 10%"><?php echo $socios['nombre'] ?></td>
-                <td style="width: 10%"><?php echo $socios['apellidos'] ?></td>
-                <td style="width: 10%"><?php echo $socios['dni'] ?></td>
-                <td style="width: 10%"><?php echo $socios['birth'] ?></td>
-                <td style="width: 10%"><?php echo $socios['pais'] ?></td>
-                <td style="width: 10%"><img src="/club/img/banderas/<?php echo $socios['pais'] ?>.png" width="30" alt="<?php echo $socios['pais'] ?>"></td>
-                <td style="width: 10%"><?php echo $socios['rol'] ?></td>
-                <td style="width: 10%"><?php echo $socios['genero'] ?></td>
+                <td style="width: 5%"><?php echo $socios['nombre'] ?></td>
+                <td style="width: 5%"><?php echo $socios['apellidos'] ?></td>
+                <td style="width: 5%"><?php echo $socios['dni'] ?></td>
+                <td style="width: 5%"><?php echo $socios['birth'] ?></td>
+                <td style="width: 5%; text-transform:capitalize"><?php echo $socios['pais'] ?></td>
+                <td style="width: 5%"><img src="/club/img/banderas/<?php echo $socios['bandera'] ?>.png" alt="<?php echo $socios['pais'] ?>" width="30"></td>
+                <td style="width: 5%"><?php echo $socios['rol'] ?></td>
+                <td style="width: 5%"><?php echo $socios['genero'] ?></td>
                 <td style="width: 5%"><?php echo $socios['consumo'] ?></td>
-                <td style="width: 10%"><?php echo $socios['saldo'] ?></td>
-                <td style="width: 10%">
+                <td style="width: 5%"><?php echo $socios['saldo'] ?></td>
+                <td style="width: 5%">
                     <a href="update.php?id=<?php echo $socios['id'] ?>">
                         <i class="fas fa-user-edit w3-text-theme"></i>
                     </a>
                 </td>
-                <td style="width: 10%">
+                <td style="width: 5%">
                     <a href="show.php?id=<?php echo $socios['id'] ?>">
                         <i class="fas fa-eye"></i>
                     </a>

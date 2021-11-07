@@ -10,7 +10,7 @@ $productos = getProductosById($_GET['id']);
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $productos['nombre']; ?></b></h2>
     </div>
     <div class="w3-half">
 
@@ -19,7 +19,24 @@ $productos = getProductosById($_GET['id']);
 </div>
 
 <div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
-    <div class="w3-content w3-padding">
+    <div class="w3-row-padding">
+        <div class="w3-col l3 m3">
+            <h4 class="w3-text-theme">Categoría: <span class="w3-text-dark-grey"><?php echo $productos['categoria']; ?></span></h4>
+            
+        </div>
+        <div class="w3-col l3 m3">
+            <h4 class="w3-text-theme">Variedad: <span class="w3-text-dark-grey"><?php echo $productos['variedad']; ?></span></h4>
+            
+        </div>
+        <div class="w3-col l3 m3">
+            <h4 class="w3-text-theme">Stock actual: <span class="w3-text-dark-grey"><?php echo $productos['cantidad']; ?></span></h4>
+            
+        </div>
+        <div class="w3-col l3 m3">
+            <h4 class="w3-text-theme">Precio de venta: <span class="w3-text-dark-grey"><?php echo $productos['pvp']; ?></span></h4>
+            
+        </div>
+    </div>
         <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
             <div class="w3-row-padding">
                 <div class="w3-col l4 w3-padding-large">
@@ -48,7 +65,6 @@ $productos = getProductosById($_GET['id']);
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
 <?php

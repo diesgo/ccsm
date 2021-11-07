@@ -29,7 +29,6 @@ $socios = getSociosById($_GET['id']); ?>
                     <p class="w3-text-theme w3-large">Sexo: <span class="w3-text-grey" id="sex_socio"><?php echo $socios['genero']; ?></span></p>
                     <p class="w3-text-theme w3-large">Saldo: <span class="w3-text-grey" id="saldo_socio"><?php echo $socios['saldo']; ?></span></p>
                     <p class="w3-text-theme w3-large">Nacionalidad: <span class="w3-text-grey" id="pais"><?php echo $socios['pais']; ?></span></p>
-                    <img src="/club/img/banderas/<?php echo $socios['pais'] ?>.png" alt="<?php echo $socios['pais'] ?>">
                 </div>
             </div>
         </div>

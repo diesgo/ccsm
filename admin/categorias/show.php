@@ -9,7 +9,7 @@ $categoria = getCategoriasById($_GET['id']);
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $categoria['nombre'] ?></b></h2>
     </div>
     <div class="w3-half">
     </div>
@@ -17,7 +17,7 @@ $categoria = getCategoriasById($_GET['id']);
 
 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
 
-    <div class="w3-container w3-center">
+    <!-- <div class="w3-container w3-center">
 
         <div class="w3-row w3-border w3-border-theme">
 
@@ -37,7 +37,7 @@ $categoria = getCategoriasById($_GET['id']);
                 <a href="update.php?id=<?php echo $categoria['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="w3-container">
         <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">

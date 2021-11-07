@@ -23,7 +23,6 @@
                                                     while ($row = $result->fetch_assoc()) {
                                                         echo $row['color'];
                                                     }
-                                                    $conn->close();
                                                     ?>.css">
     <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
     <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
@@ -31,9 +30,6 @@
     <link rel="stylesheet" href="/club/css/carrito.css">
 </head>
 <style>
-    .panel {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
-    }
 
     h1,
     h2,
@@ -42,39 +38,16 @@
     h5,
     h6 {
         font-family: <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "greenpower";
-                        // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
-                        // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
                         $sql = "SELECT *  FROM settings";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             echo $row['titulos'];
                         }
-                        $conn->close();
                         ?>;
     }
 </style>
 
 <body class="w3-theme-light font-<?php
-                                    $servername = "localhost";
-                                    $username = "root";
-                                    $password = "";
-                                    $dbname = "greenpower";
-                                    // Create connection
-                                    $conn = new mysqli($servername, $username, $password, $dbname);
-                                    // Check connection
-                                    if ($conn->connect_error) {
-                                        die("Connection failed: " . $conn->connect_error);
-                                    }
-                                    $sql = "SELECT * FROM settings";
-                                    $result = $conn->query($sql);
                                     while ($row = $result->fetch_assoc()) {
                                         echo $row['fuente'];
                                     }
@@ -84,7 +57,6 @@
             body {
                 background-color: #eff1f2;
                 color: #555;
-                /* font: 400 12px/1.42857 Open Sans, Helvetica, Arial, sans-serif; */
                 direction: ltr;
                 margin: 0;
             }
@@ -124,14 +96,9 @@
                 width: 100%;
             }
 
-            .panel {
-                box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
-            }
-
             #shop-img {
                 left: 0;
                 top: 215px;
-                ;
                 margin: 0 auto;
                 position: absolute;
                 right: 0;
@@ -149,7 +116,7 @@
 
                         <div class="front panel w3-white">
                             <h4 id="shop_name" class="w3-center">pre-alfa 1.0</h4>
-                            <form id="login_form" method="post">
+                            <form id="login_form" method="post" action="select.php">
                                 <div class="w3-margin-bottom w3-row">
                                     <label for="user">Nombre de usuario</label>
                                     <input name="user" type="text" id="user" class="w3-block" autofocus="autofocus" tabindex="1" placeholder="&#128100 Usuario" />
@@ -170,17 +137,6 @@
                                             }
                                         }
                                     </script>
-                                </div>
-                                <div class="w3-margin-bottom">
-                                    <div class="custom-select">
-                                        <label for="rol">Seleccione un rol</label>
-                                        <select name="rol" id="rol" style="width: 100%;" onchange="tipoDeUsuario()">
-                                            <option value="0"> Entrar como...</option>
-                                            <option value="1"> Administrador</option>
-                                            <option value="2"> Vendedor</option>
-                                            <small>Elije una opción</small>
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="w3-margin-bottom">
                                     <button id="submit_login" type="submit" class="w3-button w3-theme w3-block w3-round w3-hover-theme" name="submitLogin" tabindex="4">
@@ -207,19 +163,14 @@
                 var kindOfUser = document.getElementById('rol').selectedIndex;
                 switch (kindOfUser) {
                     case 1:
-                        document.getElementById("login_form").setAttribute("action", "admin/home/index.php")
-
+                        document.getElementById("login_form").setAttribute("action", "select.php")
                         break;
                     case 2:
-                        document.getElementById("login_form").setAttribute("action", "dispensario.html")
-
+                        document.getElementById("login_form").setAttribute("action", "dispensario/index.php")
                         break;
-
                     default:
-
                         break;
                 }
-
             }
         </script>
 </body>

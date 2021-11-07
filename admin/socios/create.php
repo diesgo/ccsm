@@ -21,6 +21,7 @@ include '../templates/header.php';
             $dni = $_POST['dni'];
             $birth = $_POST['birth'];
             $pais = $_POST['pais'];
+            $bandera = $_POST['pais']; 
             $genero = $_POST['genero'];
             $consumo = $_POST['consumo'];
             $saldo = $_POST['saldo'];
@@ -35,8 +36,8 @@ include '../templates/header.php';
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais, genero, consumo, saldo, rol)
-    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$saldo', '$rol')";
+            $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais,  bandera, genero, consumo, saldo, rol)
+    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$bandera', '$genero', '$consumo', '$saldo', '$rol')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "Se ha creado un nuevo registro";
@@ -137,7 +138,7 @@ include '../templates/header.php';
                                 $pais = getPaises();
                                 foreach ($pais as $pais) :
                                 ?>
-                                <option value=<?php echo $pais['bandera'] ?>><?php echo $pais['nombre'] ?></option>
+                                <option value=<?php echo $pais['id'] ?>><?php echo $pais['pais']?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -212,9 +213,6 @@ include '../templates/header.php';
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">
                     <input type="submit" value="Guardar" name="altaButton" class="w3-button w3-theme w3-round">
-                    <!-- <input title="Guardar el producto y permanecer en la página actual: ALT+SHIFT+S" />
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_go_to_catalog_btn" data-toggle="pstooltip" title="Guardar y regresar al catálogo: ALT+SHIFT+Q">Ir al catálogo</button>
-                    <button type="button" class="w3-button w3-theme w3-round" id="product_form_save_new_btn" data-toggle="pstooltip" title="Guardar y crear un nuevo producto: ALT+SHIFT+P">Añadir nuevo producto</button> -->
                 </div>
             </form>
         </div>

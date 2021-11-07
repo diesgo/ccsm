@@ -409,7 +409,9 @@ MONTSERRAT
 
 .font-montserrat {font-family: 'montserrat', sans-serif}
 
-/* PERMANENT MAKER */
+/* ===============
+PERMANENT MAKER
+=============== */
 
 @font-face {
      font-family: 'permanent-marker';
@@ -422,6 +424,10 @@ MONTSERRAT
 
 .font-permanent-marker {font-family: 'permanent-marker', sans-serif}
 
+/* ========
+SWEET LEAF
+======== */
+
 @font-face {
      font-family: 'sweet-leaf';
      src: url('sweet-leaf/sweet-leaf-webfont.woff2') format('woff2'),
@@ -430,6 +436,19 @@ MONTSERRAT
      font-style: normal;
 
 }
-.font-sweet-leaf{
-     font-family: 'sweet-leaf', sans-serif;
+
+.font-sweet-leaf{font-family: 'sweet-leaf', sans-serif}
+
+/* ====
+VARELA
+==== */
+
+@font-face {
+     font-family: 'varela';
+     src: url('varela/varela_round_regular-webfont.woff2') format('woff2'),
+          url('varela/varela_round_regular-webfont.woff') format('woff'),
+          url('varela/varela_round_regular-webfont.ttf') format('truetype');
+     font-weight: normal;
+     font-style: normal;
 }
+.font-varela{font-family: 'varela', sans-serif}

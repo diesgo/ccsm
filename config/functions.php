@@ -175,8 +175,7 @@ function getProductsByCategory($categoria)
 
 // FUNCIONES PARA LA TABLA ICONOS
 
-function getIcono()
-{
+function getIcono(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM iconos');
 	return $result;
@@ -188,5 +187,12 @@ function getPaises(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM paises');
 	return $result;
+}
+function getPaisesById($id)
+{
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM productos WHERE categoria =' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
 }
 ?>

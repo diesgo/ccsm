@@ -59,27 +59,42 @@ $categoria = getCategoriasById($_GET['id']);
                         <!-- CATEGORIA -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Categoria</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre'] ?>>
+                            <input class='w3-input w3-border w3-border-theme w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre'] ?>>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="descripcion" class="w3-text-theme">Descripción</label>
-                            <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion'] ?>>
+                            <input class="w3-input w3-border w3-border-theme w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion'] ?>>
                         </div>
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for="icono" class="w3-text-theme">Icono</label>
-                            <select name="icono" id="icono" class="w3-select w3-white" onchange="pictograma();">
-                                <option value="<?php echo $categoria['icono']; ?>"> <?php echo $categoria['icono']; ?></option>
-                                <?php
-                                require_once '../../config/functions.php';
-                                $iconos = getIcono();
-                                foreach ($iconos as $icono) :
-                                ?>
-                                    <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <i id="pic" class="<?php echo $categoria['icono']; ?>"></i>
+                            <div class="w3-row">
+                                <div class="w3-col l6 m6">
+                                    <?php
+                                        require_once '../../config/functions.php';
+                                        $iconos = getIcono();
+                                    ?>
+                                    <label for="icono" class="w3-text-theme">Icono</label>
+                                    <select name="icono" id="icono" class="w3-select w3-border w3-border-theme w3-round">
+                                        <option value="<?php echo $categoria['icono']; ?>"> <?php echo $categoria['icono']; ?></option>
+                                        <?php
+                                        foreach ($iconos as $icono) :
+                                        ?>
+                                            <?php
+                                            $ico = json_encode($icono);
+                                            $baseDeDatos .=$ico;
+                                            ?>
+                                            <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
+                                        <?php endforeach;
+                                        echo $baseDeDatos; ?>
 
+                                    </select>
+                                </div>
+                                <div class="w3-col l6 m6 w3-padding">
+                                    <p class="w3-border w3-border-theme w3-round w3-large" style="padding: 4px 16px;">
+                                        <i id="pic" class="<?php echo $categoria['icono']; ?>"></i>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

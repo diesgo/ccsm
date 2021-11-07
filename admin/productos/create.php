@@ -58,30 +58,6 @@ include '../templates/header.php';
                 <div class="w3-content w3-padding">
                     <!-- FILA 1: SERVICIO -->
                     <div class="w3-row w3-section">
-                        <script>
-                            function service() {
-                                var text;
-                                var serv = altaProducto.servicio.value;
-                                var setCup = document.getElementById('setCup');
-                                var vari = document.getElementById('vari');
-                                switch (serv) {
-                                    case "":
-                                        setCup.classList.add('w3-hide');
-                                        vari.classList.add('w3-hide');
-                                        break;
-                                    case "granel":
-                                        setCup.classList.remove('w3-hide');
-                                        vari.classList.remove('w3-hide');
-                                        break;
-                                    case "unidad":
-                                        setCup.classList.add('w3-hide');
-                                        vari.classList.add('w3-hide');
-                                        break;
-                                    default:
-                                        text = "I have never heard of that fruit...";
-                                };
-                            }
-                        </script>
                         <div class="w3-col m2 l2 w3-padding">
                             <label for="servicio">Tipo de servicio</label>
                             <select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
@@ -130,28 +106,6 @@ include '../templates/header.php';
                                     <option value=<?php echo $variedad['nombre']; ?>><?php echo $variedad['nombre'] ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <script>
-                                function variedad() {
-                                    var text;
-                                    var serv = altaProducto.disp.value;
-                                    switch (serv) {
-                                        case "":
-                                            setCup.classList.add('w3-hide');
-                                            vari.classList.add('w3-hide');
-                                            break;
-                                        case "granel":
-                                            setCup.classList.remove('w3-hide');
-                                            vari.classList.remove('w3-hide');
-                                            break;
-                                        case "unidad":
-                                            setCup.classList.add('w3-hide');
-                                            vari.classList.add('w3-hide');
-                                            break;
-                                        default:
-                                            text = "I have never heard of that fruit...";
-                                    };
-                                }
-                            </script>
                         </div>
                     </div>
                     <!-- FILA 3:  PVC Y PVP -->

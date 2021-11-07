@@ -8,7 +8,7 @@
      <title><?php echo $titulo ?> | CCSM</title>
      <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
      <link rel="stylesheet" href="/club/css/w3.css">
-     <link rel="stylesheet" href="/club/css/w3-theme-<?php
+     <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php
                                                         require '../config/conexion.php';
                                                         $sql = "SELECT * FROM settings";
                                                         $result = $conn->query($sql);
@@ -37,7 +37,7 @@
 
  <body class="w3-theme-light font-<?php echo $row['fuente'];
                                     $conn->close(); ?>">
-     <div id="pantalla" class="w3-container">
+     <div id="pantalla">
 
          <!-- CABECERA -->
 

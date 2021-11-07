@@ -2,7 +2,7 @@
 $titulo = "DISPENSARIO";
 include "../templates/header.php"
 ?>
-<div id="pantalla" class="w3-container">
+
     <div class="w3-content">
         <?php
         require_once '../config/functions.php';
@@ -43,7 +43,6 @@ include "../templates/header.php"
             </div>
         </div>
     </div>
-</div>
 <?php
 include "../templates/footer.php";
 ?>

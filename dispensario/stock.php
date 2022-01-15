@@ -35,7 +35,7 @@ include "../templates/header.php"
                     <td style="width: 10%"><?php echo $producto['pvc'] ?> €</td>
                     <td style="width: 10%"><?php echo $producto['pvp'] ?> €</td>
                     <td style="width: 10%"><?php echo $producto['cantidad'] ?> Kg.</td>
-                    <td style="width: 10%"><?php echo $producto['disp'] ?></td>
+                    <td style="width: 10%"><?php echo $producto['servicio'] ?></td>
                     <td style="width: 10%">
                         <a href="update.php?id=<?php echo $producto['id'] ?>">
                             <i class="fas fa-user-edit w3-text-theme"></i>

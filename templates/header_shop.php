@@ -1,3 +1,7 @@
+ <?php 
+ require "../config.php";
+ require "../conex.php";
+ ?>
  <!DOCTYPE html>
 
  <html lang="es">
@@ -8,25 +12,25 @@
      <title><?php echo $titulo ?> | CCSM</title>
      <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
      <link rel="stylesheet" href="/club/css/w3.css">
-     <link rel="stylesheet" href="/club/css/w3-theme-<?php
-                                                        $servername = "localhost";
-                                                        $username = "root";
-                                                        $password = "";
-                                                        $dbname = "greenpower";
-                                                        // Create connection
-                                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                                        // Check connection
-                                                        if ($conn->connect_error) {
-                                                            die("Connection failed: " . $conn->connect_error);
-                                                        }
-                                                        $sql = "SELECT color, fuente, titulos FROM settings";
-                                                        $result = $conn->query($sql);
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            echo $row['color'];
-                                                        }
-                                                        $conn->close();
-                                                        ?>.css">
-     <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
+     <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php
+    //  $servername = "localhost";
+    //  $username = "root";
+    //  $password = "";
+    //  $dbname = "greenpower";
+     // Create connection
+    //  $conn = new mysqli($servername, $username, $password, $dbname);
+     // Check connection
+    //  if ($conn->connect_error) {
+    //      die("Connection failed: " . $conn->connect_error);
+    //     }
+        $sql = "SELECT color, fuente, titulos FROM settings";
+        $result = $conn->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo $row['color'];
+    }
+    // $conn->close();
+    ?>.css">
+    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
      <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
      <link rel="stylesheet" href="/club/css/style.css">
      <link rel="stylesheet" href="/club/css/carrito.css">
@@ -43,22 +47,22 @@
      h5,
      h6 {
          font-family: <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "greenpower";
+                        // $servername = "localhost";
+                        // $username = "root";
+                        // $password = "";
+                        // $dbname = "greenpower";
                         // Create connection
-                        $conn = new mysqli($servername, $username, $password, $dbname);
+                        // $conn = new mysqli($servername, $username, $password, $dbname);
                         // Check connection
-                        if ($conn->connect_error) {
-                            die("Connection failed: " . $conn->connect_error);
-                        }
+                        // if ($conn->connect_error) {
+                        //     die("Connection failed: " . $conn->connect_error);
+                        // }
                         $sql = "SELECT *  FROM settings";
                         $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             echo $row['titulos'];
                         }
-                        $conn->close();
+                        // $conn->close();
                         ?>;
      }
  </style>
@@ -81,4 +85,4 @@
                                     }
                                     $conn->close();
                                     ?>">
-     <div id="pantalla" class="w3-container">
+     <div class="w3-container">

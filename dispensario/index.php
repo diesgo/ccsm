@@ -10,6 +10,7 @@ $socios = getSocios();
     <script>
     var altura=screen.availHeight;
     document.getElementById("pantalla").style.height =  altura;
+    console.log(altura);
     </script>
 
     <div class="w3-display-container" style="min-height: 100px;">

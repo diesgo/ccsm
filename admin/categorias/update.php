@@ -1,7 +1,6 @@
 <?php
 $titulo = "EDITAR CATEGORIA";
 include '../templates/header.php';
-// require '../../config/functions.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
 
@@ -13,30 +12,29 @@ $categoria = getCategoriasById($_GET['id']);
     </div>
     <div class="w3-half">
         <?php
-        require "../../config/conexion.php";
         if (isset($_POST['actualizar'])) {
             $id = $categoria['id'];
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $icono = $_POST['icono'];
-            $sql = "UPDATE categorias SET nombre ='" . $nombre . "',descripcion='" . $descripcion . "',icono='" . $icono . "' WHERE id=" . $id . ";";
+            $sql = "UPDATE categorias SET nombre_categoria ='" . $nombre . "',descripcion_categoria='" . $descripcion . "',icono_id='" . $icono . "' WHERE id=" . $id . ";";
             echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Cambios guardados</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
-                $sql = "SELECT min(id) FROM categorias";
+                $sql = "SELECT min(id_categoria) FROM categorias";
                 $result = mysqli_query($conex, $sql);
                 $row = mysqli_fetch_assoc($result);
-                $id = $row['min(id)'];
+                $id = $row['min(id_categoria)'];
             } else {
                 $id = $_POST["id"];
             }
-            $sql = "SELECT nombre, descripcion, icono FROM categorias WHERE id='$id'";
+            $sql = "SELECT nombre_categoria, descripcion_categoria, icono_id FROM categorias WHERE id_categoria = '$id'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
-            $nombre = $row['nombre'];
-            $descripcion = $row['descripcion'];
-            $icono = $row['icono'];
+            $nombre = $row['nombre_categoria'];
+            $descripcion = $row['descripcion_categoria'];
+            $icono = $row['icono_id'];
         }
         $sql = "SELECT * FROM categorias";
         $result = mysqli_query($conex, $sql);
@@ -59,42 +57,27 @@ $categoria = getCategoriasById($_GET['id']);
                         <!-- CATEGORIA -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Categoria</label><br>
-                            <input class='w3-input w3-border w3-border-theme w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre'] ?>>
+                            <input class='w3-input w3-border w3-border-theme w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre_categoria'] ?>>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="descripcion" class="w3-text-theme">Descripción</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion'] ?>>
+                            <input class="w3-input w3-border w3-border-theme w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion_categoria'] ?>>
                         </div>
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <div class="w3-row">
-                                <div class="w3-col l6 m6">
-                                    <?php
-                                        require_once '../../config/functions.php';
-                                        $iconos = getIcono();
-                                    ?>
-                                    <label for="icono" class="w3-text-theme">Icono</label>
-                                    <select name="icono" id="icono" class="w3-select w3-border w3-border-theme w3-round">
-                                        <option value="<?php echo $categoria['icono']; ?>"> <?php echo $categoria['icono']; ?></option>
-                                        <?php
-                                        foreach ($iconos as $icono) :
-                                        ?>
-                                            <?php
-                                            $ico = json_encode($icono);
-                                            $baseDeDatos .=$ico;
-                                            ?>
-                                            <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
-                                        <?php endforeach;
-                                        echo $baseDeDatos; ?>
-
-                                    </select>
-                                </div>
-                                <div class="w3-col l6 m6 w3-padding">
-                                    <p class="w3-border w3-border-theme w3-round w3-large" style="padding: 4px 16px;">
-                                        <i id="pic" class="<?php echo $categoria['icono']; ?>"></i>
-                                    </p>
-                                </div>
-                            </div>
+                            <?php
+                            $iconos = getIcono();
+                            ?>
+                            <label for="icono" class="w3-text-theme">Icono</label>
+                            <select name="icono" id="icono" class="w3-select w3-border w3-border-theme w3-round">
+                                <option value="<?php echo $categoria['icono_id']; ?>"> <?php echo $categoria['icono'] . ' ' . $categoria['nombre_icono']; ?></option>
+                                <?php
+                                foreach ($iconos as $icono) :
+                                ?>
+                                <option value=<?php echo $icono['id_icono']; ?>> <?php echo $icono['icono'] . ' ' . $icono['nombre_icono']; ?></option>
+                                <?php endforeach;
+                                ?>
+                            </select>                           
                         </div>
                     </div>
                 </div>

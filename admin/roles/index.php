@@ -1,7 +1,6 @@
 <?php
 $titulo = 'ROLES';
 include '../templates/header.php';
-include '../templates/head_index.php';
 ?>
 
 <!-- !PAGE CONTENT! -->
@@ -18,21 +17,20 @@ include '../templates/head_index.php';
             </tr>
         </thead>
         <?php
-        require_once '../../config/functions.php';
         $roles = getRoles();
         foreach ($roles as $rol) :
         ?>
             <tr>
-                <td style="width: 5%;"><?php echo $rol['id'] ?></td>
-                <td style="width: 10%"><?php echo $rol['nombre'] ?></td>
+                <td style="width: 5%;"><?php echo $rol['id_rol'] ?></td>
+                <td style="width: 10%"><?php echo $rol['rol'] ?></td>
                 <td style="width: 15%"><?php echo $rol['descripcion'] ?></td>
                 <td style="width: 10%">
-                    <a href="update.php?id=<?php echo $rol['id'] ?>">
+                    <a href="update.php?id=<?php echo $rol['id_rol'] ?>">
                         <i class="fas fa-pen w3-text-theme"></i>
                     </a>
                 </td>
                 <td style="width: 10%">
-                    <a href="show.php?id=<?php echo $rol['id'] ?>">
+                    <a href="show.php?id=<?php echo $rol['id_rol'] ?>">
                         <i class="fas fa-eye w3-text-theme"></i>
                     </a>
                 </td>

@@ -24,17 +24,17 @@ include '../templates/head_index.php';
         foreach ($categorias as $categoria) :
         ?>
             <tr>
-                <td style="width: 5%;"><?php echo $categoria['id'] ?></td>
-                <td style="width: 20%"><?php echo $categoria['nombre'] ?></td>
-                <td style="width: 60%"><?php echo $categoria['descripcion'] ?></td>
-                <td style="width: 5%" class="w3-text-theme"><i class="<?php echo $categoria['icono'] ?>"></i></td>
+                <td style="width: 5%;"><?php echo $categoria['id_categoria'] ?></td>
+                <td style="width: 20%"><?php echo $categoria['nombre_categoria'] ?></td>
+                <td style="width: 60%"><?php echo $categoria['descripcion_categoria'] ?></td>
+                <td style="width: 5%" class="w3-text-theme"><?php echo $categoria['icono'] ?></td>
                 <td style="width: 5%">
-                    <a href="update.php?id=<?php echo $categoria['id'] ?>">
+                    <a href="update.php?id=<?php echo $categoria['id_categoria'] ?>">
                         <i class="fas fa-pen w3-text-theme"></i>
                     </a>
                 </td>
                 <td style="width: 5%">
-                    <a href="show.php?id=<?php echo $categoria['id'] ?>">
+                    <a href="show.php?id=<?php echo $categoria['id_categoria'] ?>">
                         <i class="fas fa-eye w3-text-theme"></i>
                     </a>
                 </td>

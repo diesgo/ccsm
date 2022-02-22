@@ -5,7 +5,7 @@ include '../templates/header.php';
 
 <?php require_once '../../config/functions.php'; ?>
 
-<?php $variedades = getVariedadesById($_GET['id']); ?>
+<?php $variedades = getVariedadesById($_GET['id_variedad']); ?>
 
 <!-- Header -->
 
@@ -27,8 +27,8 @@ include '../templates/header.php';
 
                 </div>
                 <div class="w3-col l8">
-                    <p class="w3-text-theme w3-xlarge">Variedad # <span><?php echo $variedades['id']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey"><?php echo $variedades['nombre']; ?></span></p>
+                    <p class="w3-text-theme w3-xlarge">Variedad # <span><?php echo $variedades['id_variedad']; ?></span></p>
+                    <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey"><?php echo $variedades['nombre_variedad']; ?></span></p>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@ include '../templates/header.php';
 
                 </div>
                 <div class="w3-col l4">
-                    <a href="update.php?id=<?php echo $variedades['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
+                    <a href="update.php?id=<?php echo $variedades['id_variedad'] ?>" class="w3-button w3-theme w3-round">Editar</a>
                 </div>
                 <div class="w3-col l4">
                     <button class="boton">Añadir <br> comentario</button>

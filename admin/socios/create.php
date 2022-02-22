@@ -1,10 +1,39 @@
 <?php
 $titulo = "Nuevo socio | CCSM";
 include '../templates/header.php';
+
+
+if (isset($_POST['altaButton'])) {  
+    $nombre = $_POST['nombre_socio'];
+    $apellidos = $_POST['apellidos'];
+    $dni = $_POST['dni'];
+    $birth = $_POST['birth'];
+    $pais = $_POST['pais'];
+    $genero = $_POST['genero'];
+    $consumo = $_POST['consumo'];
+    $saldo = $_POST['saldo'];
+    $rol = $_POST['rol'];
+    
+    // Create connection
+    
+    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+    
+    // Check connection
+    
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $sql = "INSERT INTO socios (nombre_socio, apellidos_socio, card_id_socio, birth, pais_id, genero_id, consumo, saldo, rol_id) VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$genero', '$consumo', '$saldo', '$rol')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "Se ha creado un nuevo registro";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    
+    $conn->close();
+}
 ?>
-
-
-
 <!-- Header -->
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
@@ -12,42 +41,7 @@ include '../templates/header.php';
         <h2 class="w3-text-theme"><b><i class="fa fa-dashboard"></i>Nuevo socio</b></h2>
     </div>
     <div class="w3-half">
-        <?php
-        if (isset($_POST['altaButton'])) {
-            require_once '../../config/config.php';
 
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $dni = $_POST['dni'];
-            $birth = $_POST['birth'];
-            $pais = $_POST['pais'];
-            $bandera = $_POST['pais']; 
-            $genero = $_POST['genero'];
-            $consumo = $_POST['consumo'];
-            $saldo = $_POST['saldo'];
-            $rol = $_POST['rol'];
-
-            // Create connection
-
-            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-
-            // Check connection
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "INSERT INTO socios (nombre, apellidos, dni, birth, pais,  bandera, genero, consumo, saldo, rol)
-    VALUES ('$nombre', '$apellidos', '$dni', '$birth', '$pais', '$bandera', '$genero', '$consumo', '$saldo', '$rol')";
-
-            if ($conn->query($sql) === TRUE) {
-                echo "Se ha creado un nuevo registro";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-
-            $conn->close();
-        }
-        ?>
     </div>
     <hr>
 </div>
@@ -64,11 +58,11 @@ include '../templates/header.php';
                     <div class="w3-row w3-section">
                         <div class="w3-col m3 l3 w3-padding">
                             <legend>Tratamiento:</legend>
-                            <input class="w3-radio" type="radio" name="genero" value="Hombre" checked>
+                            <input class="w3-radio" type="radio" name="genero" value="1" checked>
                             <label>Sr.</label>
-                            <input class="w3-radio" type="radio" name="genero" value="Mujer">
+                            <input class="w3-radio" type="radio" name="genero" value="2">
                             <label>Sra.</label>
-                            <input class="w3-radio" type="radio" name="genero" value="otro">
+                            <input class="w3-radio" type="radio" name="genero" value="3">
                             <label>Otro</label>
                         </div>
                         <!-- FECHA DE NACIMIENTO -->
@@ -112,8 +106,8 @@ include '../templates/header.php';
                     <div class="w3-row w3-section">
                         <!-- NOMBRE -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for='nombre'>Nombre</label>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='Nombre / Name'>
+                            <label for='nombre_socio'>Nombre</label>
+                            <input class='w3-input w3-border w3-round' name='nombre_socio' id='nombre_socio' type='text' placeholder='Nombre / Name'>
                             <small id="info_nombre"></small>
                         </div>
                         <!-- APELLIDOS -->
@@ -134,11 +128,10 @@ include '../templates/header.php';
                             <!-- SELECT PAISES -->
                             <select name="pais" id="pais" class="w3-select w3-white">
                                 <?php
-                                require_once '../../config/functions.php';
                                 $pais = getPaises();
                                 foreach ($pais as $pais) :
                                 ?>
-                                <option value=<?php echo $pais['id'] ?>><?php echo $pais['pais']?></option>
+                                <option value=<?php echo $pais['id_pais'] ?>><?php echo $pais['bandera'].' '.$pais['pais']?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -151,11 +144,10 @@ include '../templates/header.php';
                             <select name="rol" class="w3-select w3-white">
                                 <option value="">Seleccionar...</option>
                                 <?php
-                                require_once '../../config/functions.php';
                                 $roles = getRoles();
                                 foreach ($roles as $rol) :
                                 ?>
-                                    <option value=<?php echo $rol['nombre']; ?>><?php echo $rol['nombre'] ?></option>
+                                    <option value=<?php echo $rol['id_rol']; ?>><?php echo $rol['rol'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

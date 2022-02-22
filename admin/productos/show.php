@@ -1,8 +1,6 @@
 <?php
 $titulo = "MOSTRAR PRODUCTO";
 include '../templates/header.php';
-?>
-<?php
 require_once '../../config/functions.php';
 $productos = getProductosById($_GET['id']);
 ?>

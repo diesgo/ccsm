@@ -11,29 +11,27 @@ include '../templates/header.php';
     </div>
     <div class="w3-half">
         <?php
-        // require '../../config/functions.php';
         $roles = getRolesById($_GET['id']);
-        require "../../config/conexion.php";
         if (isset($_POST['actualizar'])) {
-            $id = $roles['id'];
-            $nombre = $_POST['nombre'];
+            $id = $roles['id_rol'];
+            $nombre = $_POST['rol'];
             $descripcion = $_POST['descripcion'];
-            $sql = "UPDATE roles SET nombre ='" . $nombre . "',descripcion='" . $descripcion . "' WHERE id=" . $id . ";";
+            $sql = "UPDATE roles SET rol ='" . $nombre . "',descripcion='" . $descripcion . "' WHERE id=" . $id . ";";
             echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
-                $sql = "SELECT min(id) FROM roles";
+                $sql = "SELECT min(id_rol) FROM roles";
                 $result = mysqli_query($conex, $sql);
                 $row = mysqli_fetch_assoc($result);
-                $id = $row['min(id)'];
+                $id = $row['min(id_rol)'];
             } else {
                 $id = $_POST["id"];
             }
-            $sql = "SELECT nombre, descripcion FROM roles WHERE id='$id'";
+            $sql = "SELECT rol, descripcion FROM roles WHERE id_rol='$id'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
-            $nombre = $row['nombre'];
+            $nombre = $row['rol'];
             $descripcion = $row['descripcion'];
         }
         $sql = "SELECT * FROM roles";
@@ -57,7 +55,7 @@ include '../templates/header.php';
                         <!-- ROL -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Categoria</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $roles['nombre'] ?>>
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $roles['rol'] ?>>
                             <small id="info_rol"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->

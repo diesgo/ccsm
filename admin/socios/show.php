@@ -1,7 +1,6 @@
 <?php
 $titulo = "CCSM | Socio";
 include '../templates/header.php';
-require_once '../../config/functions.php';
 $socios = getSociosById($_GET['id']); ?>
 
 <!-- Header -->
@@ -23,12 +22,12 @@ $socios = getSociosById($_GET['id']); ?>
                     <img class="w3-image" id="foto_socio" src="/club/img/s/0.png" alt="">
                 </div>
                 <div class="w3-col l8">
-                    <p class="w3-text-theme w3-xlarge">Socio # <span id="socio_id"><?php echo $socios['id']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey" id="socio_nombre"><?php echo $socios['nombre']; ?><?php echo $socios['apellidos'] ?></span></p>
+                    <p class="w3-text-theme w3-xlarge">Socio # <span id="socio_id"><?php echo $socios['id_socio']; ?></span></p>
+                    <p class="w3-text-theme w3-large">Nombre: <span class="w3-text-grey" id="socio_nombre"><?php echo $socios['nombre_socio']; ?><?php echo $socios['apellidos_socio'] ?></span></p>
                     <p class="w3-text-theme w3-large">Fecha de nacimiento: <span class="w3-text-grey" id="socio_birth_date"><?php echo $socios['birth']; ?></span></p>
                     <p class="w3-text-theme w3-large">Sexo: <span class="w3-text-grey" id="sex_socio"><?php echo $socios['genero']; ?></span></p>
                     <p class="w3-text-theme w3-large">Saldo: <span class="w3-text-grey" id="saldo_socio"><?php echo $socios['saldo']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Nacionalidad: <span class="w3-text-grey" id="pais"><?php echo $socios['pais']; ?></span></p>
+                    <p class="w3-text-theme w3-large">Nacionalidad: <span class="w3-text-grey" id="pais"><?php echo $socios ['bandera'] . ' ' . $socios['pais']; ?></span></p>
                 </div>
             </div>
         </div>
@@ -39,7 +38,7 @@ $socios = getSociosById($_GET['id']); ?>
                     <button class="boton w3-margin-top">Cargar</button>
                 </div>
                 <div class="w3-col l4">
-                    <a href="update.php?id=<?php echo $socios['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
+                    <a href="update.php?id=<?php echo $socios['id_socio'] ?>" class="w3-button w3-theme w3-round">Editar</a>
                 </div>
                 <div class="w3-col l4">
                     <button class="boton">Añadir <br> comentario</button>

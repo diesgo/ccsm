@@ -12,6 +12,7 @@ include '../templates/head_index.php';
             <tr class="w3-theme">
                 <th>ID</th>
                 <th>Variedad</th>
+                <th>Descripción</th>
                 <th>Editar</th>
                 <th>Ver</th>
             </tr>
@@ -22,15 +23,16 @@ include '../templates/head_index.php';
         foreach ($variedades as $variedad) :
         ?>
             <tr>
-                <td style="width: 5%;"><?php echo $variedad['id'] ?></td>
-                <td style="width: 10%"><?php echo $variedad['nombre'] ?></td>
+                <td style="width: 5%;"><?php echo $variedad['id_variedad'] ?></td>
+                <td style="width: 10%"><?php echo $variedad['nombre_variedad'] ?></td>
+                <td style="width: 10%"><?php echo $variedad['descripcion_variedad'] ?></td>
                 <td style="width: 10%">
-                    <a href="update.php?id=<?php echo $variedad['id'] ?>">
-                        <i class="fas fa-pen w3-text-theme"></i>
+                    <a class="w3-btn" href="update.php?id_variedad=<?php echo $variedad['id_variedad'] ?>">
+                         &#x1f58a;&#xfe0f;
                     </a>
                 </td>
                 <td style="width: 10%">
-                    <a href="show.php?id=<?php echo $variedad['id'] ?>">
+                    <a href="show.php?id_variedad=<?php echo $variedad['id_variedad'] ?>">
                         <i class="fas fa-eye w3-text-theme"></i>
                     </a>
                 </td>

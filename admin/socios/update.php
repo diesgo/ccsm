@@ -1,9 +1,7 @@
 <?php
 $titulo = "Editar socio";
 include '../templates/header.php';
-?>
-<?php
-// require '../../config/functions.php';
+
 $socios = getSociosById($_GET['id']);
 ?>
 
@@ -15,46 +13,51 @@ $socios = getSociosById($_GET['id']);
     </div>
     <div class="w3-half">
         <?php
-        require "../../config/conexion.php";
-
         if (isset($_POST['actualizar'])) {
-            $id = $socios['id'];
+            $id = $socios['id_socio'];
             $nombre = $_POST['nombre'];
             $apellidos = $_POST['apellidos'];
             $dni = $_POST['dni'];
             $birth = $_POST['birth'];
-            $pais = $_POST['pais'];
-            $bandera = $_POST['pais'];
-            $genero = $_POST['genero'];
+            $pais = $_POST['pais_id'];
+            $genero = $_POST['genero_id'];
             $consumo = $_POST['consumo'];
-            $rol = $_POST['rol'];
+            $rol = $_POST['rol_id'];
             $saldo = $_POST['saldo'];
 
-            $sql = "UPDATE socios SET nombre ='" . $nombre . "', apellidos='" . $apellidos . "', dni='" . $dni . "', birth='" . $birth . "', pais='" . $pais . "', bandera='" . $bandera . "', rol='" . $rol . "', genero='" . $genero . "', consumo='" . $consumo . "',  saldo='" . $saldo . "' WHERE id=" . $id . ";";
+            $sql = "UPDATE socios SET nombre_socio = '" . $nombre . "',
+            apellidos_socio = '" . $apellidos . "',
+            card_id_socio = '" . $dni . "',
+            birth = '" . $birth . "',
+            pais_id = '" . $pais . "', 
+            rol_id = '" . $rol . "',
+            genero_id = '" . $genero . "',
+            consumo='" . $consumo . "', 
+            saldo='" . $saldo . "'
+            WHERE id_socio = " . $id . ";";
             echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
 
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
-            if (!isset($_POST['id'])) {
-                $sql = "SELECT min(id) FROM socios";
+            if (!isset($_POST['id_socio'])) {
+                $sql = "SELECT min(id_socio) FROM socios";
                 $result = mysqli_query($conex, $sql);
                 $row = mysqli_fetch_assoc($result);
-                $id = $row['min(id)'];
+                $id = $row['min(id_socio)'];
             } else {
-                $id = $_POST["id"];
+                $id = $_POST["id_socio"];
             }
-            $sql = "SELECT * FROM socios WHERE id='$id'  ";
+            $sql = "SELECT * FROM socios WHERE id_socio='$id'  ";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
-            $nombre = $row['nombre'];
-            $apellidos = $row['apellidos'];
-            $dni = $row['dni'];
+            $nombre = $row['nombre_socio'];
+            $apellidos = $row['apellidos_socio'];
+            $dni = $row['card_id_socio'];
             $birth = $row['birth'];
-            $pais = $row['pais'];
-            $bandera = $row['pais'];
-            $genero = $row['genero'];
+            $pais = $row['pais_id'];
+            $genero = $row['genero_id'];
             $consumo = $row['consumo'];
-            $rol = $row['rol'];
+            $rol = $row['rol_id'];
             $saldo = $row['saldo'];
         }
         $sql = "SELECT * FROM socios";
@@ -76,16 +79,16 @@ $socios = getSociosById($_GET['id']);
 
                     <!-- FILA 1: TRATAMIENTO -->
                     <div class="w3-container">
-                        <h1><span class="w3-text-theme">Socio # <?php echo $socios['id'] ?></span> <?php echo $socios['nombre'] ?> <?php echo $socios['apellidos'] ?></h1>
+                        <h1><span class="w3-text-theme">Socio # <?php echo $socios['id_socio'] ?></span> <?php echo $socios['nombre_socio'] ?> <?php echo $socios['apellidos_socio'] ?></h1>
                     </div>
                     <div class="w3-row w3-section">
                         <div class="w3-col m2 l2 w3-padding">
-                            <label for="genero" class="w3-text-theme">Tratamiento:</label>
-                            <select name="genero" id="genero" class="w3-select w3-border w3-border-theme w3-round">
-                                <option value=<?php echo $socios['genero'] ?>><?php echo $socios['genero'] ?></option>
-                                <option value="Hombre">Hombre</option>
-                                <option value="Mujer">Mujer</option>
-                                <option value="Otro">Otro</option>
+                            <label for="genero_id" class="w3-text-theme">Tratamiento:</label>
+                            <select name="genero_id" id="genero_id" class="w3-select w3-border w3-border-theme w3-round">
+                                <option value=<?php echo $socios['genero_id'] ?>><?php echo $socios['genero'] ?></option>
+                                <option value=1>Hombre</option>
+                                <option value=2>Mujer</option>
+                                <option value=3>Otro</option>
                             </select>
                         </div>
                     </div>
@@ -95,13 +98,13 @@ $socios = getSociosById($_GET['id']);
                         <!-- NOMBRE -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="nombre" id="nombre" type="text" value="<?php echo $socios['nombre'] ?>">
+                            <input class="w3-input w3-border w3-border-theme w3-round" name="nombre" id="nombre" type="text" value="<?php echo $socios['nombre_socio'] ?>">
                             <small id="info_nombre"></small>
                         </div>
                         <!-- APELLIDOS -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="apellidos" class="w3-text-theme">Apellidos</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="apellidos" id="apellidos" type="text" value="<?php echo $socios['apellidos'] ?>">
+                            <input class="w3-input w3-border w3-border-theme w3-round" name="apellidos" id="apellidos" type="text" value="<?php echo $socios['apellidos_socio'] ?>">
                             <small id="info_apellidos"></small>
                         </div>
                     </div>
@@ -149,22 +152,21 @@ $socios = getSociosById($_GET['id']);
                         <!-- DNI -->
                         <div class="w3-col l4 m4 s12 w3-padding">
                             <label for="dni" class="w3-text-theme">DNI / ID</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="dni" id="dni" type="text" value=<?php echo $socios['dni']; ?>>
+                            <input class="w3-input w3-border w3-border-theme w3-round" name="dni" id="dni" type="text" value=<?php echo $socios['card_id_socio']; ?>>
                             <small id="info_dni"></small>
                         </div>
 
                         <!-- NACIONALIDAD -->
                         <div class="w3-col l4 m4 s12 w3-padding">
-                            <label for="pais" class="w3-text-theme">Nacionalidad</label>
+                            <label for="pais_id" class="w3-text-theme">Nacionalidad</label>
                             <!-- SELECT PAISES -->
-                            <select name="pais" id="pais" class="w3-select w3-border w3-border-theme w3-round">
-                                <option value=<?php echo $socios['pais'] ?>><?php echo $socios['pais'] ?></option>
+                            <select name="pais_id" id="pais_id" class="w3-select w3-border w3-border-theme w3-round">
+                                <option value=<?php echo $socios['pais_id'] ?>><?php echo $socios['bandera'] . ' ' . $socios['pais'] ?></option>
                                 <?php
-                                require_once '../../config/functions.php';
                                 $pais = getPaises();
                                 foreach ($pais as $pais) :
                                 ?>
-                                    <option value=<?php echo $pais['id'] ?>><?php echo $pais['pais'] ?></option>
+                                    <option value=<?php echo $pais['id_pais'] ?>><?php echo $pais['bandera']. ' ' .$pais['pais'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -175,15 +177,14 @@ $socios = getSociosById($_GET['id']);
 
                         <!-- ROL -->
                         <div class="w3-col m3 l3 s12 w3-padding">
-                            <label for="rol" class="w3-text-theme">Tipo de socio</label>
-                            <select name="rol" id="rol" class="w3-select w3-border w3-border-theme w3-round" value=<?php echo $socios['rol']; ?>>
-                                <option value=<?php echo $socios['rol'] ?>><?php echo $socios['rol'] ?></option>
+                            <label for="rol_id" class="w3-text-theme">Tipo de socio</label>
+                            <select name="rol_id" id="rol_id" class="w3-select w3-border w3-border-theme w3-round" value=<?php echo $socios['rol_id']; ?>>
+                                <option value=<?php echo $socios['rol_id'] ?>><?php echo $socios['rol'] ?></option>
                                 <?php
-                                require_once '../../config/functions.php';
                                 $roles = getRoles();
                                 foreach ($roles as $rol) :
                                 ?>
-                                    <option value=<?php echo $rol['nombre'] ?>><?php echo $rol['nombre'] ?></option>
+                                    <option value=<?php echo $rol['id_rol'] ?>><?php echo $rol['rol'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <small id="info_rol"></small>

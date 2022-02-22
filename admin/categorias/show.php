@@ -1,7 +1,6 @@
 <?php
 $titulo = "MOSTRAR CATEGORIA";
 include '../templates/header.php';
-require_once '../../config/functions.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
 
@@ -9,7 +8,7 @@ $categoria = getCategoriasById($_GET['id']);
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
-        <h2 class="w3-text-theme"><b><?php echo $categoria['nombre'] ?></b></h2>
+        <h2 class="w3-text-theme"><b><?php echo $categoria['nombre_categoria'] ?></b></h2>
     </div>
     <div class="w3-half">
     </div>
@@ -58,9 +57,7 @@ $categoria = getCategoriasById($_GET['id']);
                 </tr>
             </thead>
             <?php
-            require '../../config/conexion.php';
-
-            $sql = "SELECT * FROM productos WHERE categoria='" . $categoria['nombre'] . "'";
+            $sql = "SELECT * FROM productos WHERE categoria_id='" . $categoria['id_categoria'] . "'";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -87,7 +84,7 @@ $categoria = getCategoriasById($_GET['id']);
                     echo "</a></td>";
                     echo "<td style='width: 5%'>";
                     echo "<a href='../productos/show.php?id=" . $row['id'] . "'>";
-                    echo "<i class='fas fa-eye w3-text-theme'></i>";
+                    echo "<i class='w3-text-theme'>&#x270f;&#xfe0f;</i>";
                     echo "</a></td></tr>";
                 }
             } else {

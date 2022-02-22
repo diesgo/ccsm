@@ -12,22 +12,22 @@ include '../templates/header.php';
     <div class="w3-half">
         <?php
         if (isset($_POST['altaButton'])) {
-            require_once '../../config/conexion.php';
+            // require_once '../../config/conexion.php';
             $nombre = $_POST['nombre'];
             $descripcion = $_POST['descripcion'];
             $icono = $_POST['icono'];
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            $sql = "INSERT INTO categorias (nombre, descripcion, icono)
+            // if ($conn->connect_error) {
+            //     die("Connection failed: " . $conn->connect_error);
+            // }
+            $sql = "INSERT INTO categorias (nombre_categoria, descripcion_categoria, icono_id)
     VALUES ('$nombre', '$descripcion', '$icono')";
 
-            if ($conn->query($sql) === TRUE) {
-                echo "Se ha creado un nuevo registro";
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-            $conn->close();
+            // if ($conn->query($sql) === TRUE) {
+            //     echo "Se ha creado un nuevo registro";
+            // } else {
+            //     echo "Error: " . $sql . "<br>" . $conn->error;
+            // }
+            // $conn->close();
         }
         ?>
 
@@ -57,13 +57,13 @@ include '../templates/header.php';
                         <!-- ICONO -->
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="icono" class="w3-text-theme">Icono</label>
-                            <select name="icono" id="icono" class="w3-select w3-white">
+                            <select name="icono" id="icono" class="w3-select w3-border w3-white">
                                 <?php
-                                    require_once '../../config/functions.php';
+                                    // require_once '../../config/functions.php';
                                     $iconos = getIcono();
                                     foreach ($iconos as $icono) :
                                 ?>
-                                <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['nombre']; ?></option>
+                                <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['icono'] . ' ' . $icono['nombre_icono']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

@@ -1,7 +1,6 @@
 <?php
 $titulo = "RECEPCIÓN";
 include '../templates/header_shop.php';
-require '../config/functions.php';
 $socios = getSocios();
 ?>
 

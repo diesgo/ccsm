@@ -25,9 +25,7 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                    require '../../config/conexion.php';
-                    $sql = "SELECT id FROM socios";
-                    $socios = mysqli_query($conn, $sql);
+                    $socios = getSocios();
                     if (mysqli_num_rows($socios) > 0) {
                         echo "<h3>" . mysqli_num_rows($socios) . "</h3>";
                     } else {
@@ -44,8 +42,7 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fas fa-boxes w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                    $sql = "SELECT id FROM productos";
-                    $productos = mysqli_query($conn, $sql);
+                    $productos = getProductos();
                     if (mysqli_num_rows($productos) > 0) {
                         // output data of each row
                         echo "<h3>" . mysqli_num_rows($productos) . "</h3>";
@@ -63,15 +60,13 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fas fa-layer-group w3-xxxlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                    $sql = "SELECT id FROM categorias";
-                    $categorias = mysqli_query($conn, $sql);
+                    $categorias = getCategorias();
                     if (mysqli_num_rows($categorias) > 0) {
                         // output data of each row
                         echo "<h3>" . mysqli_num_rows($categorias) . "</h3>";
                     } else {
                         echo "0 results";
                     }
-                    mysqli_close($conn);
                     ?>
                 </div>
                 <div class="w3-clear"></div>
@@ -105,31 +100,24 @@ include '../templates/header.php';
                             </tr>
                         </thead>
                         <?php
-                        require '../../config/conexion.php';
-
-                        $sql = "SELECT COUNT(pais), pais AS bandera, pais FROM socios GROUP BY pais";
-                        $result = mysqli_query($conn, $sql);
-                        $sql = "SELECT COUNT(pais) AS pais FROM socios GROUP BY pais";
-                        $pais = mysqli_query($conn, $sql);
-                        $sql2 = "SELECT * FROM socios";
-                        $paises = mysqli_query($conn, $sql2);
-                        $totalUsuarios = mysqli_num_rows($paises);
-
-                        if (mysqli_num_rows($result) > 0) {
-                            // output data of each row
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>";
-                                echo "<td style='width: 5%;'> " . $row['pais'] . "</td>";
-                                echo "<td style='width: 5%;'><img src='/club/img/banderas/" . $row['bandera']  . ".png' alt='" . $row['pais'] . "' width='30'></td>";
-                                echo "<td style='width: 5%;'> " . $nacion = (100 * mysqli_fetch_assoc($pais)['pais']) / mysqli_num_rows($paises) . " % </td>";
-
-                                echo "</tr>";
+                                $paises = getPaisesSocios();
+                                $totalPaises = mysqli_num_rows($paises);
+                                foreach ($paises as $pais) :
+                                ?>
+                                <tr>
+                                <td style='width: 5%;'><?php echo $pais['pais'] ?></td>
+                                <td style='width: 5%;'><?php echo $pais['bandera'] ?></td>
+                                <td style='width: 5%;'> <?php echo $total = 100  / $totalPaises?> % </td>
+                                </tr>
+                                <?php endforeach; ?>
+                        <?php
+                        $paises = getPaisesSocios();
+                        if (mysqli_num_rows($paises) > 0) {
+                            while ($row = mysqli_fetch_assoc($paises)) {
                             }
                         } else {
                             echo "<p class='w3-text-green'>No se han encontrado registros.</p>";
                         }
-
-                        mysqli_close($conn);
                         ?>
                     </table>
                 </div>

@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CCSM</title>
-    <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" href="/club/css/w3.css">
-    <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php
+<?php
                                                     $servername = "localhost";
                                                     $username = "root";
                                                     $password = "";
@@ -20,10 +11,20 @@
                                                     }
                                                     $sql = "SELECT color, fuente, titulos FROM settings";
                                                     $result = $conn->query($sql);
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo $row['color'];
-                                                    }
-                                                    ?>.css">
+                                                    // while ($row = $result->fetch_assoc()) {
+                                                    //     echo $row['color'];
+                                                    // }
+                                                    ?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CCSM</title>
+    <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="/club/css/w3.css">
+    <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php echo $row['color']?>.css">
     <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
     <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
     <link rel="stylesheet" href="/club/css/style.css">

@@ -1,8 +1,6 @@
 <?php
 $titulo = "MOSTRAR ROL";
 include '../templates/header.php';
-?>
-<?php require_once '../../config/functions.php';
 $rol = getRolesById($_GET['id']); ?>
 
 <!-- Header -->
@@ -25,8 +23,8 @@ $rol = getRolesById($_GET['id']); ?>
 
                 </div>
                 <div class="w3-col l8">
-                    <p class="w3-text-theme w3-xlarge">Rol # <span><?php echo $rol['id']; ?></span></p>
-                    <p class="w3-text-theme w3-large">Rol: <span class="w3-text-grey"><?php echo $rol['nombre']; ?></span></p>
+                    <p class="w3-text-theme w3-xlarge">Rol # <span><?php echo $rol['id_rol']; ?></span></p>
+                    <p class="w3-text-theme w3-large">Rol: <span class="w3-text-grey"><?php echo $rol['rol']; ?></span></p>
                     <p class="w3-text-theme w3-large">Descripción: <span class="w3-text-grey"><?php echo $rol['descripcion']; ?></span></p>
                 </div>
             </div>
@@ -37,7 +35,7 @@ $rol = getRolesById($_GET['id']); ?>
 
                 </div>
                 <div class="w3-col l4">
-                    <a href="update.php?id=<?php echo $rol['id'] ?>" class="w3-button w3-theme w3-round">Editar</a>
+                    <a href="update.php?id=<?php echo $rol['id_rol'] ?>" class="w3-button w3-theme w3-round">Editar</a>
                 </div>
                 <div class="w3-col l4">
                     <button class="boton">Añadir <br> comentario</button>

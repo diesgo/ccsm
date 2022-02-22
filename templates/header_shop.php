@@ -1,6 +1,5 @@
  <?php 
- require "../config.php";
- require "../conex.php";
+ require '../config/functions.php';
  ?>
  <!DOCTYPE html>
 

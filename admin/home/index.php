@@ -22,7 +22,7 @@ include '../templates/header.php';
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
             <div class="w3-container w3-theme w3-text-white w3-padding-16 w3-card-4">
-                <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                <div class="w3-left"><i class="fa fa-users w3-xlarge"></i></div>
                 <div class="w3-right">
                     <?php
                     $socios = getSocios();
@@ -34,12 +34,12 @@ include '../templates/header.php';
                     ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>total socios</h4>
+                <h4>Socios</h4>
             </div>
         </div>
         <div class="w3-quarter">
             <div class="w3-container w3-theme-dark w3-padding-16 w3-card-4">
-                <div class="w3-left"><i class="fas fa-boxes w3-xxxlarge"></i></div>
+                <div class="w3-left"><i class="fas fa-boxes w3-xlarge"></i></div>
                 <div class="w3-right">
                     <?php
                     $productos = getProductos();
@@ -52,12 +52,12 @@ include '../templates/header.php';
                     ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>total productos</h4>
+                <h4>Productos</h4>
             </div>
         </div>
         <div class="w3-quarter">
             <div class="w3-container w3-blue w3-padding-16 w3-card-4">
-                <div class="w3-left"><i class="fas fa-layer-group w3-xxxlarge"></i></div>
+                <div class="w3-left"><i class="fas fa-layer-group w3-xlarge"></i></div>
                 <div class="w3-right">
                     <?php
                     $categorias = getCategorias();
@@ -70,12 +70,12 @@ include '../templates/header.php';
                     ?>
                 </div>
                 <div class="w3-clear"></div>
-                <h4>número de categorias</h4>
+                <h4>Categorias</h4>
             </div>
         </div>
         <div class="w3-quarter">
             <div class="w3-container w3-teal w3-padding-16 w3-card-4">
-                <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+                <div class="w3-left"><i class="fa fa-share-alt w3-xlarge"></i></div>
                 <div class="w3-right">
                     <h3>23</h3>
                 </div>

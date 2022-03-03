@@ -1,8 +1,8 @@
 <?php
-define('DBUSER','root');
-define('DBPWD','');
-define('DBHOST','localhost');
-define('DBNAME','greenpower');
+// define('DBUSER','root');
+// define('DBPWD','');
+// define('DBHOST','localhost');
+// define('DBNAME','greenpower');
 
 date_default_timezone_set('Europe/Madrid');
 

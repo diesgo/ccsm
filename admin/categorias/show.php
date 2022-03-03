@@ -57,6 +57,7 @@ $categoria = getCategoriasById($_GET['id']);
                 </tr>
             </thead>
             <?php
+            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
             $sql = "SELECT * FROM productos WHERE categoria_id='" . $categoria['id_categoria'] . "'";
             $result = mysqli_query($conn, $sql);
 
@@ -65,9 +66,9 @@ $categoria = getCategoriasById($_GET['id']);
                 while ($row = mysqli_fetch_assoc($result)) {
                     $cantidad = $row["cantidad"] + $row['dispensario'];
                     echo "<tr>";
-                    echo "<td style='width: 5%;'> " . $row["id"] . "</td>";
-                    echo "<td style='width: 10%; text-align: left;'> " . $row["nombre"] . "</td>";
-                    echo "<td style='width: 5%;'> " . $row["variedad"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["id_producto"] . "</td>";
+                    echo "<td style='width: 10%; text-align: left;'> " . $row["nombre_producto"] . "</td>";
+                    echo "<td style='width: 5%;'> " . $row["variedad_id"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["pvc"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["pvp"] . "</td>";
                     echo "<td class='estado' style='width: 5%;'> " . $cantidad . "</td>";
@@ -75,15 +76,15 @@ $categoria = getCategoriasById($_GET['id']);
                     echo "<td class='estado' style='width: 8%;'> " . $row["dispensario"] . "</td>";
                     echo "<td style='width: 5%;'> " . $row["bote"] . "</td>";
                     echo "<td style='width: 5%;'> ";
-                    echo "<a href='../productos/update.php?id=" . $row['id'] . "'>";
+                    echo "<a href='../productos/update.php?id=" . $row['id_producto'] . "'>";
                     echo "<i class='fas fa-user-edit w3-text-theme'></i>";
                     echo "</a></td>";
                     echo "<td style='width: 5%;'>";
-                    echo "<a href='../productos/charge.php?id=" . $row['id'] . "'>";
+                    echo "<a href='../productos/charge.php?id=" . $row['id_producto'] . "'>";
                     echo "<i class='fas fa-balance-scale w3-text-theme'></i>";
                     echo "</a></td>";
                     echo "<td style='width: 5%'>";
-                    echo "<a href='../productos/show.php?id=" . $row['id'] . "'>";
+                    echo "<a href='../productos/show.php?id=" . $row['id_producto'] . "'>";
                     echo "<i class='w3-text-theme'>&#x270f;&#xfe0f;</i>";
                     echo "</a></td></tr>";
                 }

@@ -45,22 +45,13 @@ function service() {
     var serv = altaProducto.servicio.value;
     var setCup = document.getElementById('setCup');
     var vari = document.getElementById('vari');
-    switch (serv) {
-        case "":
-            setCup.classList.add('w3-hide');
-            vari.classList.add('w3-hide');
-            break;
-        case "granel":
-            setCup.classList.remove('w3-hide');
-            vari.classList.remove('w3-hide');
-            break;
-        case "unidad":
-            setCup.classList.add('w3-hide');
-            vari.classList.add('w3-hide');
-            break;
-        default:
-            text = "I have never heard of that fruit...";
-    };
+    if (serv === "1") {
+        setCup.classList.remove('w3-hide');
+        vari.classList.remove('w3-hide');
+    } else {
+        setCup.classList.add('w3-hide');
+        vari.classList.add('w3-hide');        
+    }
 }
 
 function variedad() {

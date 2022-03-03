@@ -1,7 +1,7 @@
 <?php
-$titulo = "EDITAR CATEGORIA";
+$titulo = "Editar categoria";
 include '../templates/header.php';
-$categoria = getCategoriasById($_GET['id']);
+$categoria = getCategoriasById($_GET['id_categoria']);
 ?>
 
 <!-- Header -->
@@ -13,34 +13,35 @@ $categoria = getCategoriasById($_GET['id']);
     <div class="w3-half">
         <?php
         if (isset($_POST['actualizar'])) {
-            $id = $categoria['id'];
-            $nombre = $_POST['nombre'];
-            $descripcion = $_POST['descripcion'];
+            $id_categoria = $categoria['id_categoria'];
+            $nombre_categoria = $_POST['nombre_categoria'];
+            $descripcion_categoria = $_POST['descripcion_categoria'];
             $icono = $_POST['icono'];
-            $sql = "UPDATE categorias SET nombre_categoria ='" . $nombre . "',descripcion_categoria='" . $descripcion . "',icono_id='" . $icono . "' WHERE id=" . $id . ";";
+            $sql = "UPDATE categorias SET nombre_categoria ='" . $nombre_categoria . "',descripcion_categoria='" . $descripcion_categoria . "',icono_id='" . $icono . "' WHERE id_categoria=" . $id_categoria . ";";
             echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Cambios guardados</h3>";
-            mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
+            echo "<script>location.replace('index.php');</script>";
+            mysqli_query($conex, $sql)            
+            or die("Error al ejecutar la consulta");
         } else {
-            if (!isset($_POST['id'])) {
+            if (!isset($_POST['id_categoria'])) {
                 $sql = "SELECT min(id_categoria) FROM categorias";
                 $result = mysqli_query($conex, $sql);
                 $row = mysqli_fetch_assoc($result);
-                $id = $row['min(id_categoria)'];
+                $id_categoria = $row['min(id_categoria)'];
             } else {
-                $id = $_POST["id"];
+                $id_categoria = $_POST["id_categoria"];
             }
-            $sql = "SELECT nombre_categoria, descripcion_categoria, icono_id FROM categorias WHERE id_categoria = '$id'";
+            $sql = "SELECT nombre_categoria, descripcion_categoria, icono_id FROM categorias WHERE id_categoria = '$id_categoria'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
-            $nombre = $row['nombre_categoria'];
-            $descripcion = $row['descripcion_categoria'];
+            $nombre_categoria = $row['nombre_categoria'];
+            $descripcion_categoria = $row['descripcion_categoria'];
             $icono = $row['icono_id'];
         }
         $sql = "SELECT * FROM categorias";
         $result = mysqli_query($conex, $sql);
         ?>
     </div>
-    <hr>
 </div>
 
 <!-- !PAGE CONTENT! -->
@@ -56,20 +57,20 @@ $categoria = getCategoriasById($_GET['id']);
                     <div class="w3-row">
                         <!-- CATEGORIA -->
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for="nombre" class="w3-text-theme">Categoria</label><br>
-                            <input class='w3-input w3-border w3-border-theme w3-round' name='nombre' id='nombre' type='text' value=<?php echo $categoria['nombre_categoria'] ?>>
+                            <label for="nombre_categoria" class="w3-text-theme">Categoria</label><br>
+                            <input class='w3-input w3-border w3-border-theme w3-round w3-theme-l4' name='nombre_categoria' id='nombre_categoria' type='text' value=<?php echo $categoria['nombre_categoria'] ?>>
                         </div>
                         <!-- DESCRIPCIÓN -->
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for="descripcion" class="w3-text-theme">Descripción</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="descripcion" id="descripcion" type="text" value=<?php echo $categoria['descripcion_categoria'] ?>>
+                            <label for="descripcion_categoria" class="w3-text-theme">Descripción</label>
+                            <input class="w3-input w3-border w3-border-theme w3-round w3-theme-l4" name="descripcion_categoria" id="descripcion_categoria" type="text" value=<?php echo $categoria['descripcion_categoria'] ?>>
                         </div>
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <?php
                             $iconos = getIcono();
                             ?>
                             <label for="icono" class="w3-text-theme">Icono</label>
-                            <select name="icono" id="icono" class="w3-select w3-border w3-border-theme w3-round">
+                            <select name="icono" id="icono" class="w3-select w3-border w3-border-theme w3-round w3-theme-l4">
                                 <option value="<?php echo $categoria['icono_id']; ?>"> <?php echo $categoria['icono'] . ' ' . $categoria['nombre_icono']; ?></option>
                                 <?php
                                 foreach ($iconos as $icono) :

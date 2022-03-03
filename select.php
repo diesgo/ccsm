@@ -5,15 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CCSM</title>
-    <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" href="/club/css/w3.css">
-    <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php
-                                                    $servername = "localhost";
-                                                    $username = "root";
-                                                    $password = "";
-                                                    $dbname = "greenpower";
+    <link rel="icon" href="img/ccms.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/themes/w3-theme-<?php
+                                                    require "config.php";
                                                     // Create connection
-                                                    $conn = new mysqli($servername, $username, $password, $dbname);
+                                                    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
                                                     // Check connection
                                                     if ($conn->connect_error) {
                                                         die("Connection failed: " . $conn->connect_error);
@@ -24,10 +21,10 @@
                                                         echo $row['color'];
                                                     }
                                                     ?>.css">
-    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
-    <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
-    <link rel="stylesheet" href="/club/css/style.css">
-    <link rel="stylesheet" href="/club/css/carrito.css">
+    <link rel="stylesheet" href="webfonts/stylesheet.css">
+    <link rel="stylesheet" href="fontawesome5/css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/carrito.css">
 </head>
 <style>
 

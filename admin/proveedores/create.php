@@ -1,8 +1,6 @@
 <?php
-$titulo = "Nuevo producto";
+$titulo = "Nuevo artículo";
 include '../templates/header.php';
-// require_once '../../config/config.php';
-require_once '../../config/functions.php';
 ?>
 
 <!-- Header -->
@@ -14,7 +12,8 @@ require_once '../../config/functions.php';
     <div class="w3-half">
         <?php
         if (isset($_POST['altaButton'])) {
-            
+            require_once '../../config/config.php';
+
             $nombre = $_POST['nombre'];
             $categoria = $_POST['categoria'];
             $variedad = $_POST['variedad'];
@@ -64,18 +63,9 @@ require_once '../../config/functions.php';
                             <label for="servicio">Tipo de servicio</label>
                             <select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
                                 <option value="">Seleccionar...</option>
-                                <?php     
-                                $servicios = getServicios();
-                                foreach ($servicios as $servicio) :
-                                ?>
-                                    <option value=<?php echo $servicio['id_servicio']; ?>><?php echo $servicio['nombre_servicio'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <!-- <<select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
-                                <option value="">Seleccionar...</option>
                                 <option value="granel">Granel</option>
                                 <option value="unidad">Unidad</option>
-                            </select> -->
+                            </select>
                         </div>
                         <!-- BOTE -->
                         <div id="setCup" class="w3-col m2 l2 w3-padding w3-hide">
@@ -95,7 +85,8 @@ require_once '../../config/functions.php';
                             <label for="categoria">Categoría</label>
                             <select name="categoria" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="variedad();">
                                 <option value="">Seleccionar...</option>
-                                <?php     
+                                <?php
+                                require_once '../../config/functions.php';
                                 $categorias = getCategorias();
                                 foreach ($categorias as $categoria) :
                                 ?>
@@ -109,6 +100,7 @@ require_once '../../config/functions.php';
                             <select name="variedad" class="w3-select w3-white w3-border w3-border-theme w3-round">
                                 <option value="">Seleccionar...</option>
                                 <?php
+                                require_once '../../config/functions.php';
                                 $variedades = getVariedades();
                                 foreach ($variedades as $variedad) :
                                 ?>

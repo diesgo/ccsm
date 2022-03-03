@@ -1,5 +1,5 @@
 a, button, input[type="submit"], input[type="button"] {
-    font-size: 19px;;
+    font-size: 17px;;
 }
 
 .ficha{
@@ -145,7 +145,7 @@ CHECKBOX
 Y  RADIO
 ======== */
 
-.checkbox,
+/* .checkbox,
 .radio {
     display: block;
     position: relative;
@@ -221,7 +221,7 @@ Y  RADIO
     height: 10px;
     border-radius: 50%;
     background: white;
-}
+} */
 
 /*============*/
 /*= Copyleft =*/
@@ -332,4 +332,12 @@ Y  RADIO
     .w3-content {
         width: 100%;
     }
+}
+.bg {
+    background-image: linear-gradient(to bottom, rgb(43, 49, 128), #6271c8);
+    color: rgb(35, 68, 35);
+}
+
+a>.bg:hover {
+    background-image: linear-gradient(to bottom, #6271c8, rgb(43, 49, 128));
 }

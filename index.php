@@ -1,20 +1,12 @@
 <?php
-                                                    $servername = "localhost";
-                                                    $username = "root";
-                                                    $password = "";
-                                                    $dbname = "greenpower";
-                                                    // Create connection
-                                                    $conn = new mysqli($servername, $username, $password, $dbname);
-                                                    // Check connection
-                                                    if ($conn->connect_error) {
-                                                        die("Connection failed: " . $conn->connect_error);
-                                                    }
-                                                    $sql = "SELECT color, fuente, titulos FROM settings";
-                                                    $result = $conn->query($sql);
-                                                    // while ($row = $result->fetch_assoc()) {
-                                                    //     echo $row['color'];
-                                                    // }
-                                                    ?>
+require "config.php";
+// Create connection
+$conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,13 +14,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CCSM</title>
-    <link rel="icon" href="/club/img/ccms.ico" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" href="/club/css/w3.css">
-    <link rel="stylesheet" href="/club/css/themes/w3-theme-<?php echo $row['color']?>.css">
-    <link rel="stylesheet" href="/club/webfonts/stylesheet.css">
-    <link rel="stylesheet" href="/club/fontawesome5/css/all.css">
-    <link rel="stylesheet" href="/club/css/style.css">
-    <link rel="stylesheet" href="/club/css/carrito.css">
+    <link rel="icon" href="img/ccms.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/themes/w3-theme-<?php
+                                                                                                            $sql = "SELECT color FROM settings";
+                                                                                                            $result = $conn->query($sql);
+                                                                                                            while ($row = $result->fetch_assoc()) {
+                                                                                                                echo $row['color'];
+                                                                                                            }?>.css">
+    <link rel="stylesheet" href="webfonts/stylesheet.css">
+    <link rel="stylesheet" href="fontawesome5/css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/carrito.css">
 </head>
 <style>
 

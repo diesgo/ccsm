@@ -12,22 +12,24 @@ include '../templates/header.php';
     <div class="w3-half">
         <?php
         if (isset($_POST['altaButton'])) {
-            // require_once '../../config/conexion.php';
-            $nombre = $_POST['nombre'];
-            $descripcion = $_POST['descripcion'];
-            $icono = $_POST['icono'];
-            // if ($conn->connect_error) {
-            //     die("Connection failed: " . $conn->connect_error);
-            // }
-            $sql = "INSERT INTO categorias (nombre_categoria, descripcion_categoria, icono_id)
-    VALUES ('$nombre', '$descripcion', '$icono')";
+            $nombre_categoria = $_POST['nombre_categoria'];
+            $descripcion_categoria = $_POST['descripcion_categoria'];
+            $icono_id = $_POST['icono_id'];
+            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
 
-            // if ($conn->query($sql) === TRUE) {
-            //     echo "Se ha creado un nuevo registro";
-            // } else {
-            //     echo "Error: " . $sql . "<br>" . $conn->error;
-            // }
-            // $conn->close();
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $sql = "INSERT INTO categorias (nombre_categoria, descripcion_categoria, icono_id)
+    VALUES ('$nombre_categoria', '$descripcion_categoria', '$icono_id')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Se ha creado un nuevo registro";
+                echo "<script>location.replace('index.php');</script>";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+            $conn->close();
         }
         ?>
 
@@ -46,24 +48,24 @@ include '../templates/header.php';
                     <div class="w3-row">
                         <!-- NOMBRE -->
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for='nombre'>Categoria</label>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='nombre'>
+                            <label for='nombre_categoria'>Categoria</label>
+                            <input class='w3-input w3-border w3-round' name='nombre_categoria' id='nombre_categoria' type='text' placeholder='nombre'>
                         </div>
                         <!-- DESCRIPCION -->
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for="descripcion">Descripción</label>
-                            <input class="w3-input w3-border w3-round" name="descripcion" id="descripcion" type="text" placeholder="Descripción">
+                            <label for="descripcion_categoria">Descripción</label>
+                            <input class="w3-input w3-border w3-round" name="descripcion_categoria" id="descripcion_categoria" type="text" placeholder="Descripción">
                         </div>
                         <!-- ICONO -->
                         <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for="icono" class="w3-text-theme">Icono</label>
-                            <select name="icono" id="icono" class="w3-select w3-border w3-white">
+                            <label for="icono_id" class="w3-text-theme">Icono</label>
+                            <select name="icono_id" id="icono_id" class="w3-select w3-border w3-white">
                                 <?php
                                     // require_once '../../config/functions.php';
                                     $iconos = getIcono();
                                     foreach ($iconos as $icono) :
                                 ?>
-                                <option value=<?php echo $icono['icono']; ?>> <?php echo $icono['icono'] . ' ' . $icono['nombre_icono']; ?></option>
+                                <option value=<?php echo $icono['id_icono']; ?>> <?php echo $icono['icono'] . ' ' . $icono['nombre_icono']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

@@ -1,8 +1,5 @@
 <?php
-define('DBUSER','root');
-define('DBPWD','');
-define('DBHOST','localhost');
-define('DBNAME','greenpower');
+require "../../config.php";
 
 $conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME); 
  
@@ -80,9 +77,9 @@ function getCategorias(){
 	return $result;
 }
 
-function getCategoriasById($id){
+function getCategoriasById($id_categoria){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM categorias INNER JOIN iconos ON id_icono = icono_id WHERE id_categoria =' . $id);
+	$result = $mysqli->query('SELECT * FROM categorias INNER JOIN iconos ON id_icono = icono_id WHERE id_categoria =' . $id_categoria);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -168,24 +165,43 @@ function getVariedadesById($id){
 	return $row;
 }
 
+// FUNCIONES PARA LA TABLA SERVICIOS
+
+function getServicios(){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM servicio');
+	return $result;
+}
+
+function getServiciosById($id_servicio){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM servicio WHERE id_servicio =' . $id_servicio);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
 // FUNCIONES PARA LA TABLA PRODUCTOS
 
 function getProductos(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM productos');
+	$result = $mysqli->query('SELECT * FROM productos
+	INNER JOIN categorias ON id_categoria = categoria_id
+	INNER JOIN variedades ON id_variedad = variedad_id');
 	return $result;
 }
 
 function getProductosById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM productos WHERE id =' . $id);
+	$result = $mysqli->query('SELECT * FROM productos
+	INNER JOIN categorias ON id_categoria = categoria_id
+	INNER JOIN variedades ON id_variedad = variedad_id
+	WHERE id_producto = ' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
 
 function getProductsByCategory($categoria){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM productos WHERE categoria =' . $categoria);
+	$result = $mysqli->query('SELECT * FROM productos WHERE categoria_id =' . $categoria);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -224,4 +240,5 @@ function getPaisesSocios(){
 	$result = $mysqli->query('SELECT count(pais_id), pais, bandera FROM socios JOIN paises ON id_pais = pais_id');
 	return $result;
 }
+
 ?>

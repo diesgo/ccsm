@@ -52,11 +52,11 @@
                     
                     <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-card-4 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-book"></i> Catálogo <i class="w3-right fa fa-caret-down"></i></button>
                     <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
-                        <a href="../productos/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-card-4 w3-hover-theme">Productos</a>
-                        <a href="../servicio/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-card-4 w3-hover-theme">Servicio</a>
-                        <a href="../categorias/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-card-4 w3-hover-theme">Categorias</a>
-                        <a href="../variedades/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-card-4 w3-hover-theme">Variedades</a>
-                        <a href="../proveedores/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-card-4 w3-hover-theme">Proveedores</a>
+                        <a href="../variedades/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Variedades</a>
+                        <a href="../servicio/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Servicio</a>
+                        <a href="../productos/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Productos</a>
+                        <a href="../categorias/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Categorias</a>
+                        <a href="../proveedores/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Proveedores</a>
                     </div>
                     
                     <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme w3-card-4" onclick="dropAside('categorias')"><i class="fas fa-boxes"></i> Categorías <i class="w3-right fa fa-caret-down"></i></button>

@@ -6,7 +6,7 @@ include '../templates/head_index.php';
 
             <!-- !PAGE CONTENT! -->
 
-            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 594px;">
+            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
                 <div class="w3-content">
                     <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered w3-medium">
                         <thead>

@@ -1,5 +1,8 @@
 <?php
-require "../../config.php";
+define('DBUSER','root');
+define('DBPWD','');
+define('DBHOST','localhost');
+define('DBNAME','greenpower');
 
 $conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME); 
  
@@ -11,7 +14,7 @@ if (mysqli_connect_error()) {
             . mysqli_connect_error());
 }
 
-echo 'Éxito... ' . $conex->host_info. "\n";
+// echo 'Éxito... ' . $conex->host_info. "\n";
 
 // FUNCIONES PARA LA TABLA SOCIOS
 

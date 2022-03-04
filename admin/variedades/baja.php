@@ -25,7 +25,7 @@ $variedad = getVariedadesById($_GET['id_variedad']);
 
             <!-- PAGE CONTENT -->
 
-            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 594px;">
+            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
                 <div id="main-div" class="w3-padding">
                     <div class="w3-container">
                         <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarVariedad" id="borrarVariedad" >

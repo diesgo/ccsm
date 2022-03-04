@@ -47,7 +47,7 @@ include '../templates/header.php';
 
             <!-- !PAGE CONTENT! -->
 
-            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 594px;">
+            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
                 <div id="main-div" class="w3-padding">
                     <div class="w3-container">
                         <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
@@ -79,13 +79,20 @@ include '../templates/header.php';
                                 <!-- ACTIVO -->
 
                                 <div class="w3-row">
-                                    <?php $check = isset($variedad['activo']) ? "checked" : ""?>
+                                    <!-- <?php $check = isset($variedad['activo']) ?  : "checked"?> -->
                                     <div class="w3-col m5 l6 s12 w3-margin-top">
-                                        <input class="w3-check" type="checkbox" id="activo" checked ="<?php echo $check ?>" name="activo" value="<?php isset($_POST['activo']) ? "1" : "0"?>">
+                                        <input id="activo" class="w3-check" type="checkbox"  name="activo" value="<?php echo $variedad['activo']?>">
                                         <label class="w3-text-theme w3-medium" for="activo">Activo</label></p>
                                     </div>
                                 </div>
                             </div>
+                            <script>
+                                var check= document.getElementById('activo');
+                                console.log(check);
+                                if (check.value == 1) {
+                                    check.setAttribute('checked','');                                    
+                                }
+                            </script>
 
                             <!-- BOTONES DE NAVEGACIÓN -->
 

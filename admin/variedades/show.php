@@ -19,7 +19,7 @@ include '../templates/header.php';
     <hr>
 </div>
 
-<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 600px;">
+<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
     <div class="w3-content w3-padding">
         <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
             <div class="w3-row-padding">

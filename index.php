@@ -1,75 +1,83 @@
-<?php
-// require "config.php";
-require "config/functions.php";
-// Create connection
-$conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$setting = getSetingsById(1 );
-?>
 <!DOCTYPE html>
 <html lang="es">
+    <?php
+    require "config.php";
+    require "config/functions.php";
+    // Create connection
+    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    $setting = getSetingsById(1 );
+    ?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CCSM</title>
     <link rel="icon" href="img/ccms.ico" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="fontawesome5/css/all.css">
     <link rel="stylesheet" href="css/w3.css">
     <link rel="stylesheet" href="css/themes/w3-theme-<?php echo $setting['color'];?>.css">
     <link rel="stylesheet" href="webfonts/stylesheet.css">
-    <link rel="stylesheet" href="fontawesome5/css/all.css">
-    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="css/carrito.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <style>
     h1, h2, h3, h4, h5, h6 {
         font-family: <?php echo $setting['titulos'];?>;
     }
-    
-    #login {
-        min-height: 100%;
-        /* padding-bottom: 45px; */
-    }
-    #login-panel {
-        margin: 0 auto;
-        width: 350px;
-    }
-    #login-header {
-        color: #6d6d6d;
-        margin-bottom: 30px;
-        padding-top: 40px;
-    }
-    .flip-container {
-        height: 420px;
-        margin-top: 80px;
-        perspective: 1000px;
-        transform-style: preserve-3d;
-    }
-    .back, .front {
-        backface-visibility: hidden;
-        left: 0;
-        padding: 40px;
-        position: absolute;
-        top: 0;
-        transform-style: preserve-3d;
-        transition: .6s;
-        width: 100%;
-    }
     #shop-img {
-        left: 0;
-        top: 215px;
-        margin: 0 auto;
-        position: absolute;
-        right: 0;
-        width: 90px;
-        z-index: 1;
-        }
+      left: 0;
+      top: 215px;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      width: 90px;
+      z-index: 1;
+  }
+  .panel {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+  #login {
+      min-height: 100%;
+      /* padding-bottom: 45px; */
+  }
+
+  #login-panel {
+      margin: 0 auto;
+      width: 350px;
+  }
+
+  #login-header {
+      color: #6d6d6d;
+      margin-bottom: 30px;
+      padding-top: 40px;
+  }
+
+  .flip-container {
+      height: 420px;
+      margin-top: 80px;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+  }
+
+  .back,
+  .front {
+      backface-visibility: hidden;
+      left: 0;
+      padding: 40px;
+      position: absolute;
+      top: 0;
+      transform-style: preserve-3d;
+      transition: .6s;
+      width: 100%;
+  }
 </style>
 
-<body class="w3-theme-light font-<?php echo $row['fuente']?>">
+<body class="w3-theme-light font-<?php echo $setting['fuente']?>">
     <div id="login">
         <div id="content">
             <div id="login-panel">

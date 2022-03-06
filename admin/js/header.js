@@ -42,14 +42,14 @@ function estadoStock() {
 
 function service() {
     var text;
-    var serv = altaProducto.servicio.value;
-    var setCup = document.getElementById('setCup');
+    var serv = altaProducto.servicio_id.value;
+    // var setCup = document.getElementById('setCup');
     var vari = document.getElementById('vari');
     if (serv === "1") {
-        setCup.classList.remove('w3-hide');
+        // setCup.classList.remove('w3-hide');
         vari.classList.remove('w3-hide');
     } else {
-        setCup.classList.add('w3-hide');
+        // setCup.classList.add('w3-hide');
         vari.classList.add('w3-hide');        
     }
 }

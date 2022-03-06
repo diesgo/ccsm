@@ -1,5 +1,5 @@
 <?php
-$titulo = "NUEVA VARIEDAD";
+$titulo = "Crear variedad";
 include '../templates/header.php';
 ?>
 
@@ -41,6 +41,7 @@ include '../templates/header.php';
             <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
                 <div id="main-div" class="w3-padding">
                     <div class="w3-container">
+                        
                         <form accept-charset="utf-8" action="#" method="post" name="altaVariedad" id="altaVariedad">
 
                             <!-- FICHA VARIEDAD  -->

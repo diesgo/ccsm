@@ -1,5 +1,5 @@
 a, button, input[type="submit"], input[type="button"] {
-    font-size: 17px;;
+    font-size: 15px;;
 }
 
 .ficha{
@@ -340,4 +340,4 @@ Y  RADIO
 
 a>.bg:hover {
     background-image: linear-gradient(to bottom, #6271c8, rgb(43, 49, 128));
-}
+}  

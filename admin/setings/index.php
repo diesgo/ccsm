@@ -1,6 +1,7 @@
 <?php
 $titulo = "AJUSTES";
-include '../templates/header.php';
+include "../templates/header.php";
+include "../../conex.php";
 if (isset($_POST['actualizar'])) {
     $color = $_POST['color'];
     $fuente = $_POST['fuente'];

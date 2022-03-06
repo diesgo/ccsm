@@ -16,25 +16,25 @@ $productos = getProductosById($_GET['id']);
         $sql = "SELECT * FROM productos";
         $result = mysqli_query($conex, $sql);
         if (isset($_POST['actualizar'])) {
-            $id = $productos['id'];
+            $id = $productos['id_producto'];
             $dispensario = $productos['dispensario'] + $_POST['addDisp'];
             $cantidad = $productos['cantidad'] - $_POST['addDisp'];
-            $sql = "UPDATE productos SET dispensario ='" . $dispensario . "', cantidad ='" . $cantidad . "' WHERE id=" . $id . ";";
+            $sql = "UPDATE productos SET dispensario ='" . $dispensario . "', cantidad ='" . $cantidad . "' WHERE id_producto = " . $id . ";";
             echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
             mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
         } else {
             if (!isset($_POST['id'])) {
-                $sql = "SELECT min(id) FROM productos";
+                $sql = "SELECT min(id_producto) FROM productos";
                 $result = mysqli_query($conex, $sql);
                 $row = mysqli_fetch_assoc($result);
-                $id = $row['min(id)'];
+                $id = $row['min(id_producto)'];
             } else {
                 $id = $_POST["id"];
             }
-            $sql = "SELECT * FROM productos WHERE id='$id'";
+            $sql = "SELECT * FROM productos WHERE id_producto = '$id'";
             $result = mysqli_query($conex, $sql);
             $row = mysqli_fetch_assoc($result);
-            $id = $row['id'];
+            $id = $row['id_producto'];
             $dispensario = $row['dispensario'];
         }
 
@@ -44,7 +44,7 @@ $productos = getProductosById($_GET['id']);
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-container w3-padding w3-responsive" style="min-height: 636px;">
+<div class="w3-container w3-padding w3-responsive" style="min-height: 616px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="chargeProduct" id="chargeProduct">
@@ -54,8 +54,8 @@ $productos = getProductosById($_GET['id']);
 
                         <!--  NOMBRE Y TIPO DE VENTA -->
 
-                        <h1 style="text-transform: uppercase;" class="w3-text-theme w3-center"><?php echo $productos['nombre'] ?> # <?php echo $productos['id'] ?></h1>
-                        <h3 class="w3-text-theme w3-center">Tipo de servicio: <span style="text-transform: capitalize;"><?php echo $productos['servicio'] ?></span></h3>
+                        <h1 style="text-transform: uppercase;" class="w3-text-theme w3-center"><?php echo $productos['nombre_producto'] ?> # <?php echo $productos['id_producto'] ?></h1>
+                        <h3 class="w3-text-theme w3-center">Tipo de servicio: <span style="text-transform: capitalize;"><?php echo $productos['nombre_servicio'] ?></span></h3>
                     </div>
                     <!-- FILA 2 -->
                     <div class="w3-row-padding w3-margin-bottom">

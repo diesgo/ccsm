@@ -1,61 +1,53 @@
 <?php
-$titulo = "PRODUCTOS";
+$titulo = 'Proveedores';
 include '../templates/header.php';
 include '../templates/head_index.php';
 ?>
 
-<!-- !PAGE CONTENT! -->
+            <!-- !PAGE CONTENT! -->
 
-<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
-    <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
-        <thead>
-            <tr class="w3-theme">
-                <th>ID</th>
-                <th style="text-align: left;">Nombre</th>
-                <th>Categoria</th>
-                <th>Variedad</th>
-                <th>PVC</th>
-                <th>PVP</th>
-                <th>Stock total</th>
-                <th>Editar</th>
-                <th>Recargar</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <?php
-        $productos = getProductos();
-        foreach ($productos as $producto) :
-        ?>
-            <tr>
-                <td style="width: 5%;"><?php echo $producto['id_producto'] ?></td>
-                <td style="width: 10%; text-align:left;"><?php echo $producto['nombre_producto'] ?></td>
-                <td style="width: 5%"><?php echo $producto['nombre_categoria'] ?></td>
-                <td style="width: 5%"><?php echo $producto['nombre_variedad'] ?></td>
-                <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
-                <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
-                <td class="estado" style="width: 7%"><?php echo $producto['cantidad']?></td>
-                <td style="width: 5%">
-                    <a href="update.php?id=<?php echo $producto['id_producto'] ?>">
-                        <i class="fas fa-user-edit w3-text-theme"></i>
-                    </a>
-                </td>
-                <td style="width: 5%;">
-                    <a href="charge.php?id=<?php echo $producto['id_producto'] ?>">
-                        <i class="fas fa-balance-scale w3-text-theme"></i>
-                    </a>
-                </td>
-                <td style="width: 5%">
-                    <a href="show.php?id=<?php echo $producto['id_producto'] ?>">
-                        <i class="fas fa-eye w3-text-theme"></i>
-                    </a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
-</div>
-<script>
-estadoStock();
-</script>
+            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
+                <div class="w3-content">
+                    <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered w3-medium">
+                        <thead>
+                            <tr class="w3-theme">
+                                <th>ID</th>
+                                <th>Proveedor</th>
+                                <th>Descripción</th>
+                                <th>Activo</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            require_once '../../config/functions.php';
+                            $proveedores = getProveedores();
+                            foreach ($proveedores as $proveedor) :
+                            ?>
+                            <tr>
+                                <td style="width: 5%;"><?php echo $proveedor['id_proveedor'] ?></td>
+                                <td style="width: 10%"><?php echo $proveedor['nombre_proveedor'] ?></td>
+                                <td style="width: 10%"><?php echo $proveedor['descripcion_proveedor'] ?></td>
+                                <td style="width: 10%"><?php echo $proveedor['activo'] ?></td>
+                                <td style="width: 2%">
+                                    <input type="hidden" name="validation" id="validation" value="si" />
+                                    <a class="w3-btn w3-green w3-round" href="update.php?id_proveedor=<?php echo $proveedor['id_proveedor'] ?>">
+                                        <i class="fas fa-pen w3-small"></i>
+                                    </a>
+                                </td>
+                                <td style="width: 2%">
+                                    <a class="w3-btn w3-red w3-round" href="baja.php?id_proveedor=<?php echo $proveedor['id_proveedor'] ?>">
+                                        <i class="fas fa-trash w3-small"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
 <?php
 include '../templates/footer.php';
 ?>

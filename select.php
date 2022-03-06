@@ -1,3 +1,14 @@
+<?php
+require "config.php";
+require "config/functions.php";
+// Create connection
+$conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$setting = getSetingsById(1 );
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,108 +18,46 @@
     <title>CCSM</title>
     <link rel="icon" href="img/ccms.ico" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="css/w3.css">
-    <link rel="stylesheet" href="css/themes/w3-theme-<?php
-                                                    require "config.php";
-                                                    // Create connection
-                                                    $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-                                                    // Check connection
-                                                    if ($conn->connect_error) {
-                                                        die("Connection failed: " . $conn->connect_error);
-                                                    }
-                                                    $sql = "SELECT color, fuente, titulos FROM settings";
-                                                    $result = $conn->query($sql);
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        echo $row['color'];
-                                                    }
-                                                    ?>.css">
+    <link rel="stylesheet" href="css/themes/w3-theme-<?php echo $setting['color'];?>.css">
     <link rel="stylesheet" href="webfonts/stylesheet.css">
     <link rel="stylesheet" href="fontawesome5/css/all.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/carrito.css">
 </head>
 <style>
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: <?php
-                        $sql = "SELECT *  FROM settings";
-                        $result = $conn->query($sql);
-                        while ($row = $result->fetch_assoc()) {
-                            echo $row['titulos'];
-                        }
-                        ?>;
+    h1, h2, h3, h4, h5, h6 {
+        font-family: <?php echo $setting['titulos'];?>;
     }
 </style>
 
-<body class="w3-theme-light font-<?php
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo $row['fuente'];
-                                    }
-                                    $conn->close();
-                                    ?>">
-        <style>
-            #login-panel {
-                margin: 0 auto;
-                width: 350px;
-            }
-            .flip-container {
-                height: 420px;
-                margin-top: 80px;
-                perspective: 1000px;
-                transform-style: preserve-3d;
-            }
-            .back,
-            .front {
-                backface-visibility: hidden;
-                left: 0;
-                padding: 40px;
-                position: absolute;
-                top: 0;
-                transform-style: preserve-3d;
-                transition: .6s;
-                width: 100%;
-            }
-        </style>
-        <div class="w3-container">
-            
-            <div class="w3-third">
-                <div id="login-panel">
-                    <div class="flip-container w3-margin-bottom" style="margin-top: 265px;">
-                        <a href="admin/home/index.php">
-                            <div class="front panel w3-white w3-border w3-border-theme w3-center">
-                                <h4 id="shop_name" class="w3-center w3-text-theme">Adminitración</h4>
-                                <i class="fas fa-cogs w3-jumbo w3-text-theme"></i>
-                            </div>
+<body class="w3-theme-light font-<?php echo $row['fuente']; ?>">
+        <div class="w3-container w3-margin-top w3-margin-bottom">
+            <div class="w3-cell-row w3-padding w3-theme w3-round w3-center w3-margin-bottom">
+                <h1 class="font-sweet-leaf">C C S M</h1>
+                <small>Cannabis Club System Management</small>
+            </div>
+            <div class="w3-row">
+                <div class="w3-col l4 m4 s12">
+                    <div class="w3-container">
+                        <a class="w3-btn w3-white w3-border w3-border-theme w3-round w3-block w3-margin-top w3-margin-bottom" href="admin/home/index.php">
+                            <h4 class="w3-center w3-text-theme">Administración</h4>
+                            <i class="fas fa-cogs w3-center w3-text-theme w3-jumbo w3-margin-bottom" style="width: 25%;"></i>
                         </a>
                     </div>
                 </div>
-            </div>
-            
-            <div class="w3-third">
-                <div id="login-panel">
-                    <div class="flip-container w3-margin-bottom" style="margin-top: 265px;">
-                        <a href="recepcion/index.php">
-                            <div class="front panel w3-white w3-border w3-border-theme w3-center">
-                                <h4 id="shop_name" class="w3-center w3-text-theme">Recepción</h4>
-                                <i class="fas fa-concierge-bell w3-jumbo w3-text-theme"></i>
-                            </div>
+                <div class="w3-col l4 m4 s12">
+                    <div class="w3-container">
+                        <a class="w3-btn w3-white w3-border w3-border-theme w3-round w3-block w3-margin-top w3-margin-bottom" href="recepcion/index.php">
+                            <h4 class="w3-center w3-text-theme">Recepción</h4>
+                            <i class="fas fa-concierge-bell w3-center w3-text-theme w3-jumbo w3-margin-bottom" style="width: 25%;"></i>
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="w3-third">
-                <div id="login-panel">
-                    <div class="flip-container w3-margin-bottom" style="margin-top: 265px;">
-                        <a href="dispensario/index.php">
-                            <div class="front panel w3-white w3-border w3-border-theme w3-center">
-                                <h4 id="shop_name" class="w3-center w3-text-theme">Dispensario</h4>
-                                <i class="fas fa-store w3-jumbo w3-text-theme"></i>
-                            </div>
+                <div class="w3-col l4 m4 s12">
+                    <div class="w3-container">
+                        <a class="w3-btn w3-white w3-border w3-border-theme w3-round w3-block w3-margin-top w3-margin-bottom" href="dispensario/index.php">
+                            <h4 class="w3-center w3-text-theme">Dispensario</h4>
+                            <i class="fas fa-store w3-center w3-text-theme w3-jumbo w3-margin-bottom" style="width: 25%;"></i>
                         </a>
                     </div>
                 </div>

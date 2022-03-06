@@ -1,6 +1,7 @@
 <?php
 $titulo = "EDITAR VARIEDADES";
 include '../templates/header.php';
+require "../../conex.php";
 ?>
 
             <!-- Header -->
@@ -55,10 +56,11 @@ include '../templates/header.php';
                             <!-- FICHA VARIEDAD  -->
                             
                             <div class="w3-content">
-                                
-                                <!-- NOMBRE -->
 
                                 <div class="w3-row">
+
+                                    <!-- NOMBRE -->
+                                    
                                     <div class="w3-col m6 l6 s12 w3-margin-bottom">
                                         <label for="nombre" class="w3-text-theme">Nombre</label><br>
                                         <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $variedad['nombre_variedad']; ?>">

@@ -1,7 +1,6 @@
 <?php
 $titulo = "Nuevo producto";
 include '../templates/header.php';
-// require_once '../../config/config.php';
 require_once '../../config/functions.php';
 ?>
 
@@ -18,12 +17,8 @@ require_once '../../config/functions.php';
             $nombre = $_POST['nombre'];
             $categoria = $_POST['categoria'];
             $variedad = $_POST['variedad'];
-            $bote = $_POST['bote'];
-            $pc = $_POST['pc'];
-            $pvp = $_POST['pvp'];
-            $cantidad = $_POST['cantidad'];
-            $servicio = $_POST['servicio'];
-            $visible = $_POST['visible'];
+            $servicio = $_POST['servicio_id'];
+            $visible= $_POST['visible'];
 
             // Create connection
 
@@ -34,8 +29,8 @@ require_once '../../config/functions.php';
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "INSERT INTO productos (nombre_producto, categoria_id, variedad_id, bote, pc, pvp, cantidad, servicio, visible)
-    VALUES ('$nombre', '$categoria', '$variedad', '$bote', '$pc', '$pvp', '$cantidad', '$servicio', '$visible')";
+            $sql = "INSERT INTO productos (nombre_producto, categoria_id, variedad_id, servicio_id, visible)
+    VALUES ('$nombre', '$categoria', '$variedad',   '$servicio', '$visible')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Se ha creado un nuevo registro</h3>";
@@ -61,9 +56,9 @@ require_once '../../config/functions.php';
                     <!-- FILA 1: SERVICIO -->
                     <div class="w3-row w3-section">
                         <div class="w3-col m2 l2 w3-padding">
-                            <label for="servicio">Tipo de servicio</label>
-                            <select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
-                                <option value="">Seleccionar...</option>
+                            <label for="servicio_id">Tipo de servicio</label>
+                            <select name="servicio_id" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
+                            <option value="">Selecciona...</option>
                                 <?php     
                                 $servicios = getServicios();
                                 foreach ($servicios as $servicio) :
@@ -71,16 +66,6 @@ require_once '../../config/functions.php';
                                     <option value=<?php echo $servicio['id_servicio']; ?>><?php echo $servicio['nombre_servicio'] ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <!-- <<select name="servicio" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="service();">
-                                <option value="">Seleccionar...</option>
-                                <option value="granel">Granel</option>
-                                <option value="unidad">Unidad</option>
-                            </select> -->
-                        </div>
-                        <!-- BOTE -->
-                        <div id="setCup" class="w3-col m2 l2 w3-padding w3-hide">
-                            <label for="bote">Peso del bote</label>
-                            <input type="text" name="bote" id="bote" class="w3-input w3-border w3-border-theme w3-round" placeholder="0.000">
                         </div>
                     </div>
                     <!-- FILA 2: NOMBRE Y CATEGORIA => VARIEDAD -->
@@ -94,12 +79,11 @@ require_once '../../config/functions.php';
                         <div class="w3-col m4 l4 s12 w3-padding">
                             <label for="categoria">Categoría</label>
                             <select name="categoria" class="w3-select w3-white w3-border w3-border-theme w3-round" onchange="variedad();">
-                                <option value="">Seleccionar...</option>
                                 <?php     
                                 $categorias = getCategorias();
                                 foreach ($categorias as $categoria) :
                                 ?>
-                                    <option value=<?php echo $categoria['nombre']; ?>><?php echo $categoria['nombre'] ?></option>
+                                    <option value=<?php echo $categoria['id_categoria']; ?>><?php echo $categoria['nombre_categoria'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -107,41 +91,14 @@ require_once '../../config/functions.php';
                         <div id="vari" class="w3-col m4 l4 s12 w3-padding w3-hide">
                             <label for="variedad">Variedad</label>
                             <select name="variedad" class="w3-select w3-white w3-border w3-border-theme w3-round">
-                                <option value="">Seleccionar...</option>
                                 <?php
                                 $variedades = getVariedades();
                                 foreach ($variedades as $variedad) :
                                 ?>
-                                    <option value=<?php echo $variedad['nombre']; ?>><?php echo $variedad['nombre'] ?></option>
+                                    <option value=<?php echo $variedad['id_variedad']; ?>><?php echo $variedad['nombre_variedad'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    </div>
-                    <!-- FILA 3:  pc Y PVP -->
-                    <div class="w3-row">
-
-                        <!-- pc -->
-                        <div class="w3-col l4 m4 s12 w3-padding">
-                            <label for="pc">Precio de compra</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="pc" id="pc" type="text" value="0.00">
-                            <small id="info_pc"></small>
-                        </div>
-                        <!-- PVP -->
-                        <div class="w3-col l4 m4 s12 w3-padding">
-                            <label for="pvp">Precio de venta</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="pvp" id="pvp" type="text" value="0.00">
-                            <small id="info_pc"></small>
-                        </div>
-                        <!-- CANTIDAD -->
-                        <div class="w3-col m4 l4 s12 w3-padding">
-                            <label for="cantidad">Cantidad</label>
-                            <input class="w3-input w3-border w3-border-theme w3-round" name="cantidad" id="cantitad" type="text" value="0.00">
-                            <small id="info_cantidad"></small>
-                        </div>
-                    </div>
-                    <!-- FILA 4: CANTIDAD -->
-                    <div class="w3-row">
-
                     </div>
                 </div>
                 <div class="w3-row w3-padding-32 w3-center">

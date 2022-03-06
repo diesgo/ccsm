@@ -1,30 +1,26 @@
+<?php
+$titulo = "Crear usuario";
+?>
 <!DOCTYPE html>
-    <html lang="es">
-        <head>
-            <?php
-            require "../../config.php";
-            require '../../config/functions.php';
-            $settings = getSetingsById(1);
-            ?>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title><?php echo $titulo ?> | CCSM</title>
-            <link rel="icon" href="../../img/ccms.ico" type="image/gif" sizes="16x16">
-            <link rel="stylesheet" href="../../webfonts/stylesheet.css">
-            <link rel="stylesheet" href="../../fontawesome5/css/all.css">
-            <link rel="stylesheet" href="../../css/w3.css">
-            <link rel="stylesheet" href="../../css/themes/w3-theme-<?php echo $settings['color']; ?>.css">
-            <link rel="stylesheet" href="../../css/style.css">
-        </head>
+<html lang="es">
+    <head>
+        <?php
+        require '../../config/functions.php';
+        $settings = getSetingsById(1);
+        ?>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><?php echo $titulo ?> | CCSM</title>
+        <link rel="icon" href="../../img/ccms.ico" type="image/gif" sizes="16x16">
+        <link rel="stylesheet" href="../../webfonts/stylesheet.css">
+        <link rel="stylesheet" href="../../fontawesome5/css/all.css">
+        <link rel="stylesheet" href="../../css/w3.css">
+        <link rel="stylesheet" href="../../css/themes/w3-theme-<?php echo $settings['color']; ?>.css">
+        <link rel="stylesheet" href="../../css/style.css">
+    </head>
         <style>
-        .panel {
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
-        }
-        label, legend,
-        th, button,
-        input[type="submit"], input[type="button"],
-        a, h1, h2, h3, h4, h5, h6 {
-            font-family: <?php echo $settings['titulos'] ?>;
+        h1, h2, h3, h4, h5, h6  {
+              font-family: <?php echo $settings['titulos'] ?>;
         }
         </style>
         <body class="w3-theme-light font-<?php echo $settings['fuente'] ?>">
@@ -107,3 +103,72 @@
             <script src="../js/header.js"></script>
             
             <div class="w3-main" style="margin-left:250px; margin-top:52px; min-height: max-content;">
+
+                <!-- Header -->
+
+                <div class="w3-container w3-padding-32 w3-theme-l4">
+                    <div class="w3-half">
+                        <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
+                    </div>
+                    <div class="w3-half">
+                        <?php
+                        if (isset($_POST['register'])) {
+                            $username = $_POST['username'];
+                            $email = $_POST['email'];
+                            $password = $_POST['password'];
+                            $password_hash = password_hash($password, PASSWORD_BCRYPT);
+                            // Create connection
+                            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+                            // Check connection
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                            }
+                            $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$password_hash', '$email')";
+                            if ($conn->query($sql) === TRUE) {
+                                echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Se ha creado un nuevo registro</h3>";
+                                echo "<script>location.replace('index.php');</script>";
+                            } else {
+                                echo "Error: " . $sql . "<br>" . $conn->error;
+                            }
+                            $conn->close();
+                        }
+                        ?>
+                    </div>
+                </div>
+                
+                <!-- !PAGE CONTENT! -->
+                
+                <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
+                    <div id="main-div" class="w3-padding">
+                        <div class="w3-container">
+                            <form method="post" action="" name="signup-form">
+                                <div class="w3-content w3-padding">
+                                    <div class="w3-row">
+                                        <div class="w3-col m4 l4 s12 w3-padding w3-margin-bottom">
+                                            <label  class="w3-text-theme w3-medium" for="username">Username</label>
+                                            <input class='w3-input w3-border w3-round' type="text" name="username" pattern="[a-zA-Z0-9]+" required />
+                                        </div>
+                                        <div class="w3-col m4 l4 s12 w3-padding w3-margin-bottom">
+                                            <label  class="w3-text-theme w3-medium" for="email">Email</label>
+                                            <input class='w3-input w3-border w3-round' type="email" name="email" required />
+                                        </div>
+                                        <div class="w3-col m4 l4 s12 w3-padding w3-margin-bottom">
+                                            <label class="w3-text-theme w3-medium" for="password">Password</label>
+                                            <input class='w3-input w3-border w3-round' type="password" name="password" required />
+                                        </div>
+                                    </div>
+                                    <div class="w3-row w3-padding-32 w3-center">
+                                        <a href="index.php" class="w3-button w3-theme w3-round">Volver</a>
+                                        <button class="w3-button w3-theme w3-round" type="submit" name="register" value="register">Register</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- !End page content! -->
+                
+                <?php
+                include '../templates/footer.php';
+                ?>

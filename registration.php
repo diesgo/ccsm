@@ -2,6 +2,18 @@
  
 include('config2.php');
 session_start();
+
+function openConex(){
+	$conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+	mysqli_set_charset($conex,'utf8');
+    return $conex;
+}
+function getSetingsById($id){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM settings WHERE id =' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
  
 if (isset($_POST['register'])) {
  

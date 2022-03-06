@@ -1,5 +1,4 @@
 <?php
-require "admin/config.php";
 date_default_timezone_set('Europe/Madrid');
 
 $conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME); 
@@ -11,5 +10,5 @@ if (mysqli_connect_error()) {
     die('Error de Conexión (' . mysqli_connect_errno() . ') '
             . mysqli_connect_error());
 }
-
 // echo 'Éxito... ' . $conex->host_info. "\n";
+?>

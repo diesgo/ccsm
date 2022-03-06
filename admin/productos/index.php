@@ -6,12 +6,13 @@ include '../templates/head_index.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
+<div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
     <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
         <thead>
             <tr class="w3-theme">
                 <th>ID</th>
                 <th style="text-align: left;">Nombre</th>
+                <th>Servicio</th>
                 <th>Categoria</th>
                 <th>Variedad</th>
                 <th>PVC</th>
@@ -29,9 +30,10 @@ include '../templates/head_index.php';
             <tr>
                 <td style="width: 5%;"><?php echo $producto['id_producto'] ?></td>
                 <td style="width: 10%; text-align:left;"><?php echo $producto['nombre_producto'] ?></td>
+                <td style="width: 5%"><?php echo $producto['nombre_servicio'] ?></td>
                 <td style="width: 5%"><?php echo $producto['nombre_categoria'] ?></td>
                 <td style="width: 5%"><?php echo $producto['nombre_variedad'] ?></td>
-                <td style="width: 5%"><?php echo $producto['pvc'] ?> €</td>
+                <td style="width: 5%"><?php echo $producto['pc'] ?> €</td>
                 <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
                 <td class="estado" style="width: 7%"><?php echo $producto['cantidad']?></td>
                 <td style="width: 5%">

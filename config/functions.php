@@ -1,18 +1,19 @@
+
 <?php
-define('DBUSER','root');
-define('DBPWD','');
-define('DBHOST','localhost');
-define('DBNAME','greenpower');
+// define('DBUSER','root');
+// define('DBPWD','');
+// define('DBHOST','localhost');
+// define('DBNAME','greenpower');
 
-$conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME); 
+// $conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME); 
  
-mysqli_set_charset($conex,'utf8');
+// mysqli_set_charset($conex,'utf8');
 
 
-if (mysqli_connect_error()) {
-    die('Error de Conexión (' . mysqli_connect_error() . ') '
-            . mysqli_connect_error());
-}
+// if (mysqli_connect_error()) {
+//     die('Error de Conexión (' . mysqli_connect_error() . ') '
+//             . mysqli_connect_error());
+// }
 
 // echo 'Éxito... ' . $conex->host_info. "\n";
 
@@ -182,13 +183,45 @@ function getServiciosById($id_servicio){
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
+
+// FUNCIONES PARA LA TABLA PROVEEDORES
+
+function getProveedores(){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM proveedores');
+	return $result;
+}
+
+function getProveedoresById($id_proveedor){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM proveedores WHERE id_proveedor =' . $id_proveedor);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
+
+// FUNCIONES PARA LA TABLA USERS
+
+function getUsers(){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM users');
+	return $result;
+}
+
+function getUsersById($id_user){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM users WHERE id_user =' . $id_user);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
+
 // FUNCIONES PARA LA TABLA PRODUCTOS
 
 function getProductos(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM productos
 	INNER JOIN categorias ON id_categoria = categoria_id
-	INNER JOIN variedades ON id_variedad = variedad_id');
+	INNER JOIN variedades ON id_variedad = variedad_id
+	INNER JOIN servicio ON id_servicio = servicio_id');
 	return $result;
 }
 
@@ -197,6 +230,7 @@ function getProductosById($id){
 	$result = $mysqli->query('SELECT * FROM productos
 	INNER JOIN categorias ON id_categoria = categoria_id
 	INNER JOIN variedades ON id_variedad = variedad_id
+	INNER JOIN servicio ON id_servicio = servicio_id
 	WHERE id_producto = ' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;

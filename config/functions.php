@@ -77,13 +77,17 @@ function getRolesById($id){
 
 function getCategorias(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM categorias INNER JOIN iconos ON id_icono = icono_id');
+	$result = $mysqli->query('SELECT * FROM categorias
+	JOIN iconos ON id_icono = icono_id
+	ORDER BY id_categoria DESC');
 	return $result;
 }
 
 function getCategoriasById($id_categoria){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM categorias INNER JOIN iconos ON id_icono = icono_id WHERE id_categoria =' . $id_categoria);
+	$result = $mysqli->query('SELECT * FROM categorias
+	INNER JOIN iconos ON id_icono = icono_id
+	WHERE id_categoria =' . $id_categoria);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -276,6 +280,13 @@ function getPaisesSocios(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT count(pais_id), pais, bandera FROM socios JOIN paises ON id_pais = pais_id');
 	return $result;
+}
+
+function getRecargasByProduct($id){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM recargas WHERE producto_id =' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
 }
 
 ?>

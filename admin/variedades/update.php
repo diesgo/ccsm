@@ -1,17 +1,7 @@
-<?php
-$titulo = "EDITAR VARIEDADES";
-include '../templates/header.php';
-require "../../conex.php";
-?>
-
-            <!-- Header -->
-            
-            <div class="w3-container w3-padding-32 w3-theme-l4">
-                <div class="w3-half">
-                    <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
-                </div>
-                <div class="w3-half">
                     <?php
+                    $titulo = "Editar variedad";
+                    include '../templates/headIndex.php';
+                    require '../../config/conexion.php';
                     $variedad = getVariedadesById($_GET['id_variedad']);
                     if (isset($_POST['actualizar'])) {
                         $id = $variedad['id_variedad'];
@@ -40,75 +30,55 @@ require "../../conex.php";
                     }
                     $sql = "SELECT * FROM variedades";
                     $result = mysqli_query($conex, $sql);
-
                     ?>
-                </div>
-                
-            </div>
+                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
 
-            <!-- !PAGE CONTENT! -->
+                        <!--  NOMBRE -->
 
-            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
-                <div id="main-div" class="w3-padding">
-                    <div class="w3-container">
-                        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
-                            
-                            <!-- FICHA VARIEDAD  -->
-                            
-                            <div class="w3-content">
-
-                                <div class="w3-row">
-
-                                    <!-- NOMBRE -->
-                                    
-                                    <div class="w3-col m6 l6 s12 w3-margin-bottom">
-                                        <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                                        <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $variedad['nombre_variedad']; ?>">
-                                        <small id="info_nombre"></small>
-                                    </div>
-                                </div>
-
-                                <!-- DESCRIPCIÓN -->
-                                
-                                <div class="w3-row">
-                                    <div class="w3-col m12 l12 s12 w3-margin-top w3-margin-bottom">
-                                        <legend for="descripcion_variedad" class="w3-text-theme w3-mediun">Descripción</legend>
-                                        <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_variedad" id="descripcion_variedad" rows="5"><?php echo $variedad['descripcion_variedad'] ?></textarea>
-                                        <small id="info_descripcion_variedad"></small>
-                                    </div>
-                                </div>
-
-                                <!-- ACTIVO -->
-
-                                <div class="w3-row">
-                                    <!-- <?php $check = isset($variedad['activo']) ?  : "checked"?> -->
-                                    <div class="w3-col m5 l6 s12 w3-margin-top">
-                                        <input id="activo" class="w3-check" type="checkbox"  name="activo" value="<?php echo $variedad['activo']?>">
-                                        <label class="w3-text-theme w3-medium" for="activo">Activo</label></p>
-                                    </div>
-                                </div>
+                        <div class="w3-row">
+                            <div class="w3-col m6 l6 s12 w3-padding w3-margin-bottom">
+                                <label for="nombre" class="w3-text-theme w3-medium">Nombre</label><br>
+                                <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $variedad['nombre_variedad']; ?>">
+                                <small id="info_nombre"></small>
                             </div>
-                            <script>
-                                var check= document.getElementById('activo');
-                                console.log(check);
-                                if (check.value == 1) {
-                                    check.setAttribute('checked','');                                    
-                                }
-                            </script>
+                        </div>
 
-                            <!-- BOTONES DE NAVEGACIÓN -->
+                        <!-- DESCRIPCIÓN -->
 
-                            <div class="w3-content">
-                                <div class="w3-row w3-padding-32 w3-center w3-margin-top">
-                                    <a href="index.php" class="w3-button w3-theme w3-round w3-left">Volver</a>
-                                    <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-green w3-round w3-right">
-                                </div>
+                        <div class="w3-row">
+                            <div class="w3-col m12 l12 s12 w3-padding w3-margin-top w3-margin-bottom">
+                                <legend for="descripcion_variedad" class="w3-text-theme w3-mediun">Descripción</legend>
+                                <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_variedad" id="descripcion_variedad" rows="5"><?php echo $variedad['descripcion_variedad'] ?></textarea>
+                                <small id="info_descripcion_variedad"></small>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- !End page content! -->
-            <?php
-            include '../templates/footer.php';
-            ?>
+                        </div>
+
+                        <!-- ACTIVO -->
+
+                        <div class="w3-row">
+                            <div class="w3-col w3-padding w3-margin-top">
+                                <legend for="activo" class="w3-text-theme w3-medium">Visible</legend>
+                                <label class="switch">
+                                    <input class="activo custom" type="checkbox"  name="activo" value="<?php echo $variedad['activo'] ?>">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- BOTONES NAVEGACIÓN -->
+
+                        <div class="w3-row w3-padding-32 w3-center">
+                            <div class="w3-col l6 m6 s12 w3-padding-large">
+                                <input type="submit" value="Actualizar" name="actualizar" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">
+                            </div>
+                            <div class="w3-col l6 m6 s12 w3-padding-large">
+                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">Volver</a>
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        captarCheckbox();
+                    </script>
+                    <?php
+                    include '../templates/footer.php';
+                    ?>

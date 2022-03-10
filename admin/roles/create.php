@@ -41,7 +41,7 @@ include '../templates/header.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-container w3-padding-64 w3-responsive" style="min-height: 636px;">
+<div class="w3-container w3-padding-64 w3-responsive" style="min-height: 616px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="#" method="post" name="altaSocio" id="altaSocio">

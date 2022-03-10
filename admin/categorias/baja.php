@@ -1,18 +1,8 @@
-<?php
-$titulo='Borrar categoria';
-include '../templates/header.php';
-$categoria = getCategoriasById($_GET['id_categoria']);
-?>
-
-
-            <!-- Header -->
-
-            <div class="w3-container w3-padding-32 w3-theme-l4">
-                <div class="w3-half">
-                    <h2 class="w3-text-theme"><b><?php echo $titulo ?></b></h2>
-                </div>
-                <div class="w3-half">
                     <?php
+                    $titulo='Borrar categoria';
+                    include '../templates/headIndex.php';
+                    require '../../conex.php';
+                    $categoria = getCategoriasById($_GET['id_categoria']);
                     if(isset($_POST['bajaButton'])){
                         $id_categoria = $categoria['id_categoria'];
                         $sql = "DELETE FROM categorias WHERE id_categoria='$id_categoria'";
@@ -20,83 +10,53 @@ $categoria = getCategoriasById($_GET['id_categoria']);
                         echo "<script>location.replace('index.php');</script>";
                     }
                     ?>
-                </div>
-            </div>
+                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarCategoria" id="borrarCategoria" >
+                    
+                        <!-- NOMBRE -->
 
-            <!-- PAGE CONTENT -->
-
-            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
-                <div id="main-div" class="w3-padding">
-                    <div class="w3-container">
-                        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarCategoria" id="borrarCategoria" >
-                            
-                            <!-- FICHA VARIEDAD  -->
-                            
-                            <div class="w3-content">
-
-                                <div class="w3-row">
-
-                                    <!-- NOMBRE -->
-                                    
-                                    <div class="w3-col m6 l6 s12 w3-padding w3-margin-bottom">
-                                        <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                                        <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $categoria['nombre_categoria']; ?>">
-                                        <small id="info_nombre"></small>
-                                    </div>
-
-                                    <!-- ICONO -->
-
-                                    <div class="w3-col m6 l6 s12 w3-padding">
-                                        <label for="icono_id" class="w3-text-theme">Icono</label>
-                                        <select name="icono_id" id="icono_id" class="w3-select w3-border w3-white">
-                                            <option value=<?php echo $categoria['icono_id']; ?>> <?php echo $categoria['icono'] . ' ' . $categoria['nombre_icono']; ?></option>
-                                            <?php
-                                            $iconos = getIcono();
-                                            foreach ($iconos as $icono) :
-                                            ?>
-                                            <option value=<?php echo $icono['id_icono']; ?>> <?php echo $icono['icono'] . ' ' . $icono['nombre_icono']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-
-                                </div>
-                                
-                                <!-- DESCRIPCION -->
-
-                                <div class="w3-row">
-                                    <div class="w3-col m12 l12 s12 w3-padding w3-margin-top w3-margin-bottom">
-                                        <legend for="descripcion_categoria" class="w3-text-theme w3-medium">Descripción</legend>
-                                        <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_categoria" id="descripcion_categoria" rows="5" placeholder="(Opcional)"><?php echo $categoria['nombre_categoria']; ?></textarea>
-                                        <small id="info_descripcion_categoria"></small>
-                                    </div>
-                                </div>
-
-                                <!-- ACTIVO -->
-
-                                <div class="w3-row">
-                                    <div class="w3-col m5 l6 s12 w3-padding w3-margin-top">
-                                        <input class="w3-check" type="checkbox" id="activo" name="activo">
-                                        <label for="activo" class="w3-text-theme w3-medium">Activo</label>
-                                    </div>
-                                </div>
-                            
-                                <!-- BOTONES DE NAVEGACIÓN -->
-                                
-                                <div class="w3-content">
-                                    <div class="w3-row w3-padding w3-center w3-margin-top">
-                                        <a href="index.php" class="w3-button w3-theme w3-round w3-left">Volver</a>
-                                        <input type="submit" value="Eliminar" name="bajaButton" id="bajaButton" class="w3-button w3-red w3-round w3-right"  >
-                                    </div>
-                                </div>
-
+                        <div class="w3-row">
+                            <div class="w3-col m6 l6 s12 w3-padding w3-margin-bottom">
+                                <label for="nombre" class="w3-text-theme w3-medium">Nombre</label><br>
+                                <input class="w3-input w3-border w3-border-theme-light"  name='nombre' type='text' value="<?php echo $categoria['nombre_categoria']; ?>">
+                                <small id="info_nombre"></small>
                             </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- !End page content! -->
-            
-            <?php
-            include '../templates/footer.php';
-            ?>  
+                        </div>
+
+                        <!-- DESCRIPCION -->
+
+                        <div class="w3-row">
+                            <div class="w3-col m12 l12 s12 w3-padding w3-margin-top w3-margin-bottom">
+                                <legend for="descripcion_categoria" class="w3-text-theme w3-medium">Descripción</legend>
+                                <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_categoria" id="descripcion_categoria" rows="5" placeholder="(Opcional)"><?php echo $categoria['nombre_categoria']; ?></textarea>
+                                <small id="info_descripcion_categoria"></small>
+                            </div>
+                        </div>
+
+                        <!-- ACTIVO -->
+
+                        <div class="w3-row">
+                            <div class="w3-col w3-padding w3-margin-top">
+                                <label class="switch">
+                                    <input class="activo custom" type="checkbox"  name="activo" value="<?php echo $categoria['activo']?>">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- BOTONES NAVEGACIÓN -->
+
+                        <div class="w3-row w3-padding-32 w3-center">
+                            <div class="w3-col l6 m6 s12 w3-padding-large">
+                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">Volver</a>
+                            </div>
+                            <div class="w3-col l6 m6 s12 w3-padding-large">
+                                <input type="submit" value="Eliminar" name="bajaButton" class="w3-btn w3-red w3-round w3-block w3-hover-orange">
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        captarCheckbox();
+                    </script>
+                    <?php
+                    include '../templates/footer.php';
+                    ?>  

@@ -17,12 +17,24 @@ $productos = getProductosById($_GET['id']);
         $result = mysqli_query($conex, $sql);
         if (isset($_POST['actualizar'])) {
             $id = $productos['id_producto'];
-            $dispensario = $productos['dispensario'] + $_POST['addDisp'];
-            $cantidad = $productos['cantidad'] - $_POST['addDisp'];
-            $sql = "UPDATE productos SET dispensario ='" . $dispensario . "', cantidad ='" . $cantidad . "' WHERE id_producto = " . $id . ";";
+            $stock = $productos['cantidad'];
+            $origen = $_POST['id_proveedor'];
+            $recarga = $_POST['recarga'];
+            $pc = $_POST['pc'];
+            $stock_total = $stock + $recarga;
+            $sql = "UPDATE productos SET cantidad ='" . $stock_total . "', pc = '" . $pc ."' WHERE id_producto = " . $id . ";";
             echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
-            mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
-        } else {
+            mysqli_query($conex, $sql);
+            $sql = "INSERT INTO recargas (proveedor_id, producto_id, stock_antes, recarga, stock_despues, pc)
+             VALUES ('$origen', '$id', '$stock', '$recarga', '$stock_total', '$pc')";
+             $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+             if ($conn->query($sql) === TRUE) {
+                 echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Se ha creado un nuevo registro</h3>";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                $conn->close() or die("Error al ejecutar la consulta");
+            } else {
             if (!isset($_POST['id'])) {
                 $sql = "SELECT min(id_producto) FROM productos";
                 $result = mysqli_query($conex, $sql);
@@ -45,69 +57,81 @@ $productos = getProductosById($_GET['id']);
 <!-- !PAGE CONTENT! -->
 
 <div class="w3-container w3-padding w3-responsive" style="min-height: 616px;">
+    <div class="w3-content">
+        <div class="w3-row-padding w3-margin-bottom">
+            <h1 style="text-transform: uppercase;" class="w3-text-theme w3-center"><?php echo $productos['nombre_producto'] ?> # <?php echo $productos['id_producto'] ?></h1>
+            <h3 class="w3-text-theme w3-center">Tipo de servicio: <span style="text-transform: capitalize;"><?php echo $productos['nombre_servicio'] ?></span></h3>
+        </div>
+        <div class="w3-row-padding w3-margin-bottom">
+            <div class="w3-col l3 m3 w3-padding w3-margin-top w3-margin-bottom">
+                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                    
+                </div>
+            </div>
+            <div class="w3-col l3 m3 w3-padding w3-margin-top w3-margin-bottom">
+                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                    <label for="cantidadAhora" class="w3-text-theme">Stock Actual</label>
+                    <input id="cantidadAhora" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" type="text" name="pc" value="<?php echo $productos['cantidad']; ?>" disabled>
+                </div>
+            </div>
+            <div class="w3-col l3 m3 w3-padding w3-margin-top w3-margin-bottom">
+                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                    <label for="cantidadAhora" class="w3-text-theme">Cantidad en dispensario</label>
+                    <input id="cantidadAhora" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" type="text" name="pc" value="<?php echo $productos['dispensario']; ?>" disabled>
+                </div>
+            </div>
+            <div class="w3-col l3 m3 w3-padding w3-margin-top w3-margin-bottom">
+                <div class="w3-container w3-padding w3-border w3-border-theme w3-round">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="chargeProduct" id="chargeProduct">
                 <div class="w3-content w3-padding">
+                    
                     <!-- FILA 1 -->
+                    
                     <div class="w3-row-padding w3-margin-bottom">
-
-                        <!--  NOMBRE Y TIPO DE VENTA -->
-
-                        <h1 style="text-transform: uppercase;" class="w3-text-theme w3-center"><?php echo $productos['nombre_producto'] ?> # <?php echo $productos['id_producto'] ?></h1>
-                        <h3 class="w3-text-theme w3-center">Tipo de servicio: <span style="text-transform: capitalize;"><?php echo $productos['nombre_servicio'] ?></span></h3>
-                    </div>
-                    <!-- FILA 2 -->
-                    <div class="w3-row-padding w3-margin-bottom">
-                        <!-- ALMACEN -->
+                        <!-- ORIGEN -->
                         <div class="w3-col l4 m4 w3-padding">
                             <div class="w3-container w3-padding w3-border w3-border-theme w3-round w3-margin-bottom">
-                                <div class="w3-row">
-                                    <h3 class="w3-text-theme w3-center">Stock</h3>
-                                    <div class="w3-col">
-
-                                        <legend class="w3-text-theme" for="cantidad">Stock actual:</legend>
-                                        <p id="cantidad" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom"><?php echo $productos['cantidad']; ?></p>
-
-                                    </div>
+                                <div class="w3-container">
+                                    <label for="id_proveedor">Origen</label>
+                                    <select name="id_proveedor" class="w3-select w3-white w3-border w3-border-theme w3-round w3-margin-bottom">
+                                        <?php
+                                        $proveedores = getProveedores();
+                                        foreach ($proveedores as $proveedor) :
+                                        ?>
+                                        <option value=<?php echo $proveedor['id_proveedor']; ?>><?php echo $proveedor['nombre_proveedor'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <!-- DISPENSARIO -->
+                        <!-- RECARGA -->
                         <div class="w3-col l4 m4 w3-padding">
                             <div class="w3-container w3-padding w3-border w3-border-theme w3-round w3-margin-bottom">
-                                <div class="w3-row">
-                                    <h3 class="w3-text-theme w3-center">Dispensario</h3>
-                                    <div class="w3-col">
-
-                                        <legend class="w3-text-theme">Cantidad dispensario:</legend>
-                                        <p id="dispensario" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom"><?php echo $productos['dispensario']; ?></p>
-                                        <label for="addDisp" class="w3-text-theme">Recargar</label>
-                                        <input type="text" name="addDisp" id="addDisp" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value="0">
-
-                                    </div>
+                                <div class="w3-container">
+                                    <label for="recarga" class="w3-text-theme">Recarga</label>
+                                    <input id="recarga" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" type="text" name="recarga" value="" required>
                                 </div>
                             </div>
                         </div>
-                        <!-- BOTE -->
+                        <!-- PRECIO COMPRA -->
                         <div class="w3-col l4 m4 w3-padding">
                             <div class="w3-container w3-padding w3-border w3-border-theme w3-round w3-margin-bottom">
-                                <div class="w3-row">
-                                    <h3 class="w3-text-theme w3-center">Bote</h3>
-                                    <div class="w3-col">
-
-                                        <legend class="w3-text-theme">Tara actual:</legend>
-                                        <p id="bote" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom"><?php echo $productos['bote']; ?></p>
-                                        <label class="w3-text-theme" for="newBote">Nuevo bote:</label>
-                                        <input type="text" name="newBote" id="newBote" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value="0">
-
-                                    </div>
+                                <div class="w3-container">
+                                    <label class="w3-text-theme" for="pc">Precio de compra</label>
+                                    <input type="text" name="pc" id="pc" class="w3-input w3-border w3-border-theme w3-round w3-margin-bottom" value="" required>
                                 </div>
                             </div>
-                            <script>
-                                let a = document.getElementById('addDisp');
-                            </script>
                         </div>
+                        <script>
+                        let a = document.getElementById('addDisp');
+                        </script>
                     </div>
                     <!-- FILA 3 -->
                     <div class="w3-row-padding w3-center w3-margin-bottom">

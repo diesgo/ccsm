@@ -15,7 +15,7 @@ $rol = getRolesById($_GET['id']); ?>
     <hr>
 </div>
 
-<div id="ficha_rol" class="w3-container w3-padding" style="min-height: 636px;">
+<div id="ficha_rol" class="w3-container w3-padding" style="min-height: 616px;">
     <div class="w3-content w3-padding">
         <div class="w3-half w3-margin-top w3-padding w3-border w3-border-theme w3-round">
             <div class="w3-row-padding">

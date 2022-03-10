@@ -118,3 +118,7 @@
             <!-- !PAGE CONTENT! -->
 
             <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 638px;">
+                <div class="w3-third">
+                    <div class="w3-container"></div>
+                </div>
+                <div class="w3-third">

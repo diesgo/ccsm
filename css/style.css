@@ -1,12 +1,26 @@
 a, button, input[type="submit"], input[type="button"] {
     font-size: 15px;;
 }
+.panel {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
 
 .ficha{
     border-bottom: 1px solid;
     border-left:1px solid;
     border-right:1px solid;
 }
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
 
 /*============== */
 /*= Contenedores =*/
@@ -38,6 +52,13 @@ a, button, input[type="submit"], input[type="button"] {
     margin-top: 200px;
 }
 
+/* ******************* */
+/* CHECKBOX SWTICH */
+/* ******************* */
+
+input[type="checkbox"].custom{
+    display: none;
+}
 .switch {
     position: relative;
     display: inline-block;
@@ -55,7 +76,6 @@ a, button, input[type="submit"], input[type="button"] {
     -webkit-transition: .4s;
     transition: .4s;
 }
-
 .slider:before {
 position: absolute;
 content: "";
@@ -67,32 +87,26 @@ background-color: white;
 -webkit-transition: .4s;
 transition: .4s;
 }
-
 input[type="checkbox"]:checked+.slider {
     background-color: #4d636f;
 }
-
 input[type="checkbox"]:focus+.slider {
     box-shadow: 0 0 1px #4d636f;
 }
-
 input[type="checkbox"]:checked+.slider:before {
     transform: translateX(26px);
 }
-
 input[type="checkbox"] .sb {
     visibility: hidden;
 }
-
 /* Rounded sliders */
-
 .slider.round {
     border-radius: 34px;
 }
-
 .slider.round:before {
     border-radius: 50%;
 }
+
 /*==========
  MENU MOVIL
  ========= */
@@ -141,11 +155,9 @@ input[type="checkbox"] .sb {
 }
 
 /* ========
-CHECKBOX
-Y  RADIO
+    RADIO
 ======== */
 
-/* .checkbox,
 .radio {
     display: block;
     position: relative;
@@ -155,19 +167,12 @@ Y  RADIO
     user-select: none;
 }
 
-.checkbox input,
 .radio input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
 }
 
-.checkbox input {
-    height: 0;
-    width: 0;
-}
-
-.check,
 .rad {
     position: absolute;
     top: 0;
@@ -182,36 +187,22 @@ Y  RADIO
     border-radius: 50%;
 }
 
-.check:after,
 .rad:after {
     content: "";
     position: absolute;
     display: none;
 }
 
-.checkbox input:checked~.check,
 .radio input:checked~.rad {
     background-color: currentColor;
 }
 
-.checkbox input:disabled~.check,
 .radio input:disabled~.rad {
     color: #aaaaaa;
 }
 
-.checkbox input:checked~.check:after,
 .radio input:checked~.rad:after {
     display: block;
-}
-
-.checkbox .check:after {
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 12px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    transform: rotate(45deg);
 }
 
 .radio .rad:after {
@@ -221,7 +212,7 @@ Y  RADIO
     height: 10px;
     border-radius: 50%;
     background: white;
-} */
+}
 
 /*============*/
 /*= Copyleft =*/

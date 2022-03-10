@@ -18,7 +18,6 @@ require_once '../../config/functions.php';
             $categoria = $_POST['categoria'];
             $variedad = $_POST['variedad'];
             $servicio = $_POST['servicio_id'];
-            $visible= $_POST['visible'];
 
             // Create connection
 
@@ -29,8 +28,8 @@ require_once '../../config/functions.php';
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-            $sql = "INSERT INTO productos (nombre_producto, categoria_id, variedad_id, servicio_id, visible)
-    VALUES ('$nombre', '$categoria', '$variedad',   '$servicio', '$visible')";
+            $sql = "INSERT INTO productos (nombre_producto, categoria_id, variedad_id, servicio_id)
+    VALUES ('$nombre', '$categoria', '$variedad',   '$servicio')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "<h3 class='w3-text-green w3-animate-zoom'><i class='w3-xlarge fas fa-check'></i> Se ha creado un nuevo registro</h3>";

@@ -43,7 +43,7 @@ include '../templates/header.php';
 
 <!-- !PAGE CONTENT! -->
 
-<div class="w3-padding-large" style="min-height: 636px;">
+<div class="w3-padding-large" style="min-height: 616px;">
     <div id="main-div" class="w3-padding">
         <div class="w3-container">
             <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="altaSocio" id="altaSocio">

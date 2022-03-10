@@ -25,6 +25,16 @@ function w3_close() {
     // overlayBg.style.display = "none";
 }
 
+function captarCheckbox() {
+    var check = document.getElementsByClassName("activo");
+    var checkLong = check.length;
+    for (let i = 0; i < checkLong; i++) {
+        if (check[i].value == 1) {
+            check[i].setAttribute('checked', '');
+        }
+    }
+}
+
 function estadoStock() {
     var cantidad = document.getElementsByClassName('estado');
     var i = cantidad.length;
@@ -73,4 +83,4 @@ function variedad() {
         default:
             text = "I have never heard of that fruit...";
     };
-}
+}            

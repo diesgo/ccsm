@@ -55,7 +55,7 @@ include '../templates/header.php';
                         <!-- ROL -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for="nombre" class="w3-text-theme">Categoria</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $roles['rol'] ?> pattern="[a-zA-Z0-9]+">
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value=<?php echo $roles['rol'] ?>>
                             <small id="info_rol"></small>
                         </div>
                         <!-- DESCRIPCIÓN -->

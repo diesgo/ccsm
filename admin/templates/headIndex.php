@@ -53,10 +53,11 @@
                 <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-card-4 w3-hover-theme" onclick="dropAside('catalogo')"><i class="fas fa-book"></i> Catálogo <i class="w3-right fa fa-caret-down"></i></button>
                 <div id="catalogo" class="w3-hide w3-white w3-theme-l2">
                     <a href="../variedades/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Variedades</a>
-                    <a href="../servicio/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Servicio</a>
+                    <a href="../servicios/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Servicio</a>
                     <a href="../categorias/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Categorias</a>
                     <a href="../proveedores/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Proveedores</a>
                     <a href="../productos/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Productos</a>
+                    <a href="../emojis/index.php" class="w3-bar-item w3-button w3-text-theme-dark w3-hover-theme w3-medium w3-margin-left w3-padding">Emojis</a>
                 </div>
 
                 <button class="w3-button w3-block w3-left-align w3-theme-l1 w3-hover-theme w3-card-4" onclick="dropAside('categorias')"><i class="fas fa-boxes"></i> Categorías <i class="w3-right fa fa-caret-down"></i></button>
@@ -118,7 +119,3 @@
             <!-- !PAGE CONTENT! -->
 
             <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 638px;">
-                <div class="w3-third">
-                    <div class="w3-container"></div>
-                </div>
-                <div class="w3-third">

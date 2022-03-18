@@ -42,7 +42,7 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fas fa-boxes w3-xlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                    $productos = getProductos();
+                    $productos = getNumProducts();
                     if (mysqli_num_rows($productos) > 0) {
                         // output data of each row
                         echo "<h3>" . mysqli_num_rows($productos) . "</h3>";

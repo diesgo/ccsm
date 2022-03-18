@@ -35,20 +35,20 @@ function getSocios(){
 	return $result;
 }
 
-function getSociosById($id_socio){
+function getSociosById($id){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM socios
 	JOIN paises ON id_pais = pais_id
 	JOIN genero ON id_genero = genero_id
 	JOIN roles ON id_rol = rol_id
-	WHERE id_socio =' . $id_socio);
+	WHERE id_socio =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
 
 function showSocio($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM socios WHERE id_socio=' . $id_socio);
+	$result = $mysqli->query('SELECT * FROM socios WHERE id_socio=' . $id);
 	return $result;
 }
 
@@ -62,13 +62,13 @@ function getNumSocios(){
 
 function getRoles(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT id_rol, rol, descripcion FROM roles ORDER BY id_rol desc');
+	$result = $mysqli->query('SELECT * FROM roles ORDER BY id_rol desc');
 	return $result;
 }
 
 function getRolesById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT id_rol, rol, descripcion FROM roles WHERE id_rol =' . $id);
+	$result = $mysqli->query('SELECT * FROM roles WHERE id_rol =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -77,17 +77,13 @@ function getRolesById($id){
 
 function getCategorias(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM categorias
-	JOIN iconos ON id_icono = icono_id
-	ORDER BY id_categoria DESC');
+	$result = $mysqli->query('SELECT * FROM categorias ORDER BY id_categoria DESC');
 	return $result;
 }
 
-function getCategoriasById($id_categoria){
+function getCategoriasById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM categorias
-	INNER JOIN iconos ON id_icono = icono_id
-	WHERE id_categoria =' . $id_categoria);
+	$result = $mysqli->query('SELECT * FROM categorias WHERE id_categoria =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -119,6 +115,7 @@ function getSetings(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM settings');
 	return $result;
+	$conex ->close();
 }
 
 function getSetingsById($id){
@@ -177,13 +174,13 @@ function getVariedadesById($id){
 
 function getServicios(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM servicio');
+	$result = $mysqli->query('SELECT * FROM servicios');
 	return $result;
 }
 
-function getServiciosById($id_servicio){
+function getServiciosById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM servicio WHERE id_servicio =' . $id_servicio);
+	$result = $mysqli->query('SELECT * FROM servicios WHERE id_servicio =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -194,11 +191,12 @@ function getProveedores(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM proveedores');
 	return $result;
+	$conex ->close();
 }
 
-function getProveedoresById($id_proveedor){
+function getProveedoresById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM proveedores WHERE id_proveedor =' . $id_proveedor);
+	$result = $mysqli->query('SELECT * FROM proveedores WHERE id_proveedor =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -211,9 +209,9 @@ function getUsers(){
 	return $result;
 }
 
-function getUsersById($id_user){
+function getUsersById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM users WHERE id_user =' . $id_user);
+	$result = $mysqli->query('SELECT * FROM users WHERE id_user =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -227,29 +225,47 @@ function getProductos(){
 	INNER JOIN variedades ON id_variedad = variedad_id
 	INNER JOIN servicio ON id_servicio = servicio_id');
 	return $result;
+	echo $result;
+}
+
+function getNumProducts(){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT id_producto FROM productos');
+	return $result;
+	echo $result;
 }
 
 function getProductosById($id){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM productos
-	INNER JOIN categorias ON id_categoria = categoria_id
-	INNER JOIN variedades ON id_variedad = variedad_id
-	INNER JOIN servicio ON id_servicio = servicio_id
 	WHERE id_producto = ' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
+	$conex ->close();
 }
 
-function getProductsByCategory($categoria){
+function getProductsById($id){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM productos WHERE categoria_id =' . $categoria);
+	$result = $mysqli->query('SELECT * FROM productos
+	INNER JOIN categorias ON id_categoria = categoria_id
+	INNER JOIN variedades ON id_variedad = variedad_id
+	INNER JOIN servicios ON id_servicio = servicio_id
+	WHERE id_producto = ' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+	$conex ->close();
+}
+
+function getProductsByCategory($categoria_id){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM productos WHERE categoria_id =' . $categoria_id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
 
 // FUNCIONES PARA LA TABLA ICONOS
 
-function getIcono(){
+function getIconos(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM iconos');
 	return $result;

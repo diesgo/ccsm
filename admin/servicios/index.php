@@ -1,5 +1,5 @@
                 <?php
-                    $titulo = 'Listado de variedades';
+                    $titulo = 'Servicios';
                     include '../templates/headIndex.php';
                 ?>
                 <div class="w3-content">
@@ -7,7 +7,7 @@
                         <thead>
                             <tr class="w3-theme">
                                 <th>ID</th>
-                                <th>Variedad</th>
+                                <th>Servicio</th>
                                 <th>Descripción</th>
                                 <th class="w3-center">Activo</th>
                                 <th class="w3-center"></th>
@@ -17,18 +17,18 @@
                         <tbody>
                             <?php
                             $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-                            $sql = "SELECT * FROM variedades";
+                            $sql = "SELECT * FROM servicios";
                             $result = mysqli_query($conn, $sql);
                             if (mysqli_num_rows($result) > 0) {
                                 // output data of each row
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<tr>";
-                                        echo "<td style='width: 2%;'>" . $row["id_variedad"] . "</td>";
-                                        echo "<td style='width: 10%'>" . $row["nombre_variedad"] . "</td>";
-                                        echo "<td style='width: 10%'>" . $row["descripcion_variedad"] . "</td>";
+                                        echo "<td class='w3-center' style='width: 2%;'>" . $row["id_servicio"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["nombre_servicio"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["descripcion_servicio"] . "</td>";
                                         echo "<td class='w3-center' style='width: 2%'><input type='checkbox' class='activo' value=" . $row['activo'] . " disabled></td>";
-                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-green w3-hover-text-orange' href='update.php?id=" . $row['id_variedad'] . "'><i class='fas fa-pen w3-medium'></i></a></td>";
-                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-red w3-hover-text-orange' href='baja.php?id=" . $row['id_variedad'] . "'><i class='fas fa-trash w3-medium'></i></a>";
+                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-green w3-hover-text-orange' href='update.php?id=" . $row['id_servicio'] . "'><i class='fas fa-pen w3-medium'></i></a></td>";
+                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-red w3-hover-text-orange' href='baja.php?id_servicio=" . $row['id_servicio'] . "'><i class='fas fa-trash w3-medium'></i></a>";
                                     echo "</tr>";
                                 }
                             } else {

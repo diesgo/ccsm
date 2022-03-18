@@ -1,7 +1,7 @@
 <?php
 $titulo = 'Usuarios';
-include '../templates/header.php';
-include '../templates/head_index.php';
+// include '../templates/header.php';
+include '../templates/headIndex.php';
 ?>
 
             <!-- !PAGE CONTENT! -->
@@ -49,5 +49,5 @@ include '../templates/head_index.php';
             </div>
 
 <?php
-include '../templates/footer.php';
+include '../templates/footerIndex.php';
 ?>

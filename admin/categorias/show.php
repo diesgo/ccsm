@@ -1,6 +1,6 @@
 <?php
 $titulo = "MOSTRAR CATEGORIA";
-include '../templates/header.php';
+include '../templates/headerClean.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
 
@@ -58,7 +58,7 @@ $categoria = getCategoriasById($_GET['id']);
             </thead>
             <?php
             $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-            $sql = "SELECT * FROM productos INNER JOIN servicio ON id_servicio = servicio_id INNER JOIN variedades ON id_variedad = variedad_id WHERE categoria_id='" . $categoria['id_categoria'] . "'";
+            $sql = "SELECT * FROM productos INNER JOIN servicios ON id_servicio = servicio_id INNER JOIN variedades ON id_variedad = variedad_id WHERE categoria_id='" . $categoria['id_categoria'] . "'";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {
@@ -103,5 +103,5 @@ $categoria = getCategoriasById($_GET['id']);
 </script>
 
 <?php
-include '../templates/footer.php';
+include '../templates/footerClean.php';
 ?>

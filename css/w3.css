@@ -936,6 +936,15 @@ a {
 }
 
 @media (max-width:992px) {
+
+    /* CUSTOM  */
+
+    body {
+        font-size: 11px;
+    }
+
+    /* END CUSTOM */
+
     .w3-sidebar.w3-collapse {
         display: none
     }
@@ -948,6 +957,7 @@ a {
     .w3-auto {
         max-width: 100%
     }
+   
 }
 
 .w3-top,
@@ -1643,7 +1653,7 @@ a {
 
 .w3-white,
 .w3-hover-white:hover {
-    color: #000 !important;
+    color: #3a3a3a !important;
     background-color: #fff !important
 }
 

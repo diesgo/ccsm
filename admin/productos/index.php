@@ -1,63 +1,60 @@
                 <?php
-                $titulo = "Listado de productos";
-                include '../templates/headerClean.php';
-                $productos = getProductos();
+                    $titulo = 'Listado de productos';
+                    include '../templates/headIndex.php';
                 ?>
-                <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
-                    <thead>
-                        <tr class="w3-theme">
-                            <th>ID</th>
-                            <th style="text-align: left;">Nombre</th>
-                            <th>Servicio</th>
-                            <th>Categoria</th>
-                            <th>Variedad</th>
-                            <th>PVC</th>
-                            <th>PVP</th>
-                            <th>Stock total</th>
-                            <th>Editar</th>
-                            <th>Recargar</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach ($productos as $producto) :
-                        ?>
-                        <tr>
-                            <td style="width: 5%;"><?php echo $producto['id_producto'] ?></td>
-                            <td style="width: 10%; text-align:left;"><?php echo $producto['nombre_producto'] ?></td>
-                            <td style="width: 5%"><?php echo $producto['nombre_servicio'] ?></td>
-                            <td style="width: 5%"><?php echo $producto['nombre_categoria'] ?></td>
-                            <td style="width: 5%"><?php echo $producto['nombre_variedad'] ?></td>
-                            <td style="width: 5%"><?php echo $producto['pc'] ?> €</td>
-                            <td style="width: 5%"><?php echo $producto['pvp'] ?> €</td>
-                            <td class="estado" style="width: 7%"><?php echo $producto['cantidad']?></td>
-                            <td style="width: 5%">
-                                <a href="update.php?id=<?php echo $producto['id_producto'] ?>">
-                                    <i class="fas fa-user-edit w3-text-theme"></i>
-                                </a>
-                            </td>
-                            <td style="width: 5%;">
-                                <a href="charge.php?id=<?php echo $producto['id_producto'] ?>">
-                                    <i class="fas fa-balance-scale w3-text-theme"></i>
-                                </a>
-                            </td>
-                            <td style="width: 5%">
-                                <a href="show.php?id=<?php echo $producto['id_producto'] ?>">
-                                    <i class="fas fa-eye w3-text-theme"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <input type="text" id="search" onkeyup="searchTableByName()" placeholder="&#x1f50d;&#xfe0e; Search for names.." title="Type in a name" pattern="[a-zA-Z0-9]+" autofocus>
+                
+                    <table id="list" class="w3-table-all w3-striped w3-border w3-border-theme w3-medium">
+                        <thead>
+                            <tr class="w3-theme">
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Categoria</th>
+                                <th>Variedad</th>
+                                <th>Tipo de servicio</th>
+                                <th>Stock</th>
+                                <th>En dispensario</th>
+                                <th>PVP</th>
+                                <th class="w3-center">Activo</th>
+                                <th class="w3-center"></th>
+                                <th class="w3-center"></th>
+                                <th class="w3-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
+                            $sql = "SELECT * FROM productos";
+                            $result = mysqli_query($conn, $sql);
+                            if (mysqli_num_rows($result) > 0) {
+                                // output data of each row
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<tr>";
+                                        echo "<td style='width: 2%;'>" . $row["id_producto"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["nombre_producto"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["categoria_id"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["variedad_id"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["servicio_id"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["cantidad"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["dispensario"] . "</td>";
+                                        echo "<td style='width: 10%'>" . $row["pvp"] . "</td>";
+                                        echo "<td class='w3-center' style='width: 2%'><input type='checkbox' class='activo' value='" . $row['activo'] . "' disabled></td>";
+                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-green w3-hover-text-orange' href='update.php?id=" . $row['id_producto'] . "'><i class='fas fa-pen w3-medium'></i></a></td>";
+                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-green w3-hover-text-orange' href='charge.php?id=" . $row['id_producto'] . "'><i class='far fa-balance-scale w3-medium'></i></a></td>";
+                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-red w3-hover-text-orange' href='baja.php?id=" . $row['id_producto'] . "' onclick='warningErase()'><i class='fas fa-trash w3-medium'></i></a>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "No se han encontrado registros.";
+                            }
+                            mysqli_close($conn);
+                            ?>
+                        </tbody>
+                    </table>
+                
                 <script>
-                    estadoStock();
                     captarCheckbox();
                 </script>
-                <div class="w3-container w3-center w3-margin-top">
-                    <a class="w3-button w3-theme w3-border w3-border-theme w3-round w3-hover-white w3-hover-text-theme w3-margin-top" href="create.php"><i class="fas fa-plus-circle"></i> Nuevo registro</a>
-                </div>
                 <?php
-                include '../templates/footerClean.php';
+                    include '../templates/footerIndex.php';
                 ?>

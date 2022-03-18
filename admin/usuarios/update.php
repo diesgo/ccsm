@@ -51,7 +51,7 @@ require "../../conex.php";
             <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
                 <div id="main-div" class="w3-padding">
                     <div class="w3-container">
-                        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
+                        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario" class="w3-theme-l4 w3-round w3-padding">
                             
                             <!-- FICHA SERVICIO  -->
                             
@@ -96,12 +96,14 @@ require "../../conex.php";
 
                             <!-- BOTONES DE NAVEGACIÓN -->
 
-                            <div class="w3-content">
-                                <div class="w3-row w3-padding-32 w3-center w3-margin-top">
-                                    <a href="index.php" class="w3-button w3-theme w3-round w3-left">Volver</a>
-                                    <input type="submit" value="Actualizar" name="actualizar" class="w3-button w3-green w3-round w3-right">
-                                </div>
+                        <div class="w3-row w3-padding-32 w3-center">
+                            <div class="w3-col l6 m6 s12 w3-padding-large">
+                                <a href="index.php" class="w3-btn w3-theme w3-round w3-hover-green w3-block">Volver</a>
                             </div>
+                            <div class="w3-col l6 m6 s12 w3-padding-large">
+                                <input type="submit" value="Actualizar" name="actualizar" class="w3-btn w3-theme w3-round w3-hover-orange w3-block">
+                            </div>
+                        </div>
                         </form>
                     </div>
                 </div>

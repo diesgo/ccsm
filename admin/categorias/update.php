@@ -1,8 +1,8 @@
-                    <?php
+                <?php
                     $titulo = "Editar categoria";
                     include '../templates/headIndex.php';
                     require '../../config/conexion.php';
-                    $categoria = getCategoriasById($_GET['id_categoria']);
+                    $categoria = getCategoriasById($_GET['id']);
                     if (isset($_POST['actualizar'])) {
                         $id = $categoria['id_categoria'];
                         $nombre = $_POST['nombre'];
@@ -31,15 +31,16 @@
                     }
                     $sql = "SELECT * FROM categorias";
                     $result = mysqli_query($conex, $sql);
-                    ?>
-                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario">
+                ?>
+                <div class="w3-content">
+                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="formulario" id="formulario" class="w3-theme-l4 w3-round w3-padding">
 
                         <!-- NOMBRE -->
 
                         <div class="w3-row">
                             <div class="w3-col m6 l6 s12 w3-padding w3-margin-bottom">
                                 <label for="nombre" class="w3-text-theme w3-medium">Nombre</label><br>
-                                <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $categoria['nombre_categoria']; ?>">
+                                <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $categoria['nombre_categoria']; ?>" pattern="[a-zA-Z0-9]+">
                                 <small id="info_nombre"></small>
                             </div>
                         </div>
@@ -70,16 +71,17 @@
 
                         <div class="w3-row w3-padding-32 w3-center">
                             <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <input type="submit" value="Actualizar" name="actualizar" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">
+                                <a href="index.php" class="w3-btn w3-theme w3-round w3-hover-green w3-block">Volver</a>
                             </div>
                             <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">Volver</a>
+                                <input type="submit" value="Actualizar" name="actualizar" class="w3-btn w3-theme w3-round w3-hover-orange w3-block">
                             </div>
                         </div>
                     </form>
-                    <script>
-                        captarCheckbox();
-                    </script>
-                    <?php
-                    include '../templates/footer.php';
-                    ?>
+                </div>
+                <script>
+                    captarCheckbox();
+                </script>
+                <?php
+                    include '../templates/footerClean.php';
+                ?>

@@ -52,7 +52,7 @@ include '../templates/header.php';
                         <!-- ROL -->
                         <div class="w3-col m6 l6 s12 w3-padding">
                             <label for='nombre'>Rol</label>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='nombre' pattern="[a-zA-Z0-9]+">
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' placeholder='nombre'>
                             <small id="info_rol"></small>
                         </div>
                     </div>
@@ -70,15 +70,6 @@ include '../templates/header.php';
                     <input type="submit" value="Guardar" name="altaButton" class="w3-button w3-theme w3-round">
                     <a href="index.php" class="w3-button w3-theme w3-round">Volver</a>
                 </div>
-                <!-- BOTONES DE NAVEGACION -->
-                                        <div class="w3-row w3-padding-32 w3-center">
-                            <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-green">Volver</a>
-                            </div>    
-                            <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <input type="submit" value="Guardar" name="altaButton" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">
-                            </div>
-                        </div>
             </form>
         </div>
     </div>

@@ -28,7 +28,7 @@ $servicio = getServiciosById($_GET['id_servicio']);
             <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 616px;">
                 <div id="main-div" class="w3-padding">
                     <div class="w3-container">
-                        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarservicio" id="borrarservicio" >
+                        <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarservicio" id="borrarservicio" class="w3-theme-l4 w3-round w3-padding">
                             
                             <!-- FICHA SERVICIO  -->
                             

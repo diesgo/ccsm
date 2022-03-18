@@ -1,37 +1,34 @@
                 <?php
-                    $titulo = "Editar variedad";
+                    $titulo = "Editar servicio";
                     include '../templates/headIndex.php';
                     require '../../config/conexion.php';
-                    $variedad = getVariedadesById($_GET['id']);
+                    $variedad = getServiciosById($_GET['id']);
                     if (isset($_POST['actualizar'])) {
-                        $id = $variedad['id_variedad'];
+                        $id = $variedad['id_servicio'];
                         $nombre = $_POST['nombre'];
-                        $descripcion = $_POST['descripcion'];
+                        $descripcion = $_POST['descripcion_servicio'];
                         $activo = isset($_POST['activo']) ? "1" : "0";
-                        $sql = "UPDATE variedades SET
-                        nombre_variedad = '" . $nombre . "',
-                        descripcion_variedad = '" . $descripcion ."',
-                        activo = '" . $activo ."' WHERE id_variedad = " . $id . ";";
+                        $sql = "UPDATE servicios SET nombre_servicio = '" . $nombre . "', descripcion_servicio = '" . $descripcion ."', activo = '" . $activo ."' WHERE id_servicio = " . $id . ";";
                         echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
                         echo "<script>location.replace('index.php');</script>";
                         mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
                     } else {
-                        if (!isset($_POST['id_variedad'])) {
-                            $sql = "SELECT min(id_variedad) FROM variedades";
+                        if (!isset($_POST['id_servicio'])) {
+                            $sql = "SELECT min(id_servicio) FROM servicios";
                             $result = mysqli_query($conex, $sql);
                             $row = mysqli_fetch_assoc($result);
-                            $id = $row['min(id_variedad)'];
+                            $id = $row['min(id_servicio)'];
                         } else {
-                            $id = $_POST["id_variedad"];
+                            $id = $_POST["id_servicio"];
                         }
-                        $sql = "SELECT * FROM variedades WHERE id_variedad = '$id'";
+                        $sql = "SELECT * FROM servicios WHERE id_servicio = '$id'";
                         $result = mysqli_query($conex, $sql);
                         $row = mysqli_fetch_assoc($result);
-                        $nombre = $row['nombre_variedad'];
-                        $descripcion = $row['descripcion_variedad'];
+                        $nombre = $row['nombre_servicio'];
+                        $descripcion = $row['descripcion_servicio'];
                         $activo = $row['activo'];
                     }
-                    $sql = "SELECT * FROM variedades";
+                    $sql = "SELECT * FROM servicios";
                     $result = mysqli_query($conex, $sql);
                 ?>
             <div class="w3-content">
@@ -42,7 +39,7 @@
                     <div class="w3-row">
                         <div class="w3-col m6 l6 s12 w3-padding w3-margin-bottom">
                             <label for="nombre" class="w3-text-theme w3-medium">Nombre</label><br>
-                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $variedad['nombre_variedad']; ?>">
+                            <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $variedad['nombre_servicio']; ?>" pattern="[a-zA-Z0-9]+">
                             <small id="info_nombre"></small>
                         </div>
                     </div>
@@ -51,9 +48,9 @@
 
                     <div class="w3-row">
                         <div class="w3-col m12 l12 s12 w3-padding w3-margin-top w3-margin-bottom">
-                            <legend for="descripcion" class="w3-text-theme w3-mediun">Descripción</legend>
-                            <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion" id="descripcion" rows="5"><?php echo $variedad['descripcion_variedad'] ?></textarea>
-                            <small id="info_descripcion_variedad"></small>
+                            <legend for="descripcion_servicio" class="w3-text-theme w3-mediun">Descripción</legend>
+                            <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_servicio" id="descripcion_servicio" rows="5"><?php echo $variedad['descripcion_servicio'] ?></textarea>
+                            <small id="info_descripcion_servicio"></small>
                         </div>
                     </div>
 

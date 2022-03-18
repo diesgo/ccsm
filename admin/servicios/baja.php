@@ -1,16 +1,17 @@
-                    <?php
+                <?php
                     $titulo='Borrar servicio';
                     include '../templates/headIndex.php';
                     require '../../conex.php';
-                    $servicio = getServiciosById($_GET['id_servicio']);
+                    $servicio = getServiciosById($_GET['id']);
                     if(isset($_POST['bajaButton'])){
                         $id_servicio = $servicio['id_servicio'];
                         $sql = "DELETE FROM servicio WHERE id_servicio='$id_servicio'";
                         mysqli_query($conex, $sql);
                         echo "<script>location.replace('index.php');</script>";
                     }
-                    ?>
-                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarservicio" id="borrarservicio" >
+                ?>
+                <div class="w3-content">
+                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarservicio" id="borrarservicio" class="w3-theme-l4 w3-round w3-padding">
 
                         <!-- NOMBRE -->
 
@@ -46,16 +47,17 @@
 
                         <div class="w3-row w3-padding-32 w3-center">
                             <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">Volver</a>
+                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-green">Volver</a>
                             </div>
                             <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <input type="submit" value="Eliminar" name="bajaButton" class="w3-btn w3-red w3-round w3-block w3-hover-orange">
+                                <input type="submit" value="Eliminar" name="bajaButton" class="w3-btn w3-theme w3-round w3-block w3-hover-red">
                             </div>
                         </div>
                     </form>
+                </div>
                     <script>
                         captarCheckbox();
                     </script>
                     <?php
-                    include '../templates/footer.php';
+                    include '../templates/footerClean.php';
                     ?>

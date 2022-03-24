@@ -2,7 +2,7 @@
                     $titulo='Borrar categoria';
                     include '../templates/headIndex.php';
                     require '../../conex.php';
-                    $categoria = getCategoriasById($_GET['id_categoria']);
+                    $categoria = getCategoriasById($_GET['id']);
                     if(isset($_POST['bajaButton'])){
                         $id_categoria = $categoria['id_categoria'];
                         $sql = "DELETE FROM categorias WHERE id_categoria='$id_categoria'";

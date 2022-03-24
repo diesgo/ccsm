@@ -28,7 +28,7 @@
                                         echo "<td style='width: 10%'>" . $row["descripcion_servicio"] . "</td>";
                                         echo "<td class='w3-center' style='width: 2%'><input type='checkbox' class='activo' value=" . $row['activo'] . " disabled></td>";
                                         echo "<td class='w3-center' style='width: 2%'><a class='w3-text-green w3-hover-text-orange' href='update.php?id=" . $row['id_servicio'] . "'><i class='fas fa-pen w3-medium'></i></a></td>";
-                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-red w3-hover-text-orange' href='baja.php?id_servicio=" . $row['id_servicio'] . "'><i class='fas fa-trash w3-medium'></i></a>";
+                                        echo "<td class='w3-center' style='width: 2%'><a class='w3-text-red w3-hover-text-orange' href='baja.php?id=" . $row['id_servicio'] . "'><i class='fas fa-trash w3-medium'></i></a>";
                                     echo "</tr>";
                                 }
                             } else {

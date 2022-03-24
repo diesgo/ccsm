@@ -126,5 +126,8 @@ function checkName(id){
         element = document.getElementById(id);
         element.classList.add("w3-border-red");
         return false;
+    }else{
+        element = document.getElementById(id);
+        element.classList.add("w3-border-green")
     }
 }

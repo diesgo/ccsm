@@ -35,7 +35,7 @@
                         <span class="w3-bar-item w3-white" style="padding: 8px; border-radius: 50%;"><img class="w3-image" src="../../img/ccms_logo.png" alt="logo" style="max-width:30px"></span>
                         <span class="w3-hide-small w3-bar-item w3-center">Cannabis Club System Management</span>
                     </a>
-                    <a class="w3-hide-small w3-bar-item w3-button w3-border w3-border-theme w3-round w3-theme-d3 w3-hover-white w3-hover-text-theme w3-right" href="../../dispensario/index.php">Dispensario</a>
+                    <a class="w3-hide-small w3-bar-item w3-button w3-border w3-border-theme w3-round w3-theme-d3 w3-hover-white w3-hover-text-theme w3-right" href="../../dispensario/home/index.php">Dispensario</a>
                 </div>
         </div>
 

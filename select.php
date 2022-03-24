@@ -55,7 +55,7 @@ $setting = getSetingsById(1 );
                 </div>
                 <div class="w3-col l4 m4 s12">
                     <div class="w3-container">
-                        <a class="w3-btn w3-white w3-border w3-border-theme w3-round w3-block w3-margin-top w3-margin-bottom" href="dispensario/index.php">
+                        <a class="w3-btn w3-white w3-border w3-border-theme w3-round w3-block w3-margin-top w3-margin-bottom" href="dispensario/home/index.php">
                             <h4 class="w3-center w3-text-theme">Dispensario</h4>
                             <i class="fas fa-store w3-center w3-text-theme w3-jumbo w3-margin-bottom" style="width: 25%;"></i>
                         </a>

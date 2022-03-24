@@ -35,7 +35,7 @@
                         <span class="w3-bar-item w3-white" style="padding: 8px; border-radius: 50%;"><img class="w3-image" src="../../img/ccms_logo.png" alt="logo" style="max-width:30px"></span>
                         <span class="w3-hide-small w3-bar-item w3-center">Cannabis Club System Management</span>
                     </a>
-                    <a class="w3-hide-small w3-bar-item w3-button w3-border w3-border-theme w3-round w3-theme-d3 w3-hover-white w3-hover-text-theme w3-right" href="../../dispensario/home/index.php">Dispensario</a>
+                    <a class="w3-hide-small w3-bar-item w3-button w3-border w3-border-theme w3-round w3-theme-d3 w3-hover-white w3-hover-text-theme w3-right" href="../../admin/home/index.php">Administrar</a>
                 </div>
         </div>
 
@@ -110,12 +110,12 @@
 
             <!-- Header -->
 
-            <!-- <div class="w3-container w3-padding">
+            <div class="w3-container w3-padding">
                 <div class="w3-content">
                     <h2 class="w3-text-theme w3-center"><b><?php echo $titulo ?></b></h2>
                 </div>
-            </div> -->
+            </div>
 
             <!-- !PAGE CONTENT! -->
 
-            <div class="w3-container w3-padding w3-responsive" style="min-height: 719px;">
+            <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 638px;">

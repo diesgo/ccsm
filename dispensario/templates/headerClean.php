@@ -104,7 +104,7 @@
 
         <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-        <script src="../js/header.js"></script>
+        <!-- <script src="../js/header.js"></script> -->
 
         <div class="w3-main" style="margin-left:250px; margin-top:78px; min-height: max-content;">            
 

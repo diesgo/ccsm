@@ -2,11 +2,11 @@ function dropAside(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-        x.previousElementSibling.className += " w3-green";
+        // x.previousElementSibling.className += " w3-green";
     } else {
         x.className = x.className.replace(" w3-show", "");
-        x.previousElementSibling.className =
-            x.previousElementSibling.className.replace(" w3-green", "");
+        // x.previousElementSibling.className =
+        //     x.previousElementSibling.className.replace(" w3-green", "");
     }
 }
 
@@ -130,4 +130,25 @@ function checkName(id){
         element = document.getElementById(id);
         element.classList.add("w3-border-green")
     }
+}
+
+function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}
+function openTab(evt, tabNumber) {
+    var i, x, tablinks;
+    x = document.getElementsByClassName("tab");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-white w3-text-theme", "");
+    }
+    document.getElementById(tabNumber).style.display = "block";
+    evt.currentTarget.className += " w3-white w3-text-theme";
 }

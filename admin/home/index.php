@@ -3,7 +3,78 @@ $titulo = "CCSM | Administración";
 include '../templates/header.php';
 ?>
 
-<!-- Header -->
+        <!-- !PAGE CONTENT! -->
+    
+        <div class="w3-row-padding w3-margin-bottom">
+            <div class="w3-quarter">
+                <div class="w3-container w3-red w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>52</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Messages</h4>
+                </div>
+            </div>
+            <div class="w3-quarter">
+                <div class="w3-container w3-theme w3-padding-16">
+                    <div class="w3-left"><i class="fas fa-euro-sign w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>99</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Cash</h4>
+                </div>
+            </div>
+            <div class="w3-quarter">
+                <div class="w3-container w3-orange w3-text-white w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>11</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Socios</h4>
+                </div>
+            </div>
+            <div class="w3-quarter">
+                <div class="w3-container w3-teal w3-padding-16">
+                    <div class="w3-left"><i class="fas fa-user-plus w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>0</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>New socios</h4>
+                </div>
+            </div>
+    
+        </div>
+        
+        <div class="w3-container">
+            <h5><b>General Stats</b></h5>
+            <p>New socio</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
+            </div>
+    
+            <p>Total sales</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
+            </div>
+    
+            <p>Total gr</p>
+            <div class="w3-grey">
+                <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- End page content -->
+
+
+
+
+
+
 
 <div class="w3-container w3-padding-32 w3-theme-l4">
     <div class="w3-half">
@@ -25,7 +96,7 @@ include '../templates/header.php';
                 <div class="w3-left"><i class="fa fa-users w3-xlarge"></i></div>
                 <div class="w3-right">
                     <?php
-                    $socios = getSocios();
+                    $socios = getNumSocios();
                     if (mysqli_num_rows($socios) > 0) {
                         echo "<h3>" . mysqli_num_rows($socios) . "</h3>";
                     } else {
@@ -93,33 +164,19 @@ include '../templates/header.php';
                     <h5>Procedéncia de los socios</h5>
                     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
                         <thead>
-                            <tr class="w3-theme">
-                                <th>País</th>
-                                <th></th>
-                                <th>Porcentaje de usuarios</th>
-                            </tr>
-                        </thead>
-                        <?php
-                                $paises = getPaisesSocios();
-                                $totalPaises = mysqli_num_rows($paises);
-                                foreach ($paises as $pais) :
-                                ?>
-                                <tr>
-                                <td style='width: 5%;'><?php echo $pais['pais'] ?></td>
-                                <td style='width: 5%;'><?php echo $pais['bandera'] ?></td>
-                                <td style='width: 5%;'> <?php echo $total = 100  / $totalPaises?> % </td>
+                            <tr class="w3-theme"><table class="w3-table-all w3-striped w3-border w3-border-theme w3-medium">
+                            <thead>
+                                <tr class="w3-theme">
+                                    <th>Pais</th>
+                                    <th>Porcentaje</th>
                                 </tr>
-                                <?php endforeach; ?>
-                        <?php
-                        $paises = getPaisesSocios();
-                        if (mysqli_num_rows($paises) > 0) {
-                            while ($row = mysqli_fetch_assoc($paises)) {
-                            }
-                        } else {
-                            echo "<p class='w3-text-green'>No se han encontrado registros.</p>";
-                        }
-                        ?>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php
+                                
+                                ?>
+                            </tbody>
+                        </table>
                 </div>
             </div>
             <div class="w3-half">
@@ -130,25 +187,31 @@ include '../templates/header.php';
                             <th>ID</th>
                             <th>Origen</th>
                             <th>Producto</th>
+                            <th>Stock</th>
                             <th>Cantidad</th>
                             <th>Precio de compra</th>
+                            <th>Destino</th>
+                            <th>Cantidad</th>
                             <th>Stock total</th>
                         </tr>
                     </thead>
                     <?php
             $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
-            $sql = "SELECT * FROM recargas INNER JOIN productos ON id_producto = producto_id INNER JOIN proveedores ON id_proveedor = proveedor_id";
+            $sql = "SELECT * FROM movimientos_stock";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {
                 // output data of each row
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
-                    echo "<td> " . $row["id_recarga"] . "</td>";
-                    echo "<td> " . $row["nombre_proveedor"] . "</td>";
-                    echo "<td> " . $row["nombre_producto"] . "</td>";
+                    echo "<td> " . $row["id_movimiento"] . "</td>";
+                    echo "<td> " . $row["proveedor_id"] . "</td>";
+                    echo "<td> " . $row["producto_id"] . "</td>";
+                    echo "<td> " . $row["stock_antes"] . "</td>";
                     echo "<td> " . $row["recarga"] . "</td>";
                     echo "<td> " . $row["pc"] . "</td>";
+                    echo "<td> " . $row["destino_id"] . "</td>";
+                    echo "<td> " . $row["retirada"] . "</td>";
                     echo "<td> " . $row["stock_despues"] . "</td>";
                     echo "</tr>";
                 }

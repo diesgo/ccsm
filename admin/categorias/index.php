@@ -1,21 +1,21 @@
-                <?php
-                    $titulo = 'Categorias';
-                    include '../templates/headIndex.php';
-                ?>
-                <div class="w3-content">
-                    <table class="w3-table-all w3-striped w3-border w3-border-theme w3-medium">
-                        <thead>
-                            <tr class="w3-theme">
-                                <th>ID</th>
-                                <th>Categoría</th>
-                                <th>Descripción</th>
-                                <th class="w3-center">Activo</th>
-                                <th class="w3-center"></th>
-                                <th class="w3-center"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+              <?php
+                $titulo = 'Categorias';
+                include '../templates/header.php';
+            ?>
+            <div class="w3-container w3-mobile" style="width: 40%; margin: 0 auto;">
+                <table class="w3-table-all w3-striped w3-border w3-border-theme w3-medium">
+                    <thead>
+                        <tr class="w3-theme">
+                            <th>ID</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th class="w3-center">Activo</th>
+                            <th class="w3-center"></th>
+                            <th class="w3-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                             $conn = new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
                             $sql = "SELECT * FROM categorias";
                             $result = mysqli_query($conn, $sql);
@@ -35,13 +35,16 @@
                                 echo "No se han encontrado registros.";
                             }
                             mysqli_close($conn);
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                <script>
-                    captarCheckbox();
-                </script>
-                <?php
-                    include '../templates/footerIndex.php';
-                ?>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="w3-container w3-center w3-margin-top">
+                <a class="w3-button w3-theme w3-border w3-border-theme w3-round-large w3-hover-white w3-hover-text-theme w3-margin-top" href="create.php"><i class="fas fa-plus-circle"></i> Nuevo registro</a>
+            </div>
+            <script>
+                captarCheckbox();
+            </script>
+            <?php
+                include '../templates/footer.php';
+            ?>

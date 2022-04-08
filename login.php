@@ -26,5 +26,5 @@ if (isset($_POST['login'])) {
         }
     }
 }
- 
 ?>
+<script>location.replace('index.php');</script>

@@ -1,6 +1,6 @@
                     <?php
                     $titulo = 'Emojis';
-                    include '../templates/headIndex.php';
+                    include '../templates/header.php';
                     $iconos = getIconos();
                     ?>
                     <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered">
@@ -26,5 +26,5 @@
                         </tbody>
                     </table>
                     <?php
-                    include '../templates/footerIndex.php';
+                    include '../templates/footer.php';
                     ?>

@@ -28,9 +28,9 @@ function openConex(){
 function getSocios(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM socios
-	JOIN paises ON id_pais = pais_id
-	JOIN genero ON id_genero = genero_id
-	JOIN roles ON id_rol = rol_id
+	INNER JOIN paises ON id_pais = pais_id
+	INNER JOIN generos ON id_genero = genero_id
+	INNER JOIN roles ON id_rol = rol_id
 	ORDER BY id_socio desc');
 	return $result;
 }
@@ -38,9 +38,9 @@ function getSocios(){
 function getSociosById($id){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM socios
-	JOIN paises ON id_pais = pais_id
-	JOIN genero ON id_genero = genero_id
-	JOIN roles ON id_rol = rol_id
+	 INNER JOIN generos ON id_genero = genero_id
+	 INNER JOIN paises ON id_pais = pais_id
+	 INNER JOIN roles ON id_rol = rol_id
 	WHERE id_socio =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
@@ -54,7 +54,7 @@ function showSocio($id){
 
 function getNumSocios(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT count(*)FROM socios');
+	$result = $mysqli->query('SELECT count(id_socio)FROM socios');
 	return $result;
 }
 
@@ -62,13 +62,29 @@ function getNumSocios(){
 
 function getRoles(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT * FROM roles ORDER BY id_rol desc');
+	$result = $mysqli->query('SELECT * FROM roles ORDER BY id_rol ASC');
 	return $result;
 }
 
 function getRolesById($id){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM roles WHERE id_rol =' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
+
+// FUNCIONES PARA LA TABLA GENEROS
+
+function getGeneros(){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM generos ORDER BY id_genero ASC');
+	return $result;
+}
+
+function getGenerosById($id){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM generos
+	 WHERE id_genero =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -115,7 +131,7 @@ function getSetings(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM settings');
 	return $result;
-	$conex ->close();
+	// $conex ->close();
 }
 
 function getSetingsById($id){
@@ -191,12 +207,28 @@ function getProveedores(){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM proveedores');
 	return $result;
-	$conex ->close();
+	// $conex ->close();
 }
 
 function getProveedoresById($id){
 	$mysqli = openConex();
 	$result = $mysqli->query('SELECT * FROM proveedores WHERE id_proveedor =' . $id);
+	$row = mysqli_fetch_assoc($result);
+	return $row;
+}
+
+// FUNCIONES PARA LA TABLA DESTINOS
+
+function getDestinos(){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM destinos');
+	return $result;
+	// $conex ->close();
+}
+
+function getDestinosById($id){
+	$mysqli = openConex();
+	$result = $mysqli->query('SELECT * FROM destinos WHERE id_destino =' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
 }
@@ -241,7 +273,7 @@ function getProductosById($id){
 	WHERE id_producto = ' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
-	$conex ->close();
+	// $conex ->close();
 }
 
 function getProductsById($id){
@@ -253,7 +285,7 @@ function getProductsById($id){
 	WHERE id_producto = ' . $id);
 	$row = mysqli_fetch_assoc($result);
 	return $row;
-	$conex ->close();
+	// $conex ->close();
 }
 
 function getProductsByCategory($categoria_id){

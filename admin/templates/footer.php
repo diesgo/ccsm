@@ -1,8 +1,6 @@
-            <!-- </div> -->
-            
             <!-- Footer -->
 
-            <footer class="w3-container w3-theme-dark">
+            <!-- <footer class="w3-container w3-theme-dark">
                 <div class="w3-quarter w3-center">
                     <p class="w3-large">Powered by <a class="w3-xlarge" href="#" target="_blank">w3.css</a></p>
                 </div>
@@ -11,7 +9,7 @@
                 </div>
                 <div class="w3-quarter w3-center">
                 </div>
-            </footer>
+            </footer> -->
         </div>
     </body>
 </html>

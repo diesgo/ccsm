@@ -1,7 +1,7 @@
                 <?php
                     $titulo = "Nuevo registro";
-                    include '../templates/headIndex.php';
-                    if (isset($_POST['create'])) {
+                    include '../templates/header.php';
+                    if (isset($_POST['addnew'])) {
                         $nombre = $_POST['nombre'];
                         $servicio = $_POST['servicio'];
                         $categoria = $_POST['categoria'];
@@ -33,11 +33,11 @@
 
                 <!-- !PAGE CONTENT! -->
 
-                <div class="w3-container w3-padding w3-responsive" style="min-height: 745px;">
+                <div class="w3-container w3-padding w3-responsive" style="min-height: 574px;">
 
                     <div class="w3-container">
                         <div style="width: 40%; margin: 0 auto;" class="w3-mobile">
-                            <form accept-charset="utf-8" action="#" method="post" name="form" id="form" class="w3-theme-l4 w3-round w3-padding">
+                            <form accept-charset="utf-8" action="#" method="post" name="form" id="form" class="w3-theme-l2 w3-round-xlarge w3-padding">
 
                                 <!-- FIRST ROW
                                 Column on small devices -->
@@ -48,7 +48,7 @@
 
                                     <div class="w3-col l6 m6 s12 w3-padding w3-margin-top">
                                         <label for='nombre' class="w3-text-theme w3-medium">Nombre</label>
-                                        <input class="w3-input w3-border w3-round" name="nombre" id="nombre" type="text" placeholder="Nombre / Name" onkeyup="checkName('nombre');" required>
+                                        <input class="w3-input w3-border w3-round" name="nombre" id="nombre" type="text" placeholder="Nombre / Name" onkeyup="checkName('nombre');" pattern=[A-Z\sa-z]{3,20} required>
                                     </div>
 
                                     <!-- SERVICIO -->
@@ -124,21 +124,14 @@
 
                                 </div>
 
-                                <!-- BOTONES DE NAVEGACIÓN -->
-
-                                <div class="w3-row w3-padding-32 w3-center">
-                                    <div class="w3-col l6 m6 s12 w3-padding-large">
-                                        <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-green">Volver</a>
-                                    </div>    
-                                    <div class="w3-col l6 m6 s12 w3-padding-large">
-                                        <input type="submit" value="Guardar" name="create" class="w3-btn w3-theme w3-round w3-block w3-hover-orange">
-                                    </div>
-                                </div>
+                                <?php
+                                    include '../templates/nav_btn_add.php';
+                                ?>
 
                             </form>
                         </div>
                     </div>
                 </div>
                 <?php
-                    include '../templates/footerClean.php';
+                    include '../templates/footer.php';
                 ?>

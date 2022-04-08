@@ -1,64 +1,47 @@
-                <?php
-                    $titulo='Borrar variedad';
-                    include '../templates/headIndex.php';
-                    require '../../conex.php';
-                    $variedad = getVariedadesById($_GET['id']);
-                    if(isset($_POST['bajaButton'])){
-                        $id_variedad = $variedad['id_variedad'];
-                        $sql = "DELETE FROM variedades WHERE id_variedad='$id_variedad'";
-                        mysqli_query($conex, $sql);
-                        echo "<script>location.replace('index.php');</script>";
-                    }
-                ?>
+                    <?php
+                        $titulo='Borrar variedad';
+                        include '../templates/header.php';
+                        require '../../conex.php';
+                        $variedad = getVariedadesById($_GET['id']);
+                        if(isset($_POST['erase'])){
+                            $id_variedad = $variedad['id_variedad'];
+                            $sql = "DELETE FROM variedades WHERE id_variedad='$id_variedad'";
+                            mysqli_query($conex, $sql);
+                            echo "<script>location.replace('index.php');</script>";
+                        }
+                    ?>
+                
+                    <div class="w3-container w3-mobile" style="width: 40%; margin: 0 auto;">
+                        <form accept-charset="utf-8" action="#" method="post" name="form" id="form" class="w3-theme-l2 w3-round-xlarge w3-padding">
+                            <div class="w3-row">
 
-                <div class="w3-content">
+                                <div class="w3-col w3-padding">
+                                    <label for='nombre_variedad' class="w3-text-theme-dark w3-medium">Variedad</label>
+                                    <input class="w3-input w3-border w3-border-theme-light w3-round-large" type="text" name="nombre_variedad" placeholder="<?php echo $variedad['nombre_variedad']; ?>" value="<?php echo $variedad['nombre_variedad']; ?>">
+                                </div>
 
-                    <form accept-charset="utf-8" action="<?php $PHP_SELF ?>" method="post" name="borrarVariedad" id="borrarVariedad" class="w3-theme-l4 w3-round w3-padding">
+                                <div class="w3-col w3-padding">
+                                    <legend for="descripcion_variedad" class="w3-text-theme-dark w3-medium">Descripción</legend>
+                                    <textarea class="w3-block w3-border w3-border-theme-light w3-round-large" name="descripcion_variedad" id="descripcion_variedad" rows="5" placeholder="(Opcional)"><?php echo $variedad['nombre_variedad']; ?></textarea>
+                                </div>
 
-                        <!-- NOMBRE -->
-
-                        <div class="w3-row">
-                            <div class="w3-col m6 l6 s12 w3-padding w3-margin-bottom">
-                                <label for='nombre_variedad' class="w3-text-theme w3-medium">Variedad</label>
-                                <input class="w3-input w3-border w3-border-theme-light" type="text" name="nombre_variedad" placeholder="<?php echo $variedad['nombre_variedad']; ?>" value="<?php echo $variedad['nombre_variedad']; ?>">
+                                <div class="w3-col w3-padding">
+                                    <legend for="activo" class="w3-text-theme-dark w3-medium">Visible</legend>
+                                    <label class="switch">
+                                        <input class="activo custom" type="checkbox"  name="activo" value="<?php echo $variedad['activo']?>">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                                <?php
+                                    include '../templates/nav_btn_erase.php';
+                                ?>
                             </div>
-                        </div>
-
-                        <!-- DESCRIPCION -->
-
-                        <div class="w3-row">
-                            <div class="w3-col m12 l12 s12 w3-padding w3-margin-top w3-margin-bottom">
-                                <legend for="descripcion_variedad" class="w3-text-theme w3-medium">Descripción</legend>
-                                <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_variedad" id="descripcion_variedad" rows="5" placeholder="(Opcional)"><?php echo $variedad['nombre_variedad']; ?></textarea>
-                            </div>
-                        </div>
-
-                        <!-- ACTIVO -->
-
-                        <div class="w3-row">
-                            <div class="w3-col w3-padding w3-margin-top">
-                                <label class="switch">
-                                    <input class="activo custom" type="checkbox"  name="activo" value="<?php echo $variedad['activo']?>">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- BOTONES NAVEGACIÓN -->
-
-                        <div class="w3-row w3-padding-32 w3-center">
-                            <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-green">Volver</a>
-                            </div>
-                            <div class="w3-col l6 m6 s12 w3-padding-large">
-                                <input type="submit" value="Eliminar" name="bajaButton" class="w3-btn w3-theme w3-round w3-block w3-hover-red">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                
                     <script>
                         captarCheckbox();
                     </script>
                     <?php
-                    include '../templates/footerClean.php';
+                    include '../templates/footer.php';
                     ?>  

@@ -1,6 +1,6 @@
 <?php
 $titulo = "MOSTRAR CATEGORIA";
-include '../templates/headerClean.php';
+include '../templates/header.php';
 $categoria = getCategoriasById($_GET['id']);
 ?>
 
@@ -74,12 +74,11 @@ $categoria = getCategoriasById($_GET['id']);
             ?>
         </table>
     </div>
-
 </div>
 <script>
     estadoStock();
 </script>
 
 <?php
-include '../templates/footerClean.php';
+include '../templates/footer.php';
 ?>

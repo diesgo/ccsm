@@ -77,16 +77,9 @@
 
                                 </div>
 
-                                <!-- BOTONES DE NAVEGACIÓN -->
-
-                                <div class="w3-row w3-center">
-                                    <div class="w3-col l6 m6 s12 w3-padding-large">
-                                        <a href="index.php" class="w3-btn w3-theme w3-round w3-block w3-hover-green">Volver</a>
-                                    </div>
-                                    <div class="w3-col l6 m6 s12 w3-padding-large">
-                                        <input type="submit" value="Eliminar" name="bajaButton" class="w3-btn w3-theme w3-round w3-block w3-hover-red">
-                                    </div>
-                                </div>
+                                <?php
+                                    include '../templates/nav_btn_erase.php';
+                                ?>
                             </form>
                         </div>
                     </div>

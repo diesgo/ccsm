@@ -1,13 +1,14 @@
                     <?php
                         $titulo = 'Usuarios';
                         include '../templates/header.php';
+                        include '../templates/header_index.php';
                     ?>
 
                     <!-- !PAGE CONTENT! -->
 
                     
-                        <div class="w3-content">
-                            <table class="w3-table-all w3-striped w3-border w3-border-theme w3-centered w3-medium">
+                        <div class="w3-container w3-mobile" >
+                        <table id="grid" class="w3-table w3-striped w3-bordered w3-centered w3-responsive" style="color: #555">
                                 <thead>
                                     <tr class="w3-theme">
                                         <th>ID</th>
@@ -31,7 +32,7 @@
                                         <td style="width: 10%"><?php echo $user['activo'] ?></td>
                                         <td style="width: 2%">
                                             <input type="hidden" name="validation" id="validation" value="si" />
-                                            <a class="w3-btn w3-green w3-round" href="update.php?id_servicio=<?php echo $user['id_suser'] ?>">
+                                            <a class="w3-btn w3-green w3-round" href="update.php?id_user=<?php echo $user['id_user'] ?>">
                                                 <i class="fas fa-pen w3-small"></i>
                                             </a>
                                         </td>

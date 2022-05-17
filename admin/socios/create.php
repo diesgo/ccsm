@@ -35,6 +35,14 @@
                     }
                 ?>
 
+            <!-- Header -->
+
+            <div class="w3-container w3-padding-32">
+                <div class="w3-content">
+                    <h2 id="title" class="w3-center w3-text-theme"><b><?php echo $titulo ?></b></h2>
+                </div>
+            </div>
+
                 <!-- !PAGE CONTENT! -->
 
                 <div class="w3-container w3-padding-32 w3-responsive" style="min-height: 636px;">
@@ -48,7 +56,7 @@
                                         <div class="w3-col l3 m3 s12 w3-padding">
                                             <label for="genero">Tratamiento</label>
                                             <!-- SELECT GÉNERO -->
-                                            <select name="genero" id="genero" class="w3-select w3-white">
+                                            <select name="genero" id="genero" class="w3-select w3-white" required>
                                                 <?php
                                                 $generos = getGeneros();
                                                 foreach ($generos as $genero) :
@@ -60,7 +68,7 @@
                                         <!-- FECHA DE NACIMIENTO -->
                                         <div class="w3-col m3 l3 s12 w3-padding nativeDatePicker">
                                             <label for="birth">Fecha de nacimiento:</label>
-                                            <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth">
+                                            <input class="w3-input w3-border w3-round" type="date" id="birth" name="birth" required>
                                             <span class="validity"></span>
                                             <p class="fallbackLabel">Fecha de nacimiento:</p>
                                             <div class="fallbackDatePicker">
@@ -99,13 +107,13 @@
                                         <!-- NOMBRE -->
                                         <div class="w3-col m3 l3 s12 w3-padding">
                                             <label for='nombre_socio'>Nombre</label>
-                                            <input class='w3-input w3-border w3-round' name='nombre_socio' id='nombre_socio' type='text' placeholder='Nombre / Name'>
+                                            <input class='w3-input w3-border w3-round' name='nombre_socio' id='nombre_socio' type='text' pattern=[A-Z\sa-z]{2,20} placeholder='Nombre / Name' required>
                                             <small id="info_nombre"></small>
                                         </div>
                                         <!-- APELLIDOS -->
                                         <div class="w3-col m3 l3 s12 w3-padding">
                                             <label for="apellidos">Apellidos</label>
-                                            <input class="w3-input w3-border w3-round" name="apellidos" id="apellidos" type="text" placeholder="Apellido / Surname">
+                                            <input class="w3-input w3-border w3-round" name="apellidos" id="apellidos" type="text" pattern=[A-Z\sa-z]{2,20} placeholder="Apellido / Surname">
                                             <small id="info_apellidos"></small>
                                         </div>
                                         <!-- DNI -->
@@ -118,7 +126,7 @@
                                         <div class="w3-col l3 m3 s12 w3-padding">
                                             <label for="pais">Nacionalidad</label>
                                             <!-- SELECT PAISES -->
-                                            <select name="pais" id="pais" class="w3-select w3-white">
+                                            <select name="pais" id="pais" class="w3-select w3-white" required>
                                                 <?php
                                                 $pais = getPaises();
                                                 foreach ($pais as $pais) :
@@ -133,8 +141,7 @@
                                         <!-- ROL -->
                                         <div class="w3-col m3 l3 s12 w3-padding">
                                             <label for="rol">Tipo de socio</label>
-                                            <select name="rol" class="w3-select w3-white">
-                                                <option value="0">Seleccionar...</option>
+                                            <select name="rol" class="w3-select w3-white" requiredd>
                                                 <?php
                                                 $roles = getRoles();
                                                 foreach ($roles as $rol) :

@@ -31,29 +31,27 @@
                     }
                  ?>
 
-                <!-- !PAGE CONTENT! -->
+            <!-- Header -->
 
-                <div class="w3-container w3-padding w3-responsive" style="min-height: 574px;">
+            <div class="w3-container w3-padding-32">
+                <div class="w3-content">
+                    <h2 id="title" class="w3-center w3-text-theme"><b><?php echo $titulo ?></b></h2>
+                </div>
+            </div>
+
+                <div class="w3-container w3-padding w3-responsive">
 
                     <div class="w3-container">
                         <div style="width: 40%; margin: 0 auto;" class="w3-mobile">
                             <form accept-charset="utf-8" action="#" method="post" name="form" id="form" class="w3-theme-l2 w3-round-xlarge w3-padding">
-
-                                <!-- FIRST ROW
-                                Column on small devices -->
-
                                 <div class="w3-row">
 
-                                    <!--NOMBRE -->
-
-                                    <div class="w3-col l6 m6 s12 w3-padding w3-margin-top">
+                                    <div class="w3-col l6 m6 s12 w3-padding">
                                         <label for='nombre' class="w3-text-theme w3-medium">Nombre</label>
                                         <input class="w3-input w3-border w3-round" name="nombre" id="nombre" type="text" placeholder="Nombre / Name" onkeyup="checkName('nombre');" pattern=[A-Z\sa-z]{3,20} required>
                                     </div>
 
-                                    <!-- SERVICIO -->
-
-                                    <div class="w3-col l6 m6 s12 w3-padding w3-margin-top">
+                                    <div class="w3-col l6 m6 s12 w3-padding">
                                          <label for="servicio" class="w3-text-theme w3-medium">Tipo de servicio</label>
                                         <select name="servicio" class="w3-select w3-white w3-border w3-border-theme-l4 w3-round" onchange="service();" require>
                                             <option value="">Selecciona...</option>
@@ -68,12 +66,7 @@
 
                                 </div>
 
-                                <!-- SECOND ROW
-                                Column on small devices -->
-
                                 <div class="w3-row">
-
-                                    <!--CATEGORÍA -->
 
                                     <div class="w3-col l6 m6 s12 w3-padding w3-margin-top">
                                         <label for="categoria" class="w3-text-theme w3-medium">Categoría</label>
@@ -87,8 +80,6 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-
-                                    <!--VARIEDAD -->
 
                                     <div id="vari" class="w3-col l6 m6 s12 w3-padding w3-margin-top w3-hide">
                                         <label for="variedad" class="w3-text-theme w3-medium">Variedad</label>
@@ -107,12 +98,7 @@
 
                                 </div>
 
-                                <!-- THIRD ROW
-                                Column on small devices -->
-
                                 <div class="w3-row">
-
-                                    <!-- ACTIVO -->
 
                                     <div class="w3-col w3-padding w3-margin-top">
                                         <legend for="activo" class="w3-text-theme w3-medium">Visible</legend>

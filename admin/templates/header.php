@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -12,7 +15,7 @@
         <link rel="icon" href="../../img/ccms.ico" type="image/gif" sizes="16x16">
         <link rel="stylesheet" href="../../webfonts/stylesheet.css">
         <link rel="stylesheet" href="../../fontawesome5/css/all.css">
-        <link rel="stylesheet" href="../../fontawesome4/css/font-awesome.min.css">
+        <!-- <link rel="stylesheet" href="../../fontawesome4/css/font-awesome.min.css"> -->
         <link rel="stylesheet" href="../../css/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="../../css/w3.css">
         <link rel="stylesheet" href="../../css/themes/w3-theme-<?php echo $settings['color']; ?>.css">
@@ -38,14 +41,14 @@
 
         <!-- Sidebar/menu -->
 
-        <nav class="w3-sidebar w3-collapse w3-theme-d3" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <nav id="mySidebar" class="w3-sidebar w3-collapse w3-theme-d3" style="z-index:3;width:300px;"><br>
 
             <div class="w3-container w3-row">
                 <div class="w3-col s4">
-                    <img src="../../img/admin/avatar1.png" class="w3-circle w3-margin-right" style="width:46px">
+                    <img src="../../img/admin/<?php echo $_SESSION['username']?>.png" class="w3-circle w3-margin-right" style="width:46px">
                 </div>
                 <div class="w3-col s8 w3-bar">
-                    <span>Welcome, <strong>Mike</strong></span><br>
+                    <span>Welcome, <strong><?php echo $_SESSION['username']?></strong></span><br>
                     <a href="#" class="w3-bar-item w3-button w3-round-xxlarge w3-theme-d3 w3-hover-theme"><i class="fa fa-envelope"></i></a>
                     <a href="#" class="w3-bar-item w3-button w3-round-xxlarge w3-theme-d3 w3-hover-theme"><i class="fa fa-user"></i></a>
                     <a href="#" class="w3-bar-item w3-button w3-round-xxlarge w3-theme-d3 w3-hover-theme"><i class="fa fa-cog"></i></a>
@@ -116,11 +119,3 @@
         <script src="../js/header.js"></script>
 
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-
-            <!-- Header -->
-
-            <div class="w3-container w3-padding-32">
-                <div class="w3-content">
-                    <h2 id="title" class="w3-center w3-text-theme"><b><?php echo $titulo ?></b></h2>
-                </div>
-            </div>

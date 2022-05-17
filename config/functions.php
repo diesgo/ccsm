@@ -1,23 +1,5 @@
 
 <?php
-// define('DBUSER','root');
-// define('DBPWD','');
-// define('DBHOST','localhost');
-// define('DBNAME','greenpower');
-
-// $conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME); 
- 
-// mysqli_set_charset($conex,'utf8');
-
-
-// if (mysqli_connect_error()) {
-//     die('Error de Conexión (' . mysqli_connect_error() . ') '
-//             . mysqli_connect_error());
-// }
-
-// echo 'Éxito... ' . $conex->host_info. "\n";
-
-// FUNCIONES PARA LA TABLA SOCIOS
 
 function openConex(){
 	$conex=new mysqli(DBHOST, DBUSER, DBPWD, DBNAME);
@@ -54,7 +36,7 @@ function showSocio($id){
 
 function getNumSocios(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT count(id_socio)FROM socios');
+	$result = $mysqli->query('SELECT id_socio FROM socios');
 	return $result;
 }
 
@@ -255,7 +237,7 @@ function getProductos(){
 	$result = $mysqli->query('SELECT * FROM productos
 	INNER JOIN categorias ON id_categoria = categoria_id
 	INNER JOIN variedades ON id_variedad = variedad_id
-	INNER JOIN servicio ON id_servicio = servicio_id');
+	INNER JOIN servicios ON id_servicio = servicio_id');
 	return $result;
 	echo $result;
 }
@@ -326,7 +308,7 @@ function getPaisesById($id){
 
 function getPaisesSocios(){
 	$mysqli = openConex();
-	$result = $mysqli->query('SELECT count(pais_id), pais, bandera FROM socios JOIN paises ON id_pais = pais_id');
+	$result = $mysqli->query('SELECT * FROM socios INNER JOIN paises ON id_pais = pais_id GROUP BY pais_id');
 	return $result;
 }
 

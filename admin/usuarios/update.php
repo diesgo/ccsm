@@ -1,5 +1,5 @@
 <?php
-$titulo = "EDITAR SERVICIOS";
+$titulo = "EDITAR USUARIO";
 include '../templates/header.php';
 require "../../conex.php";
 ?>
@@ -12,33 +12,29 @@ require "../../conex.php";
                 </div>
                 <div class="w3-half">
                     <?php
-                    $servicio = getServiciosById($_GET['id_servicio']);
+                    $user = getUsersById($_GET['id_user']);
                     if (isset($_POST['actualizar'])) {
-                        $id = $servicio['id_servicio'];
-                        $nombre = $_POST['nombre'];
-                        $descripcion = $_POST['descripcion_servicio'];
-                        $activo = isset($_POST['activo']) ? "1" : "0";
-                        $sql = "UPDATE servicio SET nombre_servicio = '" . $nombre . "', descripcion_servicio = '" . $descripcion ."', activo = '" . $activo ."' WHERE id_servicio = " . $id . ";";
+                        $id = $user['id_user'];
+                        $username = $_POST['username'];
+                        $sql = "UPDATE users SET username = '" . $username . "' WHERE id_user = " . $id . ";";
                         echo "<h3 class='w3-text-green'><i class='w3-xlarge fas fa-check'></i> Los cambios se han guardado satisfactoriamente</h3>";
                         echo "<script>location.replace('index.php');</script>";
                         mysqli_query($conex, $sql) or die("Error al ejecutar la consulta");
                     } else {
-                        if (!isset($_POST['id_servicio'])) {
-                            $sql = "SELECT min(id_servicio) FROM servicio";
+                        if (!isset($_POST['id_user'])) {
+                            $sql = "SELECT min(id_user) FROM users";
                             $result = mysqli_query($conex, $sql);
                             $row = mysqli_fetch_assoc($result);
-                            $id = $row['min(id_servicio)'];
+                            $id = $row['min(id_user)'];
                         } else {
-                            $id = $_POST["id_servicio"];
+                            $id = $_POST["id_user"];
                         }
-                        $sql = "SELECT * FROM servicio WHERE id_servicio = '$id'";
+                        $sql = "SELECT * FROM users WHERE id_user = '$id'";
                         $result = mysqli_query($conex, $sql);
                         $row = mysqli_fetch_assoc($result);
-                        $nombre = $row['nombre_servicio'];
-                        $descripcion = $row['descripcion_servicio'];
-                        $activo = $row['activo'];
+                        $username = $row['username'];
                     }
-                    $sql = "SELECT * FROM servicio";
+                    $sql = "SELECT * FROM users";
                     $result = mysqli_query($conex, $sql);
 
                     ?>
@@ -62,37 +58,12 @@ require "../../conex.php";
                                 <div class="w3-row">
                                     <div class="w3-col m6 l6 s12 w3-margin-bottom">
                                         <label for="nombre" class="w3-text-theme">Nombre</label><br>
-                                        <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $servicio['nombre_servicio']; ?>">
+                                        <input class='w3-input w3-border w3-round' name='nombre' id='nombre' type='text' value="<?php echo $user['username']; ?>">
                                         <small id="info_nombre"></small>
                                     </div>
                                 </div>
 
-                                <!-- DESCRIPCIÓN -->
-                                
-                                <div class="w3-row">
-                                    <div class="w3-col m12 l12 s12 w3-margin-top w3-margin-bottom">
-                                        <legend for="descripcion_servicio" class="w3-text-theme w3-mediun">Descripción</legend>
-                                        <textarea class="w3-block w3-border w3-border-theme-light" name="descripcion_servicio" id="descripcion_servicio" rows="5"><?php echo $servicio['descripcion_servicio'] ?></textarea>
-                                        <small id="info_descripcion_servicio"></small>
-                                    </div>
-                                </div>
-
-                                <!-- ACTIVO -->
-
-                                <div class="w3-row">
-                                    <div class="w3-col m5 l6 s12 w3-margin-top">
-                                        <input id="activo" class="w3-check" type="checkbox"  name="activo" value="<?php echo $servicio['activo']?>">
-                                        <label class="w3-text-theme w3-medium" for="activo">Activo</label></p>
-                                    </div>
-                                </div>
                             </div>
-                            <script>
-                                var check= document.getElementById('activo');
-                                console.log(check);
-                                if (check.value == 1) {
-                                    check.setAttribute('checked','');                                    
-                                }
-                            </script>
 
                             <!-- BOTONES DE NAVEGACIÓN -->
 

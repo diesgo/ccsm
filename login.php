@@ -19,6 +19,7 @@ if (isset($_POST['login'])) {
     } else {
         if (password_verify($password, $result['password'])) {
             $_SESSION['user_id'] = $result['id_user'];
+            $_SESSION['username'] = $result['username'];
             echo '<p class="success">Congratulations, you are logged in!</p>';
             echo "<script>location.replace('select.php');</script>";
         } else {
@@ -27,4 +28,3 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-<script>location.replace('index.php');</script>

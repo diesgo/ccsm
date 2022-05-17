@@ -2,20 +2,6 @@ var mySidebar = document.getElementById("mySidebar");
 
 var overlayBg = document.getElementById("myOverlay");
 
-// function w3_open() {
-//     if (mySidebar.style.display === 'block') {
-//         mySidebar.style.display = 'none';
-//         overlayBg.style.display = "none";
-//     } else {
-//         mySidebar.style.display = 'block';
-//         overlayBg.style.display = "block";
-//     }
-// }
-
-// function w3_close() {
-//     mySidebar.style.display = "none";
-//     overlayBg.style.display = "none";
-// }
 function drop(id) {
     var x = document.getElementById(id);
     if (x.className.indexOf("w3-show") == -1) {
@@ -26,7 +12,6 @@ function drop(id) {
         x.classList.remove("w3-animate-opacity");
     }
 }
-
 
 function closeAllSelect(elmnt) {
     /*a function that will close all select boxes in the document,

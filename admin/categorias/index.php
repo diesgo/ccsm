@@ -1,9 +1,11 @@
               <?php
                 $titulo = 'Categorias';
                 include '../templates/header.php';
+                include '../templates/header_index.php';
             ?>
-            <div class="w3-container w3-mobile" style="width: 40%; margin: 0 auto;">
-                <table class="w3-table-all w3-striped w3-border w3-border-theme w3-medium">
+
+            <div class="w3-container w3-mobile">
+                <table id="grid" class="w3-table w3-striped w3-bordered w3-centered w3-responsive" style="color: #555">
                     <thead>
                         <tr class="w3-theme">
                             <th>ID</th>
@@ -38,9 +40,6 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
-            <div class="w3-container w3-center w3-margin-top">
-                <a class="w3-button w3-theme w3-border w3-border-theme w3-round-large w3-hover-white w3-hover-text-theme w3-margin-top" href="create.php"><i class="fas fa-plus-circle"></i> Nuevo registro</a>
             </div>
             <script>
                 captarCheckbox();

@@ -14,6 +14,10 @@ Alta, baja y modificación de productos.
 
 Alta, baja y modificación de socios.
 
+## Almacén
+
+Gestión de almacén con registro de movimientos
+
 ## Personalización
 
 Permite cambiar el esquema de color de la página, múltiples opciones disponibles.

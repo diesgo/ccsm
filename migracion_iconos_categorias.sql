@@ -1,0 +1,2 @@
+ALTER TABLE categorias
+    ADD COLUMN IF NOT EXISTS icono VARCHAR(40) NOT NULL DEFAULT '' AFTER imagen_categoria;

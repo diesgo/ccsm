@@ -1,74 +1,30 @@
-# ccsm
+# GreenPower CCSM
 
-Aplicación para la gestión de clubes cannabicos (backoffice)
+GreenPower CCSM is an independently installable club-management application.
+The dbold.es portfolio and CCSM use separate application code, configuration,
+and databases.
 
-## Categorías
+## Local development
 
-Alta, baja y modificación de categorías.
+1. Copy `config/config.example.php` to `config/config.php`.
+2. Set the local database connection and URL in `config/config.php`.
+3. Create an empty database for CCSM and import/install its schema.
+4. Keep uploads, sessions, logs, and `config/config.php` out of Git.
 
-## Productos
+## Hosting
 
-Alta, baja y modificación de productos.
+For `ccsm.dbold.es`, configure the subdomain's document root to the CCSM
+application directory. Upload this repository's contents there and run
+`https://ccsm.dbold.es/install.php`. Configure a dedicated database and
+database user for CCSM; do not reuse dbold.es credentials or database.
 
-## Socios
+See [DESPLIEGUE_PRODUCCION.md](./DESPLIEGUE_PRODUCCION.md) for the full
+installation and update procedure.
 
-Alta, baja y modificación de socios.
+## VS Code SFTP
 
-## Almacén
-
-Gestión de almacén con registro de movimientos
-
-## Personalización
-
-Permite cambiar el esquema de color de la página, múltiples opciones disponibles.
-Selección de fuente para los títulos.
-Selección de fuentes para los párrafos.
-
-### Añadir nuevos esquemas de color
-
-Apartado pendiente de definir
-
-```css
-.w3-theme-l5 {color: #000 !important;background-color: #f6f8f6 !important}
-.w3-theme-l4 {color: #000 !important;background-color: #e0e6e1 !important}
-.w3-theme-l3 {color: #000 !important;background-color: #c2cec3 !important}
-.w3-theme-l2 {color: #000 !important;background-color: #a3b5a5 !important}
-.w3-theme-l1 {color: #fff !important;background-color: #859d88 !important}
-.w3-theme-d1 {color: #fff !important;background-color: #5e7561 !important}
-.w3-theme-d2 {color: #fff !important;background-color: #546856 !important}
-.w3-theme-d3 {color: #fff !important;background-color: #495b4b !important}
-.w3-theme-d4 {color: #fff !important;background-color: #3f4e40 !important}
-.w3-theme-d5 {color: #fff !important;background-color: #344136 !important}
-
-.w3-theme-light {color: #000 !important;background-color: #f6f8f6 !important}
-.w3-theme-dark {color: #fff !important;background-color: #344136 !important}
-.w3-theme-action {color: #fff !important;background-color: #344136 !important}
-.w3-theme {color: #fff !important;background-color: #68826b !important}
-
-.w3-text-theme {color: #68826b !important}
-.w3-text-theme-dark {color: #344136 !important}
-
-.w3-border-theme {border-color: #68826b !important}
-.w3-border-theme-l5 {border-color: #f6f8f6 !important}
-.w3-border-theme-l4 {border-color: #e0e6e1 !important}
-.w3-border-theme-l3 {border-color: #c2cec3 !important}
-.w3-border-theme-l2 {border-color: #a3b5a5 !important}
-.w3-border-theme-l1 {border-color: #859d88 !important}
-.w3-border-theme-d1 {border-color: #5e7561 !important}
-.w3-border-theme-d2 {border-color: #546856 !important}
-.w3-border-theme-d3 {border-color: #495b4b !important}
-.w3-border-theme-d4 {border-color: #3f4e40 !important}
-.w3-border-theme-d5 {border-color: #344136 !important}
-
-.w3-hover-theme:hover {color: #fff !important;background-color: #68826b !important}
-.w3-hover-text-theme:hover {color: #68826b !important}
-.w3-hover-border-theme:hover {border-color: #68826b !important}
-.w3-hover-border-theme-dark:hover {border-color: #344136 !important}
-
-.w3-striped tbody tr:nth-child(even) {background-color: #f6f8f6}
-```
-
-
-### Añadir nuevas fuentes
-Apartado pendiente de definir
-
+The optional `Natizyskunk.sftp` extension can upload this project over SFTP.
+Copy `.vscode/sftp.json.example` to `.vscode/sftp.json` and fill in the server,
+username, and remote application path from FileZilla. The example keeps
+upload-on-save disabled and excludes local configuration and runtime data.
+The extension prompts for the password if none is stored in its config.

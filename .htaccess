@@ -1,0 +1,31 @@
+# CCSM se instala en /ccsm dentro de www.dominio.es.
+# La raíz del proyecto no debe exponer configuración, código ni registros.
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # RewriteBase /ccsm/
+
+    # Bloquea carpetas privadas del proyecto.
+    RewriteRule ^(config|core|src|logs|sessions_temp|bin|tests)(/|$) - [F,L,NC]
+
+    # Recursos públicos e instalador: se sirven desde /public sin cambiar la URL.
+    RewriteRule ^(css|js|uploads)(/.*)?$ public/$1$2 [L,NC]
+    RewriteRule ^install\.php$ public/install.php [L,NC]
+
+    # Las rutas restantes se procesan con el router de la aplicación.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php?url=$1 [QSA,L]
+</IfModule>
+
+# Defensa adicional para volcados y ficheros de bloqueo.
+<FilesMatch "\.(sql|lock)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>

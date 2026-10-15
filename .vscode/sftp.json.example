@@ -1,0 +1,18 @@
+{
+    "name": "CCSM",
+    "host": "SFTP_HOST_FROM_FILEZILLA",
+    "protocol": "sftp",
+    "port": 22,
+    "username": "SFTP_USERNAME",
+    "remotePath": "/PATH_TO_CCSM_SUBDOMAIN_DOCUMENT_ROOT",
+    "uploadOnSave": false,
+    "ignore": [
+        ".vscode",
+        ".git",
+        "config/config.php",
+        "config/installed.lock",
+        "sessions_temp/**",
+        "logs/**",
+        "public/uploads/**"
+    ]
+}

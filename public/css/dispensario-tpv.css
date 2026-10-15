@@ -1,0 +1,87 @@
+/* ====================================================================
+   GREENPOWER CCSM - TERMINAL TPV - ESTILOS CENTRALIZADOS DE MOSTRADOR
+   ==================================================================== */
+
+/* 1. Animación interactiva de giro para el botón de cobro */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spin-animation {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+/* 2. Diseño premium de las pestañas (Tabs) de la Ficha del Socio */
+.btn-tab-custom {
+    background-color: #f1f3f2 !important;
+    color: #495057 !important;
+    border-radius: 0px !important;
+}
+
+.btn-tab-custom:hover {
+    background-color: #e4e7e5 !important;
+    color: #000 !important;
+}
+
+/* Pestaña ACTIVA: Verde Forestal Institucional de la marca con subrayado ocre */
+.btn-tab-custom.active {
+    background-color: #1b4332 !important;
+    color: #ffffff !important;
+    box-shadow: inset 0 -3px 0 0 #ffc107 !important;
+}
+
+.btn-tab-custom.active i {
+    color: #ffc107 !important;
+}
+
+/* Opción B: Cambiando el punto por un guion (Más limpio y estándar) */
+.p-2-5 {
+    padding: 0.65rem !important;
+}
+.mt-1-5 {
+    margin-top: 0.35rem !important;
+}
+.tpv-categorias {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.tpv-categorias .nav-item {
+    max-width: 100%;
+}
+
+.tpv-categorias .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.tpv-categorias .bi {
+    flex-shrink: 0;
+    font-size: 1rem;
+}
+
+@media (max-width: 575.98px) {
+    .item-producto-tpv .card {
+        padding: 0.5rem !important;
+    }
+}
+
+/* 5. Imagen de producto ampliable */
+.img-ampliable {
+    cursor: zoom-in;
+}

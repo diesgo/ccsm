@@ -1,0 +1,9 @@
+# Reglas de respaldo para cuando /public sea el document root.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /dbold/public2/
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>

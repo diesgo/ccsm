@@ -10,6 +10,7 @@
         ".vscode",
         ".git",
         "config/config.php",
+        "config/config.local.php",
         "config/installed.lock",
         "sessions_temp/**",
         "logs/**",

@@ -47,6 +47,8 @@ if (defined('APP_ENV') && APP_ENV === 'production') {
 error_reporting(E_ALL);
 
 require_once dirname(__DIR__) . '/config/database.php';
+require_once dirname(__DIR__) . '/core/Demo.php';
+require_once dirname(__DIR__) . '/core/AnaliticaDemo.php';
 require_once dirname(__DIR__) . '/core/Router.php';
 
 if (Demo::activa()) {

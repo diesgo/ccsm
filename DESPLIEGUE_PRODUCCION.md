@@ -20,6 +20,21 @@ producción. Si ya existe `config.php` o `installed.lock`, se bloquea sin
 conectarse a la base ni modificarla. Conserva ambos archivos al actualizar
 una instalación existente.
 
+Si la instalación usa `config/config.local.php`, consérvalo también: es
+configuración privada y no debe versionarse ni sustituirse con la copia local.
+Para este formato, el archivo privado debe devolver un array con `DB_HOST`,
+`DB_PORT`, `DB_USER`, `DB_PASS`, `DB_NAME` y `URL_ROOT`. Puedes subir
+`config/config.hosting.example.php` como `config/config.php` **solo en el
+hosting** para cargarlo. No reemplaces el `config.php` de desarrollo con esa
+plantilla ni publiques los valores privados. La plantilla fija producción;
+para ofrecer la demo añade `'DEMO_ENABLED' => true` al array privado (por
+defecto está desactivada). El instalador sigue generando su configuración
+directa habitual y no necesita esta plantilla.
+Al actualizar, sube el código completo, incluido `config/database.php`, pero no
+los archivos de credenciales. El punto de entrada carga explícitamente
+`core/Demo.php` y `core/AnaliticaDemo.php`, sin depender de que el conector de
+base de datos los cargue indirectamente.
+
 **No hace falta subir** `bbdd.sql` ni `bbdd_auto.sql` (son el volcado de desarrollo, con datos de prueba) ni los `migracion_*.sql` sueltos — el instalador no los usa. Si los subes por comodidad, el `.htaccess` de la raíz ya bloquea su descarga, pero lo más limpio es no subirlos.
 
 ## 2. Configura el document root
